@@ -191,7 +191,7 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" IsChecked="{Binding IsChecked, Mode=TwoWay}" Style="{StaticResource RectangleToggleButtonStyle}"/>
+                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

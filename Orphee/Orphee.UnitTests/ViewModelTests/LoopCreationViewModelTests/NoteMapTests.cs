@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Moq;
 using NUnit.Framework;
 using Orphee.Models;
 using Orphee.Models.Interfaces;
-using Orphee.OrpheeMidiConverter;
 using Orphee.ViewModels;
 using Orphee.ViewModels.Interfaces;
 
@@ -14,14 +14,17 @@ namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests
     {
         protected ILoopCreationViewModel LoopCreationViewModel;
         protected IList<ObservableCollection<IToggleButtonNote>> NoteMap;
+        protected Mock<ISoundPlayer> SoundPlayerMock;
     }
 
-    public class AnNoteMapShouldAppear : WhenYouCreateLoopCreationViewModel
+    [TestFixture]
+    public class AnNoteMapShouldBeCreated : WhenYouCreateLoopCreationViewModel
     {
         [SetUp]
         public void Init()
         {
-            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack());
+            this.SoundPlayerMock = new Mock<ISoundPlayer>();
+            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack(), SoundPlayerMock.Object);
             this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
         }
 
@@ -62,14 +65,17 @@ namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests
     {
         protected ILoopCreationViewModel LoopCreationViewModel;
         protected IList<ObservableCollection<IToggleButtonNote>> NoteMap;
+        protected Mock<ISoundPlayer> SoundPlayerMock;
     }
 
+    [TestFixture]
     public class TheNoteMapShouldGetTenMoreColumns : WhenYouAddColumnsToNoteMap
     {
         [SetUp]
         public void Init()
         {
-            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack());
+            this.SoundPlayerMock = new Mock<ISoundPlayer>();
+            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack(), this.SoundPlayerMock.Object);
             NoteMapManager.Instance.AddColumnsToThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
             this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
         }
@@ -80,13 +86,14 @@ namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests
             Assert.AreEqual(20, this.NoteMap[0].Count);
         }
     }
-
-    public class TheNoteMapShouldNotGetMoreThanTwoHundredColumns : WhenYouAddColumnsToNoteMap
+    [TestFixture]
+    public class TheNoteMapShouldNotExceedTwoHundredColumns : WhenYouAddColumnsToNoteMap
     {
         [SetUp]
         public void Init()
         {
-            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack());
+            this.SoundPlayerMock = new Mock<ISoundPlayer>();
+            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack(), this.SoundPlayerMock.Object);
             for (var counter = 0; counter < 20; counter++)
                 NoteMapManager.Instance.AddColumnsToThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
             this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
@@ -103,14 +110,17 @@ namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests
     {
         protected ILoopCreationViewModel LoopCreationViewModel;
         protected IList<ObservableCollection<IToggleButtonNote>> NoteMap;
+        protected Mock<ISoundPlayer> SoundPlayerMock;
     }
 
+    [TestFixture]
     public class TheNoteMapShouldHaveAColumnLess : WhenYouRemoveAColumnFromTheNoteMap
     {
         [SetUp]
         public void Init()
         {
-            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack());
+            this.SoundPlayerMock = new Mock<ISoundPlayer>();
+            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack(), this.SoundPlayerMock.Object);
             NoteMapManager.Instance.RemoveAColumnFromThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
             this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
         }
@@ -121,13 +131,14 @@ namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests
             Assert.AreEqual(9, this.NoteMap[0].Count);
         }
     }
-
+    [TestFixture]
     public class TheNoteMapShouldNotHaveLessThanAColumn : WhenYouRemoveAColumnFromTheNoteMap
     {
         [SetUp]
         public void Init()
         {
-            this.LoopCreationViewModel =new LoopCreationViewModel(new OrpheeTrack());
+            this.SoundPlayerMock = new Mock<ISoundPlayer>();
+            this.LoopCreationViewModel =new LoopCreationViewModel(new OrpheeTrack(), this.SoundPlayerMock.Object);
             for (var counter = 0; counter < 11; counter++)
                 NoteMapManager.Instance.RemoveAColumnFromThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
             this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;

@@ -113,7 +113,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModelTests\LoopCreationViewModelTests\NoteMapCreationTests.cs" />
+    <Compile Include="ViewModelTests\LoopCreationViewModelTests\NoteMapTests.cs" />
+    <Compile Include="ViewModelTests\LoopCreationViewModelTests\SoundPlayerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

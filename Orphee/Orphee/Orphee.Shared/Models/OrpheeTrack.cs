@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Orphee.Models;
 using Orphee.Models.Interfaces;
-using Orphee.OrpheeMidiConverter.Interfaces;
 
-namespace Orphee.OrpheeMidiConverter
+namespace Orphee.Models
 {
     public class OrpheeTrack : IOrpheeTrack
     {
