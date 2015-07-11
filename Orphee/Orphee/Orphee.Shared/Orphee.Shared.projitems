@@ -15,9 +15,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IToggleButtonNote.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\NoteMapManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\NoteNameListManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ToggleButtonNote.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OrpheeMidiConverter\Interfaces\IOrpheeTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OrpheeMidiConverter\OrpheeTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnityModule\UnityIocContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnityModule\UnityIocInitializator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnityModule\ViewModelLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\ILoopCreationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoopCreationViewModel.cs" />
   </ItemGroup>
 </Project>

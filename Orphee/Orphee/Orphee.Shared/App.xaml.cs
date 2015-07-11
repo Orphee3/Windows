@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Orphee.UnityModule;
+using Orphee.Views;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -25,6 +17,7 @@ namespace Orphee
     /// </summary>
     public sealed partial class App : Application
     {
+        private readonly UnityIocInitializator _unityIocInitializator;
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
@@ -37,6 +30,7 @@ namespace Orphee
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+            this._unityIocInitializator = new UnityIocInitializator();
         }
 
         /// <summary>
@@ -47,6 +41,7 @@ namespace Orphee
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            this._unityIocInitializator.InitializeIocBindings();
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -95,7 +90,7 @@ namespace Orphee
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(LoopCreationView)))
                 {
                     throw new Exception("Failed to create initial page");
                 }
