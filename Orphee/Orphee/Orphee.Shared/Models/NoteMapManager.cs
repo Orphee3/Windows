@@ -48,6 +48,8 @@ namespace Orphee.Models
 
         public void AddColumnsToThisNoteMap(IList<ObservableCollection<IToggleButtonNote>> noteMap)
         {
+            if (noteMap == null || noteMap[0].Count >= 200)
+                return;
             for (var lineIndex = 0; lineIndex < this._lineNumber; lineIndex++)
                 for (var columnIndex = 0; columnIndex < this._columnNumberToAdd; columnIndex++)
                     noteMap[lineIndex].Add(new ToggleButtonNote() { LineIndex = lineIndex, ColumnIndex = columnIndex, Note = this.NoteNameListManager.NoteNameList[this.NoteNameListManager.NoteNameList.Keys.ElementAt(lineIndex)]});

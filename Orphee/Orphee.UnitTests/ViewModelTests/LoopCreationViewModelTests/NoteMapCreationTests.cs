@@ -81,6 +81,24 @@ namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests
         }
     }
 
+    public class TheNoteMapShouldNotGetMoreThanTwoHundredColumns : WhenYouAddColumnsToNoteMap
+    {
+        [SetUp]
+        public void Init()
+        {
+            this.LoopCreationViewModel = new LoopCreationViewModel(new OrpheeTrack());
+            for (var counter = 0; counter < 20; counter++)
+                NoteMapManager.Instance.AddColumnsToThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
+            this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
+        }
+
+        [Test]
+        public void TheResultShouldBeEqualToTwoHundred()
+        {
+            Assert.AreEqual(200, this.NoteMap[0].Count);
+        }
+    }
+
     public class WhenYouRemoveAColumnFromTheNoteMap
     {
         protected ILoopCreationViewModel LoopCreationViewModel;
