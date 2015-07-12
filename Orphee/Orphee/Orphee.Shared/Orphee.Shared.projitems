@@ -22,10 +22,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IOrpheeTrack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\ISoundPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IToggleButtonNote.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LoadFilePickers\LoadLoopFilePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MidiLibRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\NoteMapManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\NoteNameListManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OrpheeTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SaveFilePickers\SaveLoopFilePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SoundPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ToggleButtonNote.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnityModule\UnityIocContainer.cs" />

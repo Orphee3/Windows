@@ -2,6 +2,8 @@
 using Microsoft.Practices.Prism.Commands;
 using Orphee.Models;
 using Orphee.Models.Interfaces;
+using Orphee.Models.LoadFilePickers;
+using Orphee.Models.SaveFilePickers;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -28,6 +30,8 @@ namespace Orphee.ViewModels
         public DelegateCommand AddColumnsCommand { get; private set; }
         public DelegateCommand RemoveAColumnCommand { get; private set; }
         public DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; private set; }
+        public DelegateCommand SaveButtonCommand { get; private set; }
+        public DelegateCommand LoadButtonCommand { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public LoopCreationViewModel(IOrpheeTrack orpheeTrack, ISoundPlayer soundPlayer, IInstrumentManager instrumentManager)
@@ -38,6 +42,8 @@ namespace Orphee.ViewModels
             this.ToggleButtonNoteCommand = new DelegateCommand<IToggleButtonNote>(ToggleButtonNoteExec);
             this.AddColumnsCommand = new DelegateCommand(AddColumnsCommandExec);
             this.RemoveAColumnCommand = new DelegateCommand(RemoveAColumnCommandExec);
+            this.SaveButtonCommand = new DelegateCommand(SaveButtonCommandExec);
+            this.LoadButtonCommand = new DelegateCommand(LoadButtonCommandExec);
         }
 
         private void AddColumnsCommandExec()
@@ -62,6 +68,20 @@ namespace Orphee.ViewModels
             this.InstrumentManager.CurrentInstrument = this.InstrumentManager.InstrumentList[this.CurrentInstrumentIndex];
             this._soundPlayer.UpdatePlayingInstrument(this.InstrumentManager.CurrentInstrument);
             this.DisplayedTrack.CurrentInstrument = this.InstrumentManager.CurrentInstrument;
+        }
+
+        private async void SaveButtonCommandExec()
+        {
+            var saveLoopFilePicker = new SaveLoopFilePicker();
+
+            await saveLoopFilePicker.SaveLoop(this.DisplayedTrack);
+        }
+
+        private async void LoadButtonCommandExec()
+        {
+            var loadLoopFilePicker = new LoadLoopFilePicker();
+
+            await loadLoopFilePicker.LoadLoop();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

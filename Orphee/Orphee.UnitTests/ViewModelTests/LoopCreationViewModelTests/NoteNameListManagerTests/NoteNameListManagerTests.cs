@@ -2,7 +2,7 @@
 using Orphee.Models;
 using Orphee.Models.Interfaces;
 
-namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests
+namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests.NoteNameListManagerTests
 {
     public class WhenNoteNameListManagerIsCreated
     {

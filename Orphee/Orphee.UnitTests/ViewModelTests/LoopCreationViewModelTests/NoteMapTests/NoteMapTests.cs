@@ -8,7 +8,7 @@ using Orphee.Models.Interfaces;
 using Orphee.ViewModels;
 using Orphee.ViewModels.Interfaces;
 
-namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests
+namespace Orphee.UnitTests.ViewModelTests.LoopCreationViewModelTests.NoteMapTests
 {
     public class NoteMapTestsBase
     {

@@ -15,5 +15,7 @@ namespace Orphee.ViewModels.Interfaces
         DelegateCommand AddColumnsCommand { get; }
         DelegateCommand RemoveAColumnCommand { get; }
         DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; }
+        DelegateCommand SaveButtonCommand { get; }
+        DelegateCommand LoadButtonCommand { get; }
     }
 }
