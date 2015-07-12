@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Midi;
+using Orphee.Models.Interfaces;
 
 namespace Orphee.Models
 {
-    public class NoteNameListManager
+    public class NoteNameListManager : INoteNameListManager
     {
         public Dictionary<string, Note> NoteNameList { get; private set; }
 

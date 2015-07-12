@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\InstrumentManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IInstrumentManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IMidiLibRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\INoteNameListManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IOrpheeTrack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\ISoundPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IToggleButtonNote.cs" />
