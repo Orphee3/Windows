@@ -8,5 +8,6 @@ namespace Orphee.Models.Interfaces
 
         // Methods
         void PlayNote(Note note);
+        void UpdatePlayingInstrument(Instrument newPlayingInstrument);
     }
 }

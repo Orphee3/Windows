@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Midi;
 
 namespace Orphee.Models.Interfaces
 {
-    public interface IOrpheeTrack
+    public interface IInstrumentManager
     {
-        // Methods
-
         // Properties
-        IList<ObservableCollection<IToggleButtonNote>> NoteMap { get; }
+        List<Instrument> InstrumentList { get; }
         Instrument CurrentInstrument { get; set; }
+
+        // Methods
     }
 }

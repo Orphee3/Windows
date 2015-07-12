@@ -178,6 +178,7 @@
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
 
+        <ComboBox Grid.Column="0" Margin="0, 50, 10, 0" Height="Auto" VerticalAlignment="top" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}"/>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Column="2" VerticalScrollBarVisibility="Disabled" Margin="0, 0, 35, 0">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
                 <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">

@@ -9,6 +9,8 @@ namespace Orphee.ViewModels.Interfaces
         void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote);
 
         // Properties
+        IInstrumentManager InstrumentManager { get; }
+        int CurrentInstrumentIndex { get; set; }
         IOrpheeTrack DisplayedTrack { get; }
         DelegateCommand AddColumnsCommand { get; }
         DelegateCommand RemoveAColumnCommand { get; }

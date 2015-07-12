@@ -35,5 +35,10 @@ namespace Orphee.Models
             this._clock.Schedule(noteOn);
             this._clock.Schedule(noteOff);
         }
+
+        public void UpdatePlayingInstrument(Instrument newPlayingInstrument)
+        {
+            this._outputDevice.SendProgramChange(Channel.Channel1, newPlayingInstrument);
+        }
     }
 }

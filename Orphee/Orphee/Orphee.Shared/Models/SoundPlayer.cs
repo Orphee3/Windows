@@ -16,5 +16,10 @@ namespace Orphee.Models
         {
             this._midiLibRepository.PlayNote(note);
         }
+
+        public void UpdatePlayingInstrument(Instrument newPlayingInstrument)
+        {
+            this._midiLibRepository.UpdatePlayingInstrument(newPlayingInstrument);
+        }
     }
 }
