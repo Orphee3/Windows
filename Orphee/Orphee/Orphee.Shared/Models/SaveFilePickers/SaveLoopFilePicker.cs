@@ -11,11 +11,13 @@ namespace Orphee.Models.SaveFilePickers
     {
         public async Task<bool> SaveLoop(IOrpheeTrack orpheeTrack)
         {
-            FileSavePicker savePicker = new FileSavePicker();
-            savePicker.SuggestedStartLocation = PickerLocationId.MusicLibrary;
+            var savePicker = new FileSavePicker()
+            {
+                SuggestedStartLocation = PickerLocationId.MusicLibrary,
+                SuggestedFileName = "New Loop",
+            };
             savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".orph" });
-            savePicker.SuggestedFileName = "New Loop";
-            StorageFile file = await savePicker.PickSaveFileAsync();
+            var file = await savePicker.PickSaveFileAsync();
             if (file != null)
             {
                 CachedFileManager.DeferUpdates(file);
