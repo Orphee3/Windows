@@ -1,5 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Commands;
-using Orphee.Models.Interfaces;
+using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.ViewModels.Interfaces
 {

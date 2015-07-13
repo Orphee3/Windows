@@ -1,8 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
-
-namespace Orphee.Views
+﻿namespace Orphee.Views
 {
-    public sealed partial class LoopCreationView : Page
+    public sealed partial class LoopCreationView
     {
         public LoopCreationView()
         {

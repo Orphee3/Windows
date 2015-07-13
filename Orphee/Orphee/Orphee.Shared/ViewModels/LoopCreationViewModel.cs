@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
 using Microsoft.Practices.Prism.Commands;
-using Orphee.Models;
-using Orphee.Models.Interfaces;
-using Orphee.Models.LoadFilePickers;
-using Orphee.Models.SaveFilePickers;
+using Orphee.CreationShared;
+using Orphee.CreationShared.Interfaces;
+using Orphee.OrpheeLoopCreation;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels

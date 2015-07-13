@@ -15,28 +15,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\InstrumentManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IInstrumentManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IMidiLibRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\INoteNameListManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IOrpheeTrack.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\ISoundPlayer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IToggleButtonNote.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\LoadFilePickers\LoadLoopFilePicker.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\MidiLibRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\NoteMapManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\NoteNameListManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\OrpheeTrack.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SaveFilePickers\SaveLoopFilePicker.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SoundPlayer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ToggleButtonNote.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UnityModule\UnityIocContainer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UnityModule\UnityIocInitializator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UnityModule\ViewModelLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UnityModule\UnityIocContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UnityModule\UnityIocInitializator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UnityModule\ViewModelLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\ILoopCreationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoopCreationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)OrpheeMidiConverter\Interfaces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Interfaces\" />
   </ItemGroup>
 </Project>

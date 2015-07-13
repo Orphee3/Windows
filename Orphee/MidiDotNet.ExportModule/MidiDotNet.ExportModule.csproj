@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6D86DB38-F250-4363-85D8-8C0EC6C31FBE}</ProjectGuid>
+    <ProjectGuid>{2134A015-62F4-4B8A-AD3E-F93D55AF5074}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MidiDotNet.IOModules</RootNamespace>
-    <AssemblyName>MidiDotNet.IOModules</AssemblyName>
+    <RootNamespace>MidiDotNet.ExportModule</RootNamespace>
+    <AssemblyName>MidiDotNet.ExportModule</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -38,6 +38,15 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeltaTimeWriter.cs" />
+    <Compile Include="FileHeaderWriter.cs" />
+    <Compile Include="Interfaces\IDeltaTimeWriter.cs" />
+    <Compile Include="Interfaces\IFileHeaderWriter.cs" />
+    <Compile Include="Interfaces\IProgramMessageWriter.cs" />
+    <Compile Include="Interfaces\ITempoMessageWriter.cs" />
+    <Compile Include="Interfaces\ITimeSignatureMessageWriter.cs" />
+    <Compile Include="Interfaces\ITrackHeaderWriter.cs" />
+    <Compile Include="TrackHeaderWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -46,7 +55,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ExportToOrpheeFileModule\" />
+    <ProjectReference Include="..\MidiDotNet.Shared\MidiDotNet.Shared.csproj">
+      <Project>{4c115b86-4a11-4d68-93a6-321478b06fd4}</Project>
+      <Name>MidiDotNet.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orphee.CreationShared\Orphee.CreationShared.csproj">
+      <Project>{cbc33d6e-ab43-4f90-a12a-e6167ab0d392}</Project>
+      <Name>Orphee.CreationShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orphee.Utils\Orphee.Utils.csproj">
+      <Project>{72315782-bf3f-4602-aa2b-22ffb3153f1f}</Project>
+      <Name>Orphee.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
