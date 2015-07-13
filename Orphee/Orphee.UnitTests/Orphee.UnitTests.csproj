@@ -112,6 +112,7 @@
     <SDKReference Include="TestPlatform, Version=11.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IOModulesTests\FileHeaderWriterTests\FileHeaderWriterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelTests\LoopCreationViewModelTests\InstrumentMangerTests\InstrumentManagerTests.cs" />
     <Compile Include="ViewModelTests\LoopCreationViewModelTests\NoteMapTests\NoteMapTests.cs" />
