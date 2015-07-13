@@ -14,14 +14,12 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.Instru
         protected IInstrumentManager InstrumentManager;
         protected Instrument CurrentInstrument;
         protected Mock<ISoundPlayer> SoundPlayerMock;
-        protected Mock<IOrpheeTrack> OrpheeTrackMock;
 
         public InstrumentManagerTestsBase()
         {
             this.SoundPlayerMock = new Mock<ISoundPlayer>();
-            this.OrpheeTrackMock = new Mock<IOrpheeTrack>();
             this.InstrumentManager = new InstrumentManager();
-            this.LoopCreationViewModel = new LoopCreationViewModel(this.OrpheeTrackMock.Object, this.SoundPlayerMock.Object, this.InstrumentManager);
+            this.LoopCreationViewModel = new LoopCreationViewModel(this.SoundPlayerMock.Object, this.InstrumentManager);
         }
     }
 

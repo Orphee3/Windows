@@ -63,10 +63,6 @@
       <Project>{cbc33d6e-ab43-4f90-a12a-e6167ab0d392}</Project>
       <Name>Orphee.CreationShared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Orphee.Utils\Orphee.Utils.csproj">
-      <Project>{72315782-bf3f-4602-aa2b-22ffb3153f1f}</Project>
-      <Name>Orphee.Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

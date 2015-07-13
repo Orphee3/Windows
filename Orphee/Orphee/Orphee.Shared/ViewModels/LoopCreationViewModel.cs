@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel;
 using Microsoft.Practices.Prism.Commands;
+using Midi;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
-using Orphee.OrpheeLoopCreation;
+using Orphee.LoopCreation;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -33,9 +34,9 @@ namespace Orphee.ViewModels
         public DelegateCommand LoadButtonCommand { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public LoopCreationViewModel(IOrpheeTrack orpheeTrack, ISoundPlayer soundPlayer, IInstrumentManager instrumentManager)
+        public LoopCreationViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager)
         {
-            this.DisplayedTrack = orpheeTrack;
+            this.DisplayedTrack = new OrpheeTrack(0, Channel.Channel10);
             this._soundPlayer = soundPlayer;
             this.InstrumentManager = instrumentManager;
             this.ToggleButtonNoteCommand = new DelegateCommand<IToggleButtonNote>(ToggleButtonNoteExec);

@@ -5,7 +5,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Orphee.CreationShared.Interfaces;
 
-namespace Orphee.OrpheeLoopCreation
+namespace Orphee.LoopCreation
 {
     public class SaveLoopFilePicker
     {

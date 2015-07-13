@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Midi;
 using MidiDotNet.ExportModule;
@@ -33,13 +34,14 @@ namespace Orphee.UnitTests.ExportModuleTests.TrackHeaderWriterTests
             this.TempoMessageWriterMock = new Mock<ITempoMessageWriter>();
             this.TimeSignatureMessageWriterMock = new Mock<ITimeSignatureMessageWriter>();
             this.TrackHeaderWriter = new TrackHeaderWriter(this.TimeSignatureMessageWriterMock.Object , this.TempoMessageWriterMock.Object, this.ProgramMessageWriterMock.Object);
-            InitializeWriter();
+            var result = InitializeWriter().Result;
         }
 
-        private async void InitializeWriter()
+        private async Task<bool> InitializeWriter()
         {
             var folder = KnownFolders.MusicLibrary;
             this.OrpheeFile = await folder.CreateFileAsync("UnitTest.orph", CreationCollisionOption.ReplaceExisting);
+            return true;
         }
     }
 
@@ -53,7 +55,7 @@ namespace Orphee.UnitTests.ExportModuleTests.TrackHeaderWriterTests
         {
             using (this.Writer = new BinaryWriter(this.OrpheeFile.OpenStreamForWriteAsync().Result))
             {
-                this._result = this.TrackHeaderWriter.WriteTrackHeader(this.Writer, this.OrpheeTrack.PlayerParameters);
+                this._result = this.TrackHeaderWriter.WriteTrackHeader(this.Writer, this.OrpheeTrack.PlayerParameters, 0);
             }
         }
 

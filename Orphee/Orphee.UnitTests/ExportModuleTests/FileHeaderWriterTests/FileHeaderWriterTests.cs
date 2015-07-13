@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Windows.Storage;
 using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;
@@ -31,13 +32,14 @@ namespace Orphee.UnitTests.ExportModuleTests.FileHeaderWriterTests
             };
             this.SwapManager = new SwapManager();
             this.FileHeaderWriter = new FileHeaderWriter(this.SwapManager);
-            InitializeWriter();
+            var result = InitializeWriter().Result;
         }
 
-        private async void InitializeWriter()
+        private async Task<bool> InitializeWriter()
         {
             var folder = KnownFolders.MusicLibrary;
             this.File = await folder.CreateFileAsync("UnitTest.orph", CreationCollisionOption.ReplaceExisting);
+            return true;
         }
     }
 

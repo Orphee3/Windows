@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.Storage.Pickers;
 
-namespace Orphee.OrpheeLoopCreation
+namespace Orphee.LoopCreation
 {
     public class LoadLoopFilePicker
     {

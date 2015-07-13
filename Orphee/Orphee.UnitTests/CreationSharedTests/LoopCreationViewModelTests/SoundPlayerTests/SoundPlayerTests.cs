@@ -11,7 +11,6 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.SoundP
     public class WhenAToggleButtonNoteIsClicked
     {
         protected ILoopCreationViewModel LoopCreationViewModel;
-        protected Mock<IOrpheeTrack> OrpheeTrackMock;
         protected Mock<IMidiLibRepository> MidiLibRepositoryMock;
         protected Mock<IInstrumentManager> InstrumentManagerMock;
         protected IToggleButtonNote ToggleButtonNote;
@@ -20,10 +19,9 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.SoundP
         public WhenAToggleButtonNoteIsClicked()
         {
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
-            this.OrpheeTrackMock = new Mock<IOrpheeTrack>();
             this.MidiLibRepositoryMock = new Mock<IMidiLibRepository>();
             this.SoundPlayer = new SoundPlayer(this.MidiLibRepositoryMock.Object);
-            this.LoopCreationViewModel = new LoopCreationViewModel(this.OrpheeTrackMock.Object, this.SoundPlayer, this.InstrumentManagerMock.Object);
+            this.LoopCreationViewModel = new LoopCreationViewModel(this.SoundPlayer, this.InstrumentManagerMock.Object);
         }
     }
 

@@ -169,18 +169,6 @@
       <Project>{cbc33d6e-ab43-4f90-a12a-e6167ab0d392}</Project>
       <Name>Orphee.CreationShared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Orphee.OrpheeLoopCreation\Orphee.OrpheeLoopCreation.csproj">
-      <Project>{cb8a6d97-d790-46db-90e5-f1df52004512}</Project>
-      <Name>Orphee.OrpheeLoopCreation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orphee.OrpheePieceCreation\Orphee.OrpheePieceCreation.csproj">
-      <Project>{063a552b-e8f8-4b54-b4b6-fe9c712f85c9}</Project>
-      <Name>Orphee.OrpheePieceCreation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orphee.Utils\Orphee.Utils.csproj">
-      <Project>{72315782-bf3f-4602-aa2b-22ffb3153f1f}</Project>
-      <Name>Orphee.Utils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Orphee\Orphee.Windows\Orphee.Windows.csproj">
       <Project>{2fd0edc8-bebf-4e9c-8488-f364cd327b4a}</Project>
       <Name>Orphee.Windows</Name>

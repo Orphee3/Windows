@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Midi;
 using Moq;
 using NUnit.Framework;
 using Orphee.CreationShared;
@@ -22,7 +21,7 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         {
             this.SoundPlayerMock = new Mock<ISoundPlayer>();
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
-            this.LoopCreationViewModel =new LoopCreationViewModel(new OrpheeTrack(0, Channel.Channel1), this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object);
+            this.LoopCreationViewModel =new LoopCreationViewModel(this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object);
         }
     }
     public class WhenYouCreateLoopCreationViewModel : NoteMapTestsBase
