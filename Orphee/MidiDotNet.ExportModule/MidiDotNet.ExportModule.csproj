@@ -46,6 +46,8 @@
     <Compile Include="Interfaces\ITempoMessageWriter.cs" />
     <Compile Include="Interfaces\ITimeSignatureMessageWriter.cs" />
     <Compile Include="Interfaces\ITrackHeaderWriter.cs" />
+    <Compile Include="TempoMessageWriter.cs" />
+    <Compile Include="TimeSignatureMessageWriter.cs" />
     <Compile Include="TrackHeaderWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

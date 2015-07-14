@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
-using Windows.Storage;
+using System.Text;
 using Midi;
 using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;
+using MidiDotNet.Shared;
+using MidiDotNet.Shared.Interfaces;
 using Moq;
 using NUnit.Framework;
 using Orphee.CreationShared;
@@ -12,17 +13,14 @@ using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.UnitTests.ExportModuleTests.TrackHeaderWriterTests
 {
-    public class WhenTrackHeaderWriterIsCalled
+    public class WhenTrackHeaderWriterIsCalled : ExportModuleTestsBase
     {
-        protected Mock<IProgramMessageWriter> ProgramMessageWriterMock;
         protected Mock<ITempoMessageWriter> TempoMessageWriterMock;
         protected Mock<ITimeSignatureMessageWriter> TimeSignatureMessageWriterMock;
         protected ITrackHeaderWriter TrackHeaderWriter;
-        protected BinaryWriter Writer;
-        protected BinaryReader Reader;
-        protected StorageFile OrpheeFile;
         protected IOrpheeTrack OrpheeTrack;
         protected IPlayerParameters PlayerParameters;
+        protected ISwapManager SwapManager;
 
         public WhenTrackHeaderWriterIsCalled()
         {
@@ -30,18 +28,11 @@ namespace Orphee.UnitTests.ExportModuleTests.TrackHeaderWriterTests
             {
                 PlayerParameters = new PlayerParameters()
             };
-            this.ProgramMessageWriterMock = new Mock<IProgramMessageWriter>();
+            this.SwapManager = new SwapManager();
             this.TempoMessageWriterMock = new Mock<ITempoMessageWriter>();
             this.TimeSignatureMessageWriterMock = new Mock<ITimeSignatureMessageWriter>();
-            this.TrackHeaderWriter = new TrackHeaderWriter(this.TimeSignatureMessageWriterMock.Object , this.TempoMessageWriterMock.Object, this.ProgramMessageWriterMock.Object);
-            var result = InitializeWriter().Result;
-        }
-
-        private async Task<bool> InitializeWriter()
-        {
-            var folder = KnownFolders.MusicLibrary;
-            this.OrpheeFile = await folder.CreateFileAsync("UnitTest.orph", CreationCollisionOption.ReplaceExisting);
-            return true;
+            this.TrackHeaderWriter = new TrackHeaderWriter(this.TimeSignatureMessageWriterMock.Object , this.TempoMessageWriterMock.Object, this.SwapManager);
+            var result = InitializeFile("TrackHeaderTests.orph").Result;
         }
     }
 
@@ -53,9 +44,9 @@ namespace Orphee.UnitTests.ExportModuleTests.TrackHeaderWriterTests
         [SetUp]
         public void Init()
         {
-            using (this.Writer = new BinaryWriter(this.OrpheeFile.OpenStreamForWriteAsync().Result))
+            using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
             {
-                this._result = this.TrackHeaderWriter.WriteTrackHeader(this.Writer, this.OrpheeTrack.PlayerParameters, 0);
+                this._result = this.TrackHeaderWriter.WriteTrackHeader(this.Writer, this.OrpheeTrack.PlayerParameters, this.OrpheeTrack.TrackLength);
             }
         }
 
@@ -63,6 +54,51 @@ namespace Orphee.UnitTests.ExportModuleTests.TrackHeaderWriterTests
         public void TheResultShouldBeTrue()
         {
             Assert.IsTrue(this._result);
+        }
+    }
+
+    [TestFixture]
+    public class TheFirstTrackHeaderShouldBeWrittenInTheNewFile : WhenTrackHeaderWriterIsCalled
+    {
+        private bool _result;
+        private string _trackHeaderCode;
+        private uint _trackLength;
+
+        [SetUp]
+        public void WriteDataInTheUnitTestFile()
+        {
+            using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
+            {
+                this._result = this.TrackHeaderWriter.WriteTrackHeader(this.Writer, this.PlayerParameters, this.OrpheeTrack.TrackLength);
+            }
+            ReadTheUnitTestFile();
+        }
+
+        private void ReadTheUnitTestFile()
+        {
+            using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
+            {
+                this._trackHeaderCode = Encoding.UTF8.GetString(this.Reader.ReadBytes(4), 0, 4);
+                this._trackLength = this.SwapManager.SwapUInt32(this.Reader.ReadUInt32());
+            }
+        }
+
+        [Test]
+        public void ResultShouldBeTrue()
+        {
+            Assert.IsTrue(this._result);
+        }
+
+        [Test]
+        public void TrackHeaderShouldBeMTrk()
+        {
+            Assert.AreEqual("MTrk", this._trackHeaderCode);
+        }
+
+        [Test]
+        public void TrackLengthShouldBeEqualToOrpheTrackTrackLength()
+        {
+            Assert.AreEqual(this.OrpheeTrack.TrackLength, this._trackLength);
         }
     }
 }

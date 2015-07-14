@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
-using System.Threading.Tasks;
-using Windows.Storage;
 using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;
 using MidiDotNet.Shared;
@@ -13,14 +10,11 @@ using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.UnitTests.ExportModuleTests.FileHeaderWriterTests
 {
-    public class WhenFileHeaderWriterIsCalled
+    public class WhenFileHeaderWriterIsCalled : ExportModuleTestsBase
     {
         protected IFileHeaderWriter FileHeaderWriter;
         protected ISwapManager SwapManager;
         protected IOrpheeFileParameters OrpheeFileParameters;
-        protected BinaryWriter Writer;
-        protected BinaryReader Reader;
-        protected StorageFile File;
 
         public WhenFileHeaderWriterIsCalled()
         {
@@ -32,14 +26,7 @@ namespace Orphee.UnitTests.ExportModuleTests.FileHeaderWriterTests
             };
             this.SwapManager = new SwapManager();
             this.FileHeaderWriter = new FileHeaderWriter(this.SwapManager);
-            var result = InitializeWriter().Result;
-        }
-
-        private async Task<bool> InitializeWriter()
-        {
-            var folder = KnownFolders.MusicLibrary;
-            this.File = await folder.CreateFileAsync("UnitTest.orph", CreationCollisionOption.ReplaceExisting);
-            return true;
+            var result = InitializeFile("FileHeaderWriterTests.orph").Result;
         }
     }
 

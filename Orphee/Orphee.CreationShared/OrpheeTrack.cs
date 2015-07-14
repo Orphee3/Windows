@@ -12,6 +12,7 @@ namespace Orphee.CreationShared
         public IPlayerParameters PlayerParameters { get; set; }
         public Channel Channel { get; private set; }
         public int TrackPos { get; private set; }
+        public uint TrackLength { get; private set; }
 
         public OrpheeTrack(int trackPos, Channel channel)
         {
@@ -19,7 +20,12 @@ namespace Orphee.CreationShared
             this.Channel = channel;
             this.TrackPos = trackPos;
             if (this.TrackPos == 0)
+            {
                 this.PlayerParameters = new PlayerParameters();
+                this.TrackLength = 18;
+            }
+            else
+                this.TrackLength = 2;
         }
     }
 }
