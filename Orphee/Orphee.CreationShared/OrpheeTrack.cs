@@ -8,6 +8,7 @@ namespace Orphee.CreationShared
     public class OrpheeTrack : IOrpheeTrack
     {
         public IList<ObservableCollection<IToggleButtonNote>> NoteMap { get; private set; }
+        public IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; } 
         public Instrument CurrentInstrument { get; set; }
         public IPlayerParameters PlayerParameters { get; set; }
         public Channel Channel { get; private set; }

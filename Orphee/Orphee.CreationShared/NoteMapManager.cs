@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI.Xaml.Shapes;
+using Midi;
 using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
@@ -61,6 +63,55 @@ namespace Orphee.CreationShared
                 return;
             for (var lineIndex = 0; lineIndex < this._lineNumber; lineIndex++)
                 noteMap[lineIndex].RemoveAt(noteMap[lineIndex].Count - 1);
+        }
+
+        private static Dictionary<int, List<Note>> SwitchNoteListLinesAndColumns(IList<ObservableCollection<IToggleButtonNote>> noteList)
+        {
+            var noteListSwitched = new Dictionary<int, List<Note>>();
+
+            for (var columnNumber = 0; columnNumber < noteList[0].Count; columnNumber++)
+            {
+                noteListSwitched.Add(columnNumber, new List<Note>());
+                foreach (var line in noteList)
+                {
+                    if (line[columnNumber].IsChecked)
+                        noteListSwitched[columnNumber].Add(line[columnNumber].Note);
+                }
+            }
+            return noteListSwitched;
+        }
+
+        private static void UpdateOrpheeNoteMesageList(ICollection<IOrpheeNoteMessage> orpheeNoteMessageList, IList<IToggleButtonNote> extractedToggleButtonNotes, int channel, int deltaTime)
+        {
+            for (var iterator = 0; iterator < extractedToggleButtonNotes.Count; iterator++)
+                orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? deltaTime : 0, MessageCode = 0x90, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 76} );
+            for (var iterator = 0; iterator < extractedToggleButtonNotes.Count; iterator++)
+                orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? 48 : 0, MessageCode = 0x80, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 0 });
+        }
+
+        private IList<IToggleButtonNote> ExtractToggleButtonNotesFromNoteMapColumn(int columnIndex, IList<ObservableCollection<IToggleButtonNote>> noteMap)
+        {
+            var toggleButtonNoteList = new List<IToggleButtonNote>();
+
+            for (var lineIndex = 0; lineIndex < this.NoteNameListManager.NoteNameList.Count; lineIndex++)
+                if (noteMap[lineIndex][columnIndex].IsChecked)
+                    toggleButtonNoteList.Add(noteMap[lineIndex][columnIndex]);
+            return toggleButtonNoteList.Count == 0 ? null : toggleButtonNoteList;
+        }
+
+        public IList<IOrpheeNoteMessage> ConvertNoteMapToOrpheeMessageList(IList<ObservableCollection<IToggleButtonNote>> noteMap, int channel)
+        {
+            var orpheeNoteMessageList = new List<IOrpheeNoteMessage>();
+            var deltaTime = 0;
+
+            for (var columnIndex = 0; columnIndex < noteMap[0].Count; columnIndex++)
+            {
+                var extractedToggleButtonNotes = ExtractToggleButtonNotesFromNoteMapColumn(columnIndex, noteMap);
+                if (extractedToggleButtonNotes != null)
+                    UpdateOrpheeNoteMesageList(orpheeNoteMessageList, extractedToggleButtonNotes, channel, deltaTime);
+                deltaTime = (extractedToggleButtonNotes == null) ? (deltaTime + 48) : 0;
+            }
+            return orpheeNoteMessageList;
         }
     }
 }

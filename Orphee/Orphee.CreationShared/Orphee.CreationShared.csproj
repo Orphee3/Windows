@@ -43,6 +43,7 @@
     <Compile Include="Interfaces\IMidiLibRepository.cs" />
     <Compile Include="Interfaces\INoteNameListManager.cs" />
     <Compile Include="Interfaces\IOrpheeFileParameters.cs" />
+    <Compile Include="Interfaces\IOrpheeNoteMessage.cs" />
     <Compile Include="Interfaces\IOrpheeTrack.cs" />
     <Compile Include="Interfaces\IPlayerParameters.cs" />
     <Compile Include="Interfaces\ISoundPlayer.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="NoteMapManager.cs" />
     <Compile Include="NoteNameListManager.cs" />
     <Compile Include="OrpheeFileParameters.cs" />
+    <Compile Include="OrpheeNoteMessage.cs" />
     <Compile Include="OrpheeTrack.cs" />
     <Compile Include="PlayerParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,6 +10,7 @@ namespace Orphee.CreationShared.Interfaces
 
         // Properties
         IList<ObservableCollection<IToggleButtonNote>> NoteMap { get; }
+        IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; }
         Instrument CurrentInstrument { get; set; }
         IPlayerParameters PlayerParameters { get; set; }
         Channel Channel { get; }
