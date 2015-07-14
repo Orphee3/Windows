@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="ExportModuleTests\ExportModuleTestsBase.cs" />
     <Compile Include="ExportModuleTests\FileHeaderWriterTests\FileHeaderWriterTests.cs" />
+    <Compile Include="ExportModuleTests\ProgramChangeMessageTests\ProgramChangeMessageTests.cs" />
     <Compile Include="ExportModuleTests\TempoMessageWriterTests\TempoMessageWriterTests.cs" />
     <Compile Include="ExportModuleTests\TimeSignatureMessageWriterTests\TimeSignatureMessageWritterTests.cs" />
     <Compile Include="ExportModuleTests\TrackHeaderWriterTests\TrackHeaderWriterTests.cs" />
