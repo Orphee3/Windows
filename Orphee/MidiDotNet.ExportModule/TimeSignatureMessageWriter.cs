@@ -16,7 +16,7 @@ namespace MidiDotNet.ExportModule
             writer.Write((byte) playerParameters.TimeSignatureNominator);
             writer.Write((byte) Math.Log(playerParameters.TimeSignatureDenominator, 2));
             writer.Write((byte) playerParameters.TimeSignatureClocksPerBeat);
-            writer.Write((byte) playerParameters.TimeSignatureNumberOf32ThNotePerBeat * 2);
+            writer.Write((byte) (playerParameters.TimeSignatureNumberOf32ThNotePerBeat * 2));
         }
     }
 }
