@@ -21,5 +21,10 @@ namespace Orphee.CreationShared
         {
             this._midiLibRepository.UpdatePlayingInstrument(newPlayingInstrument);
         }
+
+        public IPlayerParameters GetPlayerParameters()
+        {
+            return this._midiLibRepository.PlayerParameters;
+        }
     }
 }

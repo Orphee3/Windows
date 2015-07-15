@@ -39,15 +39,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeltaTimeWriter.cs" />
+    <Compile Include="EndOfTrackMessageWriter.cs" />
     <Compile Include="FileHeaderWriter.cs" />
     <Compile Include="Interfaces\IDeltaTimeWriter.cs" />
+    <Compile Include="Interfaces\IEndOfTrackMessageWriter.cs" />
     <Compile Include="Interfaces\IFileHeaderWriter.cs" />
     <Compile Include="Interfaces\INoteMessageWriter.cs" />
+    <Compile Include="Interfaces\IOrpheeFileExporter.cs" />
     <Compile Include="Interfaces\IProgramChangeMessageWriter.cs" />
     <Compile Include="Interfaces\ITempoMessageWriter.cs" />
     <Compile Include="Interfaces\ITimeSignatureMessageWriter.cs" />
     <Compile Include="Interfaces\ITrackHeaderWriter.cs" />
     <Compile Include="NoteMessageWriter.cs" />
+    <Compile Include="OrpheeFileExporter.cs" />
     <Compile Include="ProgramChangeMessageWriter.cs" />
     <Compile Include="TempoMessageWriter.cs" />
     <Compile Include="TimeSignatureMessageWriter.cs" />

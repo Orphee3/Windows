@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Orphee.CreationShared.Interfaces;
+using Midi;
 
 namespace MidiDotNet.ExportModule.Interfaces
 {
@@ -8,6 +8,6 @@ namespace MidiDotNet.ExportModule.Interfaces
         // Properties
 
         // Methods
-        void WriteProgramChangeMessage(BinaryWriter writer, IOrpheeTrack orpheeTrack);
+        void WriteProgramChangeMessage(BinaryWriter writer, int channel, Instrument instrument);
     }
 }

@@ -37,7 +37,7 @@ namespace Orphee.UnitTests.ExportModuleTests.ProgramChangeMessageTests
         {
             using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
             {
-                this.ProgramChangeMessageWriter.WriteProgramChangeMessage(this.Writer, this.OrpheeTrack);
+                this.ProgramChangeMessageWriter.WriteProgramChangeMessage(this.Writer, (int)this.OrpheeTrack.Channel, this.OrpheeTrack.CurrentInstrument);
             }
             ReadProgramChangeMessage();
         }

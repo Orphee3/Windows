@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Midi;
+using MidiDotNet.ExportModule.Interfaces;
 using Moq;
 using NUnit.Framework;
 using Orphee.CreationShared;
@@ -17,12 +18,14 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         protected IList<ObservableCollection<IToggleButtonNote>> NoteMap;
         protected Mock<IInstrumentManager> InstrumentManagerMock;
         protected Mock<ISoundPlayer> SoundPlayerMock;
+        protected Mock<IOrpheeFileExporter> OrpheeFileExporterMock; 
 
         public NoteMapTestsBase()
         {
+            this.OrpheeFileExporterMock = new Mock<IOrpheeFileExporter>();
             this.SoundPlayerMock = new Mock<ISoundPlayer>();
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
-            this.LoopCreationViewModel =new LoopCreationViewModel(this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object);
+            this.LoopCreationViewModel =new LoopCreationViewModel(this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object);
         }
     }
     public class WhenYouCreateLoopCreationViewModel : NoteMapTestsBase
@@ -163,11 +166,12 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
     public class ItShouldReturnAnEmptyListOfOrpheeNoteMessage : WhenYouCallConvertNoteMapToOrpheeMessageListWithAnEmptyNoteMap
     {
         private IList<IOrpheeNoteMessage> _opheeNoteMessageList;
-        
+        private uint _trackLength;
+
         [SetUp]
         public void Init()
         {
-            this._opheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel1);
+            this._opheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel1, ref this._trackLength);
         }
 
         [Test]
@@ -201,11 +205,12 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
     public class ItShouldReturnANonEmptyListOfOrpheeNoteMessage : WhenYouCallConvertNoteMapToOrpheeMessageListWithAnNonEmptyNoteMap
     {
         private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
+        private uint _trackLength;
 
         [SetUp]
         public void Init()
         {
-            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel1);
+            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel1, ref this._trackLength);
         }
 
         [Test]
@@ -235,6 +240,7 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         private IOrpheeNoteMessage _orpheeNoteOffMessage;
         private IOrpheeNoteMessage _expectedNoteOnMessage;
         private IOrpheeNoteMessage _expectedNoteOffMessage;
+        private uint _trackLength;
 
         [SetUp]
         public void Init()
@@ -250,12 +256,12 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
             this._expectedNoteOffMessage = new OrpheeNoteMessage()
             {
                 Channel = 0,
-                DeltaTime = 48,
+                DeltaTime = 96,
                 MessageCode = 0x80,
                 Note = Note.C4,
                 Velocity = 0
             };
-            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel1);
+            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel1, ref this._trackLength);
             this._orpheeNoteOnMessage = this._orpheeNoteMessageList[0];
             this._orpheeNoteOffMessage = this._orpheeNoteMessageList[1];
         }
@@ -346,6 +352,7 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         private IOrpheeNoteMessage _orpheeNoteOffMessage;
         private IOrpheeNoteMessage _expectedNoteOnMessage;
         private IOrpheeNoteMessage _expectedNoteOffMessage;
+        private uint _trackLength;
 
         [SetUp]
         public void Init()
@@ -365,13 +372,13 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
             this._expectedNoteOffMessage = new OrpheeNoteMessage()
             {
                 Channel = 4,
-                DeltaTime = 48,
+                DeltaTime = 96,
                 MessageCode = 0x80,
                 Note = Note.C4,
                 Velocity = 0,
             };
 
-            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel5);
+            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel5, ref this._trackLength);
             this._orpheeNoteOnMessage = this._orpheeNoteMessageList[2];
             this._orpheeNoteOffMessage = this._orpheeNoteMessageList[3];
         }
@@ -466,13 +473,14 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         private IOrpheeNoteMessage _expectedSecondNoteOnMessage;
         private IOrpheeNoteMessage _expectedFirstNoteOffMessage;
         private IOrpheeNoteMessage _expectedSecondNoteOffMessage;
+        private uint _trackLength;
 
         [SetUp]
         public void Init()
         {
             InitNoteMap();
             InitExptectedMessages();
-            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel6);
+            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel6, ref this._trackLength);
             this._orpheeFirstNoteOnMessage = this._orpheeNoteMessageList[2];
             this._orpheeSecondNoteOnMessage = this._orpheeNoteMessageList[3];
             this._orpheeFirstNoteOffMessage = this._orpheeNoteMessageList[4];
@@ -514,7 +522,7 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
             this._expectedFirstNoteOffMessage = new OrpheeNoteMessage()
             {
                 Channel = 5,
-                DeltaTime = 48,
+                DeltaTime = 96,
                 MessageCode = 0x80,
                 Note = Note.C4,
                 Velocity = 0

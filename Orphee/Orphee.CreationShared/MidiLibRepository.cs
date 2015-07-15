@@ -6,13 +6,23 @@ namespace Orphee.CreationShared
 {
     public class MidiLibRepository : IMidiLibRepository
     {
+        public IPlayerParameters PlayerParameters { get; set; }
         private readonly Clock _clock;
         private readonly OutputDevice _outputDevice;
         private readonly int _velocity;
 
         public MidiLibRepository()
         {
-            this._clock = new Clock(120);
+            this.PlayerParameters = new PlayerParameters()
+            {
+                TimeSignatureNominator = 4,
+                TimeSignatureDenominator = 4,
+                TimeSignatureClocksPerBeat = 24,
+                TimeSignatureNumberOf32ThNotePerBeat = 4,
+                Tempo = 120,
+                Channel = Channel.Channel1
+            };
+            this._clock = new Clock(this.PlayerParameters.Tempo);
             try
             {
                 this._outputDevice = OutputDevice.InstalledDevices[0];
@@ -29,8 +39,8 @@ namespace Orphee.CreationShared
 
         public void PlayNote(Note note)
         {
-            var noteOn = new NoteOnMessage(this._outputDevice, Channel.Channel1, note, this._velocity, this._clock.BeatTime);
-            var noteOff = new NoteOffMessage(this._outputDevice, Channel.Channel1, note, this._velocity, this._clock.BeatTime + 1);
+            var noteOn = new NoteOnMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime);
+            var noteOff = new NoteOffMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime + 1);
 
             this._clock.Schedule(noteOn);
             this._clock.Schedule(noteOff);
@@ -38,7 +48,7 @@ namespace Orphee.CreationShared
 
         public void UpdatePlayingInstrument(Instrument newPlayingInstrument)
         {
-            this._outputDevice.SendProgramChange(Channel.Channel1, newPlayingInstrument);
+            this._outputDevice.SendProgramChange(this.PlayerParameters.Channel, newPlayingInstrument);
         }
     }
 }

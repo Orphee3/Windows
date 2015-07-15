@@ -4,6 +4,8 @@ using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;
 using MidiDotNet.ImportModule;
 using MidiDotNet.ImportModule.Interfaces;
+using MidiDotNet.Shared.Interfaces;
+using Moq;
 using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
@@ -16,9 +18,23 @@ namespace Orphee.UnitTests.ExportModuleTests.NoteMessageWriterTests
         protected IOrpheeFile OrpheeFile;
         protected IOrpheeTrack OrpheeTrack;
         protected IDeltaTimeRetriever DeltaTimeRetriever;
+        protected Mock<IProgramChangeMessageWriter> ProgramChangeMessageWriterMock;
+        protected Mock<IEndOfTrackMessageWriter> EndOfTrackMessageWriterMock;
+        protected Mock<ISwapManager> SwapManagerMock;
+        protected Mock<ITrackHeaderWriter> TrackHeaderWriterMock;
+        protected Mock<INoteMessageWriter> NoteMessageWriterMock;
+        protected Mock<IFileHeaderWriter> FileHeaderWriterMock; 
+        protected IOrpheeFileExporter OrpheeFileExporter;
 
         public WhenNoteMessageWriterIsCalled()
         {
+            this.FileHeaderWriterMock = new Mock<IFileHeaderWriter>();
+            this.NoteMessageWriterMock = new Mock<INoteMessageWriter>();
+            this.SwapManagerMock = new Mock<ISwapManager>();
+            this.TrackHeaderWriterMock = new Mock<ITrackHeaderWriter>();
+            this.OrpheeFileExporter = new OrpheeFileExporter(this.FileHeaderWriterMock.Object, this.TrackHeaderWriterMock.Object, this.NoteMessageWriterMock.Object);
+            this.EndOfTrackMessageWriterMock = new Mock<IEndOfTrackMessageWriter>();
+            this.ProgramChangeMessageWriterMock = new Mock<IProgramChangeMessageWriter>();
             this.DeltaTimeRetriever = new DeltaTimeRetriever();
             this.OrpheeFile = new OrpheeFile();
             this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel5)
@@ -30,7 +46,7 @@ namespace Orphee.UnitTests.ExportModuleTests.NoteMessageWriterTests
             this.OrpheeTrack.NoteMap[0][0].LineIndex = 0;
             this.OrpheeTrack.NoteMap[0][0].Note = Note.C4;
             this.OrpheeFile.AddNewTrack(this.OrpheeTrack);
-            this.NoteMessageWriter = new NoteMessageWriter();
+            this.NoteMessageWriter = new NoteMessageWriter(this.ProgramChangeMessageWriterMock.Object, this.EndOfTrackMessageWriterMock.Object);
             var result = InitializeFile("NoteMessageTests.orph").Result;
         }
     }
@@ -54,13 +70,13 @@ namespace Orphee.UnitTests.ExportModuleTests.NoteMessageWriterTests
         [SetUp]
         public void Init()
         {
-            this.OrpheeFile.ConvertTracksNoteMapToOrpheeNoteMessageList();
+            this.OrpheeFileExporter.ConvertTracksNoteMapToOrpheeNoteMessageList(this.OrpheeFile);
             this._orpheeNoteOnMessage = this.OrpheeTrack.OrpheeNoteMessageList[0];
             this._orpheeNoteOffMessage = this.OrpheeTrack.OrpheeNoteMessageList[1];
             using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
             {
               foreach (var orpheeTrack in this.OrpheeFile.OrpheeTrackList)
-                this.NoteMessageWriter.WriteNoteMessages(Writer, orpheeTrack.OrpheeNoteMessageList);
+                this.NoteMessageWriter.WriteNoteMessages(Writer, orpheeTrack.OrpheeNoteMessageList, (int)orpheeTrack.Channel, orpheeTrack.CurrentInstrument);
             }
             ReadNoteOnMessageFromFile();
         }

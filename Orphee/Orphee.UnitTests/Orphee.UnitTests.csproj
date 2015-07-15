@@ -113,7 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExportModuleTests\DeltaTimeWriterTests\DeltaTimeWriterTests.cs" />
+    <Compile Include="ExportModuleTests\EndOfTrackMessageWriterTests\EndOfTrackMessageWriterTests.cs" />
     <Compile Include="ExportModuleTests\ExportModuleTestsBase.cs" />
+    <Compile Include="ExportModuleTests\OrpheeFileExporterTests\OrpheeFileExporterTests.cs" />
     <Compile Include="ExportModuleTests\FileHeaderWriterTests\FileHeaderWriterTests.cs" />
     <Compile Include="ExportModuleTests\NoteMessageWriterTests\NoteMessageWriterTests.cs" />
     <Compile Include="ExportModuleTests\ProgramChangeMessageTests\ProgramChangeMessageTests.cs" />

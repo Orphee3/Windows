@@ -1,4 +1,6 @@
-﻿namespace Orphee.CreationShared.Interfaces
+﻿using Midi;
+
+namespace Orphee.CreationShared.Interfaces
 {
     public interface IPlayerParameters
     {
@@ -8,6 +10,7 @@
         uint TimeSignatureClocksPerBeat { get; set; }
         uint TimeSignatureNumberOf32ThNotePerBeat { get; set; }
         uint Tempo { get; set; }
+        Channel Channel { get; set; }
 
         // Methods
 

@@ -63,12 +63,17 @@ namespace Orphee.CreationShared
                 noteMap[lineIndex].RemoveAt(noteMap[lineIndex].Count - 1);
         }
 
-        private static void UpdateOrpheeNoteMesageList(ICollection<IOrpheeNoteMessage> orpheeNoteMessageList, IList<IToggleButtonNote> extractedToggleButtonNotes, int channel, int deltaTime)
+        private uint UpdateOrpheeNoteMesageList(ICollection<IOrpheeNoteMessage> orpheeNoteMessageList, IList<IToggleButtonNote> extractedToggleButtonNotes, int channel, int deltaTime)
         {
+            var bytesToAdd = 0;
+            bytesToAdd += (deltaTime > 127 ? (deltaTime > 2097151 ? 2 : 1) : 0);
+            bytesToAdd += extractedToggleButtonNotes.Count * 8;
             for (var iterator = 0; iterator < extractedToggleButtonNotes.Count; iterator++)
                 orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? deltaTime : 0, MessageCode = 0x90, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 76} );
             for (var iterator = 0; iterator < extractedToggleButtonNotes.Count; iterator++)
                 orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? 48 : 0, MessageCode = 0x80, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 0 });
+            
+            return (uint)bytesToAdd;
         }
 
         private IList<IToggleButtonNote> ExtractToggleButtonNotesFromNoteMapColumn(int columnIndex, IList<ObservableCollection<IToggleButtonNote>> noteMap)
@@ -81,7 +86,21 @@ namespace Orphee.CreationShared
             return toggleButtonNoteList.Count == 0 ? null : toggleButtonNoteList;
         }
 
-        public IList<IOrpheeNoteMessage> ConvertNoteMapToOrpheeMessageList(IList<ObservableCollection<IToggleButtonNote>> noteMap, int channel)
+        private void MakeTheLastNoteLonger(IList<IOrpheeNoteMessage> orpheeNoteMessageList)
+        {
+            var orpheeNoteMessageListLastIndex = orpheeNoteMessageList.Count - 1;
+
+            for (var iterator = orpheeNoteMessageListLastIndex - 1; iterator >= 0; iterator--)
+            {
+                if ((orpheeNoteMessageList[iterator].MessageCode & 0x90) == 0x90)
+                {
+                    orpheeNoteMessageList[iterator + 1].DeltaTime += 48;
+                    return;
+                }
+            }
+        }
+
+        public IList<IOrpheeNoteMessage> ConvertNoteMapToOrpheeMessageList(IList<ObservableCollection<IToggleButtonNote>> noteMap, int channel, ref uint trackLength)
         {
             var orpheeNoteMessageList = new List<IOrpheeNoteMessage>();
             var deltaTime = 0;
@@ -90,9 +109,10 @@ namespace Orphee.CreationShared
             {
                 var extractedToggleButtonNotes = ExtractToggleButtonNotesFromNoteMapColumn(columnIndex, noteMap);
                 if (extractedToggleButtonNotes != null)
-                    UpdateOrpheeNoteMesageList(orpheeNoteMessageList, extractedToggleButtonNotes, channel, deltaTime);
+                   trackLength += UpdateOrpheeNoteMesageList(orpheeNoteMessageList, extractedToggleButtonNotes, channel, deltaTime);
                 deltaTime = (extractedToggleButtonNotes == null) ? (deltaTime + 48) : 0;
             }
+            MakeTheLastNoteLonger(orpheeNoteMessageList);
             return orpheeNoteMessageList;
         }
     }

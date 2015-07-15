@@ -14,7 +14,7 @@ namespace Orphee.CreationShared.Interfaces
         Instrument CurrentInstrument { get; set; }
         IPlayerParameters PlayerParameters { get; set; }
         Channel Channel { get; }
-        int TrackPos { get; }
-        uint TrackLength { get; }
+        int TrackPos { get; set; }
+        uint TrackLength { get; set; }
     }
 }

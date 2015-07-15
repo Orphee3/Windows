@@ -23,10 +23,10 @@ namespace MidiDotNet.ExportModule
         {
             if (writer == null)
                 return false;
-            if (playerParameters != null)
-                WritePlayerParameters(writer, playerParameters);
             writer.Write(Encoding.UTF8.GetBytes("MTrk"));
             writer.Write(this._swapManager.SwapUInt32(trackLength));
+            if (playerParameters != null)
+                WritePlayerParameters(writer, playerParameters);
             return true;
         }
 

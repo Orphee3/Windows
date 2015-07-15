@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using Microsoft.Practices.Prism.Commands;
 using Midi;
+using MidiDotNet.ExportModule;
+using MidiDotNet.ExportModule.Interfaces;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.LoopCreation;
@@ -25,6 +27,7 @@ namespace Orphee.ViewModels
         }
         private int _currentInstrumentIndex;
         private readonly ISoundPlayer _soundPlayer;
+        private readonly IOrpheeFileExporter _orpheeFileExporter;
         public IInstrumentManager InstrumentManager { get; private set; }
         public IOrpheeTrack DisplayedTrack { get; private set; }
         public DelegateCommand AddColumnsCommand { get; private set; }
@@ -34,11 +37,13 @@ namespace Orphee.ViewModels
         public DelegateCommand LoadButtonCommand { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public LoopCreationViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager)
+        public LoopCreationViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager, IOrpheeFileExporter orpheeFileExporter)
         {
-            this.DisplayedTrack = new OrpheeTrack(0, Channel.Channel10);
+            this.DisplayedTrack = new OrpheeTrack(0, Channel.Channel1);
             this._soundPlayer = soundPlayer;
             this.InstrumentManager = instrumentManager;
+            this._orpheeFileExporter = orpheeFileExporter;
+            this.DisplayedTrack.CurrentInstrument = this.InstrumentManager.CurrentInstrument;
             this.ToggleButtonNoteCommand = new DelegateCommand<IToggleButtonNote>(ToggleButtonNoteExec);
             this.AddColumnsCommand = new DelegateCommand(AddColumnsCommandExec);
             this.RemoveAColumnCommand = new DelegateCommand(RemoveAColumnCommandExec);
@@ -70,11 +75,10 @@ namespace Orphee.ViewModels
             this.DisplayedTrack.CurrentInstrument = this.InstrumentManager.CurrentInstrument;
         }
 
-        private async void SaveButtonCommandExec()
+        private void SaveButtonCommandExec()
         {
-            var saveLoopFilePicker = new SaveLoopFilePicker();
-
-            await saveLoopFilePicker.SaveLoop(this.DisplayedTrack);
+            this.DisplayedTrack.PlayerParameters = this._soundPlayer.GetPlayerParameters();
+            this._orpheeFileExporter.SaveOrpheeTrack(this.DisplayedTrack);
         }
 
         private async void LoadButtonCommandExec()

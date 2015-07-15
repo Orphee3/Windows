@@ -1,4 +1,5 @@
 ﻿using Midi;
+using MidiDotNet.ExportModule.Interfaces;
 using Moq;
 using NUnit.Framework;
 using Orphee.CreationShared;
@@ -14,12 +15,14 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.Instru
         protected IInstrumentManager InstrumentManager;
         protected Instrument CurrentInstrument;
         protected Mock<ISoundPlayer> SoundPlayerMock;
+        protected Mock<IOrpheeFileExporter> OrpheeFileExporterMock; 
 
         public InstrumentManagerTestsBase()
         {
+            this.OrpheeFileExporterMock = new Mock<IOrpheeFileExporter>();
             this.SoundPlayerMock = new Mock<ISoundPlayer>();
             this.InstrumentManager = new InstrumentManager();
-            this.LoopCreationViewModel = new LoopCreationViewModel(this.SoundPlayerMock.Object, this.InstrumentManager);
+            this.LoopCreationViewModel = new LoopCreationViewModel(this.SoundPlayerMock.Object, this.InstrumentManager, this.OrpheeFileExporterMock.Object);
         }
     }
 

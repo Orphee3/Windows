@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Midi;
 using Orphee.CreationShared.Interfaces;
 
 namespace MidiDotNet.ExportModule.Interfaces
@@ -9,6 +10,6 @@ namespace MidiDotNet.ExportModule.Interfaces
         // Properties
 
         // Methods
-        void WriteNoteMessages(BinaryWriter writer, IList<IOrpheeNoteMessage> orpheeNoteMessageList);
+        void WriteNoteMessages(BinaryWriter writer, IList<IOrpheeNoteMessage> orpheeNoteMessageList, int channel, Instrument instrument);
     }
 }

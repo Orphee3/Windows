@@ -5,12 +5,14 @@ namespace Orphee.CreationShared
 {
     public class OrpheeFile : IOrpheeFile
     {
+        public IOrpheeFileParameters OrpheeFileParameters { get; set; }
         public IList<IOrpheeTrack> OrpheeTrackList { get; set; }
         public string FileName { get; set; }
 
         public OrpheeFile()
         {
             this.OrpheeTrackList = new List<IOrpheeTrack>();
+            this.OrpheeFileParameters = new OrpheeFileParameters();
         }
 
         public void AddNewTrack(IOrpheeTrack orpheeTrack)
@@ -18,10 +20,10 @@ namespace Orphee.CreationShared
             this.OrpheeTrackList.Add(orpheeTrack);
         }
 
-        public void ConvertTracksNoteMapToOrpheeNoteMessageList()
+        public void UpdateOrpheeFileParameters()
         {
-            foreach (var track in this.OrpheeTrackList)
-                track.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(track.NoteMap, (int)track.Channel);
+            this.OrpheeFileParameters.NumberOfTracks = (ushort) this.OrpheeTrackList.Count;
+            this.OrpheeFileParameters.OrpheeFileType = (ushort) (this.OrpheeFileParameters.NumberOfTracks < 2 ? 0 : 1);
         }
     }
 }
