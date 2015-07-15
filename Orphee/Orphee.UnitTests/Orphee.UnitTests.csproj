@@ -120,6 +120,8 @@
     <Compile Include="ExportModuleTests\TempoMessageWriterTests\TempoMessageWriterTests.cs" />
     <Compile Include="ExportModuleTests\TimeSignatureMessageWriterTests\TimeSignatureMessageWritterTests.cs" />
     <Compile Include="ExportModuleTests\TrackHeaderWriterTests\TrackHeaderWriterTests.cs" />
+    <Compile Include="ImportModuleTests\DeltaTimeRetrieverTests\DeltaTimeRetrieverTests.cs" />
+    <Compile Include="ImportModuleTests\ImportModuleTestsBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CreationSharedTests\LoopCreationViewModelTests\InstrumentMangerTests\InstrumentManagerTests.cs" />
     <Compile Include="CreationSharedTests\LoopCreationViewModelTests\NoteMapManagerTests\NoteMapManagerTests.cs" />
