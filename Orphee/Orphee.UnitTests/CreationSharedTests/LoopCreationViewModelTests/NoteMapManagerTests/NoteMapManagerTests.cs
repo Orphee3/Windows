@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Midi;
@@ -150,18 +149,18 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         }
     }
 
-    public class WhenYouCallConvertNoteMapToOrpheeMessageList
+    public class WhenYouCallConvertNoteMapToOrpheeMessageListWithAnEmptyNoteMap
     {
         protected IList<ObservableCollection<IToggleButtonNote>> NoteMap;
 
-        public WhenYouCallConvertNoteMapToOrpheeMessageList()
+        public WhenYouCallConvertNoteMapToOrpheeMessageListWithAnEmptyNoteMap()
         {
             this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
         }
     }
 
     [TestFixture]
-    public class ItShouldReturnAnEmptyListOfOrpheeNoteMessage : WhenYouCallConvertNoteMapToOrpheeMessageList
+    public class ItShouldReturnAnEmptyListOfOrpheeNoteMessage : WhenYouCallConvertNoteMapToOrpheeMessageListWithAnEmptyNoteMap
     {
         private IList<IOrpheeNoteMessage> _opheeNoteMessageList;
         
@@ -184,8 +183,52 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         }
     }
 
+    public class WhenYouCallConvertNoteMapToOrpheeMessageListWithAnNonEmptyNoteMap
+    {
+        protected IList<ObservableCollection<IToggleButtonNote>> NoteMap;
+
+        public WhenYouCallConvertNoteMapToOrpheeMessageListWithAnNonEmptyNoteMap()
+        {
+            this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
+            this.NoteMap[0][0].Note = Note.C4;
+            this.NoteMap[0][0].ColumnIndex = 0;
+            this.NoteMap[0][0].LineIndex = 0;
+            this.NoteMap[0][0].IsChecked = true;
+        }
+    }
+
     [TestFixture]
-    public class ItShouldReturnANonEmptyListOfOrpheeNoteMessage : WhenYouCallConvertNoteMapToOrpheeMessageList
+    public class ItShouldReturnANonEmptyListOfOrpheeNoteMessage : WhenYouCallConvertNoteMapToOrpheeMessageListWithAnNonEmptyNoteMap
+    {
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
+
+        [SetUp]
+        public void Init()
+        {
+            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel1);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void OrpheNoteMessageShouldContainTwoMessages()
+        {
+            Assert.AreEqual(2, this._orpheeNoteMessageList.Count);
+        }
+    }
+
+    [TestFixture]
+    public class ItShouldReturnANonEmptyListOfOrpheeNoteMessageContainingTheExpectedNoteMessages : WhenYouCallConvertNoteMapToOrpheeMessageListWithAnNonEmptyNoteMap
     {
         private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
         private IOrpheeNoteMessage _orpheeNoteOnMessage;
@@ -199,7 +242,7 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
             this._expectedNoteOnMessage = new OrpheeNoteMessage()
             {
                 Channel = 0,
-                DeltaTime = 48,
+                DeltaTime = 0,
                 MessageCode = 0x90,
                 Note = Note.C4,
                 Velocity = 76
@@ -210,12 +253,8 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
                 DeltaTime = 48,
                 MessageCode = 0x80,
                 Note = Note.C4,
-                Velocity = 0,
+                Velocity = 0
             };
-            this.NoteMap[0][1].Note = Note.C4;
-            this.NoteMap[0][1].ColumnIndex = 0;
-            this.NoteMap[0][1].LineIndex = 0;
-            this.NoteMap[0][1].IsChecked = true;
             this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel1);
             this._orpheeNoteOnMessage = this._orpheeNoteMessageList[0];
             this._orpheeNoteOffMessage = this._orpheeNoteMessageList[1];
@@ -231,6 +270,128 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         public void OrpheeNoteMessageListShouldNotBeEmpty()
         {
             Assert.IsNotEmpty(this._orpheeNoteMessageList);
+        }
+        
+        [Test]
+        public void OrpheNoteMessageShouldContainTwoMessages()
+        {
+            Assert.AreEqual(2, this._orpheeNoteMessageList.Count);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageChannelShouldBeEqualToExpectedNoteOnMessageChannel()
+        {
+            Assert.AreEqual(this._expectedNoteOnMessage.Channel, this._orpheeNoteOnMessage.Channel);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageDeltaTimeShouldBeEqualToExpectedNoteOnMessageDeltaTime()
+        {
+            Assert.AreEqual(this._expectedNoteOnMessage.DeltaTime, this._orpheeNoteOnMessage.DeltaTime);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageMessageCodeShouldBeEqualToExpectedNoteOnMessageMessageCode()
+        {
+            Assert.AreEqual(this._expectedNoteOnMessage.MessageCode, this._orpheeNoteOnMessage.MessageCode);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageNoteShouldBeEqualToExpectedNoteOnMessageNote()
+        {
+            Assert.AreEqual(this._expectedNoteOnMessage.Note, this._orpheeNoteOnMessage.Note);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageVelocityShouldBeEqualToExpectedNoteOnMessageVelocity()
+        {
+            Assert.AreEqual(this._expectedNoteOnMessage.Velocity, this._orpheeNoteOnMessage.Velocity);
+        }
+        [Test]
+        public void OrpheeNoteMessageChannelShouldBeEqualToExpectedNoteOffMessageChannel()
+        {
+            Assert.AreEqual(this._expectedNoteOffMessage.Channel, this._orpheeNoteOffMessage.Channel);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageDeltaTimeShouldBeEqualToExpectedNoteOffMessageDeltaTime()
+        {
+            Assert.AreEqual(this._expectedNoteOffMessage.DeltaTime, this._orpheeNoteOffMessage.DeltaTime);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageMessageCodeShouldBeEqualToExpectedNoteOffMessageMessageCode()
+        {
+            Assert.AreEqual(this._expectedNoteOffMessage.MessageCode, this._orpheeNoteOffMessage.MessageCode);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageNoteShouldBeEqualToExpectedNoteOffMessageNote()
+        {
+            Assert.AreEqual(this._expectedNoteOffMessage.Note, this._orpheeNoteOffMessage.Note);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageVelocityShouldBeEqualToExpectedNoteOffMessageVelocity()
+        {
+            Assert.AreEqual(this._expectedNoteOffMessage.Velocity, this._orpheeNoteOffMessage.Velocity);
+        }
+    }
+
+    [TestFixture]
+    public class ItShouldReturnANonEmptyListOfOrpheeNoteMessageContainingTheExpectedNoteMessagesWithAHighDeltaTime : WhenYouCallConvertNoteMapToOrpheeMessageListWithAnNonEmptyNoteMap
+    {
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList; 
+        private IOrpheeNoteMessage _orpheeNoteOnMessage;
+        private IOrpheeNoteMessage _orpheeNoteOffMessage;
+        private IOrpheeNoteMessage _expectedNoteOnMessage;
+        private IOrpheeNoteMessage _expectedNoteOffMessage;
+
+        [SetUp]
+        public void Init()
+        {
+            this.NoteMap[0][9].Note = Note.C4;
+            this.NoteMap[0][9].ColumnIndex = 9;
+            this.NoteMap[0][9].LineIndex = 0;
+            this.NoteMap[0][9].IsChecked = true;
+            this._expectedNoteOnMessage = new OrpheeNoteMessage()
+            {
+                Channel = 4,
+                DeltaTime = 384,
+                MessageCode = 0x90,
+                Note = Note.C4,
+                Velocity = 76
+            };
+            this._expectedNoteOffMessage = new OrpheeNoteMessage()
+            {
+                Channel = 4,
+                DeltaTime = 48,
+                MessageCode = 0x80,
+                Note = Note.C4,
+                Velocity = 0,
+            };
+
+            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel5);
+            this._orpheeNoteOnMessage = this._orpheeNoteMessageList[2];
+            this._orpheeNoteOffMessage = this._orpheeNoteMessageList[3];
+        }
+
+        [Test]
+        public void OrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void OrpheNoteMessageShouldContainFourMessages()
+        {
+            Assert.AreEqual(4, this._orpheeNoteMessageList.Count);
         }
 
         [Test]
@@ -290,6 +451,221 @@ namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMa
         public void OrpheeNoteMessageVelocityShouldBeEqualToExpectedNoteOffMessageVelocity()
         {
             Assert.AreEqual(this._expectedNoteOffMessage.Velocity, this._orpheeNoteOffMessage.Velocity);
+        }
+    }
+
+    [TestFixture]
+    public class ItShouldReturnANonEmptyListOfOrpheeNoteMessageContainingTheExpectedNoteMessagesWithTheSameDeltaTime : WhenYouCallConvertNoteMapToOrpheeMessageListWithAnNonEmptyNoteMap
+    {
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
+        private IOrpheeNoteMessage _orpheeFirstNoteOnMessage;
+        private IOrpheeNoteMessage _orpheeSecondNoteOnMessage;
+        private IOrpheeNoteMessage _orpheeFirstNoteOffMessage;
+        private IOrpheeNoteMessage _orpheeSecondNoteOffMessage;
+        private IOrpheeNoteMessage _expectedFirstNoteOnMessage;
+        private IOrpheeNoteMessage _expectedSecondNoteOnMessage;
+        private IOrpheeNoteMessage _expectedFirstNoteOffMessage;
+        private IOrpheeNoteMessage _expectedSecondNoteOffMessage;
+
+        [SetUp]
+        public void Init()
+        {
+            InitNoteMap();
+            InitExptectedMessages();
+            this._orpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(this.NoteMap, (int)Channel.Channel6);
+            this._orpheeFirstNoteOnMessage = this._orpheeNoteMessageList[2];
+            this._orpheeSecondNoteOnMessage = this._orpheeNoteMessageList[3];
+            this._orpheeFirstNoteOffMessage = this._orpheeNoteMessageList[4];
+            this._orpheeSecondNoteOffMessage = this._orpheeNoteMessageList[5];
+        }
+
+        private void InitNoteMap()
+        {
+            this.NoteMap[0][2].Note = Note.C4;
+            this.NoteMap[0][2].ColumnIndex = 2;
+            this.NoteMap[0][2].LineIndex = 0;
+            this.NoteMap[0][2].IsChecked = true;
+
+            this.NoteMap[1][2].Note = Note.C4;
+            this.NoteMap[1][2].ColumnIndex = 2;
+            this.NoteMap[1][2].LineIndex = 1;
+            this.NoteMap[1][2].IsChecked = true;
+        }
+
+        private void InitExptectedMessages()
+        {
+            this._expectedFirstNoteOnMessage = new OrpheeNoteMessage()
+            {
+                Channel = 5,
+                DeltaTime = 48,
+                MessageCode = 0x90,
+                Note = Note.C4,
+                Velocity = 76
+            };
+            this._expectedSecondNoteOnMessage = new OrpheeNoteMessage()
+            {
+                Channel = 5,
+                DeltaTime = 0,
+                MessageCode = 0x90,
+                Note = Note.C4,
+                Velocity = 76,
+            };
+
+            this._expectedFirstNoteOffMessage = new OrpheeNoteMessage()
+            {
+                Channel = 5,
+                DeltaTime = 48,
+                MessageCode = 0x80,
+                Note = Note.C4,
+                Velocity = 0
+            };
+
+            this._expectedSecondNoteOffMessage = new OrpheeNoteMessage()
+            {
+                Channel = 5,
+                DeltaTime = 0,
+                MessageCode = 0x80,
+                Note = Note.C4,
+                Velocity = 0,
+            };
+        }
+
+        [Test]
+        public void OrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void OrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void OrpheNoteMessageShouldContainSixMessages()
+        {
+            Assert.AreEqual(6, this._orpheeNoteMessageList.Count);    
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOnMessageChannelShouldBeEqualToExpectedNoteOnMessageChannel()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOnMessage.Channel, this._orpheeFirstNoteOnMessage.Channel);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOnMessageDeltaTimeShouldBeEqualToExpectedNoteOnMessageDeltaTime()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOnMessage.DeltaTime, this._orpheeFirstNoteOnMessage.DeltaTime);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOnMessageMessageCodeShouldBeEqualToExpectedFirstNoteOnMessageMessageCode()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOnMessage.MessageCode, this._orpheeFirstNoteOnMessage.MessageCode);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOnMessageNoteShouldBeEqualToExpectedFirstNoteOnMessageNote()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOnMessage.Note, this._orpheeFirstNoteOnMessage.Note);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOnMessageVelocityShouldBeEqualToExpectedFirstNoteOnMessageVelocity()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOnMessage.Velocity, this._orpheeFirstNoteOnMessage.Velocity);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOnMessageChannelShouldBeEqualToExpectedSecondNoteOnMessageChannel()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOnMessage.Channel, this._orpheeSecondNoteOnMessage.Channel);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOnMessageDeltaTimeShouldBeEqualToExpectedSecondNoteOnMessageDeltaTime()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOnMessage.DeltaTime, this._orpheeSecondNoteOnMessage.DeltaTime);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOnMessageMessageCodeShouldBeEqualToExpectedSecondNoteOnMessageMessageCode()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOnMessage.MessageCode, this._orpheeSecondNoteOnMessage.MessageCode);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOnMessageNoteShouldBeEqualToExpectedSecondNoteOnMessageNote()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOnMessage.Note, this._orpheeSecondNoteOnMessage.Note);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOnMessageVelocityShouldBeEqualToExpectedSecondNoteOnMessageVelocity()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOnMessage.Velocity, this._orpheeSecondNoteOnMessage.Velocity);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOffMessageChannelShouldBeEqualToExpectedNoteOffMessageChannel()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOffMessage.Channel, this._orpheeFirstNoteOffMessage.Channel);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOffMessageDeltaTimeShouldBeEqualToExpectedNoteOffMessageDeltaTime()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOffMessage.DeltaTime, this._orpheeFirstNoteOffMessage.DeltaTime);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOffMessageMessageCodeShouldBeEqualToExpectedFirstNoteOffMessageMessageCode()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOffMessage.MessageCode, this._orpheeFirstNoteOffMessage.MessageCode);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOffMessageNoteShouldBeEqualToExpectedFirstNoteOffMessageNote()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOffMessage.Note, this._orpheeFirstNoteOffMessage.Note);
+        }
+
+        [Test]
+        public void OrpheeFirstNoteOffMessageVelocityShouldBeEqualToExpectedFirstNoteOffMessageVelocity()
+        {
+            Assert.AreEqual(this._expectedFirstNoteOffMessage.Velocity, this._orpheeFirstNoteOffMessage.Velocity);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOffMessageChannelShouldBeEqualToExpectedSecondNoteOffMessageChannel()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOffMessage.Channel, this._orpheeSecondNoteOffMessage.Channel);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOffMessageDeltaTimeShouldBeEqualToExpectedSecondNoteOffMessageDeltaTime()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOffMessage.DeltaTime, this._orpheeSecondNoteOffMessage.DeltaTime);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOffMessageMessageCodeShouldBeEqualToExpectedSecondNoteOffMessageMessageCode()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOffMessage.MessageCode, this._orpheeSecondNoteOffMessage.MessageCode);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOffMessageNoteShouldBeEqualToExpectedSecondNoteOffMessageNote()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOffMessage.Note, this._orpheeSecondNoteOffMessage.Note);
+        }
+
+        [Test]
+        public void OrpheeSecondNoteOffMessageVelocityShouldBeEqualToExpectedSecondNoteOffMessageVelocity()
+        {
+            Assert.AreEqual(this._expectedSecondNoteOffMessage.Velocity, this._orpheeSecondNoteOffMessage.Velocity);
         }
     }
 }

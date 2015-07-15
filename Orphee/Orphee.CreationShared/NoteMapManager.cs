@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Windows.UI.Xaml.Shapes;
-using Midi;
 using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
@@ -63,22 +61,6 @@ namespace Orphee.CreationShared
                 return;
             for (var lineIndex = 0; lineIndex < this._lineNumber; lineIndex++)
                 noteMap[lineIndex].RemoveAt(noteMap[lineIndex].Count - 1);
-        }
-
-        private static Dictionary<int, List<Note>> SwitchNoteListLinesAndColumns(IList<ObservableCollection<IToggleButtonNote>> noteList)
-        {
-            var noteListSwitched = new Dictionary<int, List<Note>>();
-
-            for (var columnNumber = 0; columnNumber < noteList[0].Count; columnNumber++)
-            {
-                noteListSwitched.Add(columnNumber, new List<Note>());
-                foreach (var line in noteList)
-                {
-                    if (line[columnNumber].IsChecked)
-                        noteListSwitched[columnNumber].Add(line[columnNumber].Note);
-                }
-            }
-            return noteListSwitched;
         }
 
         private static void UpdateOrpheeNoteMesageList(ICollection<IOrpheeNoteMessage> orpheeNoteMessageList, IList<IToggleButtonNote> extractedToggleButtonNotes, int channel, int deltaTime)
