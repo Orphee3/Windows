@@ -26,7 +26,7 @@ namespace Orphee.UnitTests.ExportModuleTests.FileHeaderWriterTests
             };
             this.SwapManager = new SwapManager();
             this.FileHeaderWriter = new FileHeaderWriter(this.SwapManager);
-            var result = InitializeFile("FileHeaderWriterTests.orph").Result;
+            var result = InitializeFile("FileHeaderWriterTests.test").Result;
         }
     }
 

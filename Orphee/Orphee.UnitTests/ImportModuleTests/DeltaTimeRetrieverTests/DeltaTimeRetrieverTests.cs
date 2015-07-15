@@ -12,7 +12,7 @@ namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeRetrieverTests
         public WhenDeltaTimeRetrieverIsCalled()
         {
             this.DeltaTimeRetriever = new DeltaTimeRetriever();
-            var result = InitializeFile("DeltaTimeRetrieverTests.orph").Result;
+            var result = InitializeFile("DeltaTimeRetrieverTests.test").Result;
         }
     }
 

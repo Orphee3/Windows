@@ -12,7 +12,7 @@ namespace Orphee.UnitTests.ExportModuleTests.EndOfTrackMessageWriterTests
         public WhenEndOfTrackMessageWriterIsCalled()
         {
             this.EndOfTrackMessageWriter = new EndOfTrackMessageWriter();
-            var result = InitializeFile("EndOfTrackMessageWriterTests").Result;
+            var result = InitializeFile("EndOfTrackMessageWriterTests.test").Result;
         }
     }
 

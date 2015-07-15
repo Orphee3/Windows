@@ -47,7 +47,7 @@ namespace Orphee.UnitTests.ExportModuleTests.NoteMessageWriterTests
             this.OrpheeTrack.NoteMap[0][0].Note = Note.C4;
             this.OrpheeFile.AddNewTrack(this.OrpheeTrack);
             this.NoteMessageWriter = new NoteMessageWriter(this.ProgramChangeMessageWriterMock.Object, this.EndOfTrackMessageWriterMock.Object);
-            var result = InitializeFile("NoteMessageTests.orph").Result;
+            var result = InitializeFile("NoteMessageTests.test").Result;
         }
     }
 

@@ -20,7 +20,7 @@ namespace Orphee.UnitTests.ExportModuleTests.TempoMessageWriterTests
                 Tempo = 120
             };
             this.TempoMessageWriter = new TempoMessageWriter();
-            var result = InitializeFile("TempoMessageTest.orph").Result;
+            var result = InitializeFile("TempoMessageTest.test").Result;
         }
 
     }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
-using Windows.Storage;
 using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;
 using NUnit.Framework;
@@ -25,7 +23,7 @@ namespace Orphee.UnitTests.ExportModuleTests.TimeSignatureMessageWriterTests
                 TimeSignatureNumberOf32ThNotePerBeat = 4
             };
             this.TimeSignatureMessageWriter = new TimeSignatureMessageWriter();
-            var result = InitializeFile("TimeSignatureTests.orph").Result;
+            var result = InitializeFile("TimeSignatureTests.test").Result;
         }
     }
 

@@ -12,7 +12,7 @@ namespace Orphee.UnitTests.ExportModuleTests.DeltaTimeWriterTests
         public WhenDeltaTimeWriterIsCalled()
         {
             this.DeltaTimeWriter = new DeltaTimeWriter();
-            var result = InitializeFile("DeltaTimeTests.orph").Result;
+            var result = InitializeFile("DeltaTimeTests.test").Result;
         }
     }
 

@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="LoadLoopFilePicker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaveLoopFilePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />

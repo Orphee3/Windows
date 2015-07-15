@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using Midi;
 using MidiDotNet.ExportModule;
@@ -32,7 +31,7 @@ namespace Orphee.UnitTests.ExportModuleTests.TrackHeaderWriterTests
             this.TempoMessageWriterMock = new Mock<ITempoMessageWriter>();
             this.TimeSignatureMessageWriterMock = new Mock<ITimeSignatureMessageWriter>();
             this.TrackHeaderWriter = new TrackHeaderWriter(this.TimeSignatureMessageWriterMock.Object , this.TempoMessageWriterMock.Object, this.SwapManager);
-            var result = InitializeFile("TrackHeaderTests.orph").Result;
+            var result = InitializeFile("TrackHeaderTests.test").Result;
         }
     }
 

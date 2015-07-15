@@ -20,7 +20,7 @@ namespace Orphee.UnitTests.ExportModuleTests.ProgramChangeMessageTests
                 CurrentInstrument = Instrument.Banjo
             };
             this.ProgramChangeMessageWriter = new ProgramChangeMessageWriter();
-            var result = InitializeFile("ProgramChangeTests.orph").Result;
+            var result = InitializeFile("ProgramChangeTests.test").Result;
         }
     }
 
