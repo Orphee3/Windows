@@ -1,10 +1,12 @@
-﻿namespace MidiDotNet.ImportModule.Interfaces
+﻿using System.IO;
+
+namespace MidiDotNet.ImportModule.Interfaces
 {
     public interface IDeltaTimeRetriever
     {
         // Properties
 
         // Methods
-        int RetreiveDeltaTime(byte[] deltaTime);
+        int GetIntDeltaTime(BinaryReader reader);
     }
 }

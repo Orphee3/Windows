@@ -7,6 +7,6 @@ namespace MidiDotNet.ExportModule.Interfaces
         // Properties
 
         // Methods
-        void WriteDeltaTime(int deltaTime, BinaryWriter writer, ref int trackLength);
+        void WriteDeltaTime(BinaryWriter writer, int deltaTime);
     }
 }

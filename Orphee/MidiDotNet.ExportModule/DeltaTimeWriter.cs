@@ -5,7 +5,7 @@ namespace MidiDotNet.ExportModule
 {
     public class DeltaTimeWriter : IDeltaTimeWriter
     {
-        public void WriteDeltaTime(int deltaTime, BinaryWriter writer, ref int trackLength)
+        public void WriteDeltaTime(BinaryWriter writer, int deltaTime)
         {
             var pos = 0;
             var buffer = new byte[4];
@@ -14,7 +14,6 @@ namespace MidiDotNet.ExportModule
             {
                 buffer[pos++] = (byte) (deltaTime & 0x7F);
                 deltaTime >>= 7;
-                trackLength++;
             } while (deltaTime > 0);
 
             while (pos > 0)

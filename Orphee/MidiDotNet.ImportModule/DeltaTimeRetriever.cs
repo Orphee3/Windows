@@ -1,11 +1,12 @@
 ﻿using System.Collections;
+using System.IO;
 using MidiDotNet.ImportModule.Interfaces;
 
 namespace MidiDotNet.ImportModule
 {
     public class DeltaTimeRetriever : IDeltaTimeRetriever
     {
-        public int RetreiveDeltaTime(byte[] deltaTime)
+        private int RetreiveDeltaTime(byte[] deltaTime)
         {
             var retreivedDeltaTime = 0;
 
@@ -23,6 +24,21 @@ namespace MidiDotNet.ImportModule
                 }
             }
             return retreivedDeltaTime;
+        }
+        
+        public int GetIntDeltaTime(BinaryReader reader)
+        {
+            var byteArray = new byte[4];
+            var arrayTrueLength = 0;
+            byteArray[0] = reader.ReadByte();
+
+            while ((byteArray[arrayTrueLength] & 0x80) == 0x80)
+                byteArray[++arrayTrueLength] = reader.ReadByte();
+            var definitiveByteArray = new byte[arrayTrueLength + 1];
+
+            for (var pos = 0; pos <= arrayTrueLength; pos++)
+                definitiveByteArray[pos] = byteArray[arrayTrueLength - pos];
+            return (RetreiveDeltaTime(definitiveByteArray));
         }
     }
 }
