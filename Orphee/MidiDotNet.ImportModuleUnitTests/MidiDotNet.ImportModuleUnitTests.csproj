@@ -117,6 +117,7 @@
     <Compile Include="ImportModuleTests\FileHeaderReaderTests\FileHeaderReaderTests.cs" />
     <Compile Include="ImportModuleTests\ImportModuleTestsBase.cs" />
     <Compile Include="ImportModuleTests\ProgramChangeMessageReaderTests\ProgramChangeMessageReaderTests.cs" />
+    <Compile Include="ImportModuleTests\TempoMessageReaderTests\TempoMessageReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +165,6 @@
   <ItemGroup>
     <Folder Include="ImportModuleTests\NoteMessageReaderTests\" />
     <Folder Include="ImportModuleTests\OrpheeFileImporterTsts\" />
-    <Folder Include="ImportModuleTests\TempoMessageReaderTests\" />
     <Folder Include="ImportModuleTests\TimeSignatureMessageReaderTests\" />
     <Folder Include="ImportModuleTests\TrackHeaderReaderTests\" />
   </ItemGroup>

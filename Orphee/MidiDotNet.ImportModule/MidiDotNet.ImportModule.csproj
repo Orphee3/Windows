@@ -45,8 +45,10 @@
     <Compile Include="Interfaces\IEndOfTrackMessageReader.cs" />
     <Compile Include="Interfaces\IFileHeaderReader.cs" />
     <Compile Include="Interfaces\IProgramChangeMessageReader.cs" />
+    <Compile Include="Interfaces\ITempoMessageReader.cs" />
     <Compile Include="ProgramChangeMessageReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TempoMessageReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="midi.net4.5">
