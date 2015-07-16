@@ -37,6 +37,34 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.TempoMessageReaderT
     }
 
     [TestFixture]
+    public class ItShouldHaveATempoValueOfAHundredAndTwenty : WhenTempoMessageReaderIsCalled
+    {
+        private bool _result;
+        private int _expectedTempo;
+
+        [SetUp]
+        public void Init()
+        {
+            this._expectedTempo = 120;
+            ReWriteTheFile(new byte[] { 0x00, 0xFF, 0x51, 0x03, 0x07, 0xA1, 0x20 });
+            using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
+                this._result = this.TempoMessageReader.ReadTempoMessage(this.Reader);
+        }
+
+        [Test]
+        public void ResultShouldBeTrue()
+        {
+            Assert.IsTrue(this._result);
+        }
+
+        [Test]
+        public void TempoMessageReaderTempoShouldBeEqualToExpectedTempo()
+        {
+            Assert.AreEqual(this._expectedTempo, this.TempoMessageReader.Tempo);
+        }
+    }
+
+    [TestFixture]
     public class ItShouldReturnFalseWhenTheTempoMessageDeltaTimeIsNotEqualToZero : WhenTempoMessageReaderIsCalled
     {
         private bool _result;

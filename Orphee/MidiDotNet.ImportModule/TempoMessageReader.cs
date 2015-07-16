@@ -27,13 +27,16 @@ namespace MidiDotNet.ImportModule
 
         private bool RetriveTempo(BinaryReader reader)
         {
-            var tempoBytes = new byte[4];
+            var dataSize = reader.ReadByte();
+            var data = new byte[4];
 
-            tempoBytes[0] = 0;
-            for (var iterator = 1; iterator < 4; iterator++)
-                tempoBytes[iterator] = reader.ReadByte();
-            Array.Reverse(tempoBytes);
-            this.Tempo = 60000000 / BitConverter.ToInt32(tempoBytes, 0);
+            for (var pos = 0; pos < 4 - dataSize; pos++)
+                data[pos] = 0;
+            for (var pos = 4 - dataSize; pos < 4; pos++)
+                data[pos] = reader.ReadByte();
+
+            Array.Reverse(data);
+            this.Tempo = 60000000 / BitConverter.ToInt32(data, 0);
             return this.Tempo >= 40 && this.Tempo <= 400;
         }
 
