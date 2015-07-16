@@ -4,13 +4,13 @@ using MidiDotNet.ImportModule.Interfaces;
 
 namespace MidiDotNet.ImportModule
 {
-    public class DeltaTimeReader : IDeltaTimeRetriever
+    public class DeltaTimeReader : IDeltaTimeReader
     {
         private int RetreiveDeltaTime(byte[] deltaTime)
         {
             var retreivedDeltaTime = 0;
 
-            if (deltaTime[0] > 0)
+            if (deltaTime[deltaTime.Length - 1] > 0)
             {
                 var bitArray = new BitArray(deltaTime);
                 var removedBit = 0;

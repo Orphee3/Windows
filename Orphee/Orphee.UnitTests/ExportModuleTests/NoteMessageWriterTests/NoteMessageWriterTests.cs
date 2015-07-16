@@ -17,7 +17,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.NoteMessageWriterTe
         protected INoteMessageWriter NoteMessageWriter;
         protected IOrpheeFile OrpheeFile;
         protected IOrpheeTrack OrpheeTrack;
-        protected IDeltaTimeRetriever DeltaTimeRetriever;
+        protected IDeltaTimeReader DeltaTimeRetriever;
         protected Mock<IProgramChangeMessageWriter> ProgramChangeMessageWriterMock;
         protected Mock<IEndOfTrackMessageWriter> EndOfTrackMessageWriterMock;
         protected Mock<ISwapManager> SwapManagerMock;

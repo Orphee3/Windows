@@ -116,6 +116,7 @@
     <Compile Include="ImportModuleTests\EndOfTrackMessageReaderTests\EndOfTrackMessageReaderTests.cs" />
     <Compile Include="ImportModuleTests\FileHeaderReaderTests\FileHeaderReaderTests.cs" />
     <Compile Include="ImportModuleTests\ImportModuleTestsBase.cs" />
+    <Compile Include="ImportModuleTests\NoteMessageReaderTests\NoteMessageReaderTests.cs" />
     <Compile Include="ImportModuleTests\ProgramChangeMessageReaderTests\ProgramChangeMessageReaderTests.cs" />
     <Compile Include="ImportModuleTests\TempoMessageReaderTests\TempoMessageReaderTests.cs" />
     <Compile Include="ImportModuleTests\TimeSignatureMessageReaderTests\TimeSignatureMessageReaderTests.cs" />
@@ -165,7 +166,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ImportModuleTests\NoteMessageReaderTests\" />
     <Folder Include="ImportModuleTests\OrpheeFileImporterTsts\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

@@ -7,7 +7,7 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.DeltaTimeReaderTest
 {
     public class WhenDeltaTimeRetrieverIsCalled : ImportModuleTestsBase
     {
-        protected IDeltaTimeRetriever DeltaTimeRetriever;
+        protected IDeltaTimeReader DeltaTimeRetriever;
 
         public WhenDeltaTimeRetrieverIsCalled()
         {

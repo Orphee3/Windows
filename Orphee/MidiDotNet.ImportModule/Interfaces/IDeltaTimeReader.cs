@@ -2,7 +2,7 @@
 
 namespace MidiDotNet.ImportModule.Interfaces
 {
-    public interface IDeltaTimeRetriever
+    public interface IDeltaTimeReader
     {
         // Properties
 
