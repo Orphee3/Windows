@@ -44,6 +44,8 @@
     <Compile Include="Interfaces\IDeltaTimeRetriever.cs" />
     <Compile Include="Interfaces\IEndOfTrackMessageReader.cs" />
     <Compile Include="Interfaces\IFileHeaderReader.cs" />
+    <Compile Include="Interfaces\IProgramChangeMessageReader.cs" />
+    <Compile Include="ProgramChangeMessageReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

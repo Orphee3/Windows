@@ -95,6 +95,29 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.FileHeaderReaderTes
     }
 
     [TestFixture]
+    public class ItShouldReturnFalseIfTheBinaryReaderIsEmpty : WhenFileHeaderReaderIsCalled
+    {
+        private bool _result;
+
+        [SetUp]
+        public void Init()
+        {
+            using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
+            {
+                for (var iterator = this.Reader.BaseStream.Length; iterator >= 1; iterator--)
+                    this.Reader.ReadByte();
+                this._result = this.FileHeaderReader.ReadFileHeader(this.Reader);
+            }
+        }
+
+        [Test]
+        public void ResultShouldBeFalse()
+        {
+            Assert.IsFalse(this._result);
+        }
+    }
+
+    [TestFixture]
     public class ItShouldReturnFalseIfTheBinaryReaderIsEmptyNull : WhenFileHeaderReaderIsCalled
     {
         private bool _result;
@@ -103,6 +126,28 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.FileHeaderReaderTes
         public void Init()
         {
            this._result = this.FileHeaderReader.ReadFileHeader(this.Reader);
+        }
+
+        [Test]
+        public void ResultShouldBeFalse()
+        {
+            Assert.IsFalse(this._result);
+        }
+    }
+
+    [TestFixture]
+    public class ItShouldReturnFalseIfTheBinaryReaderContainsLessThanFourteenbytes : WhenFileHeaderReaderIsCalled
+    {
+        private bool _result;
+
+        [SetUp]
+        public void Init()
+        {
+            using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
+            {
+                this.Reader.ReadByte();
+                this._result = this.FileHeaderReader.ReadFileHeader(this.Reader);
+            }
         }
 
         [Test]
