@@ -39,7 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeltaTimeReader.cs" />
+    <Compile Include="EndOfTrackMessageReader.cs" />
     <Compile Include="Interfaces\IDeltaTimeRetriever.cs" />
+    <Compile Include="Interfaces\IEndOfTrackMessageReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

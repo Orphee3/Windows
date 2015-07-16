@@ -17,5 +17,12 @@ namespace Orphee.UnitTests.ImportModuleTests
             this.File = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             return true;
         }
+
+        public async Task<bool> GetFile(string fileName)
+        {
+            var folder = KnownFolders.MusicLibrary;
+            this.File = await folder.GetFileAsync(fileName);
+            return true;
+        }
     }
 }
