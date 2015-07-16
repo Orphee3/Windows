@@ -3,7 +3,7 @@ using MidiDotNet.ImportModule;
 using MidiDotNet.ImportModule.Interfaces;
 using NUnit.Framework;
 
-namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeRetrieverTests
+namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeReaderTests
 {
     public class WhenDeltaTimeRetrieverIsCalled : ImportModuleTestsBase
     {
@@ -11,13 +11,13 @@ namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeRetrieverTests
 
         public WhenDeltaTimeRetrieverIsCalled()
         {
-            this.DeltaTimeRetriever = new DeltaTimeRetriever();
+            this.DeltaTimeRetriever = new DeltaTimeReader();
             var result = InitializeFile("DeltaTimeRetrieverTests.test").Result;
         }
     }
 
     [TestFixture]
-    public class ItShouldRetrieveTheExpectedResultForAOneByteDeltaTime : WhenDeltaTimeRetrieverIsCalled
+    public class ItShouldReadTheExpectedResultForAOneByteDeltaTime : WhenDeltaTimeRetrieverIsCalled
     {
         private int _expectedResult;
         private int _actualResult;
@@ -42,12 +42,12 @@ namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeRetrieverTests
         [Test]
         public void ActualResultShouldBeEqualToExpectedResult()
         {
-            Assert.AreEqual(this._expectedResult, this._expectedResult);
+            Assert.AreEqual(this._expectedResult, this._actualResult);
         }
     }
 
     [TestFixture]
-    public class ItShouldRetrieveTheExpectedResultForATwoBytesDeltaTime : WhenDeltaTimeRetrieverIsCalled
+    public class ItShouldReadTheExpectedResultForATwoBytesDeltaTime : WhenDeltaTimeRetrieverIsCalled
     {
         private int _expectedResult;
         private int _actualResult;
@@ -55,10 +55,10 @@ namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeRetrieverTests
         [SetUp]
         public void Init()
         {
-            this._expectedResult = 255;
+            this._expectedResult = 16383;
             using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
             {
-                this.Writer.Write((byte) 0x81);
+                this.Writer.Write((byte) 0xFF);
                 this.Writer.Write((byte) 0x7F);
             }
             ReadDeltaTimeFromFile();
@@ -73,12 +73,12 @@ namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeRetrieverTests
         [Test]
         public void ActualResultShouldBeEqualToExpectedResult()
         {
-            Assert.AreEqual(this._expectedResult, this._expectedResult);
+            Assert.AreEqual(this._expectedResult, this._actualResult);
         }
     }
 
     [TestFixture]
-    public class ItShouldRetrieveTheExpectedResultForAThreeBytesDeltaTime : WhenDeltaTimeRetrieverIsCalled
+    public class ItShouldReadTheExpectedResultForAThreeBytesDeltaTime : WhenDeltaTimeRetrieverIsCalled
     {
         private int _expectedResult;
         private int _actualResult;
@@ -86,12 +86,12 @@ namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeRetrieverTests
         [SetUp]
         public void Init()
         {
-            this._expectedResult = 32768;
+            this._expectedResult = 2097151;
             using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
             {
-                this.Writer.Write((byte) 0x82);
-                this.Writer.Write((byte) 0x80);
-                this.Writer.Write((byte) 0x00);
+                this.Writer.Write((byte) 0xFF);
+                this.Writer.Write((byte) 0xFF);
+                this.Writer.Write((byte) 0x7F);
             }
             ReadDeltaTimeFromFile();
         }
@@ -105,7 +105,7 @@ namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeRetrieverTests
         [Test]
         public void ActualResultShouldBeEqualToExpectedResult()
         {
-            Assert.AreEqual(this._expectedResult, this._expectedResult);
+            Assert.AreEqual(this._expectedResult, this._actualResult);
         }
     }
 }

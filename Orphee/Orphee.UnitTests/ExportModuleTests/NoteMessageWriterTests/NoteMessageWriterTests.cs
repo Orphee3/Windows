@@ -35,7 +35,7 @@ namespace Orphee.UnitTests.ExportModuleTests.NoteMessageWriterTests
             this.OrpheeFileExporter = new OrpheeFileExporter(this.FileHeaderWriterMock.Object, this.TrackHeaderWriterMock.Object, this.NoteMessageWriterMock.Object);
             this.EndOfTrackMessageWriterMock = new Mock<IEndOfTrackMessageWriter>();
             this.ProgramChangeMessageWriterMock = new Mock<IProgramChangeMessageWriter>();
-            this.DeltaTimeRetriever = new DeltaTimeRetriever();
+            this.DeltaTimeRetriever = new DeltaTimeReader();
             this.OrpheeFile = new OrpheeFile();
             this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel5)
             {

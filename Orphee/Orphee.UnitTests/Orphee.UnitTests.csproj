@@ -118,11 +118,11 @@
     <Compile Include="ExportModuleTests\OrpheeFileExporterTests\OrpheeFileExporterTests.cs" />
     <Compile Include="ExportModuleTests\FileHeaderWriterTests\FileHeaderWriterTests.cs" />
     <Compile Include="ExportModuleTests\NoteMessageWriterTests\NoteMessageWriterTests.cs" />
-    <Compile Include="ExportModuleTests\ProgramChangeMessageTests\ProgramChangeMessageTests.cs" />
+    <Compile Include="ExportModuleTests\ProgramChangeMessageWriterTests\ProgramChangeMessageWriterTests.cs" />
     <Compile Include="ExportModuleTests\TempoMessageWriterTests\TempoMessageWriterTests.cs" />
     <Compile Include="ExportModuleTests\TimeSignatureMessageWriterTests\TimeSignatureMessageWritterTests.cs" />
     <Compile Include="ExportModuleTests\TrackHeaderWriterTests\TrackHeaderWriterTests.cs" />
-    <Compile Include="ImportModuleTests\DeltaTimeRetrieverTests\DeltaTimeRetrieverTests.cs" />
+    <Compile Include="ImportModuleTests\DeltaTimeReaderTests\DeltaTimeReaderTests.cs" />
     <Compile Include="ImportModuleTests\ImportModuleTestsBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CreationSharedTests\LoopCreationViewModelTests\InstrumentMangerTests\InstrumentManagerTests.cs" />
@@ -184,7 +184,16 @@
       <Name>Orphee.Windows</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ImportModuleTests\EndOfTrackReaderTests\" />
+    <Folder Include="ImportModuleTests\FileHeaderReaderTests\" />
+    <Folder Include="ImportModuleTests\NoteMessageReaderTests\" />
+    <Folder Include="ImportModuleTests\OrpheeFileImporterTsts\" />
+    <Folder Include="ImportModuleTests\ProgramChangeMessageReaderTests\" />
+    <Folder Include="ImportModuleTests\TempoMessageReaderTests\" />
+    <Folder Include="ImportModuleTests\TimeSignatureMessageReaderTests\" />
+    <Folder Include="ImportModuleTests\TrackHeaderReaderTests\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

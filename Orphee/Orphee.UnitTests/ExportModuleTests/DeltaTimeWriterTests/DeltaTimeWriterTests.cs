@@ -30,7 +30,7 @@ namespace Orphee.UnitTests.ExportModuleTests.DeltaTimeWriterTests
                 0x7F,
             };
             using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
-                this.DeltaTimeWriter.WriteDeltaTime(Writer, 0x7F);
+                this.DeltaTimeWriter.WriteDeltaTime(Writer, 127);
             ReadDeltaTimeFromFile();
         }
 
@@ -68,11 +68,11 @@ namespace Orphee.UnitTests.ExportModuleTests.DeltaTimeWriterTests
         {
             this._expectedResult = new byte[]
             {
-                0x81,
+                0xFF,
                 0x7F,
             };
             using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
-                this.DeltaTimeWriter.WriteDeltaTime(Writer, 255);
+                this.DeltaTimeWriter.WriteDeltaTime(Writer, 16383);
             ReadDeltaTimeFromFile();
         }
 
@@ -116,12 +116,12 @@ namespace Orphee.UnitTests.ExportModuleTests.DeltaTimeWriterTests
         {
             this._expectedResult = new byte[]
             {
-                0x82,
-                0x80,
-                0x00
+                0xFF,
+                0xFF,
+                0x7F
             };
             using (this.Writer = new BinaryWriter(this.File.OpenStreamForWriteAsync().Result))
-                this.DeltaTimeWriter.WriteDeltaTime(Writer, 32768);
+                this.DeltaTimeWriter.WriteDeltaTime(Writer, 2097151);
             ReadDeltaTimeFromFile();
         }
 

@@ -4,7 +4,7 @@ using MidiDotNet.ImportModule.Interfaces;
 
 namespace MidiDotNet.ImportModule
 {
-    public class DeltaTimeRetriever : IDeltaTimeRetriever
+    public class DeltaTimeReader : IDeltaTimeRetriever
     {
         private int RetreiveDeltaTime(byte[] deltaTime)
         {
