@@ -10,7 +10,7 @@ using Orphee.CreationShared.Interfaces;
 using Orphee.ViewModels;
 using Orphee.ViewModels.Interfaces;
 
-namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMapManagerTests
+namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewModelTests.NoteMapManagerTests
 {
     public class NoteMapTestsBase
     {

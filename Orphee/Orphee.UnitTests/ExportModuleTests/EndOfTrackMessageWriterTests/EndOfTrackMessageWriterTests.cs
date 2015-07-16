@@ -3,7 +3,7 @@ using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;
 using NUnit.Framework;
 
-namespace Orphee.UnitTests.ExportModuleTests.EndOfTrackMessageWriterTests
+namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.EndOfTrackMessageWriterTests
 {
     public class WhenEndOfTrackMessageWriterIsCalled : ExportModuleTestsBase
     {

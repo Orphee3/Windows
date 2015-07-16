@@ -9,8 +9,8 @@
     <ProjectGuid>{1F83E3F8-6C63-4A22-996C-13AB73857F20}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Orphee.UnitTests</RootNamespace>
-    <AssemblyName>Orphee.UnitTests</AssemblyName>
+    <RootNamespace>MidiDotNet.ExportModuleUnitTests</RootNamespace>
+    <AssemblyName>MidiDotNet.ExportModuleUnitTests</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
@@ -122,14 +122,7 @@
     <Compile Include="ExportModuleTests\TempoMessageWriterTests\TempoMessageWriterTests.cs" />
     <Compile Include="ExportModuleTests\TimeSignatureMessageWriterTests\TimeSignatureMessageWritterTests.cs" />
     <Compile Include="ExportModuleTests\TrackHeaderWriterTests\TrackHeaderWriterTests.cs" />
-    <Compile Include="ImportModuleTests\DeltaTimeReaderTests\DeltaTimeReaderTests.cs" />
-    <Compile Include="ImportModuleTests\EndOfTrackMessageReaderTests\EndOfTrackMessageReaderTests.cs" />
-    <Compile Include="ImportModuleTests\ImportModuleTestsBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CreationSharedTests\LoopCreationViewModelTests\InstrumentMangerTests\InstrumentManagerTests.cs" />
-    <Compile Include="CreationSharedTests\LoopCreationViewModelTests\NoteMapManagerTests\NoteMapManagerTests.cs" />
-    <Compile Include="CreationSharedTests\LoopCreationViewModelTests\NoteNameListManagerTests\NoteNameListManagerTests.cs" />
-    <Compile Include="CreationSharedTests\LoopCreationViewModelTests\SoundPlayerTests\SoundPlayerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -185,15 +178,7 @@
       <Name>Orphee.Windows</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ImportModuleTests\FileHeaderReaderTests\" />
-    <Folder Include="ImportModuleTests\NoteMessageReaderTests\" />
-    <Folder Include="ImportModuleTests\OrpheeFileImporterTsts\" />
-    <Folder Include="ImportModuleTests\ProgramChangeMessageReaderTests\" />
-    <Folder Include="ImportModuleTests\TempoMessageReaderTests\" />
-    <Folder Include="ImportModuleTests\TimeSignatureMessageReaderTests\" />
-    <Folder Include="ImportModuleTests\TrackHeaderReaderTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

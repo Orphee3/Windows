@@ -5,25 +5,33 @@ namespace MidiDotNet.ImportModule
 {
     public class EndOfTrackMessageReader : IEndOfTrackMessageReader
     {
-        private byte _deltaTime;
-        private byte _metaEventCode;
-        private byte _messageCode;
-        private byte _data;
+        private readonly byte _expectedDeltaTime;
+        private readonly byte _expectedMetaEventCode;
+        private readonly byte _expectedMessageCode;
+        private readonly byte _expectedData;
 
-        private bool IsInfoAsExpected()
+        public EndOfTrackMessageReader()
         {
-            return this._deltaTime == 0 && this._metaEventCode == 0xFF && this._messageCode == 0x2F && this._data == 0;
+            this._expectedDeltaTime = 0;
+            this._expectedMetaEventCode = 0xFF;
+            this._expectedMessageCode = 0x2F;
+            this._expectedData = 0;
+        }
+
+        private bool IsInfoAsExpected(byte deltaTime, byte metaEventCode, byte messageCode, byte data)
+        {
+            return deltaTime == this._expectedDeltaTime && metaEventCode == this._expectedMetaEventCode && messageCode == this._expectedMessageCode && data == this._expectedData;
         }
 
         public bool ReadEndOfTrackMessage(BinaryReader reader)
         {
-            if (reader == null)
+            if (reader == null || reader.BaseStream.Length - reader.BaseStream.Position < 4)
                 return false;
-            this._deltaTime = reader.ReadByte();
-            this._metaEventCode = reader.ReadByte();
-            this._messageCode = reader.ReadByte();
-            this._data = reader.ReadByte();
-            return (IsInfoAsExpected());
+            var deltaTime = reader.ReadByte();
+            var metaEventCode = reader.ReadByte();
+            var messageCode = reader.ReadByte();
+            var data = reader.ReadByte();
+            return (IsInfoAsExpected(deltaTime, metaEventCode, messageCode, data));
         }
     }
 }

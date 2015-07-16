@@ -10,7 +10,7 @@ using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 
-namespace Orphee.UnitTests.ExportModuleTests.NoteMessageWriterTests
+namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.NoteMessageWriterTests
 {
     public class WhenNoteMessageWriterIsCalled : ExportModuleTestsBase
     {

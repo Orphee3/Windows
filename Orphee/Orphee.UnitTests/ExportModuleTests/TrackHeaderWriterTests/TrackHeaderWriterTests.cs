@@ -10,7 +10,7 @@ using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 
-namespace Orphee.UnitTests.ExportModuleTests.TrackHeaderWriterTests
+namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.TrackHeaderWriterTests
 {
     public class WhenTrackHeaderWriterIsCalled : ExportModuleTestsBase
     {

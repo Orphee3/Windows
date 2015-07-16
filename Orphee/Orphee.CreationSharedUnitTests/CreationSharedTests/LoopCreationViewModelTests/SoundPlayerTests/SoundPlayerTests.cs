@@ -7,7 +7,7 @@ using Orphee.CreationShared.Interfaces;
 using Orphee.ViewModels;
 using Orphee.ViewModels.Interfaces;
 
-namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.SoundPlayerTests
+namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewModelTests.SoundPlayerTests
 {
     public class WhenAToggleButtonNoteIsClicked
     {

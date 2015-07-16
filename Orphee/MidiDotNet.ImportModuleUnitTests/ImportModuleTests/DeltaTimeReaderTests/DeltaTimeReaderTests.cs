@@ -3,7 +3,7 @@ using MidiDotNet.ImportModule;
 using MidiDotNet.ImportModule.Interfaces;
 using NUnit.Framework;
 
-namespace Orphee.UnitTests.ImportModuleTests.DeltaTimeReaderTests
+namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.DeltaTimeReaderTests
 {
     public class WhenDeltaTimeRetrieverIsCalled : ImportModuleTestsBase
     {

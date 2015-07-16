@@ -7,7 +7,7 @@ using Orphee.CreationShared.Interfaces;
 using Orphee.ViewModels;
 using Orphee.ViewModels.Interfaces;
 
-namespace Orphee.UnitTests.CreationSharedTests.LoopCreationViewModelTests.InstrumentMangerTests
+namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewModelTests.InstrumentMangerTests
 {
     public class InstrumentManagerTestsBase
     {

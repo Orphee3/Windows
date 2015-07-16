@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 
-namespace Orphee.UnitTests.ExportModuleTests.TimeSignatureMessageWriterTests
+namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.TimeSignatureMessageWriterTests
 {
     public class WhenTimeSignatureMessageWriterTestIsCalled : ExportModuleTestsBase
     {

@@ -9,7 +9,7 @@ using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 
-namespace Orphee.UnitTests.ExportModuleTests.OrpheeFileExporterTests
+namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.OrpheeFileExporterTests
 {
     public class WhenFileExporterIsCalled
     {

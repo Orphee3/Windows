@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 
-namespace Orphee.UnitTests.ExportModuleTests.ProgramChangeMessageWriterTests
+namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.ProgramChangeMessageWriterTests
 {
     public class WhenProgramChangeMessageIsCalled : ExportModuleTestsBase
     {

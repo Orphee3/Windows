@@ -40,8 +40,10 @@
   <ItemGroup>
     <Compile Include="DeltaTimeReader.cs" />
     <Compile Include="EndOfTrackMessageReader.cs" />
+    <Compile Include="FileHeaderReader.cs" />
     <Compile Include="Interfaces\IDeltaTimeRetriever.cs" />
     <Compile Include="Interfaces\IEndOfTrackMessageReader.cs" />
+    <Compile Include="Interfaces\IFileHeaderReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

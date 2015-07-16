@@ -8,7 +8,7 @@ using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 
-namespace Orphee.UnitTests.ExportModuleTests.FileHeaderWriterTests
+namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.FileHeaderWriterTests
 {
     public class WhenFileHeaderWriterIsCalled : ExportModuleTestsBase
     {
