@@ -117,6 +117,7 @@
     <Compile Include="ImportModuleTests\FileHeaderReaderTests\FileHeaderReaderTests.cs" />
     <Compile Include="ImportModuleTests\ImportModuleTestsBase.cs" />
     <Compile Include="ImportModuleTests\NoteMessageReaderTests\NoteMessageReaderTests.cs" />
+    <Compile Include="ImportModuleTests\OrpheeFileImporterTests\OrpheeFileImporterTests.cs" />
     <Compile Include="ImportModuleTests\ProgramChangeMessageReaderTests\ProgramChangeMessageReaderTests.cs" />
     <Compile Include="ImportModuleTests\TempoMessageReaderTests\TempoMessageReaderTests.cs" />
     <Compile Include="ImportModuleTests\TimeSignatureMessageReaderTests\TimeSignatureMessageReaderTests.cs" />
@@ -164,10 +165,12 @@
       <Project>{4c115b86-4a11-4d68-93a6-321478b06fd4}</Project>
       <Name>MidiDotNet.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orphee.CreationShared\Orphee.CreationShared.csproj">
+      <Project>{CBC33D6E-AB43-4F90-A12A-E6167AB0D392}</Project>
+      <Name>Orphee.CreationShared</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ImportModuleTests\OrpheeFileImporterTsts\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

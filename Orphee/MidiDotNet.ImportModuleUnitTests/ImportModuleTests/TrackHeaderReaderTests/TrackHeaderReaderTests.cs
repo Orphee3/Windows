@@ -2,6 +2,7 @@
 using MidiDotNet.ImportModule;
 using MidiDotNet.ImportModule.Interfaces;
 using MidiDotNet.Shared;
+using Moq;
 using NUnit.Framework;
 
 namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.TrackHeaderReaderTests
@@ -12,7 +13,11 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.TrackHeaderReaderTe
 
         public WhenTrackHeaderReaderIsCalled()
         {
-            this.TrackHeaderReader = new TrackHeaderReader(new SwapManager());
+            var timeSignatureMessageReaderMock = new Mock<ITimeSignatureMessageReader>();
+            var tempoMessageReaderMock = new Mock<ITempoMessageReader>();
+            var programChangeMessageReaderMock = new Mock<IProgramChangeMessageReader>();
+            programChangeMessageReaderMock.Setup(pcmrm => pcmrm.ReadProgramChangeMessage(It.IsAny<BinaryReader>())).Returns(true);
+            this.TrackHeaderReader = new TrackHeaderReader(new SwapManager(), timeSignatureMessageReaderMock.Object, tempoMessageReaderMock.Object, programChangeMessageReaderMock.Object);
             var result = GetFile("TrackHeaderTests.test").Result;
         }
     }
@@ -27,7 +32,7 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.TrackHeaderReaderTe
         {
             ReWriteTheFile(new byte[] {0x4D, 0x54, 0x72, 0x6B, 0x00, 0x00, 0x00, 0x16});
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader);
+                this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader, 1);
         }
 
         [Test]
@@ -47,7 +52,7 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.TrackHeaderReaderTe
         {
             ReWriteTheFile(new byte[] { 0x4A, 0x54, 0x72, 0x6B, 0x00, 0x00, 0x00, 0x16 });
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader);
+                this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader, 1);
         }
 
         [Test]
@@ -65,7 +70,7 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.TrackHeaderReaderTe
         [SetUp]
         public void Init()
         {
-            this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader);
+            this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader, 1);
         }
 
         [Test]
@@ -87,7 +92,7 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.TrackHeaderReaderTe
             {
                 for (var iterator = this.Reader.BaseStream.Length; iterator >= 1; iterator--)
                     this.Reader.ReadByte();
-                this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader);
+                this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader, 1);
             }
         }
 
@@ -109,7 +114,7 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.TrackHeaderReaderTe
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
             {
                 this.Reader.ReadByte();
-                this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader);
+                this._result = this.TrackHeaderReader.ReadTrackHeader(this.Reader, 1);
             }
         }
 

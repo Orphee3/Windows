@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel;
 using Microsoft.Practices.Prism.Commands;
 using Midi;
-using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;
+using MidiDotNet.ImportModule;
+using MidiDotNet.ImportModule.Interfaces;
+using MidiDotNet.Shared;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
-using Orphee.LoopCreation;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -28,6 +29,7 @@ namespace Orphee.ViewModels
         private int _currentInstrumentIndex;
         private readonly ISoundPlayer _soundPlayer;
         private readonly IOrpheeFileExporter _orpheeFileExporter;
+        private readonly IOrpheeFileImporter _orpheeFileImporter;
         public IInstrumentManager InstrumentManager { get; private set; }
         public IOrpheeTrack DisplayedTrack { get; private set; }
         public DelegateCommand AddColumnsCommand { get; private set; }
@@ -37,12 +39,13 @@ namespace Orphee.ViewModels
         public DelegateCommand LoadButtonCommand { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public LoopCreationViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager, IOrpheeFileExporter orpheeFileExporter)
+        public LoopCreationViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager, IOrpheeFileExporter orpheeFileExporter, IOrpheeFileImporter orpheeFileImporter)
         {
             this.DisplayedTrack = new OrpheeTrack(0, Channel.Channel1);
             this._soundPlayer = soundPlayer;
             this.InstrumentManager = instrumentManager;
             this._orpheeFileExporter = orpheeFileExporter;
+            this._orpheeFileImporter = orpheeFileImporter;
             this.DisplayedTrack.CurrentInstrument = this.InstrumentManager.CurrentInstrument;
             this.ToggleButtonNoteCommand = new DelegateCommand<IToggleButtonNote>(ToggleButtonNoteExec);
             this.AddColumnsCommand = new DelegateCommand(AddColumnsCommandExec);
@@ -63,9 +66,8 @@ namespace Orphee.ViewModels
 
         public void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote)
         {
-            if (!toggleButtonNote.IsChecked)
+            if (toggleButtonNote.IsChecked)
                 this._soundPlayer.PlayNote(toggleButtonNote.Note);
-            toggleButtonNote.IsChecked = !toggleButtonNote.IsChecked;
         }
 
         private void UpdateInstrumentManagerCurrentInstrument()
@@ -83,14 +85,21 @@ namespace Orphee.ViewModels
 
         private async void LoadButtonCommandExec()
         {
-            var loadLoopFilePicker = new LoadLoopFilePicker();
+            var importedOrpheeFile = await this._orpheeFileImporter.ImportFile(".loop");
 
-            await loadLoopFilePicker.LoadLoop();
+            if (importedOrpheeFile == null)
+                return;
+            var firstTrack = importedOrpheeFile.OrpheeTrackList[0];
+            this.DisplayedTrack.UpdateOrpheeTrack(firstTrack);
+            this.DisplayedTrack.CurrentInstrument = firstTrack.CurrentInstrument;
+            this._soundPlayer.SetPlayerParameters(this.DisplayedTrack.PlayerParameters);
+            this.CurrentInstrumentIndex = (int) this.DisplayedTrack.CurrentInstrument;
+            this._soundPlayer.UpdatePlayingInstrument(this.DisplayedTrack.CurrentInstrument);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            var handler = PropertyChanged;
 
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));

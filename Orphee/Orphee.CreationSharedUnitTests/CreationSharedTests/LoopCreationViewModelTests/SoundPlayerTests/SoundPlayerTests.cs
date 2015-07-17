@@ -1,5 +1,6 @@
 ﻿using Midi;
 using MidiDotNet.ExportModule.Interfaces;
+using MidiDotNet.ImportModule.Interfaces;
 using Moq;
 using NUnit.Framework;
 using Orphee.CreationShared;
@@ -14,17 +15,19 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         protected ILoopCreationViewModel LoopCreationViewModel;
         protected Mock<IMidiLibRepository> MidiLibRepositoryMock;
         protected Mock<IInstrumentManager> InstrumentManagerMock;
-        protected Mock<IOrpheeFileExporter> OrpheeFileExporterMock; 
+        protected Mock<IOrpheeFileExporter> OrpheeFileExporterMock;
+        protected Mock<IOrpheeFileImporter> OrpheeFileImporterMock; 
         protected IToggleButtonNote ToggleButtonNote;
         protected ISoundPlayer SoundPlayer;
 
         public WhenAToggleButtonNoteIsClicked()
         {
+            this.OrpheeFileImporterMock = new Mock<IOrpheeFileImporter>();
             this.OrpheeFileExporterMock = new Mock<IOrpheeFileExporter>();
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
             this.MidiLibRepositoryMock = new Mock<IMidiLibRepository>();
             this.SoundPlayer = new SoundPlayer(this.MidiLibRepositoryMock.Object);
-            this.LoopCreationViewModel = new LoopCreationViewModel(this.SoundPlayer, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object);
+            this.LoopCreationViewModel = new LoopCreationViewModel(this.SoundPlayer, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
         }
     }
 
@@ -42,39 +45,6 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         public void TheResultShouldBeTrue()
         {
             this.MidiLibRepositoryMock.Verify(mlr => mlr.PlayNote(It.IsAny<Note>()), Times.Once());
-        }
-    }
-    [TestFixture]
-    public class ItShoudEmitASoundIfTheTheToggleButtonIsNotChecked : WhenAToggleButtonNoteIsClicked
-    {
- 
-        [SetUp]
-        public void Init()
-        {
-            this.ToggleButtonNote = new ToggleButtonNote() { LineIndex = 0, ColumnIndex = 0, Note = Note.A1, IsChecked = false };
-            this.LoopCreationViewModel.ToggleButtonNoteExec(this.ToggleButtonNote);
-        }
-
-        [Test]
-        public void TheToggleButtonShouldBeChecked()
-        {
-            Assert.IsTrue(this.ToggleButtonNote.IsChecked);
-        }
-    }
-    [TestFixture]
-    public class ItShoudNotEmitASoundIfTheTheToggleButtonIsChecked : WhenAToggleButtonNoteIsClicked
-    {
-        [SetUp]
-        public void Init()
-        {
-            this.ToggleButtonNote = new ToggleButtonNote() { LineIndex = 0, ColumnIndex = 0, Note = Note.A1, IsChecked = true };
-            this.LoopCreationViewModel.ToggleButtonNoteExec(this.ToggleButtonNote);
-        }
-
-        [Test]
-        public void TheToggleButtonShouldNotBeChecked()
-        {
-            Assert.IsFalse(this.ToggleButtonNote.IsChecked);
         }
     }
 }

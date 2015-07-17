@@ -50,5 +50,10 @@ namespace Orphee.CreationShared
         {
             this._outputDevice.SendProgramChange(this.PlayerParameters.Channel, newPlayingInstrument);
         }
+
+        public void SetPlayerParameters(IPlayerParameters playerParameters)
+        {
+            this.PlayerParameters = playerParameters;
+        }
     }
 }

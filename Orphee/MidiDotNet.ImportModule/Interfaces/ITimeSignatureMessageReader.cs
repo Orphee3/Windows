@@ -5,10 +5,10 @@ namespace MidiDotNet.ImportModule.Interfaces
     public interface ITimeSignatureMessageReader
     {
         // Properties
-        int Nominator { get; }
-        int Denominator { get; }
-        int ClocksPerBeat { get; }
-        int NumberOf32ThNotePerBeat { get; }
+        uint Nominator { get; }
+        uint Denominator { get; }
+        uint ClocksPerBeat { get; }
+        uint NumberOf32ThNotePerBeat { get; }
 
         // Methods
         bool ReadTimeSignatureMessage(BinaryReader reader);

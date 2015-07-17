@@ -7,6 +7,7 @@ namespace MidiDotNet.ExportModule.Interfaces
     {
         // Properties
 
+
         // Methods
         bool WriteTrackHeader(BinaryWriter writer, IPlayerParameters playerParameters, uint trackLength);
     }

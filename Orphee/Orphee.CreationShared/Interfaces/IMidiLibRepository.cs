@@ -10,5 +10,6 @@ namespace Orphee.CreationShared.Interfaces
         // Methods
         void PlayNote(Note note);
         void UpdatePlayingInstrument(Instrument newPlayingInstrument);
+        void SetPlayerParameters(IPlayerParameters playerParameters);
     }
 }

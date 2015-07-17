@@ -10,10 +10,10 @@ namespace MidiDotNet.ImportModule
         private readonly byte _expectedMetaCode;
         private readonly byte _expectedMessageCode;
         private readonly byte _expectedNumberOfBytes;
-        public int Nominator { get; private set; }
-        public int Denominator { get; private set; }
-        public int ClocksPerBeat { get; private set; }
-        public int NumberOf32ThNotePerBeat { get; private set; }
+        public uint Nominator { get; private set; }
+        public uint Denominator { get; private set; }
+        public uint ClocksPerBeat { get; private set; }
+        public uint NumberOf32ThNotePerBeat { get; private set; }
 
         public TimeSignatureMessageReader()
         {
@@ -38,7 +38,7 @@ namespace MidiDotNet.ImportModule
             var messageCode = reader.ReadByte();
             var numberOfBytes = reader.ReadByte();
             this.Nominator = reader.ReadByte();
-            this.Denominator = (int) Math.Pow(2, (int)reader.ReadByte());
+            this.Denominator = (uint) Math.Pow(2, (int)reader.ReadByte());
             this.ClocksPerBeat = reader.ReadByte();
             this.NumberOf32ThNotePerBeat = reader.ReadByte();
             return IsInfoAsExpected(deltaTime, metaCode, messageCode, numberOfBytes);

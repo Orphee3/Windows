@@ -155,6 +155,10 @@
       <Project>{2134a015-62f4-4b8a-ad3e-f93d55af5074}</Project>
       <Name>MidiDotNet.ExportModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MidiDotNet.ImportModule\MidiDotNet.ImportModule.csproj">
+      <Project>{DC766B56-5507-403D-8F12-C82EB792E5DE}</Project>
+      <Name>MidiDotNet.ImportModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orphee.CreationShared\Orphee.CreationShared.csproj">
       <Project>{cbc33d6e-ab43-4f90-a12a-e6167ab0d392}</Project>
       <Name>Orphee.CreationShared</Name>

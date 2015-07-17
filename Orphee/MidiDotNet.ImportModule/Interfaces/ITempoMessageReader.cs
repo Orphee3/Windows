@@ -5,7 +5,7 @@ namespace MidiDotNet.ImportModule.Interfaces
     public interface ITempoMessageReader
     {
         // Properties
-        int Tempo { get; }
+        uint Tempo { get; }
 
         // Methods
         bool ReadTempoMessage(BinaryReader reader);

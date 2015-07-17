@@ -26,5 +26,10 @@ namespace Orphee.CreationShared
         {
             return this._midiLibRepository.PlayerParameters;
         }
+
+        public void SetPlayerParameters(IPlayerParameters playerParameters)
+        {
+            this._midiLibRepository.SetPlayerParameters(playerParameters);
+        }
     }
 }

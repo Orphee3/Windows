@@ -1,7 +1,10 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using MidiDotNet.ImportModule;
 using MidiDotNet.ImportModule.Interfaces;
+using Moq;
 using NUnit.Framework;
+using Orphee.CreationShared.Interfaces;
 
 namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTests
 {
@@ -11,7 +14,9 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
 
         public WhenNoteMessageReader()
         {
-            this.NoteMessageReader = new NoteMessageReader(new DeltaTimeReader());
+            var endOfTrackMessageReaderMock = new Mock<IEndOfTrackMessageReader>();
+            endOfTrackMessageReaderMock.Setup(eotmrm => eotmrm.ReadEndOfTrackMessage(It.IsAny<BinaryReader>())).Returns(true);
+            this.NoteMessageReader = new NoteMessageReader(new DeltaTimeReader(), endOfTrackMessageReaderMock.Object);
             var result = GetFile("NoteMessageTests.test").Result;
         }
     }
@@ -20,19 +25,33 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
     public class ItShouldReturnTrueWhenTheNoteOnMessageIsCorrect : WhenNoteMessageReader
     {
         private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
         {
             ReWriteTheFile(new byte[] {0x00, 0x94, 0x3C, 0x4C});
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 4);
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
         public void ResultShouldBeTrue()
         {
             Assert.IsTrue(this._result);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
         }
     }
 
@@ -40,19 +59,33 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
     public class ItShouldReturnTrueWhenTheNoteOffMessageIsCorrect : WhenNoteMessageReader
     {
         private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
         {
             ReWriteTheFile(new byte[] { 0x00, 0x84, 0x3C, 0x4C });
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 4);
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
         public void ResultShouldBeTrue()
         {
             Assert.IsTrue(this._result);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
         }
     }
 
@@ -61,6 +94,8 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
     {
         private bool _result;
         private byte _expectedNoteIndex;
+        private byte _actualNoteIndex;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
@@ -68,7 +103,9 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
             this._expectedNoteIndex = 0x3C;
             ReWriteTheFile(new byte[] { 0x00, 0x94, 0x3C, 0x4C });
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 4);
+            this._actualNoteIndex = (byte) this.NoteMessageReader.OrpheeNoteMessageList[0].Note;
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
@@ -80,7 +117,19 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
         [Test]
         public void NoteMessageReaderNoteIndexShouldBeEqualToExpectednoteIndex()
         {
-            Assert.AreEqual(this._expectedNoteIndex, this.NoteMessageReader.NoteIndex);
+            Assert.AreEqual(this._expectedNoteIndex, this._actualNoteIndex);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
         }
     }
 
@@ -88,13 +137,15 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
     public class ItShouldReturnFalseIfTheNoteIndexIsHigherThanTheSetLimit : WhenNoteMessageReader
     {
         private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
         {
             ReWriteTheFile(new byte[] { 0x00, 0x94, 0x80, 0x4C });
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 4);
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
@@ -102,25 +153,51 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
         {
             Assert.IsFalse(this._result);
         }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldBeEmpty()
+        {
+            Assert.IsEmpty(this._orpheeNoteMessageList);
+        }
     }
 
     [TestFixture]
     public class ItShouldReturnTrueIfTheNoteIndexIsOnePointLowerThanTheSetLimit : WhenNoteMessageReader
     {
         private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
         {
             ReWriteTheFile(new byte[] { 0x00, 0x94, 0x7F, 0x4C });
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 4);
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
         public void ResultShouldBeTrue()
         {
             Assert.IsTrue(this._result);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
         }
     }
 
@@ -130,6 +207,8 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
     {
         private bool _result;
         private byte _expectedDeltaTime;
+        private byte _actualDeltaTime;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
@@ -137,7 +216,9 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
             this._expectedDeltaTime = 96;
             ReWriteTheFile(new byte[] { 0x60, 0x94, 0x3C, 0x4C });
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 4);
+            this._actualDeltaTime = (byte) this.NoteMessageReader.OrpheeNoteMessageList[0].DeltaTime;
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
@@ -149,47 +230,19 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
         [Test]
         public void NoteMessageReaderDeltaTimeShouldBeEqualToExpectedDeltaTime()
         {
-            Assert.AreEqual(this._expectedDeltaTime, this.NoteMessageReader.DeltaTime);
-        }
-    }
-
-    [TestFixture]
-    public class ItShouldReturnFalseIfTheDeltaTimeIsHigherThanTheSetLimit : WhenNoteMessageReader
-    {
-        private bool _result;
-
-        [SetUp]
-        public void Init()
-        {
-            ReWriteTheFile(new byte[] { 0x81, 0x80, 0x80, 0x00, 0x94, 0x3C, 0x4C });
-            using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+            Assert.AreEqual(this._expectedDeltaTime, this._actualDeltaTime);
         }
 
         [Test]
-        public void ResultShouldBeFalse()
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
         {
-            Assert.IsFalse(this._result);
-        }
-    }
-
-    [TestFixture]
-    public class ItShouldReturnTrueIfTheDeltaTimeIsOnePointLowerThanTheSettedLimit : WhenNoteMessageReader
-    {
-        private bool _result;
-
-        [SetUp]
-        public void Init()
-        {
-            ReWriteTheFile(new byte[] { 0xFF, 0xFF, 0x7F, 0x94, 0x3C, 0x4C });
-            using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+            Assert.IsNotNull(this._orpheeNoteMessageList);
         }
 
         [Test]
-        public void ResultShouldBeTrue()
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeEmpty()
         {
-            Assert.IsTrue(this._result);
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
         }
     }
 
@@ -198,14 +251,18 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
     {
         private bool _result;
         private byte _expectedVelocity;
-
+        private byte _actualVelocity;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
+        
         [SetUp]
         public void Init()
         {
             this._expectedVelocity = 76;
             ReWriteTheFile(new byte[] { 0x60, 0x94, 0x3C, 0x4C });
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 4);
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
+            this._actualVelocity = (byte) this.NoteMessageReader.OrpheeNoteMessageList[0].Velocity;
         }
 
         [Test]
@@ -215,21 +272,71 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
         }
 
         [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
+        }
+
+        [Test]
         public void NoteMessageReaderVelocityShouldBeEqualToExpectedVelocity()
         {
-            Assert.AreEqual(this._expectedVelocity, this.NoteMessageReader.Velocity);
+            Assert.AreEqual(this._expectedVelocity, this._actualVelocity);
         }
     }
 
     [TestFixture]
-    public class ItShouldReturnFalseIfTheBinaryReaderIsNull : WhenNoteMessageReader
+    public class ItShouldReturnTrueIfTheDeltaTimeIsOnePointLowerThanTheSetLimit : WhenNoteMessageReader
     {
         private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
         {
-            this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+            ReWriteTheFile(new byte[] { 0xFF, 0xFF, 0x7F, 0x94, 0x3C, 0x4C });
+            using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 6);
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
+        }
+
+        [Test]
+        public void ResultShouldBeTrue()
+        {
+            Assert.IsTrue(this._result);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeEmpty()
+        {
+            Assert.IsNotEmpty(this._orpheeNoteMessageList);
+        }
+    }
+
+    [TestFixture]
+    public class ItShouldReturnFalseIfTheDeltaTimeIsHigherThanTheSetLimit : WhenNoteMessageReader
+    {
+        private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
+
+        [SetUp]
+        public void Init()
+        {
+            ReWriteTheFile(new byte[] { 0x81, 0x80, 0x80, 0x00, 0x94, 0x3C, 0x4C });
+            using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 7);
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
@@ -237,12 +344,57 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
         {
             Assert.IsFalse(this._result);
         }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldBeEmpty()
+        {
+            Assert.IsEmpty(this._orpheeNoteMessageList);
+        }
+    }
+
+    [TestFixture]
+    public class ItShouldReturnFalseIfTheBinaryReaderIsNull : WhenNoteMessageReader
+    {
+        private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
+
+        [SetUp]
+        public void Init()
+        {
+            this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, 0);
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
+        }
+
+        [Test]
+        public void ResultShouldBeFalse()
+        {
+            Assert.IsFalse(this._result);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldBeEmpty()
+        {
+            Assert.IsEmpty(this._orpheeNoteMessageList);
+        }
     }
 
     [TestFixture]
     public class ItShouldReturnFalseIfTheBinaryReaderIsEmpty : WhenNoteMessageReader
     {
         private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
@@ -251,14 +403,27 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
             {
                 for (var iterator = this.Reader.BaseStream.Length; iterator >= 1; iterator--)
                     this.Reader.ReadByte();
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, (uint)(this.Reader.BaseStream.Length - this.Reader.BaseStream.Position));
             }
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
         public void ResultShouldBeFalse()
         {
             Assert.IsFalse(this._result);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldBeEmpty()
+        {
+            Assert.IsEmpty(this._orpheeNoteMessageList);
         }
     }
 
@@ -266,6 +431,7 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
     public class ItShouldReturnFalseIfTheBinaryReaderIsLessThanFourBytes : WhenNoteMessageReader
     {
         private bool _result;
+        private IList<IOrpheeNoteMessage> _orpheeNoteMessageList;
 
         [SetUp]
         public void Init()
@@ -273,14 +439,27 @@ namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.NoteMessageReaderTe
             using (this.Reader = new BinaryReader(this.File.OpenStreamForReadAsync().Result))
             {
                 this.Reader.ReadByte();
-                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader);
+                this._result = this.NoteMessageReader.ReadNoteMessage(this.Reader, (uint)(this.Reader.BaseStream.Length - this.Reader.BaseStream.Position));
             }
+            this._orpheeNoteMessageList = this.NoteMessageReader.OrpheeNoteMessageList;
         }
 
         [Test]
         public void ResultShouldBeFalse()
         {
             Assert.IsFalse(this._result);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldNotBeNull()
+        {
+            Assert.IsNotNull(this._orpheeNoteMessageList);
+        }
+
+        [Test]
+        public void NoteMessageReaderOrpheeNoteMessageListShouldBeEmpty()
+        {
+            Assert.IsEmpty(this._orpheeNoteMessageList);
         }
     }
 }

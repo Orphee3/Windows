@@ -26,5 +26,18 @@ namespace Orphee.CreationShared
                 {"B", Note.B4},
             };
         }
+
+        public int GetLineIndexFromNote(Note note)
+        {
+            var index = 0;
+
+            foreach (var pair in this.NoteNameList)
+            {
+                if (pair.Value == note || index == 11)
+                    return index;
+                index++;
+            }
+            return index;
+        }
     }
 }

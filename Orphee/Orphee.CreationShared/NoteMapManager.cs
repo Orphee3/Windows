@@ -8,7 +8,7 @@ namespace Orphee.CreationShared
     public class NoteMapManager
     {
         private static NoteMapManager _instance;
-        private readonly int _columnNumberToAdd;
+        private int _columnNumberToAdd;
         private readonly int _lineNumber;
         public static NoteMapManager Instance 
         {
@@ -100,7 +100,7 @@ namespace Orphee.CreationShared
             }
         }
 
-        public IList<IOrpheeNoteMessage> ConvertNoteMapToOrpheeMessageList(IList<ObservableCollection<IToggleButtonNote>> noteMap, int channel, ref uint trackLength)
+        public IList<IOrpheeNoteMessage> ConvertNoteMapToOrpheeNoteMessageList(IList<ObservableCollection<IToggleButtonNote>> noteMap, int channel, ref uint trackLength)
         {
             var orpheeNoteMessageList = new List<IOrpheeNoteMessage>();
             var deltaTime = 0;
@@ -114,6 +114,31 @@ namespace Orphee.CreationShared
             }
             MakeTheLastNoteLonger(orpheeNoteMessageList);
             return orpheeNoteMessageList;
+        }
+
+        public IList<ObservableCollection<IToggleButtonNote>> ConvertOrpheeMessageListToNoteMap(IList<IOrpheeNoteMessage> orpheeNoteMessageLists)
+        {
+            this._columnNumberToAdd = orpheeNoteMessageLists.Sum(message => message.DeltaTime / 48);
+            var noteMap = GenerateNoteMap();
+            var columnIndex = 0;
+
+            foreach (var noteMessage in orpheeNoteMessageLists)
+            {
+                var lineIndex = NoteNameListManager.GetLineIndexFromNote(noteMessage.Note);
+                columnIndex += GetColumnIndexFromDeltaTime(noteMessage.DeltaTime);
+                if ((noteMessage.MessageCode & 0x90) == 0x90)
+                {
+                    noteMap[lineIndex][columnIndex].IsChecked = true;
+                    noteMap[lineIndex][columnIndex].Note = noteMessage.Note;
+                }
+            }
+            this._columnNumberToAdd = 10;
+            return noteMap;
+        }
+
+        private int GetColumnIndexFromDeltaTime(int deltaTime)
+        {
+            return deltaTime / 48;
         }
     }
 }

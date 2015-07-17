@@ -30,7 +30,7 @@ namespace MidiDotNet.ExportModule
             foreach (var track in orpheeFile.OrpheeTrackList)
             {
                 var trackLength = track.TrackLength;
-                track.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(track.NoteMap, (int) track.Channel, ref trackLength);
+                track.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(track.NoteMap, (int) track.Channel, ref trackLength);
             }
         }
 
@@ -60,7 +60,7 @@ namespace MidiDotNet.ExportModule
         public async void SaveOrpheeTrack(IOrpheeTrack orpheeTrack)
         {
             var trackLength = orpheeTrack.TrackLength;
-            orpheeTrack.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeMessageList(orpheeTrack.NoteMap, (int) orpheeTrack.Channel, ref trackLength);
+            orpheeTrack.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(orpheeTrack.NoteMap, (int) orpheeTrack.Channel, ref trackLength);
             orpheeTrack.TrackLength = trackLength;
             var orpheeFile = new OrpheeFile()
             {

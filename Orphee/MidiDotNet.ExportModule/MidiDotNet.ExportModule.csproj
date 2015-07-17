@@ -64,6 +64,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MidiDotNet.ImportModule\MidiDotNet.ImportModule.csproj">
+      <Project>{DC766B56-5507-403D-8F12-C82EB792E5DE}</Project>
+      <Name>MidiDotNet.ImportModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MidiDotNet.Shared\MidiDotNet.Shared.csproj">
       <Project>{4c115b86-4a11-4d68-93a6-321478b06fd4}</Project>
       <Name>MidiDotNet.Shared</Name>

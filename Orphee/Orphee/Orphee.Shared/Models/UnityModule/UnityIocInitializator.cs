@@ -1,6 +1,8 @@
 ﻿using Microsoft.Practices.Unity;
 using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;
+using MidiDotNet.ImportModule;
+using MidiDotNet.ImportModule.Interfaces;
 using MidiDotNet.Shared;
 using MidiDotNet.Shared.Interfaces;
 using Orphee.CreationShared;
@@ -30,6 +32,15 @@ namespace Orphee.UnityModule
             UnityIocContainer.Container.RegisterType(typeof (IFileHeaderWriter), typeof(FileHeaderWriter), null, new ContainerControlledLifetimeManager());
             UnityIocContainer.Container.RegisterType(typeof (ITrackHeaderWriter), typeof(TrackHeaderWriter), null, new ContainerControlledLifetimeManager());
             UnityIocContainer.Container.RegisterType(typeof (IDeltaTimeWriter), typeof(DeltaTimeWriter), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (IOrpheeFileImporter), typeof(OrpheeFileImporter), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (IFileHeaderReader), typeof(FileHeaderReader), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (ITrackHeaderReader), typeof(TrackHeaderReader), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (ITimeSignatureMessageReader), typeof(TimeSignatureMessageReader), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (ITempoMessageReader), typeof(TempoMessageReader), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (IProgramChangeMessageReader), typeof(ProgramChangeMessageReader), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (IDeltaTimeReader), typeof(DeltaTimeReader), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (INoteMessageReader), typeof(NoteMessageReader), null, new ContainerControlledLifetimeManager());
+            UnityIocContainer.Container.RegisterType(typeof (IEndOfTrackMessageReader), typeof(EndOfTrackMessageReader), null, new ContainerControlledLifetimeManager());
         }
     }
 }

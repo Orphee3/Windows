@@ -1,15 +1,15 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using Orphee.CreationShared.Interfaces;
 
 namespace MidiDotNet.ImportModule.Interfaces
 {
     public interface INoteMessageReader
     {
         // Properties
-        int DeltaTime { get; }
-        int NoteIndex { get; }
-        int Velocity { get; }
+        IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; } 
 
         // Methods
-        bool ReadNoteMessage(BinaryReader reader);
+        bool ReadNoteMessage(BinaryReader reader, uint trackLength);
     }
 }

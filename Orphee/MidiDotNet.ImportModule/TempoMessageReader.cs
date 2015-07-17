@@ -10,7 +10,7 @@ namespace MidiDotNet.ImportModule
         private readonly byte _expectedMetaCode;
         private readonly byte _expectedMessageCode;
         private readonly byte _expectedNumberOfBytes;
-        public int Tempo { get; private set; }
+        public uint Tempo { get; private set; }
 
         public TempoMessageReader()
         {
@@ -36,7 +36,7 @@ namespace MidiDotNet.ImportModule
                 data[pos] = reader.ReadByte();
 
             Array.Reverse(data);
-            this.Tempo = 60000000 / BitConverter.ToInt32(data, 0);
+            this.Tempo = (uint) (60000000 / BitConverter.ToInt32(data, 0));
             return this.Tempo >= 40 && this.Tempo <= 400;
         }
 
