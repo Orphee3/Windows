@@ -8,8 +8,8 @@ namespace Orphee.ViewModels
 {
     public class LoginPageViewModel : ViewModel, ILoginPageViewModel
     {
-        public DelegateCommand LoginCommand { get; }
-        public DelegateCommand BackCommand { get; }
+        public DelegateCommand LoginCommand { get; private set; }
+        public DelegateCommand BackCommand { get; private set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string MailAdress { get; set; }

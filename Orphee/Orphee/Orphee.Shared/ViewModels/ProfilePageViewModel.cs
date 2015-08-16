@@ -17,10 +17,10 @@ namespace Orphee.ViewModels
 {
     public class ProfilePageViewModel : ViewModel, IProfilePageViewModel
     {
-        public ObservableCollection<IStorageFile> CreationList { get; set; } 
-        public DelegateCommand LoginButton { get; }
-        public DelegateCommand RegisterButton { get; }
-        public string DisconnectedMessage { get; }
+        public ObservableCollection<IStorageFile> CreationList { get; set; }
+        public DelegateCommand LoginButton { get; private set; }
+        public DelegateCommand RegisterButton { get; private set; }
+        public string DisconnectedMessage { get; private set; }
         public Visibility ButtonsVisibility { get; private set; }
         public Visibility ListViewVisibility { get; private set; }
         private readonly IOrpheeFilesGetter _orpheeFilesGetter;

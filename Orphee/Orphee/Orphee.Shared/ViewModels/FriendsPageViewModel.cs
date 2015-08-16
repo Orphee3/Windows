@@ -14,8 +14,8 @@ namespace Orphee.ViewModels
     {
         public ObservableCollection<JToken> FriendNameList { get; set; }
         public DelegateCommand LoginButton { get; private set; }
-        public DelegateCommand RegisterButton { get; }
-        public string DisconnectedMessage { get; }
+        public DelegateCommand RegisterButton { get; private set; }
+        public string DisconnectedMessage { get; private set; }
         public Visibility ButtonsVisibility { get; private set; }
         public Visibility ListViewVisibility { get; private set; }
 
