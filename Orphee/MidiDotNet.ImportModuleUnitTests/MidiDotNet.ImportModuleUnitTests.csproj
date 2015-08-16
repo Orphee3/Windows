@@ -108,10 +108,6 @@
     <AppxPackageIncludePrivateSymbols>true</AppxPackageIncludePrivateSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <!--A reference to the entire .Net Framework and Windows SDK are automatically included-->
-    <SDKReference Include="TestPlatform, Version=11.0" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="ImportModuleTests\DeltaTimeReaderTests\DeltaTimeReaderTests.cs" />
     <Compile Include="ImportModuleTests\EndOfTrackMessageReaderTests\EndOfTrackMessageReaderTests.cs" />
     <Compile Include="ImportModuleTests\FileHeaderReaderTests\FileHeaderReaderTests.cs" />
@@ -128,7 +124,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="MidiDotNet.ImportModuleUnitTests_TemporaryKey.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

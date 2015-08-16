@@ -7,6 +7,7 @@ using Windows.Storage.Pickers;
 using MidiDotNet.ExportModule.Interfaces;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
+using Orphee.RestApiManagement.Interfaces;
 
 namespace MidiDotNet.ExportModule
 {
@@ -17,9 +18,11 @@ namespace MidiDotNet.ExportModule
         private readonly IFileHeaderWriter _fileHeaderWriter;
         private readonly ITrackHeaderWriter _trackHeaderWriter;
         private readonly INoteMessageWriter _noteMessageWriter;
+        private readonly IFileUploader _fileUploader;
 
-        public OrpheeFileExporter(IFileHeaderWriter fileHeaderWriter, ITrackHeaderWriter trackHeaderWriter, INoteMessageWriter noteMessageWriter)
+        public OrpheeFileExporter(IFileHeaderWriter fileHeaderWriter, ITrackHeaderWriter trackHeaderWriter, INoteMessageWriter noteMessageWriter, IFileUploader fileUploader)
         {
+            this._fileUploader = fileUploader;
             this._fileHeaderWriter = fileHeaderWriter;
             this._trackHeaderWriter = trackHeaderWriter;
             this._noteMessageWriter = noteMessageWriter;
@@ -46,12 +49,13 @@ namespace MidiDotNet.ExportModule
                 SuggestedStartLocation = PickerLocationId.MusicLibrary,
                 SuggestedFileName = orpheeFile.FileName,
             };
-            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { orpheeFile.FileName.Split('.')[1] == "loop" ? ".loop" : ".orph" });
+            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".mid" });
             this._storageFile = await savePicker.PickSaveFileAsync();
             if (this._storageFile != null)
             {
                 CachedFileManager.DeferUpdates(this._storageFile);
                 WriteEventsInFile(orpheeFile);
+                var result = await this._fileUploader.UploadFile(this._storageFile);
                 return true;
             }
             return false;
@@ -64,7 +68,7 @@ namespace MidiDotNet.ExportModule
             orpheeTrack.TrackLength = trackLength;
             var orpheeFile = new OrpheeFile()
             {
-                FileName = "loop1.loop",
+                FileName = "loop1.mid",
             };
             orpheeFile.AddNewTrack(orpheeTrack);
             orpheeFile.UpdateOrpheeFileParameters();

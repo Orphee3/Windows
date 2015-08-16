@@ -1,4 +1,5 @@
-﻿using Midi;
+﻿using Microsoft.Practices.Prism.Mvvm.Interfaces;
+using Midi;
 using MidiDotNet.ExportModule.Interfaces;
 using MidiDotNet.ImportModule.Interfaces;
 using Moq;
@@ -12,11 +13,11 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
 {
     public class WhenAToggleButtonNoteIsClicked
     {
-        protected ILoopCreationViewModel LoopCreationViewModel;
+        protected ILoopCreationPageViewModel LoopCreationViewModel;
         protected Mock<IMidiLibRepository> MidiLibRepositoryMock;
         protected Mock<IInstrumentManager> InstrumentManagerMock;
         protected Mock<IOrpheeFileExporter> OrpheeFileExporterMock;
-        protected Mock<IOrpheeFileImporter> OrpheeFileImporterMock; 
+        protected Mock<IOrpheeFileImporter> OrpheeFileImporterMock;
         protected IToggleButtonNote ToggleButtonNote;
         protected ISoundPlayer SoundPlayer;
 
@@ -27,7 +28,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
             this.MidiLibRepositoryMock = new Mock<IMidiLibRepository>();
             this.SoundPlayer = new SoundPlayer(this.MidiLibRepositoryMock.Object);
-            this.LoopCreationViewModel = new LoopCreationViewModel(this.SoundPlayer, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
+            this.LoopCreationViewModel = new LoopCreationPageViewModel(this.SoundPlayer, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
         }
     }
 

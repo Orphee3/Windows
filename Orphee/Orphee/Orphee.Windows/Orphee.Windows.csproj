@@ -104,21 +104,54 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\LoopCreationView.xaml.cs">
-      <DependentUpon>LoopCreationView.xaml</DependentUpon>
+    <Compile Include="UI\MyBottomAppBar.xaml.cs">
+      <DependentUpon>MyBottomAppBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FriendsPage.xaml.cs">
+      <DependentUpon>FriendsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoopCreationPage.xaml.cs">
+      <DependentUpon>LoopCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessagesPage.xaml.cs">
+      <DependentUpon>MessagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Orphee.Windows_TemporaryKey.pfx" />
+    <None Include="Assets\test.loop" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\32-Brothers.mp3" />
+    <Content Include="Assets\defaultUser.png" />
+    <Content Include="Assets\loginScreen.png" />
+    <Content Include="Assets\loginScreen1116x540.scale-100.png" />
+    <Content Include="Assets\loginScreen1116x540.scale-140.png" />
+    <Content Include="Assets\loginScreen1116x540.scale-180.png" />
+    <Content Include="Assets\logo transparent.png" />
+    <Content Include="Assets\logo transparent300.png" />
     <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\loop1.mid" />
+    <Content Include="Assets\loop1.midi" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-140.png" />
+    <Content Include="Assets\SplashScreen.scale-180.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
   </ItemGroup>
   <ItemGroup>
@@ -157,9 +190,41 @@
     <Reference Include="midi.net4.5">
       <HintPath>..\..\midi.net4.5.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\LoopCreationView.xaml">
+    <Page Include="UI\MyBottomAppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FriendsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoopCreationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,6 +246,10 @@
       <Project>{cbc33d6e-ab43-4f90-a12a-e6167ab0d392}</Project>
       <Name>Orphee.CreationShared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Orphee.FileManagement\Orphee.FileManagement.csproj">
+      <Project>{f6cbb9a6-ec88-4dcb-9758-8460579d4544}</Project>
+      <Name>Orphee.FileManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Orphee.LoopCreation\Orphee.LoopCreation.csproj">
       <Project>{38e95812-30a2-4ad0-9981-b1a8efa81212}</Project>
       <Name>Orphee.LoopCreation</Name>
@@ -188,6 +257,10 @@
     <ProjectReference Include="..\..\Orphee.PieceCreation\Orphee.PieceCreation.csproj">
       <Project>{3057f081-9671-4d19-82e5-73901249fd17}</Project>
       <Name>Orphee.PieceCreation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Orphee.RestApiManagement\Orphee.RestApiManagement.csproj">
+      <Project>{2623f847-a3a6-4884-9fe3-e31742f3c745}</Project>
+      <Name>Orphee.RestApiManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

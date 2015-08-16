@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Practices.Prism.Mvvm.Interfaces;
 using Midi;
 using MidiDotNet.ExportModule.Interfaces;
 using MidiDotNet.ImportModule.Interfaces;
@@ -15,12 +16,12 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
 {
     public class NoteMapTestsBase
     {
-        protected ILoopCreationViewModel LoopCreationViewModel;
+        protected ILoopCreationPageViewModel LoopCreationViewModel;
         protected IList<ObservableCollection<IToggleButtonNote>> NoteMap;
         protected Mock<IInstrumentManager> InstrumentManagerMock;
         protected Mock<ISoundPlayer> SoundPlayerMock;
         protected Mock<IOrpheeFileExporter> OrpheeFileExporterMock;
-        protected Mock<IOrpheeFileImporter> OrpheeFileImporterMock; 
+        protected Mock<IOrpheeFileImporter> OrpheeFileImporterMock;
 
         public NoteMapTestsBase()
         {
@@ -28,7 +29,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.OrpheeFileImporterMock = new Mock<IOrpheeFileImporter>();
             this.SoundPlayerMock = new Mock<ISoundPlayer>();
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
-            this.LoopCreationViewModel =new LoopCreationViewModel(this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
+            this.LoopCreationViewModel =new LoopCreationPageViewModel(this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
         }
     }
     public class WhenYouCreateLoopCreationViewModel : NoteMapTestsBase

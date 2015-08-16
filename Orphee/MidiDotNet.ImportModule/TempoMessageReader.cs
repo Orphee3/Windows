@@ -9,7 +9,6 @@ namespace MidiDotNet.ImportModule
         private readonly byte _expectedDeltaTime;
         private readonly byte _expectedMetaCode;
         private readonly byte _expectedMessageCode;
-        private readonly byte _expectedNumberOfBytes;
         public uint Tempo { get; private set; }
 
         public TempoMessageReader()
@@ -17,12 +16,11 @@ namespace MidiDotNet.ImportModule
             this._expectedDeltaTime = 0;
             this._expectedMetaCode = 0xFF;
             this._expectedMessageCode = 0x51;
-            this._expectedNumberOfBytes = 3;
         }
 
         private bool IsInfoAsExpected(byte deltaTime, byte metaCode, byte messageCode)
         {
-            return deltaTime == this._expectedDeltaTime && metaCode == _expectedMetaCode && messageCode == this._expectedMessageCode && _expectedNumberOfBytes == this._expectedNumberOfBytes;
+            return deltaTime == this._expectedDeltaTime && metaCode == _expectedMetaCode && messageCode == this._expectedMessageCode;
         }
 
         private bool RetriveTempo(BinaryReader reader)

@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="Orphee.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Orphee.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:Orphee.UI"
+    xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:storeApps="using:Microsoft.Practices.Prism.StoreApps"
+    mc:Ignorable="d"
+    mvvm:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#78C7F9" Grid.Row="0">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
+        </Grid>
+        <MediaElement Source="/Assets/loop1.midi" AutoPlay="True"/>
+        <ListView Grid.Row="1" ItemsSource="{Binding CreationList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Center" Height="450" Width="450" Tapped="Grid_OnTapped">
+                        <StackPanel Margin="75">
+                            <Image Source="/Assets/logo transparent.png" VerticalAlignment="Top" Height="200" Width="200"/>
+                            <TextBlock Text="{Binding Name}" Foreground="#78C7F9" FontSize="25" TextAlignment="Center" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Visibility="{Binding ButtonsVisibility}">
+            <TextBlock Text="{Binding DisconnectedMessage}" Foreground="#78C7F9" VerticalAlignment="Center" FontSize="35" TextAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Command="{Binding LoginButton}" Content="Login" Foreground="#78C7F9" HorizontalAlignment="Center" BorderBrush="#78C7F9"/>
+                <Button Command="{Binding RegisterButton}" Content="Register" Foreground="#78C7F9" HorizontalAlignment="Center" BorderBrush="#78C7F9"/>
+            </StackPanel>
+        </StackPanel>
+        <ui:MyBottomAppBar Grid.Row="2"/>
+    </Grid>
+</Page>

@@ -1,0 +1,22 @@
+﻿<UserControl
+    x:Class="Orphee.Views.UI.MyBottomAppBarView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource ViewModelLocator}" Path="MyBottomAppBarViewModel"/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <StackPanel Orientation="Horizontal" Background="#78C7F9">
+            <AppBarButton x:Name="HomeView" Icon="Home" Label="Home" Width="385" />
+            <AppBarButton x:Name="FriendsView" Icon="People" Label="Friends" Width="385" Tapped="ButtonClicked"/>
+            <AppBarButton x:Name="LoopCreationView" Width="385" Tapped="ButtonClicked"/>
+            <AppBarButton x:Name="MessagesView" Icon="Message" Label="Messages" Width="385" Tapped="ButtonClicked"/>
+            <AppBarButton x:Name="ProfileView" Icon="Contact" Label="Me" Width="385" Tapped="ButtonClicked"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

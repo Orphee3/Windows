@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="Orphee.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="using:Orphee.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    mc:Ignorable="d"
+    mvvm:ViewModelLocator.AutoWireViewModel="True">
+    
+    <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="8*"/>  
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#78C7F9" Grid.Row="0">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Home" FontSize="45"/>
+        </Grid>
+        <ListView Grid.Row="1" ItemsSource="{Binding FlowList}" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Center" Height="450" Width="450">
+                        <StackPanel Margin="75">
+                            <Image Source="/Assets/logo transparent.png" VerticalAlignment="Top" Height="200" Width="200"/>
+                            <TextBlock Text="{Binding}" Foreground="#78C7F9" FontSize="25" TextAlignment="Center" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ui:MyBottomAppBar Grid.Row="2"/>
+    </Grid>
+</Page>

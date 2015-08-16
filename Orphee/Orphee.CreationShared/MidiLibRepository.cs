@@ -22,7 +22,7 @@ namespace Orphee.CreationShared
                 Tempo = 120,
                 Channel = Channel.Channel1
             };
-            this._clock = new Clock(this.PlayerParameters.Tempo);
+           /* this._clock = new Clock(this.PlayerParameters.Tempo);
             try
             {
                 this._outputDevice = OutputDevice.InstalledDevices[0];
@@ -34,21 +34,21 @@ namespace Orphee.CreationShared
             this._velocity = 75;
 
             this._outputDevice.Open();
-            this._clock.Start();
+            this._clock.Start();*/
         }
 
         public void PlayNote(Note note)
         {
-            var noteOn = new NoteOnMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime);
+           /* var noteOn = new NoteOnMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime);
             var noteOff = new NoteOffMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime + 1);
 
             this._clock.Schedule(noteOn);
-            this._clock.Schedule(noteOff);
+            this._clock.Schedule(noteOff);*/
         }
 
         public void UpdatePlayingInstrument(Instrument newPlayingInstrument)
         {
-            this._outputDevice.SendProgramChange(this.PlayerParameters.Channel, newPlayingInstrument);
+            //this._outputDevice.SendProgramChange(this.PlayerParameters.Channel, newPlayingInstrument);
         }
 
         public void SetPlayerParameters(IPlayerParameters playerParameters)

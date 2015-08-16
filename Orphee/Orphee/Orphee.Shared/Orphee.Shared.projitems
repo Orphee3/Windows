@@ -15,11 +15,22 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UnityModule\UnityIocContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MyNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UnityModule\UnityIocInitializator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UnityModule\ViewModelLocator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\ILoopCreationViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoopCreationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FriendsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IFriendsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\ILoginPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\ILoopCreationPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IHomePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IMessagesPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IProfilePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IRegisterPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoopCreationPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MessagesPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProfilePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegisterPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\Interfaces\" />

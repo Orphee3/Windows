@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40418.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orphee", "Orphee", "{E381FCE3-C555-48C5-BA7D-66AC7E8105D0}"
 EndProject
@@ -34,6 +34,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MidiDotNet.ImportModuleUnitTests", "MidiDotNet.ImportModuleUnitTests\MidiDotNet.ImportModuleUnitTests.csproj", "{3C3D1590-45AF-4F95-9F5F-46B2FE0E0BF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orphee.CreationSharedUnitTests", "Orphee.CreationSharedUnitTests\Orphee.CreationSharedUnitTests.csproj", "{F034AAF0-D91A-4F83-A13F-18C8F5247FFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orphee.RestApiManagement", "Orphee.RestApiManagement\Orphee.RestApiManagement.csproj", "{2623F847-A3A6-4884-9FE3-E31742F3C745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orphee.FileManagement", "Orphee.FileManagement\Orphee.FileManagement.csproj", "{F6CBB9A6-EC88-4DCB-9758-8460579D4544}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -228,6 +232,38 @@ Global
 		{F034AAF0-D91A-4F83-A13F-18C8F5247FFF}.Release|x86.ActiveCfg = Release|x86
 		{F034AAF0-D91A-4F83-A13F-18C8F5247FFF}.Release|x86.Build.0 = Release|x86
 		{F034AAF0-D91A-4F83-A13F-18C8F5247FFF}.Release|x86.Deploy.0 = Release|x86
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Debug|ARM.Build.0 = Debug|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Debug|x64.Build.0 = Debug|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Debug|x86.Build.0 = Debug|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Release|ARM.Build.0 = Release|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Release|x64.ActiveCfg = Release|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Release|x64.Build.0 = Release|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Release|x86.ActiveCfg = Release|Any CPU
+		{2623F847-A3A6-4884-9FE3-E31742F3C745}.Release|x86.Build.0 = Release|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Debug|ARM.Build.0 = Debug|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Debug|x64.Build.0 = Debug|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Debug|x86.Build.0 = Debug|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Release|ARM.Build.0 = Release|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Release|x64.ActiveCfg = Release|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Release|x64.Build.0 = Release|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Release|x86.ActiveCfg = Release|Any CPU
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -248,5 +284,7 @@ Global
 		{2575F18B-03B4-4FB1-8D67-C4F821648D16} = {E381FCE3-C555-48C5-BA7D-66AC7E8105D0}
 		{3C3D1590-45AF-4F95-9F5F-46B2FE0E0BF4} = {5EF7046D-3B2C-490F-8F53-EE8DF0228C48}
 		{F034AAF0-D91A-4F83-A13F-18C8F5247FFF} = {5EF7046D-3B2C-490F-8F53-EE8DF0228C48}
+		{2623F847-A3A6-4884-9FE3-E31742F3C745} = {2575F18B-03B4-4FB1-8D67-C4F821648D16}
+		{F6CBB9A6-EC88-4DCB-9758-8460579D4544} = {2575F18B-03B4-4FB1-8D67-C4F821648D16}
 	EndGlobalSection
 EndGlobal
