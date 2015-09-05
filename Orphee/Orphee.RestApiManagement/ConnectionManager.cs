@@ -10,6 +10,11 @@ namespace Orphee.RestApiManagement
 {
     public class ConnectionManager : IConnectionManager
     {
+        private readonly IUserListGetter _userListGetter;
+        public ConnectionManager(IUserListGetter userListGetter)
+        {
+            this._userListGetter = userListGetter;
+        }
         public async Task<bool> ConnectUser(string userName, string password)
         {
             using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
@@ -28,6 +33,8 @@ namespace Orphee.RestApiManagement
                             return false;
                         RestApiManagerBase.Instance.UserData = JsonConvert.DeserializeObject<UserData>(result);
                         RestApiManagerBase.Instance.IsConnected = true;
+                        RestApiManagerBase.Instance.NotificationRecieiver.Run();
+                        RestApiManagerBase.Instance.UserNameList = await this._userListGetter.GetUserList(0, 30);
                     }
                 }
                 return true;

@@ -1,16 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm.Interfaces;
+using Orphee.Models.Interfaces;
+using Orphee.RestApiManagement;
+using Orphee.UI;
 
 namespace Orphee.Models
 {
-    public class MyNavigationService : INavigationService
+    public class MyNavigationService : IMyNavigationService
     {
         private readonly INavigationService _navigationService;
-
+        public string CurrentPageName { get; private set; }
+        public Dictionary<string, SolidColorBrush> ButtonForegroundColorList { get; }
+        public MyBottomAppBar MyBottomAppBar { get; private set; }
         public MyNavigationService(INavigationService navigationService)
         {
             this._navigationService = navigationService;
+            this.ButtonForegroundColorList = new Dictionary<string, SolidColorBrush>()
+            {
+                { "Home", new SolidColorBrush(Colors.Red)},
+                { "Friends", new SolidColorBrush(Colors.White)},
+                { "Messages", new SolidColorBrush(Colors.White)},
+                { "Profile", new SolidColorBrush(Colors.White)},
+            };
         }
+
+        public void GoBack()
+        {
+            this._navigationService.GoBack();
+        }
+
         public bool CanGoBack()
         {
             return this._navigationService.CanGoBack();
@@ -21,14 +42,10 @@ namespace Orphee.Models
             throw new NotImplementedException();
         }
 
-        public void GoBack()
+        public bool Navigate(string destination, object parameter)
         {
-            this._navigationService.GoBack();
-        }
-
-        public bool Navigate(string pageToken, object parameter)
-        {
-            return this._navigationService.Navigate(pageToken, parameter);
+            this.CurrentPageName = destination;
+            return this._navigationService.Navigate(destination, parameter);
         }
 
         public void RestoreSavedNavigation()
@@ -38,7 +55,19 @@ namespace Orphee.Models
 
         public void Suspending()
         {
-            throw new NotImplementedException();
+           if (RestApiManagerBase.Instance.NotificationRecieiver.IsSocketConnected)
+                RestApiManagerBase.Instance.NotificationRecieiver.CloseSocket();
+        }
+
+        public void NotifyUser()
+        {
+            //this.RootFrame
+        }
+
+        public void SetNewAppBarButtonColorValue()
+        {
+            foreach (var color in this.ButtonForegroundColorList)
+                color.Value.Color = (this.CurrentPageName == color.Key) ? Colors.Red : Colors.White;
         }
     }
 }

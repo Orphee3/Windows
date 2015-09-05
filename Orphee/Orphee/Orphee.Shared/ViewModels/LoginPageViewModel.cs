@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Prism.Commands;
+﻿using System;
+using Windows.UI.Popups;
+using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Interfaces;
@@ -17,8 +19,8 @@ namespace Orphee.ViewModels
 
         public LoginPageViewModel(IConnectionManager connectionmanager)
         {
-            this.UserName = "MegaGomes";
-            this.Password = "lepouletcestgenial";
+            this.UserName = "Jeanmich";
+            this.Password = "Jeanmich";
             this._connectionManager = connectionmanager;
             this.LoginCommand = new DelegateCommand(LoginCommandExec);
             this.BackCommand = new DelegateCommand(App.MyNavigationService.GoBack);
@@ -26,8 +28,18 @@ namespace Orphee.ViewModels
 
         private async void LoginCommandExec()
         {
-            if (await this._connectionManager.ConnectUser(this.UserName, this.Password))
+            bool isInternetConnected;
+            if ((isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet()) && await this._connectionManager.ConnectUser(this.UserName, this.Password))
                 App.MyNavigationService.GoBack();
+            else
+                DisplayErrorMessage(isInternetConnected);
+        }
+
+        private async void DisplayErrorMessage(bool result)
+        {
+            var messageDialog = (result == false) ? new MessageDialog("Internet connexion unavailable") : new MessageDialog("Wrong password/user name"); 
+
+            await messageDialog.ShowAsync();
         }
     }
 }

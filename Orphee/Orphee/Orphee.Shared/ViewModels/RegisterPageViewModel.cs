@@ -1,6 +1,8 @@
-﻿using Microsoft.Practices.Prism.Commands;
+﻿using System;
+using Windows.UI.Popups;
+using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.Mvvm.Interfaces;
+using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
@@ -25,8 +27,18 @@ namespace Orphee.ViewModels
 
         private async void RegisterCommandExec()
         {
-            if (await this._registrationManager.RegisterUser(this.MailAdress, this.UserName, this.Password))
+            bool isInternetConnected;
+            if ((isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet()) && await this._registrationManager.RegisterUser("Jeanmich2", "Jeanmich2", "Jeanmich2"))
                 App.MyNavigationService.GoBack();
+            else
+                DisplayErrorMessage(isInternetConnected);
         }
+
+        private async void DisplayErrorMessage(bool result)
+        {
+            var messageDialog = (result == false) ? new MessageDialog("Internet connexion unavailable") : new MessageDialog("User name/mail adress already used");
+
+            await messageDialog.ShowAsync();
+        } 
     }
 }

@@ -5,6 +5,6 @@ namespace Orphee.RestApiManagement.Interfaces
 {
     public interface IUserListGetter
     {
-        Task<List<User>> GetUserList();
+        Task<List<User>> GetUserList(int offset, int size);
     }
 }

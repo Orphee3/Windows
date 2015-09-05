@@ -1,8 +1,9 @@
-﻿using Windows.UI.Input;
+﻿using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media.Imaging;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.ViewModels.Interfaces;
+using Orphee.RestApiManagement;
 
 namespace Orphee.Views
 {
@@ -11,14 +12,18 @@ namespace Orphee.Views
         public ProfilePage()
         {
             this.InitializeComponent();
+      
         }
-        private void Grid_OnTapped(object sender, TappedRoutedEventArgs e)
+
+        private void ConnectionGridTapped(object sender, TappedRoutedEventArgs e)
         {
-            var grid = (Grid) sender;
-            var stackPanel = (StackPanel) grid.Children[0];
-            foreach (var child in stackPanel.Children)
-                if (child is TextBlock)
-                    ((IProfilePageViewModel)this.DataContext).PlaySelectedFile(((TextBlock)child).Text);
+            App.MyNavigationService.Navigate("Login", null);
+        }
+
+        private void TextBlockTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var textblock = sender as TextBlock;
+            App.MyNavigationService.Navigate(textblock.Name, null);
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Interfaces;
 
 namespace Orphee.RestApiManagement
@@ -17,7 +17,7 @@ namespace Orphee.RestApiManagement
                     var responseData = await response.Content.ReadAsStringAsync();
                     if (!response.IsSuccessStatusCode)
                         return false;
-                   // RestApiManagerBase.Instance.UserData.User.Friends = JsonConvert.DeserializeObject<List<User>>(responseData);
+                    RestApiManagerBase.Instance.UserData.User.Friends = JsonConvert.DeserializeObject<JArray>(responseData);
                 }
             }
             return true;

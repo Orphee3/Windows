@@ -1,16 +1,18 @@
-﻿using Windows.UI.Input;
+﻿using System;
 using Windows.UI.Xaml;
-using Microsoft.Practices.Prism.Commands;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Orphee.ViewModels.Interfaces
 {
     public interface IProfilePageViewModel
     {
-        DelegateCommand LoginButton { get; }
-        DelegateCommand RegisterButton { get; }
-        string DisconnectedMessage { get; }
-        Visibility ButtonsVisibility { get; }
-        Visibility ListViewVisibility { get; }
-        void PlaySelectedFile(string fileName);
+        string UserName { get; }
+        int NumberOfCreations { get; }
+        int NumberOfComments { get; }
+        int NumberOfFollows { get; }
+        int NumberOfFollowers { get; }
+        Visibility DisconnectedStackPanelVisibility { get; }
+        Visibility ConnectedStackPanelVisibility { get; }
     }
 }

@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Interfaces;
 
 namespace Orphee.RestApiManagement
 {
     public class UserListGetter : IUserListGetter
     {
-        public async Task<List<User>> GetUserList()
+        public async Task<List<User>> GetUserList(int offset, int size)
         {
-            var userList = new List<User>();
+            List<User> userList;
             using (var httpClient = new HttpClient {BaseAddress = RestApiManagerBase.Instance.RestApiUrl})
             {
-                    using (var response = await httpClient.GetAsync(RestApiManagerBase.Instance.RestApiPath["users"]))
+                    using (var response = await httpClient.GetAsync(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + offset + "size=" + size))
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode != HttpStatusCode.OK)
                             return null;
                         userList = JsonConvert.DeserializeObject<List<User>>(result);
+                        userList.Remove(userList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
                         RestApiManagerBase.Instance.IsConnected = true;
                     }
             }

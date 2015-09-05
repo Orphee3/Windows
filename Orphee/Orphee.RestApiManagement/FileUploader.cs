@@ -1,51 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Newtonsoft.Json;
-using Orphee.RestApiManagement.Interfaces;
+using Orphee.RestApiManagement.Interfaces; 
 
 namespace Orphee.RestApiManagement
 {
     public class FileUploader : IFileUploader
     {
+        private string _newCreationId;
         public async Task<bool> UploadFile(StorageFile fileToUpload)
         {
+            var createNewCreationEntryResult = await CreateNewCreationEntry(fileToUpload.Name);
             using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
             {
                 using (var response = await httpClient.GetAsync("api/upload/audio/x-midi"))
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
-                    RestApiManagerBase.Instance.UserData.User.CreationGetPutKeyList.Add(fileToUpload.Name, JsonConvert.DeserializeObject<CreationUrls>(responseData));
-                    var stringArray = RestApiManagerBase.Instance.UserData.User.CreationGetPutKeyList[fileToUpload.Name].GetUrl.Split('/');
-                    if (!response.IsSuccessStatusCode || !await SendRequestToAws(RestApiManagerBase.Instance.UserData.User.CreationGetPutKeyList[fileToUpload.Name].PutUrl, fileToUpload) || 
-                        !await SendRequestToRestApi(RestApiManagerBase.Instance.UserData.User.CreationGetPutKeyList[fileToUpload.Name].GetUrl, stringArray.Last()))
+                    var urlPair = JsonConvert.DeserializeObject<CreationUrls>(responseData);
+                    if (!createNewCreationEntryResult || !response.IsSuccessStatusCode || !await SendRequestToAws(urlPair.PutUrl, fileToUpload) || !await UpdateNewCreationEntry(urlPair.GetUrl))
                         return false;
                 }
             }
             return true;
         }
 
-        private async Task<bool> SendRequestToRestApi(string getFileUri, string id)
+        public async Task<bool> CreateNewCreationEntry(string fileName)
         {
             var values = new Dictionary<string, string>()
             {
-                { "url",getFileUri }
+                { "name",  fileName },
+                { "creator", RestApiManagerBase.Instance.UserData.User.Id },
             };
 
-            using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
+            using (var httpClient = new HttpClient {BaseAddress = RestApiManagerBase.Instance.RestApiUrl})
             {
+                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", "Bearer " + RestApiManagerBase.Instance.UserData.Token);
                 using (var content = new FormUrlEncodedContent(values))
                 {
-                    using (var response = await httpClient.PutAsync("api/creation/" + id, content))
+                    using (var response = await httpClient.PostAsync("api/creation/", content))
                     {
-                        string responseData = await response.Content.ReadAsStringAsync();
+                        var responseData = await response.Content.ReadAsStringAsync();
+                        if (!response.IsSuccessStatusCode)
+                            return false;
+                        dynamic newCreation = JsonConvert.DeserializeObject<dynamic>(responseData);
+                        RestApiManagerBase.Instance.UserData.User.Creations.Add(newCreation);
+                        this._newCreationId = newCreation["_id"];
+                    }
+                }
+            }
+            return true;
+        }
+
+        private async Task<bool> UpdateNewCreationEntry(string getFileUri)
+        {
+            var values = new Dictionary<string, string>()
+            {
+                { "url", getFileUri }
+            };
+            using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
+            {
+                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", "Bearer " + RestApiManagerBase.Instance.UserData.Token);
+                using (var content = new FormUrlEncodedContent(values))
+                {
+                    using (var response = await httpClient.PutAsync("api/creation/" + this._newCreationId, content))
+                    {
+                        await response.Content.ReadAsStringAsync();
                         if (!response.IsSuccessStatusCode)
                             return false;
                     }
@@ -65,7 +90,7 @@ namespace Orphee.RestApiManagement
                     content.Add(new StreamContent(new MemoryStream(byteArray)));
                     using (var response = await httpClient.PutAsync(responseData, content))
                     {
-                        string responseData2 = await response.Content.ReadAsStringAsync();
+                        await response.Content.ReadAsStringAsync();
                         if (!response.IsSuccessStatusCode)
                             return false;
                     }

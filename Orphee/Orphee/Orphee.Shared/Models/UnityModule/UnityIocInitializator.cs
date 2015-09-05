@@ -20,12 +20,16 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
+            container.RegisterType<ICommentsPageViewModel, CommentsPageViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IFollowersPageViewModel, FollowersPageViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IFollowsPageViewModel, FollowsPageViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IMyCreationsPageViewModel, MyCreationsPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<ILoginPageViewModel, LoginPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRegisterPageViewModel, RegisterPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IHomePageViewModel, HomePageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFriendsPageViewModel, FriendsPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMessagesPageViewModel, MessagesPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IProfilePageViewModel, ProfilePageViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IMyCreationsPageViewModel, MyCreationsPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<ILoopCreationPageViewModel, LoopCreationPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeTrack, OrpheeTrack>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeFile, OrpheeFile>(new ContainerControlledLifetimeManager());
@@ -58,6 +62,7 @@ namespace Orphee.UnityModule
             container.RegisterType<IUserListGetter, UserListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFriendListGetter, FriendListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFileUploader, FileUploader>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IFriendshipAsker, FriendshipAsker>(new ContainerControlledLifetimeManager());
         }
     }
 }

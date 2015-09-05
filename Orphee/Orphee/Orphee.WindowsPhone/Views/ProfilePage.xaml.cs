@@ -1,5 +1,9 @@
-﻿using Windows.UI.Xaml.Navigation;
+﻿using System;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media.Imaging;
 using Microsoft.Practices.Prism.Mvvm;
+using Orphee.RestApiManagement;
 
 namespace Orphee.Views
 {
@@ -8,15 +12,18 @@ namespace Orphee.Views
         public ProfilePage()
         {
             this.InitializeComponent();
+      
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void ConnectionGridTapped(object sender, TappedRoutedEventArgs e)
         {
+            App.MyNavigationService.Navigate("Login", null);
         }
 
-        public void Connect(int connectionId, object target)
+        private void TextBlockTapped(object sender, TappedRoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            var textblock = sender as TextBlock;
+            App.MyNavigationService.Navigate(textblock.Name, null);
         }
     }
 }

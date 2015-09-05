@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
-    xmlns:storeApps="using:Microsoft.Practices.Prism.StoreApps"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -15,37 +14,54 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="8*"/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
         </Grid>
-        <MediaElement Source="/Assets/loop1.midi" AutoPlay="True"/>
-        <ListView Grid.Row="1" ItemsSource="{Binding CreationList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapGrid Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Center" Height="450" Width="450" Tapped="Grid_OnTapped">
-                        <StackPanel Margin="75">
-                            <Image Source="/Assets/logo transparent.png" VerticalAlignment="Top" Height="200" Width="200"/>
-                            <TextBlock Text="{Binding Name}" Foreground="#78C7F9" FontSize="25" TextAlignment="Center" VerticalAlignment="Bottom"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <StackPanel Grid.Row="1" VerticalAlignment="Center" Visibility="{Binding ButtonsVisibility}">
-            <TextBlock Text="{Binding DisconnectedMessage}" Foreground="#78C7F9" VerticalAlignment="Center" FontSize="35" TextAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Command="{Binding LoginButton}" Content="Login" Foreground="#78C7F9" HorizontalAlignment="Center" BorderBrush="#78C7F9"/>
-                <Button Command="{Binding RegisterButton}" Content="Register" Foreground="#78C7F9" HorizontalAlignment="Center" BorderBrush="#78C7F9"/>
-            </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical" >
+            <Grid  Margin="0, 50, 0, 0" Tapped="ConnectionGridTapped">
+                <StackPanel Orientation="Horizontal">
+                    <Image Name="UserPicture" Width="100" Height="100" Margin="15" Source="/Assets/defaultUser.png"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center"  Visibility="{Binding DisconnectedStackPanelVisibility}">
+                        <TextBlock Text="Not logged in" FontWeight="Bold" FontSize="25" Foreground="#78C7F9"/>
+                        <TextBlock Text="Login to my profile" Foreground="#78C7F9" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center"  Visibility="{Binding ConnectedStackPanelVisibility}">
+                        <TextBlock Text="{Binding UserName}" FontWeight="Bold" FontSize="25" Foreground="#78C7F9"/>
+                    </StackPanel>
+                </StackPanel>
+                <Polyline Stroke="#78C7F9" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 15, 0" StrokeThickness="3" Points="0, 0, 20, 20, 0, 40" Visibility="{Binding ConnectedStackPanelVisibility}"/>
+            </Grid>
+            <Grid Visibility="{Binding ConnectedStackPanelVisibility}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="{Binding NumberOfCreations}" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                    <TextBlock x:Name="MyCreations" Text="Creations" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center" Tapped="TextBlockTapped"/>
+                </StackPanel>
+                <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="25" HorizontalAlignment="Right" Stroke="#78C7F9" StrokeThickness="2"/>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding NumberOfComments}" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                    <TextBlock x:Name="Comments" Text="Comments" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center" Tapped="TextBlockTapped"/>
+                </StackPanel>
+                <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="25" HorizontalAlignment="Right" Stroke="#78C7F9" StrokeThickness="2"/>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="{Binding NumberOfFollowers}" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                    <TextBlock x:Name="Follows" Text="Follows" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center" Tapped="TextBlockTapped"/>
+                </StackPanel>
+                <Line Grid.Column="2" X1="0" Y1="0" X2="0" Y2="25" HorizontalAlignment="Right" Stroke="#78C7F9" StrokeThickness="2" />
+                <StackPanel Grid.Column="3" >
+                    <TextBlock Text="{Binding NumberOfFollowers}" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                    <TextBlock x:Name="Followers" Text="Fans" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center" Tapped="TextBlockTapped"/>
+                </StackPanel>
+            </Grid>
         </StackPanel>
-        <ui:MyBottomAppBar Grid.Row="2"/>
+        <ui:MyBottomAppBar x:Name="MyBottomAppBar" VerticalAlignment="Bottom" Grid.Row="1"/>
     </Grid>
 </Page>

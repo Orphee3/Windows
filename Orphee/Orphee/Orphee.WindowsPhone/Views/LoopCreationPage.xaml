@@ -8,15 +8,11 @@
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
-    <Page.DataContext>
-        <Binding Source="{StaticResource ViewModelLocator}" Path="LoopCreationViewModel" />
-    </Page.DataContext>
-
     <Page.Resources>
         <Style x:Key="RectangleToggleButtonStyle" TargetType="ToggleButton">
             <Setter Property="Background" Value="{ThemeResource ToggleButtonBackgroundThemeBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForegroundThemeBrush}"/>
-            <Setter Property="BorderBrush" Value="{ThemeResource ToggleButtonBorderThemeBrush}"/>
+            <Setter Property="BorderBrush" Value="#0D47A1"/>
             <Setter Property="BorderThickness" Value="{ThemeResource ToggleButtonBorderThemeThickness}"/>
             <Setter Property="Padding" Value="12,4,12,5"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -63,7 +59,7 @@
                                     <VisualState x:Name="Checked">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF9900"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#7FC5ED"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedBorderThemeBrush}"/>
@@ -173,13 +169,19 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
 
+        <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" HorizontalAlignment="Center" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
+        <ComboBox Grid.Column="0" Margin="0, 100, 10, 0" Height="Auto" VerticalAlignment="top" BorderBrush="#0D47A1" Foreground="#0D47A1" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="0">
+            <Button Content="Save" Command="{Binding SaveButtonCommand}" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
+            <Button Content="Load" Command="{Binding LoadButtonCommand}" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
+        </StackPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Column="2" VerticalScrollBarVisibility="Disabled" Margin="0, 0, 35, 0">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
                 <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">
@@ -193,7 +195,7 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" IsChecked="{Binding IsChecked, Mode=TwoWay}" Style="{StaticResource RectangleToggleButtonStyle}"/>
+                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -203,8 +205,8 @@
             </StackPanel>
         </ScrollViewer>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 30" Content="Add" Command="{Binding AddColumnsCommand}"/>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}"/>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 30" Content="Add" Command="{Binding AddColumnsCommand}" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
         </StackPanel>
     </Grid>
 </Page>

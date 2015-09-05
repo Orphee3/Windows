@@ -17,7 +17,8 @@ namespace Orphee.RestApiManagement
         }
         private static RestApiManagerBase _instance;
         public Uri RestApiUrl { get; private set; }
-        public List<string> UserNameList { get; private set; }
+        public NotificationRecieiver NotificationRecieiver {get; private set; }
+        public List<User> UserNameList { get; set; }
         public Dictionary<string, string> RestApiPath { get; private set; }
         public IUserData UserData { get; set; }
         public bool IsConnected { get; set; }
@@ -26,6 +27,7 @@ namespace Orphee.RestApiManagement
         {
             this.IsConnected = false;
             this.RestApiUrl = new Uri("http://163.5.84.242:3000/");
+            this.NotificationRecieiver = new NotificationRecieiver();
             InitializeRestApiPath();
         }
 
@@ -34,7 +36,8 @@ namespace Orphee.RestApiManagement
             this.RestApiPath = new Dictionary<string, string>();
             this.RestApiPath.Add("register", "api/register");
             this.RestApiPath.Add("login", "api/login");
-            this.RestApiPath.Add("users", "api/user?offset=7&size=15");
+            this.RestApiPath.Add("users", "api/user");
+            this.RestApiPath.Add("askfriend", "api/askfriend");
         }
 
         private void RetrieveUserNamesFromCacheMemory()

@@ -9,6 +9,7 @@ using Moq;
 using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
+using Orphee.RestApiManagement.Interfaces;
 
 namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.NoteMessageWriterTests
 {
@@ -23,16 +24,18 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.NoteMessageWriterTe
         protected Mock<ISwapManager> SwapManagerMock;
         protected Mock<ITrackHeaderWriter> TrackHeaderWriterMock;
         protected Mock<INoteMessageWriter> NoteMessageWriterMock;
-        protected Mock<IFileHeaderWriter> FileHeaderWriterMock; 
+        protected Mock<IFileHeaderWriter> FileHeaderWriterMock;
+        protected Mock<IFileUploader> FileUploaderMock;
         protected IOrpheeFileExporter OrpheeFileExporter;
 
         public WhenNoteMessageWriterIsCalled()
         {
+            this.FileUploaderMock = new Mock<IFileUploader>();
             this.FileHeaderWriterMock = new Mock<IFileHeaderWriter>();
             this.NoteMessageWriterMock = new Mock<INoteMessageWriter>();
             this.SwapManagerMock = new Mock<ISwapManager>();
             this.TrackHeaderWriterMock = new Mock<ITrackHeaderWriter>();
-            this.OrpheeFileExporter = new OrpheeFileExporter(this.FileHeaderWriterMock.Object, this.TrackHeaderWriterMock.Object, this.NoteMessageWriterMock.Object);
+            this.OrpheeFileExporter = new OrpheeFileExporter(this.FileHeaderWriterMock.Object, this.TrackHeaderWriterMock.Object, this.NoteMessageWriterMock.Object, this.FileUploaderMock.Object);
             this.EndOfTrackMessageWriterMock = new Mock<IEndOfTrackMessageWriter>();
             this.ProgramChangeMessageWriterMock = new Mock<IProgramChangeMessageWriter>();
             this.DeltaTimeRetriever = new DeltaTimeReader();

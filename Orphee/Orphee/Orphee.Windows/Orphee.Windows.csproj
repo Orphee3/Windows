@@ -16,6 +16,9 @@
     <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Orphee.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>C:\Users\micka\Desktop\</AppxPackageDir>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -107,6 +110,13 @@
     <Compile Include="UI\MyBottomAppBar.xaml.cs">
       <DependentUpon>MyBottomAppBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\MyAppBarButton.cs" />
+    <Compile Include="Views\CommentsPage.xaml.cs">
+      <DependentUpon>CommentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FollowsPage.xaml.cs">
+      <DependentUpon>FollowsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FriendsPage.xaml.cs">
       <DependentUpon>FriendsPage.xaml</DependentUpon>
     </Compile>
@@ -121,6 +131,12 @@
     </Compile>
     <Compile Include="Views\MessagesPage.xaml.cs">
       <DependentUpon>MessagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyCreationsPage.xaml.cs">
+      <DependentUpon>MyCreationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FollowersPage.xaml.cs">
+      <DependentUpon>FollowersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -137,22 +153,86 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\32-Brothers.mp3" />
+    <Content Include="Assets\commentary-icon.png" />
     <Content Include="Assets\defaultUser.png" />
+    <Content Include="Assets\heart-icon.png" />
     <Content Include="Assets\loginScreen.png" />
     <Content Include="Assets\loginScreen1116x540.scale-100.png" />
     <Content Include="Assets\loginScreen1116x540.scale-140.png" />
     <Content Include="Assets\loginScreen1116x540.scale-180.png" />
+    <Content Include="Assets\loginScreen248x120.png" />
+    <Content Include="Assets\loginScreen310x150.png" />
+    <Content Include="Assets\loginScreen434x210.png" />
+    <Content Include="Assets\loginScreen558x270.png" />
+    <Content Include="Assets\login_windows.png" />
+    <Content Include="Assets\logo 120.png" />
+    <Content Include="Assets\logo 126.png" />
+    <Content Include="Assets\logo 150.png" />
+    <Content Include="Assets\logo 16.scale-100.png" />
+    <Content Include="Assets\logo 16.scale-140.png" />
+    <Content Include="Assets\logo 16.scale-180.png" />
+    <Content Include="Assets\logo 16.scale-80.png" />
+    <Content Include="Assets\logo 16.targetsize-16.png" />
+    <Content Include="Assets\logo 16.targetsize-256.png" />
+    <Content Include="Assets\logo 16.targetsize-32.png" />
+    <Content Include="Assets\logo 16.targetsize-48.png" />
+    <Content Include="Assets\logo 210.png" />
+    <Content Include="Assets\logo 24.png" />
+    <Content Include="Assets\logo 248.png" />
+    <Content Include="Assets\logo 256.png" />
+    <Content Include="Assets\logo 270.png" />
+    <Content Include="Assets\logo 30.png" />
+    <Content Include="Assets\logo 310.png" />
+    <Content Include="Assets\logo 32.png" />
+    <Content Include="Assets\logo 33.png" />
+    <Content Include="Assets\logo 42.png" />
+    <Content Include="Assets\logo 43.png" />
+    <Content Include="Assets\logo 434.png" />
+    <Content Include="Assets\logo 48.png" />
+    <Content Include="Assets\logo 50.png" />
+    <Content Include="Assets\logo 54.png" />
+    <Content Include="Assets\logo 558.png" />
+    <Content Include="Assets\logo 56.png" />
+    <Content Include="Assets\logo 70.png" />
+    <Content Include="Assets\logo 90.png" />
+    <Content Include="Assets\logo 98.png" />
+    <Content Include="Assets\logo icon.png" />
     <Content Include="Assets\logo transparent.png" />
+    <Content Include="Assets\logo transparent1116x540.png" />
     <Content Include="Assets\logo transparent300.png" />
+    <Content Include="Assets\logo transparent620x300.png" />
+    <Content Include="Assets\logo transparent868x420.png" />
     <Content Include="Assets\Logo.scale-100.png" />
-    <Content Include="Assets\loop1.mid" />
-    <Content Include="Assets\loop1.midi" />
+    <Content Include="Assets\Logo.scale-140.png" />
+    <Content Include="Assets\Logo.scale-180.png" />
+    <Content Include="Assets\Logo.scale-80.png" />
+    <Content Include="Assets\play-logo.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-140.png" />
+    <Content Include="Assets\SmallLogo.scale-180.png" />
+    <Content Include="Assets\SmallLogo.scale-80.png" />
+    <Content Include="Assets\SmallLogo.targetsize-16.png" />
+    <Content Include="Assets\SmallLogo.targetsize-256.png" />
+    <Content Include="Assets\SmallLogo.targetsize-32.png" />
+    <Content Include="Assets\SmallLogo.targetsize-48.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-140.png" />
     <Content Include="Assets\SplashScreen.scale-180.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-140.png" />
+    <Content Include="Assets\Square310x310Logo.scale-180.png" />
+    <Content Include="Assets\Square310x310Logo.scale-80.png" />
+    <Content Include="Assets\Square70x70Logo.scale-100.png" />
+    <Content Include="Assets\Square70x70Logo.scale-140.png" />
+    <Content Include="Assets\Square70x70Logo.scale-180.png" />
+    <Content Include="Assets\Square70x70Logo.scale-80.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-140.png" />
+    <Content Include="Assets\StoreLogo.scale-180.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-140.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-180.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-80.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -196,7 +276,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UI\MyBottomAppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommentsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FollowsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,6 +309,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MessagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyCreationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FollowersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

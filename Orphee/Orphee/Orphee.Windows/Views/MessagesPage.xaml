@@ -11,9 +11,8 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="8*"/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0">
@@ -28,13 +27,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Visibility="{Binding ButtonsVisibility}">
             <TextBlock Text="{Binding DisconnectedMessage}" Foreground="#78C7F9" FontSize="35" HorizontalAlignment="Center" TextAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" Visibility="{Binding ButtonsVisibility}" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Command="{Binding LoginButton}" Content="Login" Foreground="#78C7F9" HorizontalAlignment="Center" BorderBrush="#78C7F9"/>
                 <Button Command="{Binding RegisterButton}" Content="Register" Foreground="#78C7F9" HorizontalAlignment="Center" BorderBrush="#78C7F9"/>
             </StackPanel>
         </StackPanel>
-        <ui:MyBottomAppBar Grid.Row="2"/>
+        <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="1" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>

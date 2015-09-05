@@ -1,5 +1,4 @@
-﻿using Windows.UI.Xaml.Navigation;
-using Microsoft.Practices.Prism.Mvvm;
+﻿using Microsoft.Practices.Prism.Mvvm;
 
 namespace Orphee.Views
 {
@@ -8,15 +7,7 @@ namespace Orphee.Views
         public FriendsPage()
         {
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-        }
-
-        public void Connect(int connectionId, object target)
-        {
-            throw new System.NotImplementedException();
+            this.MyBottomAppBar = App.MyNavigationService.MyBottomAppBar;
         }
     }
 }

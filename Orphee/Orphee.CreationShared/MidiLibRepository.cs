@@ -39,7 +39,7 @@ namespace Orphee.CreationShared
 
         public void PlayNote(Note note)
         {
-           var noteOn = new NoteOnMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime);
+          var noteOn = new NoteOnMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime);
             var noteOff = new NoteOffMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime + 1);
 
             this._clock.Schedule(noteOn);

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Practices.Prism.Mvvm;
+﻿using Microsoft.Practices.Prism.Mvvm;
 
 namespace Orphee.Views
 {
@@ -8,6 +7,7 @@ namespace Orphee.Views
         public FriendsPage()
         {
             this.InitializeComponent();
+            this.MyBottomAppBar = App.MyNavigationService.MyBottomAppBar;
         }
     }
 }
