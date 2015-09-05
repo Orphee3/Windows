@@ -1,7 +1,5 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
+﻿using Windows.UI.Xaml;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Orphee.ViewModels.Interfaces
 {
@@ -14,5 +12,6 @@ namespace Orphee.ViewModels.Interfaces
         int NumberOfFollowers { get; }
         Visibility DisconnectedStackPanelVisibility { get; }
         Visibility ConnectedStackPanelVisibility { get; }
+        DelegateCommand LoginCommand { get; }
     }
 }

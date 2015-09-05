@@ -2,7 +2,6 @@
     x:Class="Orphee.Views.ProfilePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Orphee.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
@@ -11,57 +10,10 @@
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="8*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Background="#78C7F9" Grid.Row="0">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
+        <Grid Visibility="{Binding DisconnectedStackPanelVisibility}">
+            <Image Grid.Row="1" Stretch="Fill" Source="/Assets/login_windows.png"/>
+            <Button Content="Connexion" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 0, 0, 150" Command="{Binding LoginCommand}"/>
         </Grid>
-        <StackPanel Grid.Row="1" Orientation="Vertical" >
-            <Grid  Margin="0, 50, 0, 0" Tapped="ConnectionGridTapped">
-                <StackPanel Orientation="Horizontal">
-                    <Image Name="UserPicture" Width="100" Height="100" Margin="15" Source="/Assets/defaultUser.png"/>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center"  Visibility="{Binding DisconnectedStackPanelVisibility}">
-                        <TextBlock Text="Not logged in" FontWeight="Bold" FontSize="25" Foreground="#78C7F9"/>
-                        <TextBlock Text="Login to my profile" Foreground="#78C7F9" FontSize="20"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center"  Visibility="{Binding ConnectedStackPanelVisibility}">
-                        <TextBlock Text="{Binding UserName}" FontWeight="Bold" FontSize="25" Foreground="#78C7F9"/>
-                    </StackPanel>
-                </StackPanel>
-                <Polyline Stroke="#78C7F9" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 15, 0" StrokeThickness="3" Points="0, 0, 20, 20, 0, 40" Visibility="{Binding ConnectedStackPanelVisibility}"/>
-            </Grid>
-            <Grid Visibility="{Binding ConnectedStackPanelVisibility}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="{Binding NumberOfCreations}" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center"/>
-                    <TextBlock x:Name="MyCreations" Text="Creations" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center" Tapped="TextBlockTapped"/>
-                </StackPanel>
-                <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="25" HorizontalAlignment="Right" Stroke="#78C7F9" StrokeThickness="2"/>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding NumberOfComments}" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center"/>
-                    <TextBlock x:Name="Comments" Text="Comments" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center" Tapped="TextBlockTapped"/>
-                </StackPanel>
-                <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="25" HorizontalAlignment="Right" Stroke="#78C7F9" StrokeThickness="2"/>
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="{Binding NumberOfFollowers}" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center"/>
-                    <TextBlock x:Name="Follows" Text="Follows" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center" Tapped="TextBlockTapped"/>
-                </StackPanel>
-                <Line Grid.Column="2" X1="0" Y1="0" X2="0" Y2="25" HorizontalAlignment="Right" Stroke="#78C7F9" StrokeThickness="2" />
-                <StackPanel Grid.Column="3" >
-                    <TextBlock Text="{Binding NumberOfFollowers}" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center"/>
-                    <TextBlock x:Name="Followers" Text="Fans" FontSize="20" Foreground="#78C7F9" HorizontalAlignment="Stretch" TextAlignment="Center" Tapped="TextBlockTapped"/>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-        <ui:MyBottomAppBar x:Name="MyBottomAppBar" VerticalAlignment="Bottom" Grid.Row="1"/>
+        <ui:MyBottomAppBar x:Name="MyBottomAppBar" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>
