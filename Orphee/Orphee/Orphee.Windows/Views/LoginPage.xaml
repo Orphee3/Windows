@@ -23,6 +23,10 @@
                 <TextBox Header="UserName" Text="{Binding UserName, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your username"/>
                 <PasswordBox Header="Password" Password="{Binding Password, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your password"/>
                 <Button Content="Login" HorizontalAlignment="Stretch" Margin="0, 20, 0, 0" Command="{Binding LoginCommand}"/>
+                <Grid Margin="4, 15, 4, 0">
+                    <TextBlock Text="mot de passe oublié ?" HorizontalAlignment="Left" Foreground="CadetBlue" FontSize="10"/>
+                    <TextBlock Text="Créer un compte" HorizontalAlignment="Right" Foreground="CadetBlue" FontSize="10" Tapped="UIElement_OnTapped"/>
+                </Grid>
             </StackPanel>
         </Grid>
     </Grid>
