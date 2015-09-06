@@ -60,6 +60,7 @@
                                 </Grid>
                             </StackPanel>
                         </StackPanel>
+                        <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="10, 5, 0, 10" VerticalAlignment="Bottom"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
