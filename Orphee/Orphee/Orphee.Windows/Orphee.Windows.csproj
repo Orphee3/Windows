@@ -111,6 +111,9 @@
       <DependentUpon>MyBottomAppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\MyAppBarButton.cs" />
+    <Compile Include="Views\ChannelInfoPage.xaml.cs">
+      <DependentUpon>ChannelInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CommentsPage.xaml.cs">
       <DependentUpon>CommentsPage.xaml</DependentUpon>
     </Compile>
@@ -292,6 +295,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MyBottomAppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChannelInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,7 +24,7 @@ namespace Orphee.Views
         private void Info(object sender, TappedRoutedEventArgs e)
         {
             var creation = sender as JObject;
-            App.MyNavigationService.Navigate("CreationInfo", creation);
+            App.MyNavigationService.Navigate("ChannelInfo", creation);
         }
 
         private void UIElement_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
