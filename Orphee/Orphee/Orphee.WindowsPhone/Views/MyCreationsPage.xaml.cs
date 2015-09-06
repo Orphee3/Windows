@@ -19,5 +19,10 @@ namespace Orphee.Views
                // if (child is TextBlock)
                    // ((IMyCreationsPageViewModel)this.DataContext).PlaySelectedFile(((TextBlock)child).Text);
         }
+
+        public void Connect(int connectionId, object target)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

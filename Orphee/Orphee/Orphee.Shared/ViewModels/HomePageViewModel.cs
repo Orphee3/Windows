@@ -19,7 +19,7 @@ namespace Orphee.ViewModels
             this._newsFlowGetter = newsFlowGetter;
             this.FlowList = new ObservableCollection<string>();
             this.NewFriendsCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Colors.White);
-            this.PopularCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Colors.Red);
+            this.PopularCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Color.FromArgb(100, 13, 71, 161));
             FillFlowListWithPopularCreations();
         }
 
@@ -44,13 +44,13 @@ namespace Orphee.ViewModels
         {
             if (option)
             {
-                this.PopularCreationsTitleTextBoxForegroundColor.Color = Colors.Red;
+                this.PopularCreationsTitleTextBoxForegroundColor.Color = Color.FromArgb(100, 13, 71, 161);
                 this.NewFriendsCreationsTitleTextBoxForegroundColor.Color = Colors.White;
             }
             else
             {
                 this.PopularCreationsTitleTextBoxForegroundColor.Color = Colors.White;
-                this.NewFriendsCreationsTitleTextBoxForegroundColor.Color = Colors.Red;
+                this.NewFriendsCreationsTitleTextBoxForegroundColor.Color = Color.FromArgb(100, 13, 71, 161);
             }
         }
     }

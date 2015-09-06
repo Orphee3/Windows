@@ -20,7 +20,7 @@ namespace Orphee.Models
             this._navigationService = navigationService;
             this.ButtonForegroundColorList = new Dictionary<string, SolidColorBrush>()
             {
-                { "Home", new SolidColorBrush(Colors.Red)},
+                { "Home", new SolidColorBrush(Color.FromArgb(100, 13, 71, 161))},
                 { "Friends", new SolidColorBrush(Colors.White)},
                 { "Messages", new SolidColorBrush(Colors.White)},
                 { "Profile", new SolidColorBrush(Colors.White)},
@@ -67,7 +67,7 @@ namespace Orphee.Models
         public void SetNewAppBarButtonColorValue()
         {
             foreach (var color in this.ButtonForegroundColorList)
-                color.Value.Color = (this.CurrentPageName == color.Key) ? Colors.Red : Colors.White;
+                color.Value.Color = (this.CurrentPageName == color.Key) ? Color.FromArgb(100, 13, 71, 161) : Colors.White;
         }
     }
 }

@@ -46,6 +46,11 @@ namespace Orphee.ViewModels
                 this.ButtonsVisibility = Visibility.Collapsed;
                 this.ListViewVisibility = Visibility.Visible;
             }
+            else
+            {
+                this.ButtonsVisibility = Visibility.Visible;
+                this.ListViewVisibility = Visibility.Collapsed;
+            }
         }
     }
 }

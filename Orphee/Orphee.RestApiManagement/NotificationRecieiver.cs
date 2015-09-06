@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Windows.Networking.Connectivity;
+using Windows.UI.ViewManagement;
 using Newtonsoft.Json.Linq;
 using Quobject.SocketIoClientDotNet.Client;
 
@@ -16,7 +17,7 @@ namespace Orphee.RestApiManagement
         }
         public void Run()
         {
-            if (!IsInternet())
+            if (!IsInternet() || !RestApiManagerBase.Instance.IsConnected)
                 return;
             this.IsSocketConnected = false;
             this._socket = IO.Socket("http://163.5.84.242:3000", new IO.Options()
@@ -78,11 +79,20 @@ namespace Orphee.RestApiManagement
         private void OnNetworkStatusChanged(object sender)
         {
             var internetConnectionProfile = NetworkInformation.GetInternetConnectionProfile();
- 
+
             if (internetConnectionProfile == null)
+            {
+                RestApiManagerBase.Instance.IsConnected = false;
                 CloseSocket();
+            }
             else
-                Run();
+            {
+                if (RestApiManagerBase.Instance.UserData != null)
+                {
+                    RestApiManagerBase.Instance.IsConnected = true;
+                    Run();
+                }
+            }
         }
     }
 }

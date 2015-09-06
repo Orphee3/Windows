@@ -27,9 +27,9 @@ namespace Orphee.Views
         private void UIElement_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
             this._x2 = (int) e.Position.X;
-            if (this._x1 > this._x2 && (this.PopularTextBox.Foreground as SolidColorBrush).Color == Colors.Red)
+            if (this._x1 > this._x2 && (this.PopularTextBox.Foreground as SolidColorBrush).Color == Color.FromArgb(100, 13, 71, 161))
                 ((HomePageViewModel)this.DataContext).FillFlowListWithNewFriendCreations();
-            else if (this._x1 < this._x2 && (this.FriendNewsTextBox.Foreground as SolidColorBrush).Color == Colors.Red)
+            else if (this._x1 < this._x2 && (this.FriendNewsTextBox.Foreground as SolidColorBrush).Color == Color.FromArgb(100, 13, 71, 161))
                 ((HomePageViewModel)this.DataContext).FillFlowListWithPopularCreations();
         }
 

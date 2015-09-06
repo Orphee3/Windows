@@ -155,6 +155,8 @@
   <ItemGroup>
     <Content Include="Assets\commentary-icon.png" />
     <Content Include="Assets\defaultUser.png" />
+    <Content Include="Assets\fb-login-btn.png" />
+    <Content Include="Assets\g-login-btn.png" />
     <Content Include="Assets\heart-icon.png" />
     <Content Include="Assets\loginScreen.png" />
     <Content Include="Assets\loginScreen1116x540.scale-100.png" />
