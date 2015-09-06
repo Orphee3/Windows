@@ -278,31 +278,33 @@
             </StackPanel>
             <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="150" Stretch="UniformToFill" Stroke="DimGray"/>
             <Grid Grid.Column="2" Margin="25, 0, 10, 0">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" >
-                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
-                        <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
+                            <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                        <Button Height="480" HorizontalAlignment="Stretch" Content="+" BorderBrush="#BDBEC0" Foreground="#BDBEC0" Command="{Binding AddColumnsCommand}"/>
+                </StackPanel>
                 </ScrollViewer>
-                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 30" Content="Add" Command="{Binding AddColumnsCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}" BorderBrush="#BDBEC0" Foreground="#BDBEC0"/>
                 </StackPanel>
             </Grid>
         </Grid>
