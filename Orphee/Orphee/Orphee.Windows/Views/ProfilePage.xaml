@@ -18,11 +18,11 @@
         <Grid Background="#78C7F9" Grid.Row="0">
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
         </Grid>
-        <Grid Grid.Row="1" Visibility="{Binding ConnectedStackPanelVisibility}">
+        <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
             <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
             <Button Content="Connexion" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 0, 0, 150" Command="{Binding LoginCommand}"/>
         </Grid>
-        <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
+        <Grid Grid.Row="1" Visibility="{Binding ConnectedStackPanelVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="250"/>
