@@ -2,11 +2,9 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using Orphee.RestApiManagement;
 
 namespace Orphee.UI
@@ -38,6 +36,8 @@ namespace Orphee.UI
 
         private static void ResetNotificationDotVisibility(MyAppBarButton button)
         {
+            if (!RestApiManagerBase.Instance.IsConnected)
+                return;
             if (button.Name == "Profile" && button.NotificationDotVisibility == Visibility.Visible)
             {
                 button.NotificationDotVisibility = Visibility.Collapsed;

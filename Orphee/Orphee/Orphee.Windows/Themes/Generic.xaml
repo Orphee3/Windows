@@ -75,7 +75,7 @@
                         </VisualStateManager.VisualStateGroups>
                         <StackPanel Margin="0,14,0,13" VerticalAlignment="Top">
                             <Grid HorizontalAlignment="Center" Height="40" Margin="0,0,0,5" Width="51">
-                                <Ellipse Name="NotificationDot" Fill="Red" Height="10" Width="10" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{TemplateBinding NotificationDotVisibility}"/>
+                                <Ellipse Name="NotificationDot" Fill="#600D47A1" Height="10" Width="10" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{TemplateBinding NotificationDotVisibility}"/>
                                 <Ellipse x:Name="BackgroundEllipse" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}" Height="40" UseLayoutRounding="False" Width="40"/>
                                 <Ellipse x:Name="OutlineEllipse" Height="40" Stroke="{ThemeResource AppBarItemForegroundThemeBrush}" StrokeThickness="2" UseLayoutRounding="False" Width="40"/>
                                 <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>

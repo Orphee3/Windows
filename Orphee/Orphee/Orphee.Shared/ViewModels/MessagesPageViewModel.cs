@@ -41,6 +41,7 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.MyNavigationService.CurrentPageName = "Messages";
             if (RestApiManagerBase.Instance.IsConnected)
             {
                 this.ButtonsVisibility = Visibility.Collapsed;

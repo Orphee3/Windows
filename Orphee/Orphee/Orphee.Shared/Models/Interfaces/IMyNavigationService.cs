@@ -11,7 +11,7 @@ namespace Orphee.Models.Interfaces
     {
         MyBottomAppBar MyBottomAppBar { get; }
         Dictionary<string, SolidColorBrush> ButtonForegroundColorList { get; }
-        string CurrentPageName { get; }
+        string CurrentPageName { get; set; }
         void SetNewAppBarButtonColorValue();
     }
 }

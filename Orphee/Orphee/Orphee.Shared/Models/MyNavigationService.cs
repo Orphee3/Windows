@@ -12,7 +12,7 @@ namespace Orphee.Models
     public class MyNavigationService : IMyNavigationService
     {
         private readonly INavigationService _navigationService;
-        public string CurrentPageName { get; private set; }
+        public string CurrentPageName { get; set; }
         public Dictionary<string, SolidColorBrush> ButtonForegroundColorList { get; }
         public MyBottomAppBar MyBottomAppBar { get; private set; }
         public MyNavigationService(INavigationService navigationService)

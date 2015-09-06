@@ -28,7 +28,8 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-              SetPropertiesSependingOnConnectionState();
+            App.MyNavigationService.CurrentPageName = "Profile";
+            SetPropertiesSependingOnConnectionState();
         }
 
         private void SetPropertiesSependingOnConnectionState()
