@@ -11,13 +11,66 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Visibility="{Binding DisconnectedStackPanelVisibility}">
+        <Grid Background="#78C7F9" Grid.Row="0">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
+        </Grid>
+        <Grid Grid.Row="1" Visibility="{Binding ConnectedStackPanelVisibility}">
             <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
             <Button Content="Connexion" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 0, 0, 150" Command="{Binding LoginCommand}"/>
         </Grid>
-        <ui:MyBottomAppBar Grid.Row="1" x:Name="MyBottomAppBar"/>
+        <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="250"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="/Assets/Profile-photo.jpg" Stretch="Fill"/>
+            <Grid Grid.Row="0" Opacity="0.8" Background="White" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
+                    <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
+                    <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                </StackPanel>
+                <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Orientation="Vertical" Grid.Column="2" HorizontalAlignment="Center"  Margin="0, 5, 0, 0"> 
+                    <Image Source="/Assets/heart-icon.png" Height="15" Width="15"/>
+                    <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                </StackPanel>
+                <Line Grid.Column="3" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Orientation="Vertical" Grid.Column="4" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
+                    <Image Source="/Assets/friend-icon.png" Height="15" Width="15"/>
+                    <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Vertical" Grid.Row="1">
+                <TextBlock Text="Mes amis" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="15"/>
+                <Grid>
+                    <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
+                </Grid>
+                <TextBlock Text="My creations" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="15"/>
+                <Grid>
+                    <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
+                </Grid>
+                <TextBlock Text="Edit profile" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="15"/>
+                <Grid>
+                    <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+                </Grid>
+                <TextBlock Text="Logout" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="15"/>
+                <Grid>
+                    <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <ui:MyBottomAppBar Grid.Row="2" x:Name="MyBottomAppBar"/>
     </Grid>
 </Page>
