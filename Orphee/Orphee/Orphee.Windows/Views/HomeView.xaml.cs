@@ -1,4 +1,5 @@
-﻿using Windows.UI;
+﻿using Windows.Graphics.Display;
+using Windows.UI;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm;

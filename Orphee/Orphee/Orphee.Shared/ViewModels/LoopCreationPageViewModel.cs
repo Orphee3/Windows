@@ -86,7 +86,7 @@ namespace Orphee.ViewModels
             if (!RestApiManagerBase.Instance.IsConnected)
             {
                 App.MyNavigationService.Navigate("Login", null);
-                return;
+                    return;
             }
             this.DisplayedTrack.PlayerParameters = this._soundPlayer.GetPlayerParameters();
             this._orpheeFileExporter.SaveOrpheeTrack(this.DisplayedTrack);

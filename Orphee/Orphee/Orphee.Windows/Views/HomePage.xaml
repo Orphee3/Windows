@@ -32,33 +32,36 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Center">
-                        <StackPanel Margin="75" Orientation="Horizontal">
-                            <Grid Tapped="Play">
-                                <Image Source="/Assets/logo transparent.png" VerticalAlignment="Top" Height="200" Width="200"/>
-                                <Image Source="/Assets/play-logo.png" VerticalAlignment="Top" Height="200" Width="200" Opacity="0.6" Margin="20, 0, 0, 0"/>
+                        <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                            <Grid x:Name="CreationImageGrid" Tapped="Play" HorizontalAlignment="Center">
+                                <Image Source="/Assets/default-creation.png" VerticalAlignment="Top" Stretch="Fill" />
+                                <Image Source="/Assets/play-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height='100' Width="100" Opacity="0.6" Margin="10, 0, 0, 0"/>
                             </Grid>
-                            <StackPanel Margin="50, 0, 0, 0" VerticalAlignment="Center" Tapped="Info">
-                                <TextBlock Text="CreatorName" Foreground="#78C7F9" FontSize="25"/>
-                                <TextBlock Text="{Binding}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                        <Image Source="/Assets/commentary-icon.png" Height="20" Width="20"/>
-                                        <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="20"/>
-                                    </StackPanel>
-                                    <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    <StackPanel Orientation="Horizontal" Grid.Column="2">
-                                        <Image Source="/Assets/heart-icon.png" Height="20" Width="20"/>
-                                        <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="20"/>
-                                    </StackPanel>
-                                </Grid>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <Image  Source="/Assets/defaultUser.png" Height="30" Width="30" HorizontalAlignment="Left"/>
+                                <StackPanel Margin="50, 0, 0, 0" VerticalAlignment="Center" Tapped="Info">
+                                    <TextBlock Text="{Binding}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text="CreatorName" Foreground="#78C7F9" FontSize="15"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                            <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
+                                            <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                                        </StackPanel>
+                                        <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <StackPanel Orientation="Horizontal" Grid.Column="2">
+                                            <Image Source="/Assets/heart-icon.png" Height="15" Width="15"/>
+                                            <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
                             </StackPanel>
+                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
                         </StackPanel>
-                        <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="10, 5, 0, 10" VerticalAlignment="Bottom"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

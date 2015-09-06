@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\commentary-icon.png" />
+    <Content Include="Assets\default-creation.png" />
     <Content Include="Assets\defaultUser.png" />
     <Content Include="Assets\fb-login-btn.png" />
     <Content Include="Assets\g-login-btn.png" />
