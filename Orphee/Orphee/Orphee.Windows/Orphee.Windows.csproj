@@ -156,10 +156,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\commentary-icon-white.png" />
+    <Content Include="Assets\creation-background.png" />
+    <Content Include="Assets\friend-icon-white.png" />
     <Content Include="Assets\friend-icon.png" />
+    <Content Include="Assets\heart-icon-white.png" />
     <Content Include="Assets\Profile-photo.jpg" />
     <Content Include="Assets\commentary-icon.png" />
-    <Content Include="Assets\default-creation.png" />
     <Content Include="Assets\defaultUser.png" />
     <Content Include="Assets\fb-login-btn.png" />
     <Content Include="Assets\g-login-btn.png" />

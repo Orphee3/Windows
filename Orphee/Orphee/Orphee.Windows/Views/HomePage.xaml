@@ -34,7 +34,8 @@
                     <Grid HorizontalAlignment="Center">
                         <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                             <Grid x:Name="CreationImageGrid" Tapped="Play" HorizontalAlignment="Center">
-                                <Image Source="/Assets/default-creation.png" VerticalAlignment="Top" Stretch="Fill" />
+                                <Image Source="/Assets/creation-background.png" VerticalAlignment="Top" Stretch="Fill"/>
+                                <Image Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                                 <Image Source="/Assets/play-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height='100' Width="100" Opacity="0.6" Margin="10, 0, 0, 0"/>
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
