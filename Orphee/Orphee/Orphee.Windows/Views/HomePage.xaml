@@ -13,16 +13,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="8*"/>
+            <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Name="PopularTextBox" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Popular" FontSize="35" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
-                    <TextBlock Name="FriendNewsTextBox" Text="Friend news" FontSize="35" VerticalAlignment="Center" Margin="30, 0, 0, 0" Foreground="{Binding NewFriendsCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
-                </StackPanel>
+                <TextBlock Name="PopularTextBox" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Popular" FontSize="35" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
+                <TextBlock Name="FriendNewsTextBox" Text="Friend news" FontSize="35" VerticalAlignment="Center" Margin="30, 0, 0, 0" Foreground="{Binding NewFriendsCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
+            </StackPanel>
             <SearchBox Margin="20, 0, 20, 5" Visibility="{Binding SearchBoxVisibility, Mode=TwoWay}" VerticalAlignment="Bottom"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding FlowList}" Height="Auto" IsSwipeEnabled="True" ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None" ManipulationMode="TranslateX, System" ManipulationStarted="UIElement_OnManipulationStarted" ManipulationCompleted="UIElement_OnManipulationCompleted">
+        <ListView Grid.Row="1" ItemsSource="{Binding FlowList}" Height="Auto"  ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None" ManipulationMode="TranslateX, System" ManipulationStarted="UIElement_OnManipulationStarted" ManipulationCompleted="UIElement_OnManipulationCompleted">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
@@ -31,7 +32,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Center">
-                       <StackPanel Margin="75" Orientation="Horizontal">
+                        <StackPanel Margin="75" Orientation="Horizontal">
                             <Grid Tapped="Play">
                                 <Image Source="/Assets/logo transparent.png" VerticalAlignment="Top" Height="200" Width="200"/>
                                 <Image Source="/Assets/play-logo.png" VerticalAlignment="Top" Height="200" Width="200" Opacity="0.6" Margin="20, 0, 0, 0"/>
@@ -62,6 +63,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ui:MyBottomAppBar Grid.Row="1" x:Name="MyBottomAppBar" VerticalAlignment="Bottom"/>
+        <ui:MyBottomAppBar Grid.Row="2" x:Name="MyBottomAppBar" />
     </Grid>
 </Page>

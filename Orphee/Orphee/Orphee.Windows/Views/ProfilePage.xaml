@@ -10,10 +10,14 @@
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
-        <Grid Visibility="{Binding DisconnectedStackPanelVisibility}">
-            <Image Grid.Row="1" Stretch="Fill" Source="/Assets/login_windows.png"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Visibility="{Binding DisconnectedStackPanelVisibility}">
+            <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
             <Button Content="Connexion" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 0, 0, 150" Command="{Binding LoginCommand}"/>
         </Grid>
-        <ui:MyBottomAppBar x:Name="MyBottomAppBar" VerticalAlignment="Bottom"/>
+        <ui:MyBottomAppBar Grid.Row="1" x:Name="MyBottomAppBar"/>
     </Grid>
 </Page>

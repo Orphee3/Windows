@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
-    mc:Ignorable="d" d:DataContext="{Binding}" Height="90">
+    mc:Ignorable="d" d:DataContext="{Binding}">
   
     <UserControl.Resources>
         <Style x:Key="AppBarButtonStyle1" TargetType="AppBarButton">
