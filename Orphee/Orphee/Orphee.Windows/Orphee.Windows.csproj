@@ -114,6 +114,9 @@
     <Compile Include="Views\CommentsPage.xaml.cs">
       <DependentUpon>CommentsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreationInfoPage.xaml.cs">
+      <DependentUpon>CreationInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FollowsPage.xaml.cs">
       <DependentUpon>FollowsPage.xaml</DependentUpon>
     </Compile>
@@ -289,6 +292,10 @@
     <Page Include="Views\CommentsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreationInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FollowsPage.xaml">
       <SubType>Designer</SubType>

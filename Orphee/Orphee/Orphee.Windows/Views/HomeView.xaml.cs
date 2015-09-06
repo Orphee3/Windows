@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm;
+using Newtonsoft.Json.Linq;
 using Orphee.ViewModels;
 
 namespace Orphee.Views
@@ -21,7 +22,8 @@ namespace Orphee.Views
 
         private void Info(object sender, TappedRoutedEventArgs e)
         {
-            //throw new NotImplementedException();
+            var creation = sender as JObject;
+            App.MyNavigationService.Navigate("CreationInfo", creation);
         }
 
         private void UIElement_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
