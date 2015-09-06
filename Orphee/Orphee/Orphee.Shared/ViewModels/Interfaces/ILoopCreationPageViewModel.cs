@@ -18,6 +18,7 @@ namespace Orphee.ViewModels.Interfaces
         DelegateCommand SaveButtonCommand { get; }
         DelegateCommand LoadButtonCommand { get; }
         DelegateCommand BackButtonCommand { get; }
+        DelegateCommand PlayCommand { get; }
         string TrackName { get; set; }
     }
 }

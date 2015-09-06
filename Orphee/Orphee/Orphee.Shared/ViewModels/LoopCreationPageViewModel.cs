@@ -33,6 +33,7 @@ namespace Orphee.ViewModels
         public DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; private set; }
         public DelegateCommand SaveButtonCommand { get; private set; }
         public DelegateCommand LoadButtonCommand { get; private set; }
+        public DelegateCommand PlayCommand { get; private set; }
         public string TrackName { get; set; }
 
         public LoopCreationPageViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager, IOrpheeFileExporter orpheeFileExporter, IOrpheeFileImporter orpheeFileImporter)
@@ -50,6 +51,11 @@ namespace Orphee.ViewModels
             this.SaveButtonCommand = new DelegateCommand(SaveButtonCommandExec);
             this.LoadButtonCommand = new DelegateCommand(LoadButtonCommandExec);
             this.BackButtonCommand = new DelegateCommand(() => {App.MyNavigationService.GoBack();});
+            this.PlayCommand = new DelegateCommand(() =>
+            {
+                this.DisplayedTrack.ConvertNoteMapToOrpheeMessage();
+                this._soundPlayer.PlayTrack(this.DisplayedTrack.OrpheeNoteMessageList);
+            });
         }
 
         private void AddColumnsCommandExec()

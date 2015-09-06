@@ -1,4 +1,5 @@
-﻿using Midi;
+﻿using System.Collections.Generic;
+using Midi;
 using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
@@ -30,6 +31,11 @@ namespace Orphee.CreationShared
         public void SetPlayerParameters(IPlayerParameters playerParameters)
         {
             this._midiLibRepository.SetPlayerParameters(playerParameters);
+        }
+
+        public void PlayTrack(IList<IOrpheeNoteMessage> noteMessageList)
+        {
+            this._midiLibRepository.PlayTrack(noteMessageList);
         }
     }
 }

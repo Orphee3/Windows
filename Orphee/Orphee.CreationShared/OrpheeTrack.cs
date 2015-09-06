@@ -57,6 +57,12 @@ namespace Orphee.CreationShared
             this.TrackLength = TrackLength;
         }
 
+        public void ConvertNoteMapToOrpheeMessage()
+        {
+            var trackLength = this.TrackLength;
+            this.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(this.NoteMap, (int)this.Channel, ref trackLength);
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;

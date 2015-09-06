@@ -273,8 +273,9 @@
             </Grid.ColumnDefinitions>
             <StackPanel Background="#BDBEC0">
                 <ComboBox Margin="3, 100, 3, 0" Height="Auto" VerticalAlignment="top" Foreground="Black" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
-                    <Button Content="Save" Command="{Binding SaveButtonCommand}" HorizontalAlignment="Stretch"/>
-                    <Button Content="Load" Command="{Binding LoadButtonCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="Save" Command="{Binding SaveButtonCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="Load" Command="{Binding LoadButtonCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="Play" Command="{Binding PlayCommand}" HorizontalAlignment="Stretch"/>
             </StackPanel>
             <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="150" Stretch="UniformToFill" Stroke="DimGray"/>
             <Grid Grid.Column="2" Margin="25, 0, 10, 0">

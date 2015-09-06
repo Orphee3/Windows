@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Midi;
 using Orphee.CreationShared.Interfaces;
 
@@ -39,7 +40,7 @@ namespace Orphee.CreationShared
 
         public void PlayNote(Note note)
         {
-          var noteOn = new NoteOnMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime);
+            var noteOn = new NoteOnMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime);
             var noteOff = new NoteOffMessage(this._outputDevice, this.PlayerParameters.Channel, note, this._velocity, this._clock.BeatTime + 1);
 
             this._clock.Schedule(noteOn);
@@ -54,6 +55,19 @@ namespace Orphee.CreationShared
         public void SetPlayerParameters(IPlayerParameters playerParameters)
         {
             this.PlayerParameters = playerParameters;
+        }
+
+        public void PlayTrack(IList<IOrpheeNoteMessage> noteMessageList)
+        {
+            var beatTime = 0;
+            foreach (var note in noteMessageList)
+            {
+                beatTime += note.DeltaTime / 48;
+                if ((note.MessageCode & 0x90) == 0x90)
+                    this._clock.Schedule(new NoteOnMessage(this._outputDevice, (Channel)note.Channel, note.Note, note.Velocity, this._clock.BeatTime + beatTime));
+                else
+                    this._clock.Schedule(new NoteOffMessage(this._outputDevice, (Channel)note.Channel, note.Note, note.Velocity, this._clock.BeatTime + beatTime));
+            }
         }
     }
 }

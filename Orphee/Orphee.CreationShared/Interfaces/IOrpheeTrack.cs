@@ -18,5 +18,6 @@ namespace Orphee.CreationShared.Interfaces
 
         // Methods
         void UpdateOrpheeTrack(IOrpheeTrack orpheeTrack);
+        void ConvertNoteMapToOrpheeMessage();
     }
 }
