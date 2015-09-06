@@ -8,7 +8,7 @@
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
-    
+
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>

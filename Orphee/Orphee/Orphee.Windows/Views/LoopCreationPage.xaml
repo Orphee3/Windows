@@ -12,7 +12,7 @@
         <Style x:Key="RectangleToggleButtonStyle" TargetType="ToggleButton">
             <Setter Property="Background" Value="{ThemeResource ToggleButtonBackgroundThemeBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForegroundThemeBrush}"/>
-            <Setter Property="BorderBrush" Value="#0D47A1"/>
+            <Setter Property="BorderBrush" Value="#BDBEC0"/>
             <Setter Property="BorderThickness" Value="{ThemeResource ToggleButtonBorderThemeThickness}"/>
             <Setter Property="Padding" Value="12,4,12,5"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -59,10 +59,10 @@
                                     <VisualState x:Name="Checked">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#7FC5ED"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#78C7F9"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedBorderThemeBrush}"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#BDBEC0"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedForegroundThemeBrush}"/>
@@ -258,7 +258,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="Transparent">
+    <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -266,7 +266,7 @@
         </Grid.ColumnDefinitions>
 
         <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" HorizontalAlignment="Center" BorderBrush="#78C7F9" Foreground="#78C7F9" Style="{StaticResource MyBackButton}"/>
-        <ComboBox Grid.Column="0" Margin="0, 100, 10, 0" Height="Auto" VerticalAlignment="top" BorderBrush="#78C7F9" Foreground="#BDBEC0" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}"/>
+        <ComboBox Grid.Column="0" Margin="0, 100, 10, 0" Height="Auto" VerticalAlignment="top" BorderBrush="#78C7F9" Foreground="Black" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}"/>
         <StackPanel Orientation="Horizontal" Grid.Column="0">
             <Button Content="Save" Command="{Binding SaveButtonCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
             <Button Content="Load" Command="{Binding LoadButtonCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
