@@ -33,10 +33,12 @@ namespace Orphee.ViewModels
         public DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; private set; }
         public DelegateCommand SaveButtonCommand { get; private set; }
         public DelegateCommand LoadButtonCommand { get; private set; }
+        public string TrackName { get; set; }
 
         public LoopCreationPageViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager, IOrpheeFileExporter orpheeFileExporter, IOrpheeFileImporter orpheeFileImporter)
         {
             this.DisplayedTrack = new OrpheeTrack(0, Channel.Channel1);
+            this.TrackName = this.DisplayedTrack.TrackName;
             this._soundPlayer = soundPlayer;
             this.InstrumentManager = instrumentManager;
             this._orpheeFileExporter = orpheeFileExporter;

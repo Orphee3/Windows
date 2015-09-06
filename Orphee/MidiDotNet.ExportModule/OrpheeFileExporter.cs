@@ -68,7 +68,7 @@ namespace MidiDotNet.ExportModule
             orpheeTrack.TrackLength = trackLength;
             var orpheeFile = new OrpheeFile()
             {
-                FileName = "loop1.mid",
+                FileName = orpheeTrack.TrackName,
             };
             orpheeFile.AddNewTrack(orpheeTrack);
             orpheeFile.UpdateOrpheeFileParameters();

@@ -14,6 +14,7 @@ namespace Orphee.CreationShared.Interfaces
         Channel Channel { get; set; }
         int TrackPos { get; set; }
         uint TrackLength { get; set; }
+        string TrackName { get; set; }
 
         // Methods
         void UpdateOrpheeTrack(IOrpheeTrack orpheeTrack);

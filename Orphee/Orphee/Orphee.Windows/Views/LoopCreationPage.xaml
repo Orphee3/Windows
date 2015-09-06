@@ -176,7 +176,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="AppBarButton">
-                        <Grid x:Name="RootGrid" Background="Transparent" Width="100">
+                        <Grid x:Name="RootGrid" Background="Transparent" Width="88">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="ApplicationViewStates">
                                     <VisualState x:Name="FullSize"/>
@@ -241,16 +241,13 @@
                                     <VisualState x:Name="PointerFocused"/>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <StackPanel Margin="0,14,0,13" VerticalAlignment="Top">
-                                <Grid HorizontalAlignment="Center" Height="40" Margin="0,0,0,5" Width="40">
-                                    <Ellipse x:Name="BackgroundEllipse" Fill="White" Height="40" UseLayoutRounding="False" Width="40"/>
-                                    <Ellipse x:Name="OutlineEllipse" Height="40" Stroke="#78C7F9" StrokeThickness="2" UseLayoutRounding="False" Width="40"/>
+                            <StackPanel VerticalAlignment="Top">
+                                <Grid HorizontalAlignment="Center" Width="40">
+                                    <Ellipse x:Name="BackgroundEllipse" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}" Height="40" UseLayoutRounding="False" Width="40"/>
+                                    <Ellipse x:Name="OutlineEllipse" Height="40" Stroke="{ThemeResource AppBarItemForegroundThemeBrush}" StrokeThickness="2" UseLayoutRounding="False" Width="40"/>
                                     <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                                 </Grid>
-                                <TextBlock x:Name="TextLabel" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="12" FontFamily="{TemplateBinding FontFamily}" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" Width="88"/>
                             </StackPanel>
-                            <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
-                            <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -259,43 +256,55 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="6*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
 
-        <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" HorizontalAlignment="Center" BorderBrush="#78C7F9" Foreground="#78C7F9" Style="{StaticResource MyBackButton}"/>
-        <ComboBox Grid.Column="0" Margin="0, 100, 10, 0" Height="Auto" VerticalAlignment="top" BorderBrush="#78C7F9" Foreground="Black" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}"/>
-        <StackPanel Orientation="Horizontal" Grid.Column="0">
-            <Button Content="Save" Command="{Binding SaveButtonCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
-            <Button Content="Load" Command="{Binding LoadButtonCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
-        </StackPanel>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Column="2" VerticalScrollBarVisibility="Disabled" Margin="0, 0, 35, 0">
-            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
-                <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+        <Grid Grid.Row="0" Background="#78C7F9">
+            <TextBlock Text="{Binding TrackName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="45"/>
+            <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Background="#BDBEC0">
+                <ComboBox Margin="3, 100, 3, 0" Height="Auto" VerticalAlignment="top" Foreground="Black" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
+                    <Button Content="Save" Command="{Binding SaveButtonCommand}" HorizontalAlignment="Stretch"/>
+                    <Button Content="Load" Command="{Binding LoadButtonCommand}" HorizontalAlignment="Stretch"/>
             </StackPanel>
-        </ScrollViewer>
-        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 30" Content="Add" Command="{Binding AddColumnsCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
-        </StackPanel>
+            <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="150" Stretch="UniformToFill" Stroke="DimGray"/>
+            <Grid Grid.Column="2" Margin="25, 0, 10, 0">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" >
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
+                        <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 30" Content="Add" Command="{Binding AddColumnsCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}" BorderBrush="#78C7F9" Foreground="#78C7F9"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

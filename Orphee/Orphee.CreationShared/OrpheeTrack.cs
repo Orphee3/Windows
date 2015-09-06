@@ -29,9 +29,11 @@ namespace Orphee.CreationShared
         public Channel Channel { get; set; }
         public int TrackPos { get; set; }
         public uint TrackLength { get; set; }
+        public string TrackName { get; set; }
 
         public OrpheeTrack(int trackPos, Channel channel)
         {
+            this.TrackName = "New Loop";
             this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
             this.Channel = channel;
             this.TrackPos = trackPos;
