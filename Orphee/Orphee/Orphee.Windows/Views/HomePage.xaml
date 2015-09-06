@@ -11,8 +11,8 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="125"/>
+            <RowDefinition/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
 
