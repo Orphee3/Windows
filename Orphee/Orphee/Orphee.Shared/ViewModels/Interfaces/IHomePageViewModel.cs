@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
 namespace Orphee.ViewModels.Interfaces
@@ -10,5 +11,6 @@ namespace Orphee.ViewModels.Interfaces
         void FillFlowListWithNewFriendCreations();
         SolidColorBrush PopularCreationsTitleTextBoxForegroundColor { get; }
         SolidColorBrush NewFriendsCreationsTitleTextBoxForegroundColor { get; }
+        Visibility SearchBoxVisibility { get; }
     }
 }

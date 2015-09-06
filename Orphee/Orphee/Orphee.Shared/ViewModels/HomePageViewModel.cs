@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Interfaces;
@@ -13,6 +15,19 @@ namespace Orphee.ViewModels
         private readonly INewsFlowGetter _newsFlowGetter;
         public SolidColorBrush PopularCreationsTitleTextBoxForegroundColor { get; set; }
         public SolidColorBrush NewFriendsCreationsTitleTextBoxForegroundColor { get; set; }
+        private Visibility _searchBoxVisibility;
+        public Visibility SearchBoxVisibility
+        {
+            get { return this._searchBoxVisibility; }
+            set
+            {
+                if (this._searchBoxVisibility != value)
+                {
+                    this._searchBoxVisibility = value;
+                    OnPropertyChanged(nameof(this.SearchBoxVisibility));
+                }
+            }
+        }
 
         public HomePageViewModel(INewsFlowGetter newsFlowGetter)
         {
@@ -20,6 +35,7 @@ namespace Orphee.ViewModels
             this.FlowList = new ObservableCollection<string>();
             this.NewFriendsCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Colors.White);
             this.PopularCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Color.FromArgb(100, 13, 71, 161));
+            this.SearchBoxVisibility = Visibility.Collapsed;
             FillFlowListWithPopularCreations();
         }
 
@@ -46,11 +62,13 @@ namespace Orphee.ViewModels
             {
                 this.PopularCreationsTitleTextBoxForegroundColor.Color = Color.FromArgb(100, 13, 71, 161);
                 this.NewFriendsCreationsTitleTextBoxForegroundColor.Color = Colors.White;
+                this.SearchBoxVisibility = Visibility.Collapsed;
             }
             else
             {
                 this.PopularCreationsTitleTextBoxForegroundColor.Color = Colors.White;
                 this.NewFriendsCreationsTitleTextBoxForegroundColor.Color = Color.FromArgb(100, 13, 71, 161);
+                this.SearchBoxVisibility = Visibility.Visible;
             }
         }
     }
