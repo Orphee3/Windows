@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json.Linq;
@@ -17,6 +19,12 @@ namespace Orphee.Views
         public CreationInfoPage()
         {
             this.InitializeComponent();
+        }
+
+        public void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var channel = sender;
+            App.MyNavigationService.Navigate("ChannelInfo", channel);
         }
     }
 }

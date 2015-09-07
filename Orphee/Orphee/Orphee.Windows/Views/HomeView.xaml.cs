@@ -37,8 +37,14 @@ namespace Orphee.Views
 
         private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {
+            var channel = sender as JObject;
+            App.MyNavigationService.Navigate("ChannelInfo", channel);
+        }
+
+        private void InfoStackPannel_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
             var creation = sender as JObject;
-            App.MyNavigationService.Navigate("ChannelInfo", creation);
+            App.MyNavigationService.Navigate("CreationInfo", creation);
         }
     }
 }

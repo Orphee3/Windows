@@ -40,7 +40,7 @@
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                                 <Image  Source="/Assets/defaultUser.png" Height="30" Width="30" HorizontalAlignment="Left" Tapped="UserPicture_OnTapped"/>
-                                <StackPanel Margin="50, 0, 0, 0" VerticalAlignment="Center">
+                                <StackPanel Margin="50, 0, 0, 0" VerticalAlignment="Center" Tapped="InfoStackPannel_OnTapped">
                                     <TextBlock Text="{Binding}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
                                     <TextBlock Text="CreatorName" Foreground="#78C7F9" FontSize="15"/>
                                     <Grid>

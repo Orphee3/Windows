@@ -106,16 +106,86 @@
 
         <Grid Background="#78C7F9" Grid.Row="0">
             <AppBarButton Icon="Back" Command="{Binding GoBackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CreationName}" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Creation" FontSize="45"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding CommentList}" Height="Auto" ShowsScrollingPlaceholders="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding}" Foreground="#78C7F9" FontSize="25" TextAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Source="/Assets/creation-background.png" Stretch="Fill" Height="200"/>
+                <Image Grid.Column="0" Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="10, 50, 10, 50" HorizontalAlignment="Left"/>
+                <Grid Grid.Column="1" Margin="50, 50, 0, 10">
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center" Text="Creation" FontSize="45" Foreground="#BDBEC0" Margin="0, 0, 0, 30"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                <Image Source="/Assets/commentary-icon.png" Height="30" Width="30"/>
+                                <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 10, 0, 10" HorizontalAlignment="Right"/>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Image Source="/Assets/heart-icon.png" Height="30" Width="30"/>
+                                <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
                     </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Ellipse Grid.Column="0" Width="50" Height="50" Margin="20, 0, 0, 0" HorizontalAlignment="Left">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBox Foreground="#BDBEC0" FontSize="15" Margin="15, 20, 0, 0" PlaceholderText="Add a comment..." />
+                    <Line X1="0" Y1="0" X2="140" Y2="0" Stretch="Fill" Stroke="#BDBEC0" Margin="20, 10, 20, 10" VerticalAlignment="Bottom"/>
+                </StackPanel>
+            </Grid>
+            <Line Grid.Row="0" X1="0" Y1="0" X2="140" Y2="0" Stretch="Fill" Stroke="#BDBEC0" Margin="20, 10, 20, 10" VerticalAlignment="Bottom"/>
+            <ListView Grid.Row="2" ItemsSource="{Binding CommentList}" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Ellipse Width="50" Height="50" Grid.Column="0" Tapped="UserPicture_OnTapped" Margin="20, 0, 0, 0">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Grid.Column="1" Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#BDBEC0" FontSize="25" TextWrapping="WrapWholeWords"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
 </Page>

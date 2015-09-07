@@ -22,7 +22,6 @@ namespace Orphee.UnityModule
         {
             container.RegisterType<IChannelInfoPageViewModel, ChannelInfoPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICreationInfoPageViewModel, CreationInfoPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ICommentsPageViewModel, CommentsPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFollowersPageViewModel, FollowersPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFollowsPageViewModel, FollowsPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMyCreationsPageViewModel, MyCreationsPageViewModel>(new ContainerControlledLifetimeManager());
