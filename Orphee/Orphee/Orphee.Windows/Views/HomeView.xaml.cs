@@ -46,5 +46,10 @@ namespace Orphee.Views
             var creation = sender as JObject;
             App.MyNavigationService.Navigate("CreationInfo", creation);
         }
+
+        private void LikeButton_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            
+        }
     }
 }
