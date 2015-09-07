@@ -21,12 +21,6 @@ namespace Orphee.Views
             //throw new NotImplementedException();
         }
 
-        private void Info(object sender, TappedRoutedEventArgs e)
-        {
-            var creation = sender as JObject;
-            App.MyNavigationService.Navigate("ChannelInfo", creation);
-        }
-
         private void UIElement_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
             this._x2 = (int) e.Position.X;
@@ -39,6 +33,12 @@ namespace Orphee.Views
         private void UIElement_OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
         {
             this._x1 = (int)e.Position.X;
+        }
+
+        private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var creation = sender as JObject;
+            App.MyNavigationService.Navigate("ChannelInfo", creation);
         }
     }
 }
