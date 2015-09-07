@@ -20,6 +20,7 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
+            container.RegisterType<IChatPageViewModel, ChatPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IChannelInfoPageViewModel, ChannelInfoPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICreationInfoPageViewModel, CreationInfoPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFollowersPageViewModel, FollowersPageViewModel>(new ContainerControlledLifetimeManager());

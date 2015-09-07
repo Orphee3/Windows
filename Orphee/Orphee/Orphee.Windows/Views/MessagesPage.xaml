@@ -109,7 +109,7 @@
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Messages" FontSize="45"/>
             <AppBarButton HorizontalAlignment="Right" VerticalAlignment="Center" Icon="Add" Command="{Binding AddCommand}" Style="{StaticResource MyBackButton}"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding ConversationList}" Height="Auto" ShowsScrollingPlaceholders="True" Visibility="{Binding ButtonsVisibility}">
+        <ListView Grid.Row="1" ItemsSource="{Binding ConversationList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None" Visibility="{Binding ButtonsVisibility}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
@@ -117,7 +117,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Tapped="Convesation_OnTapped">
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
