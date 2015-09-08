@@ -39,7 +39,10 @@ namespace Orphee.ViewModels
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             var user = navigationParameter as User;
-            this.UserName = user.Name;
+            if (user != null)
+                this.UserName = user.Name;
+            else
+                this.UserName = "User";
         }
     }
 }
