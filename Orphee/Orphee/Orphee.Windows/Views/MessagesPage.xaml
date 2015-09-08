@@ -107,7 +107,7 @@
 
         <Grid Background="#78C7F9" Grid.Row="0">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Messages" FontSize="45"/>
-            <AppBarButton HorizontalAlignment="Right" VerticalAlignment="Center" Icon="Add" Command="{Binding AddCommand}" Style="{StaticResource MyBackButton}"/>
+            <AppBarButton HorizontalAlignment="Right" VerticalAlignment="Center" Icon="Add" Command="{Binding AddCommand}" Style="{StaticResource MyBackButton}" Visibility="{Binding ListViewVisibility}"/>
         </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding ConversationList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None" Visibility="{Binding ListViewVisibility}">
             <ListView.ItemsPanel>
@@ -144,7 +144,7 @@
             <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
             <Grid Margin="0, 0, 0, 40" VerticalAlignment="Bottom">
                 <Image Height="34" Margin="0, 0, 0, 21" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
-                <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginCommand}"/>
+                <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginButton}"/>
             </Grid>
         </Grid>
         <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="2"/>

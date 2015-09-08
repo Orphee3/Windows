@@ -15,7 +15,6 @@ namespace Orphee.ViewModels
     {
         public ObservableCollection<JToken> ConversationList { get; set; }
         public DelegateCommand LoginButton { get; private set; }
-        public DelegateCommand RegisterButton { get; private set; }
         public DelegateCommand AddCommand { get; private set; }
         public string DisconnectedMessage { get; private set; }
         public Visibility ButtonsVisibility { get; private set; }
@@ -39,7 +38,6 @@ namespace Orphee.ViewModels
             }
             this.AddCommand = new DelegateCommand(AddCommandExec);
             this.LoginButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
-            this.RegisterButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Register", null));
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
