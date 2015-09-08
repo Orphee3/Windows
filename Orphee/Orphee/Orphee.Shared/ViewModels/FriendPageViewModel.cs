@@ -9,11 +9,14 @@ namespace Orphee.ViewModels
     public class FriendPageViewModel : ViewModel, IFriendPageViewModel
     {
         public DelegateCommand GoBackCommand { get; private set; }
+        public DelegateCommand<User> DeleteFriendCommand { get; }
         public ObservableCollection<User> FriendList { get; private set; }
+
 
         public FriendPageViewModel()
         {
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
+            this.DeleteFriendCommand = new DelegateCommand<User>((user) => this.FriendList.Remove(user));
             this.FriendList = new ObservableCollection<User>();
             InitFriendList();
         }

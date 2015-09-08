@@ -8,5 +8,6 @@ namespace Orphee.ViewModels.Interfaces
     {
         ObservableCollection<User> FriendList { get; }
         DelegateCommand GoBackCommand { get; }
+        DelegateCommand<User> DeleteFriendCommand { get; }
     }
 }
