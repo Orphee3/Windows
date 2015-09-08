@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Xaml;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -11,6 +13,17 @@ namespace Orphee.ViewModels
     public class ChatPageViewModel : ViewModel, IChatPageViewModel
     {
         public DelegateCommand BackCommand { get; private set; }
+        public DelegateCommand SendCommand { get; private set; }
+        private string _message;
+        public string Message
+        {
+            get { return this._message; }
+            set
+            {
+                if (this._message != value)
+                    SetProperty(ref this._message, value);
+            }
+        }
         public ObservableCollection<MyDictionary> Conversation { get; private set; }
         private Dictionary<string, string> _conversation; 
 
@@ -19,6 +32,7 @@ namespace Orphee.ViewModels
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this._conversation = new Dictionary<string, string>();
             this.Conversation = new ObservableCollection<MyDictionary>();
+            this.SendCommand = new DelegateCommand(SendCommandExec);
             InitDictionary();
             InitConversation();
         }
@@ -33,6 +47,15 @@ namespace Orphee.ViewModels
         {
             foreach (var message in this._conversation)
                 this.Conversation.Add(new MyDictionary(message.Key == "Me" ? Visibility.Visible : Visibility.Collapsed, message.Key == "Me" ? Visibility.Collapsed : Visibility.Visible, message.Value));
+        }
+
+        private void SendCommandExec()
+        {
+            if (this.Message.Any())
+            {
+                this.Conversation.Add(new MyDictionary(Visibility.Visible, Visibility.Collapsed, this.Message));
+                this.Message = String.Empty;
+            }
         }
     }
 }

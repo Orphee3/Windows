@@ -9,6 +9,8 @@ namespace Orphee.ViewModels.Interfaces
     public interface IChatPageViewModel
     {
         DelegateCommand BackCommand { get; }
+        DelegateCommand SendCommand { get; }
+        string Message { get; set; }
         ObservableCollection<MyDictionary> Conversation { get; }
     }
 }
