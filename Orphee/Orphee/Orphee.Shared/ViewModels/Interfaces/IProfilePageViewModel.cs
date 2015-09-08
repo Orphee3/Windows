@@ -18,5 +18,6 @@ namespace Orphee.ViewModels.Interfaces
         Visibility ConnectedStackPanelVisibility { get; set; }
         DelegateCommand LoginCommand { get; }
         DelegateCommand LogoutCommand { get; }
+        DelegateCommand FriendPageCommand { get; }
     }
 }

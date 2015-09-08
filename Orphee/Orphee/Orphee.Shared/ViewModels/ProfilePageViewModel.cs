@@ -55,6 +55,7 @@ namespace Orphee.ViewModels
         }
         public DelegateCommand LoginCommand { get; private set; }
         public DelegateCommand LogoutCommand { get; private set; }
+        public DelegateCommand FriendPageCommand { get; private set; }
 
         public ProfilePageViewModel()
         {
@@ -63,6 +64,7 @@ namespace Orphee.ViewModels
             InitBackgroundPictureColor();
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
             this.LogoutCommand = new DelegateCommand(LogoutCommandExec);
+            this.FriendPageCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", null));
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)

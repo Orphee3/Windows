@@ -12,7 +12,7 @@ using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
-    public class FriendsPageViewModel : ViewModel, IFriendsPageViewModel
+    public class SocialPageViewModel : ViewModel, ISocialPageViewModel
     {
         public ObservableCollection<User> FriendNameList { get; set; }
         public DelegateCommand LoginButton { get; private set; }
@@ -23,7 +23,7 @@ namespace Orphee.ViewModels
         public Visibility ListViewVisibility { get; private set; }
         private readonly IFriendshipAsker _friendshipAsker;
 
-        public FriendsPageViewModel(IFriendshipAsker friendshipAsker)
+        public SocialPageViewModel(IFriendshipAsker friendshipAsker)
         {
             this._friendshipAsker = friendshipAsker;
             this.DisconnectedMessage = "To access your friend list info you have \nto login or to create an account";

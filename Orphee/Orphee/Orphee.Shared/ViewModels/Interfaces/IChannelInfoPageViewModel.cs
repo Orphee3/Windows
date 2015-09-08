@@ -7,5 +7,6 @@ namespace Orphee.ViewModels.Interfaces
     {
         List<string> CreationList { get; }
         DelegateCommand BackCommand { get; }
+        string UserName { get; set; }
     }
 }

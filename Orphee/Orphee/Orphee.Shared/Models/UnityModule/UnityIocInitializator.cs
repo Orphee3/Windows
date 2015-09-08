@@ -20,6 +20,8 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
+            container.RegisterType<ISocialPageViewModel, SocialPageViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IFriendPageViewModel, FriendPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IChatPageViewModel, ChatPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IChannelInfoPageViewModel, ChannelInfoPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICreationInfoPageViewModel, CreationInfoPageViewModel>(new ContainerControlledLifetimeManager());
@@ -29,7 +31,7 @@ namespace Orphee.UnityModule
             container.RegisterType<ILoginPageViewModel, LoginPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRegisterPageViewModel, RegisterPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IHomePageViewModel, HomePageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IFriendsPageViewModel, FriendsPageViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ISocialPageViewModel, SocialPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMessagesPageViewModel, MessagesPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMyCreationsPageViewModel, MyCreationsPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<ILoopCreationPageViewModel, LoopCreationPageViewModel>(new ContainerControlledLifetimeManager());

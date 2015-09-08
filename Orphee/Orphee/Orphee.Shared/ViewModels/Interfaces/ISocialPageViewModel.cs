@@ -5,7 +5,7 @@ using Orphee.RestApiManagement;
 
 namespace Orphee.ViewModels.Interfaces
 {
-    public interface IFriendsPageViewModel
+    public interface ISocialPageViewModel
     {
         ObservableCollection<User> FriendNameList { get; set; }
         DelegateCommand LoginButton { get; }
