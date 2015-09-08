@@ -161,6 +161,9 @@
   <ItemGroup>
     <Content Include="Assets\commentary-icon-white.png" />
     <Content Include="Assets\creation-background.png" />
+    <Content Include="Assets\flower1.jpg" />
+    <Content Include="Assets\flower2.jpg" />
+    <Content Include="Assets\flower3.jpg" />
     <Content Include="Assets\friend-icon-white.png" />
     <Content Include="Assets\friend-icon.png" />
     <Content Include="Assets\heart-icon-white.png" />

@@ -11,33 +11,33 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="125"/>
             <RowDefinition/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
         <Grid Background="#78C7F9" Grid.Row="0">
-            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
         </Grid>
-        <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
+        <Grid Grid.Row="1" Visibility="{Binding ConnectedStackPanelVisibility}">
             <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
             <Grid Margin="0, 0, 0, 40" VerticalAlignment="Bottom">
                 <Image Height="34" Margin="0, 0, 0, 21" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
                 <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginCommand}"/>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1" Visibility="{Binding ConnectedStackPanelVisibility}">
+        <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="250"/>
             </Grid.RowDefinitions>
-            <Grid  Background="#78C7F9">
-                <Ellipse  Height="300" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 45">
+            <Grid Background="{Binding BackgroundPictureColor}">
+                <Ellipse  Height="250" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="/Assets/Profile-photo.jpg"/>
+                        <ImageBrush ImageSource="{Binding UserPictureSource}"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>
-            <Grid VerticalAlignment="Bottom" Background="White" Opacity="0.8">
+            <Grid Grid.Row="0" VerticalAlignment="Bottom" Background="White" Opacity="0.8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

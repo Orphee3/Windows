@@ -109,7 +109,7 @@
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Messages" FontSize="45"/>
             <AppBarButton HorizontalAlignment="Right" VerticalAlignment="Center" Icon="Add" Command="{Binding AddCommand}" Style="{StaticResource MyBackButton}"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding ConversationList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None" Visibility="{Binding ButtonsVisibility}">
+        <ListView Grid.Row="1" ItemsSource="{Binding ConversationList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None" Visibility="{Binding ListViewVisibility}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
@@ -140,13 +140,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="1" VerticalAlignment="Center" Visibility="{Binding ListViewVisibility}">
-            <TextBlock Text="{Binding DisconnectedMessage}" Foreground="#78C7F9" FontSize="35" HorizontalAlignment="Center" TextAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Command="{Binding LoginButton}" Content="Login" Foreground="#78C7F9" HorizontalAlignment="Center" BorderBrush="#78C7F9"/>
-                <Button Command="{Binding RegisterButton}" Content="Register" Foreground="#78C7F9" HorizontalAlignment="Center" BorderBrush="#78C7F9"/>
-            </StackPanel>
-        </StackPanel>
+        <Grid Grid.Row="1" VerticalAlignment="Center" Visibility="{Binding ButtonsVisibility}">
+            <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
+            <Grid Margin="0, 0, 0, 40" VerticalAlignment="Bottom">
+                <Image Height="34" Margin="0, 0, 0, 21" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
+                <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginCommand}"/>
+            </Grid>
+        </Grid>
         <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="2"/>
     </Grid>
 </Page>
