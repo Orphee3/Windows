@@ -102,7 +102,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="125"/>
             <RowDefinition/>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0" >
@@ -136,7 +136,7 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
-                                    <TextBlock Grid.Row="1" Text="19:46" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10"/>
+                                    <TextBlock Grid.Row="1" Text="19:46" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
                                 </Grid>
                             </Border>
                             <Polygon Grid.Column="1" Points="8,0 0,5, 8,10" Margin="0, 15, 0, 0" Fill="#BDBEC0"/>
@@ -151,7 +151,7 @@
                                     <ImageBrush ImageSource="/Assets/defaultUser.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <Border Grid.Column="0" Background="#BDBEC0" CornerRadius="10,10,10,10" Margin="0, 0, 8, 0">
+                            <Border Grid.Column="0" Background="#78C7F9" CornerRadius="10,10,10,10" Margin="0, 0, 8, 0">
                                 <Grid Margin="15, 25, 15, 25">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
@@ -159,23 +159,25 @@
                                     </Grid.RowDefinitions>
                                     
                                     <TextBlock Grid.Row="0" Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
-                                    <TextBlock Grid.Row="1" Text="19:46" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10"/>
+                                    <TextBlock Grid.Row="1" Text="19:46" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
                                 </Grid>
                             </Border>
-                            <Polygon Grid.Column="0" Points="0,0 8,5, 0,10" Margin="0, 15, 0, 0" Fill="#BDBEC0" HorizontalAlignment="Right"/>
+                            <Polygon Grid.Column="0" Points="0,0 8,5, 0,10" Margin="0, 15, 0, 0" Fill="#78C7F9" HorizontalAlignment="Right"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="2" Background="#BDBEC0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="80"/>
-            </Grid.ColumnDefinitions>
+        <Border Grid.Row="2" Background="#BDBEC0" CornerRadius="10,10,10,10" Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Margin="7" PlaceholderText="Write your message here..."/>
-            <Button Grid.Column="1" Content="Send" HorizontalAlignment="Stretch"/>
-        </Grid>
+                <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Margin="7" PlaceholderText="Write your message here..."/>
+                <Button Grid.Column="1" Content="Send" HorizontalAlignment="Stretch"/>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
