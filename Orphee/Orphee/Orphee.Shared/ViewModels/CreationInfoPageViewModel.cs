@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -8,25 +10,16 @@ using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
-    public class CreationInfoPageViewModel : ViewModel, ICreationInfoPageViewModel, INavigationAware
+    public class CreationInfoPageViewModel : ViewModel, ICreationInfoPageViewModel
     {
         public DelegateCommand GoBackCommand { get; private set; }
-        public List<string> CommentList { get; private set; }
+        public ObservableCollection<string> CommentList { get; private set; }
 
         public CreationInfoPageViewModel()
         {
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
-            this.CommentList = new List<string>();
+            this.CommentList = new ObservableCollection<string>();
             InitCommentList();
-        }
-
-        public void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
-        {
-            
-        }
-
-        public void OnNavigatedFrom(Dictionary<string, object> viewModelState, bool suspending)
-        {
         }
 
         private void InitCommentList()
@@ -43,6 +36,12 @@ namespace Orphee.ViewModels
             this.CommentList.Add("Cool");
             this.CommentList.Add("Other areas of Wikipedia");
             this.CommentList.Add("C'est trop bien !!!");
+        }
+
+        public void SendComment(string newComment)
+        {
+            if (newComment.Any())
+                this.CommentList.Insert(0, newComment);
         }
     }
 }

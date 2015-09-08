@@ -157,7 +157,7 @@
                     </Ellipse.Fill>
                 </Ellipse>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBox Foreground="#BDBEC0" FontSize="15" Margin="15, 20, 0, 0" PlaceholderText="Add a comment..." />
+                    <TextBox Foreground="#BDBEC0" FontSize="15" Margin="15, 20, 0, 0" PlaceholderText="Add a comment..."  AcceptsReturn="False" KeyDown="OnKeyDown"/>
                     <Line X1="0" Y1="0" X2="140" Y2="0" Stretch="Fill" Stroke="#BDBEC0" Margin="20, 10, 20, 10" VerticalAlignment="Bottom"/>
                 </StackPanel>
             </Grid>
