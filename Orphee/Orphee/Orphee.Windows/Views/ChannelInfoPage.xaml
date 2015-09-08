@@ -175,7 +175,7 @@
                                                     <ColumnDefinition Width="30"/>
                                                     <ColumnDefinition/>
                                                 </Grid.ColumnDefinitions>
-                                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                                <StackPanel Orientation="Horizontal" Grid.Column="0" >
                                                     <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
                                                     <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
                                                 </StackPanel>
@@ -197,7 +197,7 @@
                                         <Image Source="/Assets/heart-icon.png" Height="15" Width="15"/>
                                     </Button>
                                     <Line Grid.Column="0" Stroke="#BDBEC0" X1="0" Y1="5" X2="0" Y2="20" Stretch="Fill" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                    <Button Grid.Column="1" HorizontalAlignment="Stretch" Foreground="#BDBEC0" BorderBrush="#BDBEC0" BorderThickness="0">
+                                    <Button Grid.Column="1" HorizontalAlignment="Stretch" Foreground="#BDBEC0" BorderBrush="#BDBEC0" BorderThickness="0" Tapped="CommentaryIcon_OnTapped">
                                         <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
                                     </Button>
                                 </Grid>
