@@ -1,6 +1,8 @@
 ﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
+using Orphee.ViewModels;
 
 namespace Orphee.Views
 {
@@ -20,6 +22,11 @@ namespace Orphee.Views
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ForwardSign_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            App.MyNavigationService.Navigate("Invitation", null);
         }
     }
 }
