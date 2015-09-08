@@ -141,7 +141,7 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
-                                    <TextBlock Grid.Row="1" Text="19:46" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Path=Hour}" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
                                 </Grid>
                             </Border>
                             <Polygon Grid.Column="1" Points="8,0 0,5, 8,10" Margin="0, 15, 0, 0" Fill="#BDBEC0"/>
@@ -164,7 +164,7 @@
                                     </Grid.RowDefinitions>
                                     
                                     <TextBlock Grid.Row="0" Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
-                                    <TextBlock Grid.Row="1" Text="19:46" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Path=Hour}" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
                                 </Grid>
                             </Border>
                             <Polygon Grid.Column="0" Points="0,0 8,5, 0,10" Margin="0, 15, 0, 0" Fill="#78C7F9" HorizontalAlignment="Right"/>
