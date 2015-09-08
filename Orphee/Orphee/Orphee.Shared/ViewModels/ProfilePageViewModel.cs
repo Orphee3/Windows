@@ -24,7 +24,6 @@ namespace Orphee.ViewModels
         public int NumberOfFollowers { get; private set; }
         public string UserPictureSource { get; private set; }
         private SolidColorBrush _backgroundColorBrush;
-
         public SolidColorBrush BackgroundPictureColor
         {
             get { return this._backgroundColorBrush; }
@@ -34,25 +33,45 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._backgroundColorBrush, value);
             }
         }
-        public Visibility DisconnectedStackPanelVisibility { get; private set; }
-        public Visibility ConnectedStackPanelVisibility { get; private set; }
+        private Visibility _disconnectedStackPanelVisibility;
+        public Visibility DisconnectedStackPanelVisibility
+        {
+            get { return this._disconnectedStackPanelVisibility; }
+            set
+            {
+                if (this._disconnectedStackPanelVisibility != value)
+                    SetProperty(ref this._disconnectedStackPanelVisibility, value);
+            }
+        }
+        private Visibility _connectedStackPanelVisibility;
+        public Visibility ConnectedStackPanelVisibility
+        {
+            get { return this._connectedStackPanelVisibility; }
+            set
+            {
+                if (this._connectedStackPanelVisibility != value)
+                    SetProperty(ref this._connectedStackPanelVisibility, value);
+            }
+        }
         public DelegateCommand LoginCommand { get; private set; }
+        public DelegateCommand LogoutCommand { get; private set; }
 
         public ProfilePageViewModel()
         {
-            SetPropertiesSependingOnConnectionState();
+            SetPropertiesDependingOnConnectionState();
             this.UserPictureSource = "/Assets/flower3.jpg";
             InitBackgroundPictureColor();
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
+            this.LogoutCommand = new DelegateCommand(LogoutCommandExec);
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             App.MyNavigationService.CurrentPageName = "Profile";
-            SetPropertiesSependingOnConnectionState();
+            SetPropertiesDependingOnConnectionState();
         }
 
-        private void SetPropertiesSependingOnConnectionState()
+        private void SetPropertiesDependingOnConnectionState()
         {
             if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
@@ -70,6 +89,12 @@ namespace Orphee.ViewModels
                 this.DisconnectedStackPanelVisibility = Visibility.Visible;
                 this.ConnectedStackPanelVisibility = Visibility.Collapsed;
             }
+        }
+
+        private void LogoutCommandExec()
+        {
+            RestApiManagerBase.Instance.Logout();
+            SetPropertiesDependingOnConnectionState();
         }
 
         private async void InitBackgroundPictureColor()

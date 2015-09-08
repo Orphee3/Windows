@@ -28,8 +28,8 @@ namespace Orphee.ViewModels
 
         private async void LoginCommandExec()
         {
-            bool isInternetConnected;
-            if ((isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet()) && await this._connectionManager.ConnectUser(this.UserName, this.Password))
+            var isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet();
+            if (await this._connectionManager.ConnectUser(this.UserName, this.Password))
                 App.MyNavigationService.GoBack();
             else
                 DisplayErrorMessage(isInternetConnected);

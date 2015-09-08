@@ -44,5 +44,12 @@ namespace Orphee.RestApiManagement
         {
 
         }
+
+        public void Logout()
+        {
+            this.UserData = null;
+            this.IsConnected = false;
+            this.NotificationRecieiver.CloseSocket();
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace Orphee.RestApiManagement
             });
             this._socket.On(Socket.EVENT_CONNECT, () =>
             {
-                if (!this.IsSocketConnected)
+                if (!this.IsSocketConnected && RestApiManagerBase.Instance.UserData != null)
                 {
                     RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification = true;
                     this._socket.Emit("subscribe", JObject.FromObject(new {channel = RestApiManagerBase.Instance.UserData.User.Id}));
@@ -56,6 +56,10 @@ namespace Orphee.RestApiManagement
             {
                 if (IsInternet())
                     Run();
+            });
+            this._socket.On(Socket.EVENT_DISCONNECT, () =>
+            {
+               
             });
         }
 

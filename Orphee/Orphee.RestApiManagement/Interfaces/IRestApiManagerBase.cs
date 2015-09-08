@@ -10,5 +10,6 @@ namespace Orphee.RestApiManagement.Interfaces
         Dictionary<string, string> RestApiPath { get; }
         IUserData UserData { get; set; }
         bool IsConnected { get; set; }
+        void Logout();
     }
 }

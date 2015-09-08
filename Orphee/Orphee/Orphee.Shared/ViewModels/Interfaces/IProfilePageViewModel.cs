@@ -14,8 +14,9 @@ namespace Orphee.ViewModels.Interfaces
         int NumberOfFollowers { get; }
         string UserPictureSource { get; }
         SolidColorBrush BackgroundPictureColor { get; }
-        Visibility DisconnectedStackPanelVisibility { get; }
-        Visibility ConnectedStackPanelVisibility { get; }
+        Visibility DisconnectedStackPanelVisibility { get; set; }
+        Visibility ConnectedStackPanelVisibility { get; set; }
         DelegateCommand LoginCommand { get; }
+        DelegateCommand LogoutCommand { get; }
     }
 }

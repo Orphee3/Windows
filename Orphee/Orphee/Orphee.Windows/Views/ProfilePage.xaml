@@ -18,14 +18,14 @@
         <Grid Background="#78C7F9" Grid.Row="0">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
         </Grid>
-        <Grid Grid.Row="1" Visibility="{Binding ConnectedStackPanelVisibility}">
+        <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
             <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
             <Grid Margin="0, 0, 0, 40" VerticalAlignment="Bottom">
                 <Image Height="34" Margin="0, 0, 0, 21" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
                 <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginCommand}"/>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
+        <Grid Grid.Row="1" Visibility="{Binding ConnectedStackPanelVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="250"/>
@@ -46,33 +46,33 @@
 
                 <StackPanel Grid.Column="0"  Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
                     <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
-                    <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                    <TextBlock Text="1500" Foreground="{Binding BackgroundPictureColor}" FontSize="15"/>
                 </StackPanel>
-                <Line Grid.Column="0" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Line Grid.Column="0" X1="0" Y1="5" X2="0" Y2="15" Stroke="{Binding BackgroundPictureColor}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center"  Margin="0, 5, 0, 0">
                     <Image Source="/Assets/heart-icon.png" Height="15" Width="15"/>
-                    <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                    <TextBlock Text="1500" Foreground="{Binding BackgroundPictureColor}" FontSize="15"/>
                 </StackPanel>
-                <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="{Binding BackgroundPictureColor}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
                     <Image Source="/Assets/friend-icon.png" Height="15" Width="15"/>
-                    <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                    <TextBlock Text="1500" Foreground="{Binding BackgroundPictureColor}" FontSize="15"/>
                 </StackPanel>
             </Grid>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <TextBlock Text="Mes amis" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="15"/>
+                <Button Content="My Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="0, 5, 0, 5"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <TextBlock Text="My creations" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="15"/>
+                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="0, 5, 0 , 5"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <TextBlock Text="Edit profile" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="15"/>
+                <Button Content="Edit profile" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="0, 5, 0, 5"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
                 </Grid>
-                <TextBlock Text="Logout" FontSize="25" Foreground="#78C7F9" Tapped="UIElement_OnTapped" Margin="15"/>
+                <Button Content="Logout" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="25" Foreground="#78C7F9" Command="{Binding LogoutCommand}" Margin="0, 5, 0, 5"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
                 </Grid>
