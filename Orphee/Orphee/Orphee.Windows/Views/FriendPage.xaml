@@ -102,44 +102,55 @@
             <RowDefinition Height="125"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
+        
         <Grid Background="#78C7F9" Grid.Row="0">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Friends" FontSize="45"/>
-            <AppBarButton Icon="Back" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MyBackButton}" Command="{Binding GoBackCommand}"/>
+            <AppBarButton Icon="Back" VerticalAlignment="Center" Style="{StaticResource MyBackButton}" Command="{Binding GoBackCommand}"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding FriendList}" Visibility="{Binding ListViewVisibility}" IsItemClickEnabled="True" ItemClick="UserStackPanel_OnTapped" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="50"/>
-                            </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1">
+            <Grid VerticalAlignment="Top" Margin="5, 5, 0, 0">
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Text="Invitations" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#BDBEC0" Margin="15, 0, 0, 0" />
+                        <Polyline Points="0,0 5,3.75 0,7.5" Margin="5" Stroke="#BDBEC0" VerticalAlignment="Center" StrokeThickness="2" HorizontalAlignment="Right"/>
+                    </Grid>
+                    <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
+                </StackPanel>
+            </Grid>
+            <ListView Grid.Row="1" ItemsSource="{Binding FriendList}" Visibility="{Binding ListViewVisibility}" IsItemClickEnabled="True" ItemClick="UserStackPanel_OnTapped" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center" SelectionChanged="ListView_SelectionChanged">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
 
-                            <Ellipse Width="50" Height="50" Grid.Column="0" HorizontalAlignment="Center">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Assets/defaultUser.png"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
-                            <AppBarButton Grid.Column="2" Foreground="#BDBEC0" Command="{Binding DataContext.DeleteFriendCommand, ElementName=Page}" CommandParameter="{Binding}" Icon="Delete" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
-                        </Grid>
-                        <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                <Ellipse Width="50" Height="50" Grid.Column="0" HorizontalAlignment="Center">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                                <AppBarButton Grid.Column="2" Foreground="#BDBEC0" Command="{Binding DataContext.DeleteFriendCommand, ElementName=Page}" CommandParameter="{Binding}" Icon="Delete" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
+                            </Grid>
+                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>

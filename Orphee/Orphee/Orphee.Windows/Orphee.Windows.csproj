@@ -170,13 +170,13 @@
     <Content Include="Assets\friend-icon-white.png" />
     <Content Include="Assets\friend-icon.png" />
     <Content Include="Assets\heart-icon-white.png" />
+    <Content Include="Assets\loginScreen.jpg" />
     <Content Include="Assets\Profile-photo.jpg" />
     <Content Include="Assets\commentary-icon.png" />
     <Content Include="Assets\defaultUser.png" />
     <Content Include="Assets\fb-login-btn.png" />
     <Content Include="Assets\g-login-btn.png" />
     <Content Include="Assets\heart-icon.png" />
-    <Content Include="Assets\loginScreen.png" />
     <Content Include="Assets\loginScreen1116x540.scale-100.png" />
     <Content Include="Assets\loginScreen1116x540.scale-140.png" />
     <Content Include="Assets\loginScreen1116x540.scale-180.png" />

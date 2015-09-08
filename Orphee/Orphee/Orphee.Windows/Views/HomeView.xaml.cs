@@ -32,8 +32,7 @@ namespace Orphee.Views
                 else
                     App.MyNavigationService.Navigate("Login", null);
             }
-            else if (this._x1 < this._x2 &&
-                     (this.FriendNewsTextBox.Foreground as SolidColorBrush).Color == Color.FromArgb(100, 13, 71, 161))
+            else if (this._x1 < this._x2 && (this.FriendNewsTextBox.Foreground as SolidColorBrush).Color == Color.FromArgb(100, 13, 71, 161))
                 ((HomePageViewModel) this.DataContext).FillFlowListWithPopularCreations();
         }
 

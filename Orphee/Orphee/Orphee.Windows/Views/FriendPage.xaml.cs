@@ -1,5 +1,4 @@
 ﻿using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
 
@@ -17,5 +16,11 @@ namespace Orphee.Views
             var user = e.ClickedItem as User;
             App.MyNavigationService.Navigate("ChannelInfo", user);
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
+ 

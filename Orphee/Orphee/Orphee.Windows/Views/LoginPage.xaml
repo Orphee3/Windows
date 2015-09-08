@@ -10,7 +10,7 @@
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid>
-        <Image Source="/Assets/loginScreen.png" Stretch="Fill"/>
+        <Image Source="/Assets/loginScreen.jpg" Stretch="Fill"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
