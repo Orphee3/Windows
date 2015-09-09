@@ -34,7 +34,7 @@ namespace Orphee.RestApiManagement
                         RestApiManagerBase.Instance.UserData = JsonConvert.DeserializeObject<UserData>(result);
                         RestApiManagerBase.Instance.IsConnected = true;
                         RestApiManagerBase.Instance.NotificationRecieiver.Run();
-                        //RestApiManagerBase.Instance.UserNameList = await this._userListGetter.GetUserList(0, 30);
+                        RestApiManagerBase.Instance.UserNameList = await this._userListGetter.GetUserList(0, 30);
                     }
                 }
                 return true;

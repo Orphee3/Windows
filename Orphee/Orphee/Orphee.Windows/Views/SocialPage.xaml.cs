@@ -1,13 +1,18 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
+﻿using Windows.UI.Xaml.Input;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Orphee.Views
 {
-    public sealed partial class FriendsPage : IView
+    public sealed partial class SocialPage : IView
     {
-        public FriendsPage()
+        public SocialPage()
         {
             this.InitializeComponent();
-            this.MyBottomAppBar = App.MyNavigationService.MyBottomAppBar;
+        }
+
+        private void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            App.MyNavigationService.Navigate("ChannelInfo", null);
         }
     }
 }

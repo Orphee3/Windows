@@ -14,11 +14,9 @@ namespace Orphee.ViewModels
 {
     public class SocialPageViewModel : ViewModel, ISocialPageViewModel
     {
-        public ObservableCollection<User> FriendNameList { get; set; }
-        public DelegateCommand LoginButton { get; private set; }
+        public ObservableCollection<User> UserNameList { get; set; }
+        public DelegateCommand LoginCommand { get; private set; }
         public DelegateCommand<User> NewFriendCommand { get; private set; }
-        public DelegateCommand RegisterButton { get; private set; }
-        public string DisconnectedMessage { get; private set; }
         public Visibility ButtonsVisibility { get; private set; }
         public Visibility ListViewVisibility { get; private set; }
         private readonly IFriendshipAsker _friendshipAsker;
@@ -26,19 +24,17 @@ namespace Orphee.ViewModels
         public SocialPageViewModel(IFriendshipAsker friendshipAsker)
         {
             this._friendshipAsker = friendshipAsker;
-            this.DisconnectedMessage = "To access your friend list info you have \nto login or to create an account";
             this.ButtonsVisibility = Visibility.Visible;
             this.ListViewVisibility = Visibility.Collapsed;
-            this.FriendNameList = new ObservableCollection<User>();
+            this.UserNameList = new ObservableCollection<User>();
             if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
                 this.ButtonsVisibility = Visibility.Collapsed;
                 this.ListViewVisibility = Visibility.Visible;
                 foreach (var friend in RestApiManagerBase.Instance.UserNameList)
-                    this.FriendNameList.Add(friend);
+                    this.UserNameList.Add(friend);
             }
-            this.LoginButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
-            this.RegisterButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Register", null));
+            this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
             this.NewFriendCommand = new DelegateCommand<User>(NewFriendCommandExec);
         }
 
@@ -49,7 +45,7 @@ namespace Orphee.ViewModels
                 this.ButtonsVisibility = Visibility.Collapsed;
                 this.ListViewVisibility = Visibility.Visible;
                 foreach (var friend in RestApiManagerBase.Instance.UserNameList)
-                    this.FriendNameList.Add(friend);
+                    this.UserNameList.Add(friend);
             }
         }
 

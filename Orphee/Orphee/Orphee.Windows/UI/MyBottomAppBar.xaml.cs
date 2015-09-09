@@ -69,7 +69,7 @@ namespace Orphee.UI
             this._buttonList = new Dictionary<string, Button>()
             {
                 { "Home", this.Home },
-                { "Friends", this.Friends },
+                { "Friends", this.Social },
                 { "Messages", this.Messages },
                 { "Profile", this.Profile},
             };

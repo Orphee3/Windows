@@ -7,11 +7,9 @@ namespace Orphee.ViewModels.Interfaces
 {
     public interface ISocialPageViewModel
     {
-        ObservableCollection<User> FriendNameList { get; set; }
-        DelegateCommand LoginButton { get; }
+        ObservableCollection<User> UserNameList { get; set; }
+        DelegateCommand LoginCommand { get; }
         DelegateCommand<User> NewFriendCommand { get; }
-        DelegateCommand RegisterButton { get; }
-        string DisconnectedMessage { get; }
         Visibility ButtonsVisibility { get; }
         Visibility ListViewVisibility { get; }
     }

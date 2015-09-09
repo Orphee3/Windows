@@ -23,7 +23,7 @@ namespace Orphee.CreationShared
                 Tempo = 120,
                 Channel = Channel.Channel1
             };
-           this._clock = new Clock(this.PlayerParameters.Tempo);
+            this._clock = new Clock(this.PlayerParameters.Tempo);
             try
             {
                 this._outputDevice = OutputDevice.InstalledDevices[0];
