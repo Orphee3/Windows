@@ -42,6 +42,7 @@ namespace Orphee.RestApiManagement
             this.RestApiPath.Add("comment", "api/comment");
             this.RestApiPath.Add("acceptfriend", "api/acceptfriend");
             this.RestApiPath.Add("like", "api/like");
+            this.RestApiPath.Add("roomMessages", "api/room/privateMessage");
         }
 
         private void RetrieveUserNamesFromCacheMemory()

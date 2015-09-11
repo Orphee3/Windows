@@ -47,8 +47,12 @@
     <Compile Include="Interfaces\IConversation.cs" />
     <Compile Include="Interfaces\IFriendAccepter.cs" />
     <Compile Include="Interfaces\IMessage.cs" />
+    <Compile Include="Interfaces\IRoomGetter.cs" />
+    <Compile Include="Interfaces\IRoomMessageListGetter.cs" />
     <Compile Include="Interfaces\IUserFriendListGetter.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="RoomGetter.cs" />
+    <Compile Include="RoomMessageListGetter.cs" />
     <Compile Include="UserFluxGetter.cs" />
     <Compile Include="Interfaces\IComment.cs" />
     <Compile Include="Interfaces\ICommentSender.cs" />

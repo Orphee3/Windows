@@ -1,4 +1,5 @@
-﻿using Orphee.RestApiManagement.Interfaces;
+﻿using System;
+using Orphee.RestApiManagement.Interfaces;
 
 namespace Orphee.RestApiManagement
 {
@@ -6,5 +7,6 @@ namespace Orphee.RestApiManagement
     {
         public string ReceivedMessage { get; set; }
         public User User { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.Models;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -51,20 +52,22 @@ namespace Orphee.ViewModels
         public void InitConversation(List<Message> messages)
         {
             foreach (var message in messages)
-                this.Conversation.Add(new MyDictionary(message.User.Id == RestApiManagerBase.Instance.UserData.User.Id ? Visibility.Visible: Visibility.Collapsed,message.User.Id == RestApiManagerBase.Instance.UserData.User.Id ? Visibility.Collapsed : Visibility.Visible, message.ReceivedMessage));
+                this.Conversation.Add(new MyDictionary(message.User.Id == RestApiManagerBase.Instance.UserData.User.Id ? Visibility.Visible: Visibility.Collapsed,message.User.Id == RestApiManagerBase.Instance.UserData.User.Id ? Visibility.Collapsed : Visibility.Visible, message.ReceivedMessage,  message.Date));
         }
 
-        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this._actualConversation = navigationParameter as Conversation;
-            InitConversation(this._actualConversation.Messages);
+            this.ConversationName = this._actualConversation.Name;
+            var conversationMessages = this._actualConversation.Messages;
+            InitConversation(conversationMessages);
         }
 
         private void SendCommandExec()
         {
             if (this.Message.Any())
             {
-                this.Conversation.Add(new MyDictionary(Visibility.Visible, Visibility.Collapsed, this.Message));
+                this.Conversation.Add(new MyDictionary(Visibility.Visible, Visibility.Collapsed, this.Message, DateTime.Now));
                 RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList);
                 this.Message = String.Empty;
             }

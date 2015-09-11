@@ -11,8 +11,7 @@ namespace Orphee.ViewModels.Interfaces
         ObservableCollection<Conversation> ConversationList { get; set; }
         DelegateCommand CreateNewConversationCommand { get; }
         DelegateCommand LoginButton { get; }
-        string DisconnectedMessage { get; }
-        Visibility ButtonsVisibility { get; }
-        Visibility ListViewVisibility { get; }
+        Visibility ButtonsVisibility { get; set; }
+        Visibility ListViewVisibility { get; set; }
     }
 }

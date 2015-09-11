@@ -5,9 +5,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using MidiDotNet.ExportModule;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -17,13 +17,35 @@ namespace Orphee.ViewModels
         public ObservableCollection<Conversation> ConversationList { get; set; }
         public DelegateCommand CreateNewConversationCommand { get; private set; }
         public DelegateCommand LoginButton { get; private set; }
-        public string DisconnectedMessage { get; private set; }
-        public Visibility ButtonsVisibility { get; private set; }
-        public Visibility ListViewVisibility { get; private set; }
-
-        public MessagesPageViewModel()
+        private Visibility _buttonsVisibility;
+        public Visibility ButtonsVisibility
         {
-            this.DisconnectedMessage = "To access the message functionnality you have \nto login or to create an account";
+            get { return this._buttonsVisibility; }
+            set
+            {
+                if (this._buttonsVisibility != value)
+                    SetProperty(ref this._buttonsVisibility, value);
+            }
+        }
+        public Visibility _listViewVisibility;
+        public Visibility ListViewVisibility
+        {
+            get { return this._listViewVisibility; }
+            set
+            {
+                if (this._listViewVisibility != value)
+                    SetProperty(ref this._listViewVisibility, value);
+            }
+        }
+        private readonly IRoomGetter _roomGetter;
+        private readonly IUserFriendListGetter _userFriendListGetter;
+        private readonly IRoomMessageListGetter _roomMessageListGetter;
+
+        public MessagesPageViewModel(IRoomGetter roomGetter, IUserFriendListGetter userFriendListGetter, IRoomMessageListGetter roomMessageListGetter)
+        {
+            this._roomMessageListGetter = roomMessageListGetter;
+            this._roomGetter = roomGetter;
+            this._userFriendListGetter = userFriendListGetter;
             this.ButtonsVisibility = Visibility.Visible;
             this.ListViewVisibility = Visibility.Collapsed;
             this.ConversationList = new ObservableCollection<Conversation>();
@@ -36,11 +58,27 @@ namespace Orphee.ViewModels
             this.LoginButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
         }
 
-        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             App.MyNavigationService.CurrentPageName = "Messages";
             if (RestApiManagerBase.Instance.IsConnected)
             {
+                var roomList = await this._roomGetter.GetUserRooms();
+                var userFriends = await this._userFriendListGetter.GetUserFriendList();
+                foreach (var room in roomList)
+                    if (this.ConversationList.Count(c => c.Id == room.Id) == 0)
+                    {
+                        foreach (var user in room.Users)
+                        {
+                            if (user.ToString() != RestApiManagerBase.Instance.UserData.User.Id)
+                                room.UserList.Add(userFriends.FirstOrDefault(uf => uf.Id == user.ToString()));
+                        }
+                        if (room.UserList.Count == 1)
+                            room.Name = room.UserList[0].Name;
+                        room.Messages = await this._roomMessageListGetter.GetRoomMessageList(room.UserList[0].Id);
+                        room.LastMessagePreview = room.Messages.Last().ReceivedMessage;
+                        this.ConversationList.Add(room);
+                    }
                 this.ButtonsVisibility = Visibility.Collapsed;
                 this.ListViewVisibility = Visibility.Visible;
             }
