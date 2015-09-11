@@ -15,7 +15,7 @@ namespace Orphee.Models
             this.MyMessageVisibility = myMessageVisibility;
             this.ItsMessageVisibility = itsMessageVisibility;
             this.Message = message;
-            this.Hour = DateTime.Now.ToString("HH:mm");
+            this.Hour = date.ToString("HH:mm");
         }
     }
 }
