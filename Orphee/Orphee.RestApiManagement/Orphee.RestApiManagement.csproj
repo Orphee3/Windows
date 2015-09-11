@@ -34,19 +34,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Comment.cs" />
+    <Compile Include="CommentSender.cs" />
     <Compile Include="ConnectionManager.cs" />
+    <Compile Include="Conversation.cs" />
+    <Compile Include="Creation.cs" />
+    <Compile Include="CreationCommentGetter.cs" />
     <Compile Include="CreationUrls.cs" />
     <Compile Include="FileUploader.cs" />
+    <Compile Include="FriendAccepter.cs" />
     <Compile Include="FriendshipAsker.cs" />
+    <Compile Include="Interfaces\IConversation.cs" />
+    <Compile Include="Interfaces\IFriendAccepter.cs" />
+    <Compile Include="Interfaces\IMessage.cs" />
+    <Compile Include="Interfaces\IUserFriendListGetter.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="UserFluxGetter.cs" />
+    <Compile Include="Interfaces\IComment.cs" />
+    <Compile Include="Interfaces\ICommentSender.cs" />
+    <Compile Include="Interfaces\ICreation.cs" />
+    <Compile Include="Interfaces\ICreationCommentGetter.cs" />
     <Compile Include="Interfaces\ICreationUrls.cs" />
     <Compile Include="Interfaces\IFileUploader.cs" />
     <Compile Include="Interfaces\IFriendshipAsker.cs" />
+    <Compile Include="Interfaces\ILikeSender.cs" />
+    <Compile Include="Interfaces\IUserCreationGetter.cs" />
+    <Compile Include="Interfaces\IUserFluxGetter.cs" />
     <Compile Include="Interfaces\IUserListGetter.cs" />
+    <Compile Include="LikeSender.cs" />
     <Compile Include="NotificationRecieiver.cs" />
-    <Compile Include="NewsFlowGetter.cs" />
     <Compile Include="FriendListGetter.cs" />
     <Compile Include="Interfaces\IConnectionManager.cs" />
-    <Compile Include="Interfaces\INewsFlowGetter.cs" />
     <Compile Include="Interfaces\IFriendListGetter.cs" />
     <Compile Include="Interfaces\IRegistrationManager.cs" />
     <Compile Include="Interfaces\IRestApiManagerBase.cs" />
@@ -57,7 +75,9 @@
     <Compile Include="RegistrationManager.cs" />
     <Compile Include="RestApiManagementBase.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserCreationGetter.cs" />
     <Compile Include="UserData.cs" />
+    <Compile Include="UserFriendListGetter.cs" />
     <Compile Include="UserListGetter.cs" />
   </ItemGroup>
   <ItemGroup>

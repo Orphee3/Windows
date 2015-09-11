@@ -4,6 +4,6 @@ namespace Orphee.RestApiManagement.Interfaces
 {
     public interface IFriendshipAsker
     {
-        Task<bool> SendFriendshipRequestToRestApi(string friendId);
+        Task<bool?> SendFriendshipRequestToRestApi(string friendId);
     }
 }

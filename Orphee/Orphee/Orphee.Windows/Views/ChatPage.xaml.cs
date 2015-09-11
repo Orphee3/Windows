@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
+using Windows.UI.Core;
 using Microsoft.Practices.Prism.Mvvm;
+using Orphee.RestApiManagement;
+using Orphee.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,6 +17,18 @@ namespace Orphee.Views
         public ChatPage()
         {
             this.InitializeComponent();
+            RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
+        }
+
+        private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (e.PropertyName == "_hasReceivedMessageNotification")
+                    ((ChatPageViewModel) this.DataContext).InitConversation(RestApiManagerBase.Instance.UserData.User.PendingMessageList);
+                RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
+                RestApiManagerBase.Instance.UserData.User.PendingMessageList.Clear();
+            }));
         }
     }
 }

@@ -105,10 +105,11 @@
         
         <Grid Background="#78C7F9" Grid.Row="0">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Friends" FontSize="45"/>
-            <AppBarButton Icon="Back" VerticalAlignment="Center" Style="{StaticResource MyBackButton}" Command="{Binding GoBackCommand}"/>
+            <AppBarButton Icon="Back" VerticalAlignment="Center" Style="{StaticResource MyBackButton}" Command="{Binding GoBackCommand}" />
+            <AppBarButton Icon="Accept" VerticalAlignment="Center" Style="{StaticResource MyBackButton}" Command="{Binding ValidateConversationCreationCommand}" HorizontalAlignment="Right" Visibility="{Binding CheckBoxVisibility}"/>
         </Grid>
         <StackPanel Grid.Row="1">
-            <Grid VerticalAlignment="Top" Margin="5, 5, 0, 0" Tapped="ForwardSign_OnTapped">
+            <Grid VerticalAlignment="Top" Margin="5, 5, 0, 0" Tapped="ForwardSign_OnTapped" Visibility="{Binding InvitationStackPanelVisibility}">
                 <StackPanel>
                     <Grid>
                         <TextBlock Text="Invitations" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#BDBEC0" Margin="15, 0, 0, 0" />
@@ -117,7 +118,11 @@
                     <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
                 </StackPanel>
             </Grid>
-            <ListView ItemsSource="{Binding FriendList}" Visibility="{Binding ListViewVisibility}" IsItemClickEnabled="True" ItemClick="UserStackPanel_OnTapped" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center" SelectionChanged="ListView_SelectionChanged">
+            <StackPanel Visibility="{Binding CheckBoxVisibility}">
+                <TextBox PlaceholderText="Conversation Name" Text="{Binding ConversationName, Mode=TwoWay}"/>
+                <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
+            </StackPanel>
+            <ListView ItemsSource="{Binding FriendList}" Visibility="{Binding ListViewVisibility}" IsItemClickEnabled="True" ItemClick="UserStackPanel_OnTapped" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -138,11 +143,14 @@
                                     <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Ellipse Width="50" Height="50" Grid.Column="0" HorizontalAlignment="Center">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="/Assets/defaultUser.png"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay}" Visibility="{Binding CheckBoxVisibility}" Foreground="#78C7F9" BorderBrush="#BDBEC0" BorderThickness="2" Margin="0, 0, 10 , 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <Ellipse Width="50" Height="50" HorizontalAlignment="Center">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </StackPanel>
                                 <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
                                 <AppBarButton Grid.Column="2" Foreground="#BDBEC0" Command="{Binding DataContext.DeleteFriendCommand, ElementName=Page}" CommandParameter="{Binding}" Icon="Delete" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
                             </Grid>

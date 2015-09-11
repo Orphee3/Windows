@@ -6,6 +6,7 @@ using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -22,7 +23,17 @@ namespace Orphee.ViewModels
         public int NumberOfComments { get; private set; }
         public int NumberOfFollows { get; private set; }
         public int NumberOfFollowers { get; private set; }
-        public string UserPictureSource { get; private set; }
+        private string _userProfilePicture;
+
+        public string UserPictureSource
+        {
+            get { return this._userProfilePicture; }
+            set
+            {
+                if (this._userProfilePicture != value)
+                    SetProperty(ref this._userProfilePicture, value);
+            }
+        }
         private SolidColorBrush _backgroundColorBrush;
         public SolidColorBrush BackgroundPictureColor
         {
@@ -56,15 +67,16 @@ namespace Orphee.ViewModels
         public DelegateCommand LoginCommand { get; private set; }
         public DelegateCommand LogoutCommand { get; private set; }
         public DelegateCommand FriendPageCommand { get; private set; }
+        public DelegateCommand EditProfileCommand { get; private set; }
 
         public ProfilePageViewModel()
         {
-            SetPropertiesDependingOnConnectionState();
-            this.UserPictureSource = "/Assets/flower3.jpg";
+            this.UserPictureSource = "/Assets/flower2.jpg";
             InitBackgroundPictureColor();
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
             this.LogoutCommand = new DelegateCommand(LogoutCommandExec);
             this.FriendPageCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", null));
+            this.EditProfileCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("ProfileEdition", null));
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
@@ -76,13 +88,13 @@ namespace Orphee.ViewModels
         private void SetPropertiesDependingOnConnectionState()
         {
             if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
+            { 
                 //this.UserPhoto = RestApiManagerBase.Instance.UserPhoto;
                 this.DisconnectedStackPanelVisibility = Visibility.Collapsed;
                 this.ConnectedStackPanelVisibility = Visibility.Visible;
                 this.UserName = RestApiManagerBase.Instance.UserData.User.UserName;
-                this.NumberOfCreations = RestApiManagerBase.Instance.UserData.User.Creations.Count;
-                this.NumberOfComments = RestApiManagerBase.Instance.UserData.User.Comments.Count;
+               // this.NumberOfCreations = RestApiManagerBase.Instance.UserData.User.Creations.Count;
+               // this.NumberOfComments = RestApiManagerBase.Instance.UserData.User.Comments.Count;
                 this.NumberOfFollows = 0;
                 this.NumberOfFollowers = 0;
             }

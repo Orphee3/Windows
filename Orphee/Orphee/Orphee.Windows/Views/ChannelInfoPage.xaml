@@ -102,7 +102,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="125"/>
             <RowDefinition/>
-            <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0" >
@@ -123,7 +122,7 @@
 
                 <Ellipse Width="200" Height="200" Grid.Column="0">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                        <ImageBrush ImageSource="{Binding UserPictureSource}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="10, 50, 10, 50" HorizontalAlignment="Left"/>
@@ -137,13 +136,13 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <Image Source="/Assets/commentary-icon.png" Height="30" Width="30"/>
-                                <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
+                                <Image Source="/Assets/creation-icon.png" Height="30" Width="30"/>
+                                <TextBlock Text="{Binding TotalCommentNumber}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
                             </StackPanel>
                             <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 10, 0, 10" HorizontalAlignment="Right"/>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <Image Source="/Assets/friend-icon.png" Height="30" Width="30"/>
-                                <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalLikeNumber}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
@@ -167,7 +166,7 @@
                                     </Grid>
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="50, 0, 0, 0" VerticalAlignment="Center">
                                         <StackPanel VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
+                                            <TextBlock Text="{Binding Name}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition/>
@@ -176,12 +175,12 @@
                                                 </Grid.ColumnDefinitions>
                                                 <StackPanel Orientation="Horizontal" Grid.Column="0" >
                                                     <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
-                                                    <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                                                    <TextBlock Text="{Binding NumberOfComment}" Foreground="#BDBEC0" FontSize="15"/>
                                                 </StackPanel>
                                                 <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                 <StackPanel Orientation="Horizontal" Grid.Column="2">
                                                     <Image Source="/Assets/heart-icon.png" Height="15" Width="15"/>
-                                                    <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                                                    <TextBlock Text="{Binding NumberOfLike}"  Foreground="#BDBEC0" FontSize="15"/>
                                                 </StackPanel>
                                             </Grid>
                                         </StackPanel>
@@ -207,6 +206,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <ui:MyBottomAppBar Grid.Row="2" x:Name="MyBottomAppBar"/>
     </Grid>
 </Page>

@@ -19,11 +19,6 @@ namespace Orphee.Views
             App.MyNavigationService.Navigate("ChannelInfo", user);
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void ForwardSign_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             App.MyNavigationService.Navigate("Invitation", null);

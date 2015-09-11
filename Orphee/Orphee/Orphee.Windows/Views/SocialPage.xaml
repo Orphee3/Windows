@@ -7,7 +7,7 @@
     xmlns:ui="using:Orphee.UI"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     mc:Ignorable="d"
-    mvvm:ViewModelLocator.AutoWireViewModel="True">
+    mvvm:ViewModelLocator.AutoWireViewModel="True" Name="Page">
 
     <Page.Resources>
         <Style x:Key="MyBackButton" TargetType="AppBarButton">
@@ -108,7 +108,7 @@
         <Grid Background="#78C7F9" Grid.Row="0">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Social" FontSize="45"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding UserNameList}" Visibility="{Binding ListViewVisibility}" IsItemClickEnabled="True" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center">
+        <ListView Grid.Row="1" ItemsSource="{Binding UserList}" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center" ItemClick="User_OnItemClick" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -129,26 +129,19 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Ellipse Width="50" Height="50" Grid.Column="1" HorizontalAlignment="Center" Tapped="UIElement_OnTapped">
+                            <Ellipse Width="50" Height="50" Grid.Column="1" HorizontalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                    <ImageBrush ImageSource="{Binding Path=Picture}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <AppBarButton Grid.Column="0" Foreground="#BDBEC0" Command="{Binding DataContext.DeleteFriendCommand, ElementName=Page}" CommandParameter="{Binding}" Icon="Add" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>                        
+                            <AppBarButton Grid.Column="0" Foreground="#BDBEC0" Command="{Binding DataContext.AddFriendCommand, ElementName=Page}" CommandParameter="{Binding}" Icon="Add" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
                         </Grid>
                         <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="1" Visibility="{Binding ButtonsVisibility}">
-            <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
-            <Grid Margin="0, 0, 0, 40" VerticalAlignment="Bottom">
-                <Image Height="34" Margin="0, 0, 0, 21" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
-                <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginCommand}"/>
-            </Grid>
-        </Grid>
         <ui:MyBottomAppBar Grid.Row="2"/>
     </Grid>
 </Page>

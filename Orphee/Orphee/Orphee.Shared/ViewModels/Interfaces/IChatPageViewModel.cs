@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Windows.UI.Xaml;
+﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
 using Orphee.Models;
 
@@ -11,6 +9,7 @@ namespace Orphee.ViewModels.Interfaces
         DelegateCommand BackCommand { get; }
         DelegateCommand SendCommand { get; }
         string Message { get; set; }
+        string ConversationName { get; set; }
         ObservableCollection<MyDictionary> Conversation { get; }
     }
 }

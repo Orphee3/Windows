@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml.Input;
+﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Microsoft.Practices.Prism.Mvvm;
+using Orphee.RestApiManagement;
 
 
 namespace Orphee.Views
@@ -16,7 +18,8 @@ namespace Orphee.Views
 
         private void CommentaryIcon_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            App.MyNavigationService.Navigate("CreationInfo", null);
+            var creation = ((Button) sender).DataContext as Creation;
+            App.MyNavigationService.Navigate("CreationInfo", creation);
         }
     }
 }

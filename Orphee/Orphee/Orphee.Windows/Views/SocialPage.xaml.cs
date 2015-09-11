@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml.Input;
+﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Microsoft.Practices.Prism.Mvvm;
+using Orphee.RestApiManagement;
 
 namespace Orphee.Views
 {
@@ -10,9 +12,10 @@ namespace Orphee.Views
             this.InitializeComponent();
         }
 
-        private void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
+        private void User_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            App.MyNavigationService.Navigate("ChannelInfo", null);
+            var user = e.ClickedItem as User;
+            App.MyNavigationService.Navigate("ChannelInfo", user);
         }
     }
 }

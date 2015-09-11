@@ -20,6 +20,14 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
+            container.RegisterType<INewConversationConfigPageViewModel, NewConversationConfigPageViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IFriendAccepter, FriendAccepter>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IUserFriendListGetter, UserFriendListGetter>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IUserFluxGetter, UserFluxGetter>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ILikeSender, LikeSender>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ICommentSender, CommentSender>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ICreationCommentGetter, CreationCommentGetter>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IUserCreationGetter, UserCreationGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IInvitationPageViewModel, InvitationPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<ISocialPageViewModel, SocialPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFriendPageViewModel, FriendPageViewModel>(new ContainerControlledLifetimeManager());
@@ -63,7 +71,6 @@ namespace Orphee.UnityModule
             container.RegisterType<IConnectionManager, ConnectionManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRegistrationManager, RegistrationManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeFilesGetter, OrpheeFilesGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<INewsFlowGetter, NewsFlowGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserListGetter, UserListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFriendListGetter, FriendListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFileUploader, FileUploader>(new ContainerControlledLifetimeManager());

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -14,6 +16,7 @@ namespace Orphee.RestApiManagement
     public class FileUploader : IFileUploader
     {
         private string _newCreationId;
+        private string _imageId;
         public async Task<bool> UploadFile(StorageFile fileToUpload)
         {
             var createNewCreationEntryResult = await CreateNewCreationEntry(fileToUpload.Name);
@@ -23,14 +26,14 @@ namespace Orphee.RestApiManagement
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
                     var urlPair = JsonConvert.DeserializeObject<CreationUrls>(responseData);
-                    if (!createNewCreationEntryResult || !response.IsSuccessStatusCode || !await SendRequestToAws(urlPair.PutUrl, fileToUpload) || !await UpdateNewCreationEntry(urlPair.GetUrl))
+                    if (!createNewCreationEntryResult || !response.IsSuccessStatusCode || !await SendNewCreationRequestToAws(urlPair.PutUrl, fileToUpload) || !await UpdateNewCreationEntry(urlPair.GetUrl))
                         return false;
                 }
             }
             return true;
         }
 
-        public async Task<bool> CreateNewCreationEntry(string fileName)
+        private async Task<bool> CreateNewCreationEntry(string fileName)
         {
             var values = new Dictionary<string, string>()
             {
@@ -79,15 +82,15 @@ namespace Orphee.RestApiManagement
             return true;
         }
 
-        private async Task<bool> SendRequestToAws(string responseData, StorageFile fileToUpload)
+        private async Task<bool> SendNewCreationRequestToAws(string responseData, StorageFile fileToUpload)
         {
             using (var httpClient = new HttpClient())
             {
                 using (var content = new MultipartFormDataContent())
                 {
-                    var byteArray = await ConvertFileToByteArray(fileToUpload);
+                    var fileStream = (await fileToUpload.OpenReadAsync()).AsStreamForRead();
                     content.Headers.ContentType = new MediaTypeHeaderValue("audio/x-midi");
-                    content.Add(new StreamContent(new MemoryStream(byteArray)));
+                   // content.Add(new StreamContent(new MemoryStream(fileStream));
                     using (var response = await httpClient.PutAsync(responseData, content))
                     {
                         await response.Content.ReadAsStringAsync();
@@ -99,19 +102,64 @@ namespace Orphee.RestApiManagement
             return true;
         }
 
-        private async Task<byte[]> ConvertFileToByteArray(StorageFile file)
+        public async Task<bool> UploadImage(StorageFile fileToUpload)
         {
-            byte[] fileBytes = null;
-            using (var stream = await file.OpenReadAsync())
+            using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
             {
-                fileBytes = new byte[stream.Size];
-                using (var reader = new DataReader(stream))
+                using (var response = await httpClient.GetAsync("api/upload/image/jpeg"))
                 {
-                    await reader.LoadAsync((uint)stream.Size);
-                    reader.ReadBytes(fileBytes);
+                    string responseData = await response.Content.ReadAsStringAsync();
+                    var urlPair = JsonConvert.DeserializeObject<CreationUrls>(responseData);
+                    var sendRequestToAwsResponse = await SendImageRequestToAws(urlPair.PutUrl, fileToUpload);
+                    var updateImageEntry = await UpdateImageEntry(urlPair.GetUrl);
+                    if (!response.IsSuccessStatusCode || !sendRequestToAwsResponse || !updateImageEntry)
+                        return false;
                 }
             }
-            return fileBytes;
+            return true;
+        }
+
+        private async Task<bool> UpdateImageEntry(string getFileUri)
+        {
+            var values = new Dictionary<string, string>()
+            {
+                { "picture", getFileUri }
+            };
+            using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
+            {
+                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", "Bearer " + RestApiManagerBase.Instance.UserData.Token);
+                using (var content = new FormUrlEncodedContent(values))
+                {
+                    using (var response = await httpClient.PutAsync("api/user/" + RestApiManagerBase.Instance.UserData.User.Id, content))
+                    {
+                        await response.Content.ReadAsStringAsync();
+                        RestApiManagerBase.Instance.UserData.User.Picture = getFileUri;
+                        if (!response.IsSuccessStatusCode)
+                            return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private async Task<bool> SendImageRequestToAws(string responseData, StorageFile fileToUpload)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture)))
+                {
+                    content.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+                    content.Add(new StreamContent(new MemoryStream((await FileIO.ReadBufferAsync(fileToUpload)).ToArray())), fileToUpload.Name.Split()[0], fileToUpload.Name);
+                      
+                    using (var response = await httpClient.PutAsync(responseData, content))
+                    {
+                        await response.Content.ReadAsStringAsync();
+                        if (!response.IsSuccessStatusCode)
+                            return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

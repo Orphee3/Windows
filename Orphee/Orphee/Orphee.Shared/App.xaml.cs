@@ -2,6 +2,7 @@
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.Prism.Mvvm;
 using Windows.UI.Xaml.Media.Animation;
 using Microsoft.Practices.Prism.Mvvm.Interfaces;

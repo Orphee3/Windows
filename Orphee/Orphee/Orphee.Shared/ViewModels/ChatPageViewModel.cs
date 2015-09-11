@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.Models;
+using Orphee.RestApiManagement;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -25,28 +27,37 @@ namespace Orphee.ViewModels
             }
         }
         public ObservableCollection<MyDictionary> Conversation { get; private set; }
-        private Dictionary<string, string> _conversation; 
+        private string _conversationName;
+
+        public string ConversationName
+        {
+            get { return this._conversationName; }
+            set
+            {
+                if (this._conversationName != value)
+                    SetProperty(ref this._conversationName, value);
+            }
+        }
+        private Conversation _actualConversation;
 
         public ChatPageViewModel()
         {
-            this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
-            this._conversation = new Dictionary<string, string>();
+            this.BackCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Messages", null));
             this.Conversation = new ObservableCollection<MyDictionary>();
             this.SendCommand = new DelegateCommand(SendCommandExec);
-            InitDictionary();
-            InitConversation();
+           
         }
 
-        private void InitDictionary()
+        public void InitConversation(List<Message> messages)
         {
-            this._conversation.Add("Me", "Caesar Hull, DFC (1914–1940) and Paterson Hughes, DFC (1917–1940) were Royal Air Force (RAF) flying aces of the Second World War. They were killed in action in the Battle of Britain on the same day, 7 September 1940. Raised in Southern Rhodesia, South Africa and Swaziland, Hull joined No. 43 Squadron in Sussex, England, in 1935, and took part in the fighting for Narvik during the Norwegian Campaign in 1940. Hull was the RAF's first Gloster Gladiator ace and the most successful RAF pilot of the Norwegian Campaign. He later saw action as a Hawker Hurricane pilot during the Battle of Britain, in which he was killed while diving to the aid of an RAF comrade. Hughes was born and raised in Australia and took a commission with the RAF in 1937. Posted to No. 234 Squadron following the outbreak of war, he flew Supermarine Spitfires and was credited with seventeen victories during the Battle of Britain. His tally made him the highest-scoring Australian of the battle, and among the three highest-scoring Australians of the war. Hughes is generally thought to have died after his Spitfire was struck by flying debris from a German bomber that he had just shot down. (See Caesar Hull and Paterson");
-            this._conversation.Add("John", "How do you like them ?");
+            foreach (var message in messages)
+                this.Conversation.Add(new MyDictionary(message.User.Id == RestApiManagerBase.Instance.UserData.User.Id ? Visibility.Visible: Visibility.Collapsed,message.User.Id == RestApiManagerBase.Instance.UserData.User.Id ? Visibility.Collapsed : Visibility.Visible, message.ReceivedMessage));
         }
 
-        private void InitConversation()
+        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-            foreach (var message in this._conversation)
-                this.Conversation.Add(new MyDictionary(message.Key == "Me" ? Visibility.Visible : Visibility.Collapsed, message.Key == "Me" ? Visibility.Collapsed : Visibility.Visible, message.Value));
+            this._actualConversation = navigationParameter as Conversation;
+            InitConversation(this._actualConversation.Messages);
         }
 
         private void SendCommandExec()
@@ -54,6 +65,7 @@ namespace Orphee.ViewModels
             if (this.Message.Any())
             {
                 this.Conversation.Add(new MyDictionary(Visibility.Visible, Visibility.Collapsed, this.Message));
+                RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList);
                 this.Message = String.Empty;
             }
         }

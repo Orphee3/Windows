@@ -5,7 +5,6 @@ using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm.Interfaces;
 using Orphee.Models.Interfaces;
 using Orphee.RestApiManagement;
-using Orphee.UI;
 
 namespace Orphee.Models
 {
@@ -14,14 +13,13 @@ namespace Orphee.Models
         private readonly INavigationService _navigationService;
         public string CurrentPageName { get; set; }
         public Dictionary<string, SolidColorBrush> ButtonForegroundColorList { get; }
-        public MyBottomAppBar MyBottomAppBar { get; private set; }
         public MyNavigationService(INavigationService navigationService)
         {
             this._navigationService = navigationService;
             this.ButtonForegroundColorList = new Dictionary<string, SolidColorBrush>()
             {
                 { "Home", new SolidColorBrush(Color.FromArgb(100, 13, 71, 161))},
-                { "Friends", new SolidColorBrush(Colors.White)},
+                { "Social", new SolidColorBrush(Colors.White)},
                 { "Messages", new SolidColorBrush(Colors.White)},
                 { "Profile", new SolidColorBrush(Colors.White)},
             };
@@ -61,7 +59,6 @@ namespace Orphee.Models
 
         public void NotifyUser()
         {
-            //this.RootFrame
         }
 
         public void SetNewAppBarButtonColorValue()

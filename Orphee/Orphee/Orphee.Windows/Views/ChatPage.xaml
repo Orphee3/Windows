@@ -108,11 +108,11 @@
             </Grid.RowDefinitions>
 
             <Grid Background="#78C7F9" Grid.Row="0" >
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="UserName" FontSize="35" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ConversationName}" FontSize="35" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
                 <AppBarButton Icon="Back" Command="{Binding BackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
                 <AppBarButton Icon="Add" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource MyBackButton}"/>
             </Grid>
-            <ListView Grid.Row="1" ItemsSource="{Binding Conversation}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None" HorizontalAlignment="Stretch">
+            <ListView Name="ConversationListView" Grid.Row="1" ItemsSource="{Binding Conversation}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None" HorizontalAlignment="Stretch">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

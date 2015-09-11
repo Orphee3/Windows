@@ -106,7 +106,7 @@
 
         <Grid Background="#78C7F9" Grid.Row="0">
             <AppBarButton Icon="Back" Command="{Binding GoBackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Creation" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CreationName}" FontSize="45"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -126,7 +126,7 @@
                 <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="10, 50, 10, 50" HorizontalAlignment="Left"/>
                 <Grid Grid.Column="1" Margin="50, 50, 0, 10">
                     <StackPanel>
-                        <TextBlock HorizontalAlignment="Center" Text="Creation" FontSize="45" Foreground="#BDBEC0" Margin="0, 0, 0, 30"/>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding CreationName}" FontSize="45" Foreground="#BDBEC0" Margin="0, 0, 0, 30"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -135,12 +135,12 @@
 
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
                                 <Image Source="/Assets/commentary-icon.png" Height="30" Width="30"/>
-                                <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding CommentNumber}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
                             </StackPanel>
                             <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 10, 0, 10" HorizontalAlignment="Right"/>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <Image Source="/Assets/heart-icon.png" Height="30" Width="30"/>
-                                <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding LikeNumber}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
@@ -181,7 +181,7 @@
                                     <ImageBrush ImageSource="/Assets/defaultUser.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <TextBlock Grid.Column="1" Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#BDBEC0" FontSize="25" TextWrapping="WrapWholeWords"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#BDBEC0" FontSize="25" TextWrapping="WrapWholeWords"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

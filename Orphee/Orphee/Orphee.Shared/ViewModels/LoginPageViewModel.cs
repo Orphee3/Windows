@@ -19,8 +19,6 @@ namespace Orphee.ViewModels
 
         public LoginPageViewModel(IConnectionManager connectionmanager)
         {
-            this.UserName = "Jeanmich";
-            this.Password = "Jeanmich";
             this._connectionManager = connectionmanager;
             this.LoginCommand = new DelegateCommand(LoginCommandExec);
             this.BackCommand = new DelegateCommand(App.MyNavigationService.GoBack);

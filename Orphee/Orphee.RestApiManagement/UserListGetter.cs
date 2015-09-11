@@ -15,14 +15,14 @@ namespace Orphee.RestApiManagement
             List<User> userList;
             using (var httpClient = new HttpClient {BaseAddress = RestApiManagerBase.Instance.RestApiUrl})
             {
-                    using (var response = await httpClient.GetAsync(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + offset + "size=" + size))
+                    using (var response = await httpClient.GetAsync(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + offset + "&size=" + size))
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode != HttpStatusCode.OK)
                             return null;
                         userList = JsonConvert.DeserializeObject<List<User>>(result);
-                        userList.Remove(userList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
-                        RestApiManagerBase.Instance.IsConnected = true;
+                        if (RestApiManagerBase.Instance.IsConnected)
+                            userList.Remove(userList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
                     }
             }
             return userList;

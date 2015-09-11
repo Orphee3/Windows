@@ -99,7 +99,7 @@ namespace Orphee.ViewModels
                 App.MyNavigationService.Navigate("Login", null);
                 return;
             }
-            var importedOrpheeFile = await this._orpheeFileImporter.ImportFile(".loop");
+            var importedOrpheeFile = await this._orpheeFileImporter.ImportFile(".mid");
 
             if (importedOrpheeFile == null)
                 return;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
@@ -13,9 +14,9 @@ namespace Orphee.ViewModels
 {
     public class MessagesPageViewModel : ViewModel, IMessagesPageViewModel
     {
-        public ObservableCollection<JToken> ConversationList { get; set; }
+        public ObservableCollection<Conversation> ConversationList { get; set; }
+        public DelegateCommand CreateNewConversationCommand { get; private set; }
         public DelegateCommand LoginButton { get; private set; }
-        public DelegateCommand AddCommand { get; private set; }
         public string DisconnectedMessage { get; private set; }
         public Visibility ButtonsVisibility { get; private set; }
         public Visibility ListViewVisibility { get; private set; }
@@ -25,18 +26,13 @@ namespace Orphee.ViewModels
             this.DisconnectedMessage = "To access the message functionnality you have \nto login or to create an account";
             this.ButtonsVisibility = Visibility.Visible;
             this.ListViewVisibility = Visibility.Collapsed;
-            this.ConversationList = new ObservableCollection<JToken>()
-            {
-                new JValue("Les 4 cochons a Pekin"),
-                new JValue("Le retour des violeur de poney mort"),
-                new JValue("Introduction à la maçonnerie"),
-            };
+            this.ConversationList = new ObservableCollection<Conversation>();
             if (RestApiManagerBase.Instance.IsConnected)
             {
                 this.ButtonsVisibility = Visibility.Collapsed;
                 this.ListViewVisibility = Visibility.Visible;
             }
-            this.AddCommand = new DelegateCommand(AddCommandExec);
+            this.CreateNewConversationCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", ""));
             this.LoginButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
         }
 
@@ -53,11 +49,24 @@ namespace Orphee.ViewModels
                 this.ButtonsVisibility = Visibility.Visible;
                 this.ListViewVisibility = Visibility.Collapsed;
             }
+            if (navigationParameter != null)
+                CreateNewConversation(navigationParameter as Conversation);
         }
 
-        private void AddCommandExec()
+        public void CreateNewConversation(Conversation conversation)
         {
-            
+            if (conversation.UserList.Count == 0)
+                return;
+            string channelName = "";
+            if (string.IsNullOrEmpty(conversation.Name))
+            {
+                channelName = conversation.UserList.Aggregate("", (current, user) => current + user.Name);
+                if (channelName.Length >= 30)
+                    channelName = channelName.Substring(0, 30) + "...";
+            }
+            else
+                channelName = conversation.Name;
+            this.ConversationList.Add(new Conversation() {Name = channelName, UserList = conversation.UserList});
         }
     }
 }

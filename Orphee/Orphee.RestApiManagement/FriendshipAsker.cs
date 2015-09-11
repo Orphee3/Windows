@@ -6,7 +6,7 @@ namespace Orphee.RestApiManagement
 {
     public class FriendshipAsker : IFriendshipAsker
     {
-        public async Task<bool> SendFriendshipRequestToRestApi(string friendId)
+        public async Task<bool?> SendFriendshipRequestToRestApi(string friendId)
         {
             using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
             {
@@ -15,10 +15,11 @@ namespace Orphee.RestApiManagement
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
                     if (!response.IsSuccessStatusCode)
-                        return false;
+                        return null;
+
+                    return response.ReasonPhrase == "OK";
                 }
             }
-            return true;
         }
     }
 }

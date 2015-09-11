@@ -1,7 +1,7 @@
-﻿using Windows.UI.Input;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.Prism.Mvvm;
-
+using Orphee.RestApiManagement;
 
 namespace Orphee.Views
 {
@@ -12,9 +12,10 @@ namespace Orphee.Views
             this.InitializeComponent();
         }
 
-        private void Convesation_OnTapped(object sender, TappedRoutedEventArgs e)
+        private void Creation_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            App.MyNavigationService.Navigate("Chat", null);
+            var conversation = ((StackPanel)sender).DataContext as Conversation;
+            App.MyNavigationService.Navigate("Chat", conversation);
         }
     }
 }

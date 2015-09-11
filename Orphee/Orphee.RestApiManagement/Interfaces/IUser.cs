@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Orphee.RestApiManagement.Interfaces
@@ -19,8 +21,17 @@ namespace Orphee.RestApiManagement.Interfaces
         JArray Creations { get; set; }
         [JsonProperty(PropertyName = "friends")]
         JArray Friends { get; set; }
+        [JsonProperty(PropertyName = "picture")]
+        string Picture { get; set; }
+        [JsonProperty(PropertyName = "dateCreation")]
+        DateTime DateCreaion { get; set; }
+        bool IsChecked { get; set; }
+        List<User> PendingFriendList { get; set; }
+        List<Message> PendingMessageList { get; set; } 
         bool HasReceivedFriendNotification { get; set; }
         bool HasReceivedMessageNotification { get; set; }
         bool HasReceivedFriendValidationNotification { get; set; }
+        bool HasReceivedFriendConfirmationNotification { get; set; }
+        string PicturePath { get; set; }
     }
 }

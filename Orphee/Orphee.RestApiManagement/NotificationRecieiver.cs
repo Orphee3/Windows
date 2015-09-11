@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Windows.Networking.Connectivity;
-using Windows.UI.ViewManagement;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Quobject.Collections.Immutable;
 using Quobject.SocketIoClientDotNet.Client;
 
 namespace Orphee.RestApiManagement
@@ -15,52 +16,88 @@ namespace Orphee.RestApiManagement
         {
             NetworkInformation.NetworkStatusChanged += OnNetworkStatusChanged;
         }
+
+        public void InitSocket()
+        {
+            if (!this.IsSocketConnected && RestApiManagerBase.Instance.UserData != null)
+            {
+                this.IsSocketConnected = false;
+                this._socket = IO.Socket("http://163.5.84.242:3000", new IO.Options()
+                {
+                    Query = new Dictionary<string, string>() {{"token", RestApiManagerBase.Instance.UserData.Token}},
+                    ForceNew = true,
+                    Port = 3000,
+                    Hostname = "163.5.84.242",
+                });
+                Run();
+            }
+        }
         public void Run()
         {
-            if (!IsInternet() || !RestApiManagerBase.Instance.IsConnected)
-                return;
-            this.IsSocketConnected = false;
-            this._socket = IO.Socket("http://163.5.84.242:3000", new IO.Options()
-            {
-                Query = new Dictionary<string, string>() { {"token", RestApiManagerBase.Instance.UserData.Token} },
-                ForceNew = true,
-                Port = 3000,
-                Hostname = "163.5.84.242",
-            });
-            this._socket.On(Socket.EVENT_CONNECT, () =>
+            this._socket.On("connect", () =>
             {
                 if (!this.IsSocketConnected && RestApiManagerBase.Instance.UserData != null)
                 {
-                    RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification = true;
-                    this._socket.Emit("subscribe", JObject.FromObject(new {channel = RestApiManagerBase.Instance.UserData.User.Id}));
+                    this._socket.Emit("subscribe",
+                        JObject.FromObject(new {channel = RestApiManagerBase.Instance.UserData.User.Id}));
                     this.IsSocketConnected = true;
                 }
             });
-            this._socket.Connect();
             this._socket.On("friend", (data) =>
             {
+                var userJson = JObject.FromObject(data);
+                var userAskingForFriendShip = JsonConvert.DeserializeObject<User>(userJson["userSource"].ToString());
                 RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification = true;
+                RestApiManagerBase.Instance.UserData.User.PendingFriendList.Add(userAskingForFriendShip);
+            });
+            this._socket.On("newFriend", (data) =>
+            {
+                RestApiManagerBase.Instance.UserData.User.HasReceivedFriendConfirmationNotification = true;
             });
             this._socket.On(Socket.EVENT_CONNECT_ERROR, (data) =>
             {
+                CloseSocket();
                 if (IsInternet())
-                    Run();
+                    this._socket.Connect();
             });
             this._socket.On(Socket.EVENT_CONNECT_TIMEOUT, (data) =>
             {
+                CloseSocket();
                 if (IsInternet())
-                    Run();
+                    this._socket.Connect();
             });
 
             this._socket.On("error", (data) =>
             {
+                CloseSocket();
                 if (IsInternet())
-                    Run();
+                    this._socket.Connect();
+            });
+            this._socket.On("private message", (data) =>
+            {
+                var userJson = JObject.FromObject(data);
+                var creator = JsonConvert.DeserializeObject<User>(userJson["source"].ToString());
+                if (RestApiManagerBase.Instance.UserData.User.Id != creator.Id)
+                {
+                    var message = new Message
+                    {
+                        User = creator,
+                        ReceivedMessage = userJson["message"]["message"].ToString()
+                    };
+                    RestApiManagerBase.Instance.UserData.User.PendingMessageList.Add(message);
+                    RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = true;
+                }
             });
             this._socket.On(Socket.EVENT_DISCONNECT, () =>
             {
-               
+
             });
+        }
+
+        public void SendMessage(string messageToSend, List<User> userList)
+        {
+            foreach (var user in userList)
+                this._socket.Emit("private message", JObject.FromObject(new { to = user.Id, message = messageToSend }));
         }
 
         public void CloseSocket()
@@ -94,7 +131,7 @@ namespace Orphee.RestApiManagement
                 if (RestApiManagerBase.Instance.UserData != null)
                 {
                     RestApiManagerBase.Instance.IsConnected = true;
-                    Run();
+                    this._socket.Connect();
                 }
             }
         }

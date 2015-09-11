@@ -9,11 +9,6 @@ namespace Orphee.RestApiManagement
 {
     public class RegistrationManager : IRegistrationManager
     {
-        private readonly IUserListGetter _userListGetter;
-        public RegistrationManager(IUserListGetter userListGetter)
-        {
-            this._userListGetter = userListGetter;
-        }
         public async Task<bool> RegisterUser(string userName, string name, string password)
         {
             var values = new Dictionary<string, string>
@@ -33,8 +28,7 @@ namespace Orphee.RestApiManagement
                         return false;
                     RestApiManagerBase.Instance.UserData = JsonConvert.DeserializeObject<UserData>(result);
                     RestApiManagerBase.Instance.IsConnected = true;
-                    RestApiManagerBase.Instance.NotificationRecieiver.Run();
-                    RestApiManagerBase.Instance.UserNameList = await this._userListGetter.GetUserList(0, 30);
+                    RestApiManagerBase.Instance.NotificationRecieiver.InitSocket();
                 }
                 return true;
             }

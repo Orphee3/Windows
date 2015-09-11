@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Popups;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -14,46 +14,44 @@ namespace Orphee.ViewModels
 {
     public class SocialPageViewModel : ViewModel, ISocialPageViewModel
     {
-        public ObservableCollection<User> UserNameList { get; set; }
+        public ObservableCollection<User> UserList { get; set; }
         public DelegateCommand LoginCommand { get; private set; }
-        public DelegateCommand<User> NewFriendCommand { get; private set; }
-        public Visibility ButtonsVisibility { get; private set; }
-        public Visibility ListViewVisibility { get; private set; }
+        public DelegateCommand<User> AddFriendCommand { get; private set; }
         private readonly IFriendshipAsker _friendshipAsker;
+        private readonly IUserListGetter _userListGetter;
 
-        public SocialPageViewModel(IFriendshipAsker friendshipAsker)
+        public SocialPageViewModel(IFriendshipAsker friendshipAsker, IUserListGetter userListGetter)
         {
             this._friendshipAsker = friendshipAsker;
-            this.ButtonsVisibility = Visibility.Visible;
-            this.ListViewVisibility = Visibility.Collapsed;
-            this.UserNameList = new ObservableCollection<User>();
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
-                this.ButtonsVisibility = Visibility.Collapsed;
-                this.ListViewVisibility = Visibility.Visible;
-                foreach (var friend in RestApiManagerBase.Instance.UserNameList)
-                    this.UserNameList.Add(friend);
-            }
+            this._userListGetter = userListGetter;
+            this.UserList = new ObservableCollection<User>();
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
-            this.NewFriendCommand = new DelegateCommand<User>(NewFriendCommandExec);
+            this.AddFriendCommand = new DelegateCommand<User>(NewFriendCommandExec);
         }
 
-        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && this.ButtonsVisibility == Visibility.Visible)
+            if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && !this.UserList.Any())
             {
-                this.ButtonsVisibility = Visibility.Collapsed;
-                this.ListViewVisibility = Visibility.Visible;
-                foreach (var friend in RestApiManagerBase.Instance.UserNameList)
-                    this.UserNameList.Add(friend);
+                this.UserList.Clear();
+                var temporaryList = (await this._userListGetter.GetUserList(0, 30)).OrderBy(u => u.UserName);
+                foreach (var friend in temporaryList)
+                {
+                    if (string.IsNullOrEmpty(friend.Picture))
+                        friend.Picture = "/Assets/defaultUser.png";
+                    this.UserList.Add(friend);
+                }
             }
+            if (RestApiManagerBase.Instance.IsConnected)
+                this.UserList.Remove(this.UserList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
         }
 
         private async void NewFriendCommandExec(User friend)
         {
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && await this._friendshipAsker.SendFriendshipRequestToRestApi(friend.Id))
-            {
-                var messageDialog = new MessageDialog("Friendship request sent to " + friend.UserName);
+            bool? result;
+            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && (result = await this._friendshipAsker.SendFriendshipRequestToRestApi(friend.Id)) != null)
+            { 
+                var messageDialog = result == true ? new MessageDialog("Friendship request sent to " + friend.UserName) : new MessageDialog("Friendship already asked");
 
                 await messageDialog.ShowAsync();
             }

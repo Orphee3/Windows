@@ -1,7 +1,8 @@
-﻿using Windows.Graphics.Display;
-using Windows.UI;
+﻿using Windows.UI;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement;
@@ -43,13 +44,13 @@ namespace Orphee.Views
 
         private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            var channel = sender as JObject;
+            var channel = ((Ellipse) sender).DataContext as User;
             App.MyNavigationService.Navigate("ChannelInfo", channel);
         }
 
         private void InfoStackPannel_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            var creation = sender as JObject;
+            var creation = ((Button)sender).DataContext as User;
             App.MyNavigationService.Navigate("CreationInfo", creation);
         }
 

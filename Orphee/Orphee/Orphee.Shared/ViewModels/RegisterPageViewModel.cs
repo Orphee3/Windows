@@ -28,7 +28,7 @@ namespace Orphee.ViewModels
         private async void RegisterCommandExec()
         {
             bool isInternetConnected;
-            if ((isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet()) && await this._registrationManager.RegisterUser("Jeanmich2", "Jeanmich2", "Jeanmich2"))
+            if ((isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet()) && await this._registrationManager.RegisterUser(this.UserName, this.MailAdress, this.Password))
                 App.MyNavigationService.GoBack();
             else
                 DisplayErrorMessage(isInternetConnected);

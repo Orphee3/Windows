@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -39,9 +41,13 @@
                                 <Image Source="/Assets/play-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height='100' Width="100" Opacity="0.6" Margin="10, 0, 0, 0"/>
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                <Image  Source="/Assets/defaultUser.png" Height="30" Width="30" HorizontalAlignment="Left" Tapped="UserPicture_OnTapped"/>
+                                <Ellipse Width="50" Height="50" HorizontalAlignment="Center" Tapped="UserPicture_OnTapped">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
                                 <StackPanel Margin="50, 0, 0, 0" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
                                     <TextBlock Text="CreatorName" Foreground="#78C7F9" FontSize="15"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>

@@ -52,7 +52,7 @@ namespace Orphee.UI
 
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "_hasReceivedFriendNotification" || e.PropertyName == "_hasReceivedFriendValidationNotification")
+            if (e.PropertyName == "_hasReceivedFriendNotification" || e.PropertyName == "_hasReceivedFriendConfirmationNotification")
                 await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Profile.NotificationDotVisibility = Visibility.Visible; }));
             else if (e.PropertyName == "_hasReceivedMessageNotification")
                 await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Messages.NotificationDotVisibility = Visibility.Visible; }));

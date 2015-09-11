@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Annotations;
@@ -13,9 +15,14 @@ namespace Orphee.RestApiManagement
         public string UserName { get; set; }
         public string Name { get; set; }
         public JArray Friends { get; set; }
+        public string Picture { get; set; }
+        public DateTime DateCreaion { get; set; }
+        public bool IsChecked { get; set; }
         public JArray Comments { get; set; }
         public JArray Likes { get; set; }
         public JArray Creations { get; set; }
+        public List<User> PendingFriendList { get; set; }
+        public List<Message> PendingMessageList { get; set; }
         private bool _hasReceivedFriendNotification;
         public bool HasReceivedFriendNotification
         {
@@ -54,6 +61,27 @@ namespace Orphee.RestApiManagement
                     OnPropertyChanged(nameof(_hasReceivedFriendValidationNotification));
                 }
             }
+        }
+        private bool _hasReceivedFriendConfirmationNotification;
+        public bool HasReceivedFriendConfirmationNotification
+        {
+            get { return this._hasReceivedFriendConfirmationNotification; }
+            set
+            {
+                if (this._hasReceivedFriendConfirmationNotification != value)
+                {
+                    this._hasReceivedFriendConfirmationNotification = value;
+                    OnPropertyChanged(nameof(this._hasReceivedFriendConfirmationNotification));
+                }
+            }
+        }
+
+        public string PicturePath { get; set; }
+
+        public User()
+        {
+            this.PendingMessageList = new List<Message>();
+            this.PendingFriendList = new List<User>();
         }
 
         [NotifyPropertyChangedInvocator]
