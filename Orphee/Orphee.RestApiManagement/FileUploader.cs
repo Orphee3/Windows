@@ -132,9 +132,10 @@ namespace Orphee.RestApiManagement
                     using (var response = await httpClient.PutAsync("api/user/" + RestApiManagerBase.Instance.UserData.User.Id, content))
                     {
                         await response.Content.ReadAsStringAsync();
-                        RestApiManagerBase.Instance.UserData.User.Picture = getFileUri;
                         if (!response.IsSuccessStatusCode)
                             return false;
+                        RestApiManagerBase.Instance.UserData.User.Picture = getFileUri;
+                        RestApiManagerBase.Instance.UserData.User.PictureHasBeenUplaodedWithSuccess = true;
                     }
                 }
             }

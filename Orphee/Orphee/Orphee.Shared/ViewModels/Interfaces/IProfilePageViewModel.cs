@@ -20,5 +20,6 @@ namespace Orphee.ViewModels.Interfaces
         DelegateCommand LoginCommand { get; }
         DelegateCommand LogoutCommand { get; }
         DelegateCommand FriendPageCommand { get; }
+        void UpdatePictureSource();
     }
 }

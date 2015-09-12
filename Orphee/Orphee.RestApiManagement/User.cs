@@ -22,7 +22,7 @@ namespace Orphee.RestApiManagement
         public JArray Likes { get; set; }
         public JArray Creations { get; set; }
         public List<User> PendingFriendList { get; set; }
-        public List<Message> PendingMessageList { get; set; }
+        public List<Message> PendingMessageList { get; set; } 
         private bool _hasReceivedFriendNotification;
         public bool HasReceivedFriendNotification
         {
@@ -72,6 +72,20 @@ namespace Orphee.RestApiManagement
                 {
                     this._hasReceivedFriendConfirmationNotification = value;
                     OnPropertyChanged(nameof(this._hasReceivedFriendConfirmationNotification));
+                }
+            }
+        }
+
+        private bool _pictureHasBeenUplaodedWithSuccess;
+        public bool PictureHasBeenUplaodedWithSuccess
+        {
+            get { return this._pictureHasBeenUplaodedWithSuccess; }
+            set
+            {
+                if (this._pictureHasBeenUplaodedWithSuccess != value)
+                {
+                    this._pictureHasBeenUplaodedWithSuccess = value;
+                    OnPropertyChanged(nameof(this._pictureHasBeenUplaodedWithSuccess));
                 }
             }
         }
