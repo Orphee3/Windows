@@ -86,11 +86,10 @@ namespace Orphee.RestApiManagement
         {
             using (var httpClient = new HttpClient())
             {
-                using (var content = new MultipartFormDataContent())
+                var fileToArray = (await FileIO.ReadBufferAsync(fileToUpload)).ToArray();
+                using (var content = new ByteArrayContent(fileToArray))
                 {
-                    var fileStream = (await fileToUpload.OpenReadAsync()).AsStreamForRead();
                     content.Headers.ContentType = new MediaTypeHeaderValue("audio/x-midi");
-                   // content.Add(new StreamContent(new MemoryStream(fileStream));
                     using (var response = await httpClient.PutAsync(responseData, content))
                     {
                         await response.Content.ReadAsStringAsync();
@@ -146,10 +145,10 @@ namespace Orphee.RestApiManagement
         {
             using (var httpClient = new HttpClient())
             {
-                using (var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture)))
+                var imageToArray = (await FileIO.ReadBufferAsync(fileToUpload)).ToArray();
+                using (var content = new ByteArrayContent(imageToArray))
                 {
                     content.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
-                    content.Add(new StreamContent(new MemoryStream((await FileIO.ReadBufferAsync(fileToUpload)).ToArray())), fileToUpload.Name.Split()[0], fileToUpload.Name);
                       
                     using (var response = await httpClient.PutAsync(responseData, content))
                     {
