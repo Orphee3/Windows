@@ -50,7 +50,7 @@ namespace Orphee
 
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            _isSuspending = true;
+            this._isSuspending = true;
             try
             {
                 var deferral = e.SuspendingOperation.GetDeferral();
@@ -65,7 +65,7 @@ namespace Orphee
             }
             finally
             {
-                _isSuspending = false;
+                this._isSuspending = false;
             }
         }
     }

@@ -36,7 +36,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.OrpheeFileExporterT
             };
             this.OrpheeFile = new OrpheeFile();
             this.OrpheeFile.AddNewTrack(this.OrpheeTrack);
-            this.OrpheeFileExporter = new OrpheeFileExporter(new FileHeaderWriter(new SwapManager()), new TrackHeaderWriter(new TimeSignatureMessageWriter(), new TempoMessageWriter(), new SwapManager()), new NoteMessageWriter(new ProgramChangeMessageWriter(), new EndOfTrackMessageWriter()), new FileUploader());
+            this.OrpheeFileExporter = new OrpheeFileExporter(new FileHeaderWriter(new SwapManager()), new TrackHeaderWriter(new TimeSignatureMessageWriter(), new TempoMessageWriter(), new SwapManager()), new NoteMessageWriter(new ProgramChangeMessageWriter(), new EndOfTrackMessageWriter()), new FileUploader(new Notifyer()));
         }
     }
 

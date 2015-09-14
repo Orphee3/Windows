@@ -43,7 +43,8 @@ namespace Orphee.ViewModels
             openPicker.FileTypeFilter.Add(".png");
 
 #if WINDOWS_PHONE_APP
-            var pictureFile = await openPicker.PickSingleFileAndContinue();
+            StorageFile pictureFile = null;
+            openPicker.PickSingleFileAndContinue();
 #else
             var pictureFile = await openPicker.PickSingleFileAsync();
 #endif
