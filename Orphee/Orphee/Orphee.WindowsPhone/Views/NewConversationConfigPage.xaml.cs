@@ -2,9 +2,9 @@
 
 namespace Orphee.Views
 {
-    public sealed partial class FollowsPage : IView
+    public sealed partial class NewConversationConfigPage : IView
     {
-        public FollowsPage()
+        public NewConversationConfigPage()
         {
             this.InitializeComponent();
         }

@@ -2,11 +2,9 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Models;
 
@@ -18,13 +16,13 @@ namespace Orphee.UI
         public MyBottomAppBar()
         {
             this.InitializeComponent();
-            //this.InitButtonList();
-           // this.InitButtonColorForeground();
+            this.InitButtonList();
+            this.InitButtonColorForeground();
             if (RestApiManagerBase.Instance.IsConnected)
             {
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
                 this.Profile.NotificationDotVisibility = RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification ? Visibility.Visible : Visibility.Collapsed;
-                this.Messages.NotificationDotVisibility = RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification ? Visibility.Visible : Visibility.Collapsed;
+                this.Conversation.NotificationDotVisibility = RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -33,13 +31,14 @@ namespace Orphee.UI
             var button = (AppBarButton) sender;
             if (button.Name == "Profile" || button.Name == "Messages")
                 ResetNotificationDotVisibility((MyAppBarButton) button);
-            //App.MyNavigationService.ButtonForegroundColorList[button.Name].Color = Colors.White;
-           // App.MyNavigationService.ButtonForegroundColorList[App.Current.ToString()].Color = Color.FromArgb(0, 13, 71, 161);
             App.MyNavigationService.Navigate(button.Name, null);
+            App.MyNavigationService.SetNewAppBarButtonColorValue();
         }
 
         private static void ResetNotificationDotVisibility(MyAppBarButton button)
         {
+            if (!RestApiManagerBase.Instance.IsConnected)
+                return;
             if (button.Name == "Profile" && button.NotificationDotVisibility == Visibility.Visible)
             {
                 button.NotificationDotVisibility = Visibility.Collapsed;
@@ -54,10 +53,10 @@ namespace Orphee.UI
 
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "_hasReceivedFriendNotification" || e.PropertyName == "_hasReceivedFriendValidationNotification")
+            if (e.PropertyName == "_hasReceivedFriendNotification" || e.PropertyName == "_hasReceivedFriendConfirmationNotification")
                 await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Profile.NotificationDotVisibility = Visibility.Visible; }));
             else if (e.PropertyName == "_hasReceivedMessageNotification")
-                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Messages.NotificationDotVisibility = Visibility.Visible; }));
+                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Conversation.NotificationDotVisibility = Visibility.Visible; }));
         }
 
         private void InitButtonColorForeground()
@@ -71,8 +70,8 @@ namespace Orphee.UI
             this._buttonList = new Dictionary<string, Button>()
             {
                 { "Home", this.Home },
-                { "Friends", this.Friends },
-                { "Messages", this.Messages },
+                { "Friends", this.Social },
+                { "Messages", this.Conversation },
                 { "Profile", this.Profile},
             };
         }

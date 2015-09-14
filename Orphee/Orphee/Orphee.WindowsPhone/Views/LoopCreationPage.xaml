@@ -12,7 +12,7 @@
         <Style x:Key="RectangleToggleButtonStyle" TargetType="ToggleButton">
             <Setter Property="Background" Value="{ThemeResource ToggleButtonBackgroundThemeBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForegroundThemeBrush}"/>
-            <Setter Property="BorderBrush" Value="#0D47A1"/>
+            <Setter Property="BorderBrush" Value="#BDBEC0"/>
             <Setter Property="BorderThickness" Value="{ThemeResource ToggleButtonBorderThemeThickness}"/>
             <Setter Property="Padding" Value="12,4,12,5"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -59,10 +59,10 @@
                                     <VisualState x:Name="Checked">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#7FC5ED"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#78C7F9"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedBorderThemeBrush}"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#BDBEC0"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedForegroundThemeBrush}"/>
@@ -167,46 +167,147 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="MyBackButton" TargetType="AppBarButton">
+            <Setter Property="Foreground" Value="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AppBarButton">
+                        <Grid x:Name="RootGrid" Background="Transparent" Width="88">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ApplicationViewStates">
+                                    <VisualState x:Name="FullSize"/>
+                                    <VisualState x:Name="Compact">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="RootGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="60"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemPointerOverForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="OutlineEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemPressedForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="OutlineEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualWhite"/>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualBlack"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="PointerFocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel VerticalAlignment="Top">
+                                <Grid HorizontalAlignment="Center" Width="40">
+                                    <Ellipse x:Name="BackgroundEllipse" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}" Height="40" UseLayoutRounding="False" Width="40"/>
+                                    <Ellipse x:Name="OutlineEllipse" Height="40" Stroke="{ThemeResource AppBarItemForegroundThemeBrush}" StrokeThickness="2" UseLayoutRounding="False" Width="40"/>
+                                    <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="6*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" HorizontalAlignment="Center" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
-        <ComboBox Grid.Column="0" Margin="0, 100, 10, 0" Height="Auto" VerticalAlignment="top" BorderBrush="#0D47A1" Foreground="#0D47A1" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}"/>
-        <StackPanel Orientation="Horizontal" Grid.Column="0">
-            <Button Content="Save" Command="{Binding SaveButtonCommand}" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
-            <Button Content="Load" Command="{Binding LoadButtonCommand}" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
-        </StackPanel>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Column="2" VerticalScrollBarVisibility="Disabled" Margin="0, 0, 35, 0">
-            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
-                <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
+        <Grid Grid.Row="0" Background="#78C7F9">
+            <TextBlock Text="{Binding TrackName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="45"/>
+            <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Background="#BDBEC0">
+                <ComboBox Margin="3, 100, 3, 0" Height="Auto" VerticalAlignment="top" Foreground="Black" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
+                <Button Content="Save" Command="{Binding SaveButtonCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="Load" Command="{Binding LoadButtonCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="Play" Command="{Binding PlayCommand}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+            <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="150" Stretch="UniformToFill" Stroke="DimGray"/>
+            <Grid Grid.Column="2" Margin="25, 0, 10, 0">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
+                            <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                        <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-        </ScrollViewer>
-        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 5, 30" Content="Add" Command="{Binding AddColumnsCommand}" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}" BorderBrush="#0D47A1" Foreground="#0D47A1"/>
-        </StackPanel>
+                        </StackPanel>
+                        <Button Height="480" HorizontalAlignment="Stretch" Content="+" BorderBrush="#BDBEC0" Foreground="#BDBEC0" Command="{Binding AddColumnsCommand}"/>
+                </StackPanel>
+                </ScrollViewer>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}" BorderBrush="#BDBEC0" Foreground="#BDBEC0"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

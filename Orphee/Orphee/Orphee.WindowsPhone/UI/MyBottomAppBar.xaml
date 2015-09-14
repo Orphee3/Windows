@@ -6,97 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
     mc:Ignorable="d" d:DataContext="{Binding}">
-    <UserControl.Resources>
-        <Style x:Key="AppBarButtonStyle1" TargetType="AppBarButton">
-            <Setter Property="Foreground" Value="{ThemeResource AppBarItemForegroundThemeBrush}"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontWeight" Value="Normal"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="AppBarButton">
-                        <Grid x:Name="RootGrid" Background="Transparent" Width="100">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="ApplicationViewStates">
-                                    <VisualState x:Name="FullSize"/>
-                                    <VisualState x:Name="Compact">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="TextLabel">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="RootGrid">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="60"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="PointerOver">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundEllipse">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemPointerOverForegroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="OutlineEllipse">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemForegroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundEllipse">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemForegroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemPressedForegroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="OutlineEllipse">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="FocusStates">
-                                    <VisualState x:Name="Focused">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualWhite"/>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualBlack"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Unfocused"/>
-                                    <VisualState x:Name="PointerFocused"/>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <StackPanel Margin="0,14,0,13" VerticalAlignment="Top">
-                                <Grid HorizontalAlignment="Center" Height="40" Margin="0,0,0,2" Width="40">
-                                    <Ellipse x:Name="BackgroundEllipse" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}" Height="40" UseLayoutRounding="False" Width="40"/>
-                                    <Ellipse x:Name="OutlineEllipse" Height="40" Stroke="{ThemeResource AppBarItemForegroundThemeBrush}" StrokeThickness="2" UseLayoutRounding="False" Width="40"/>
-                                    <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                </Grid>
-                                <TextBlock x:Name="TextLabel" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="12" FontFamily="{TemplateBinding FontFamily}" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" Width="88"/>
-                            </StackPanel>
-                            <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
-                            <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
 
     <Grid Background="#78C7F9">
         <Grid.ColumnDefinitions>
@@ -106,17 +15,17 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <AppBarButton Grid.Column="0" Name="Home" Label="Home" Tapped="Button_Tapped" Icon="Home" HorizontalAlignment="Center" Style="{StaticResource AppBarButtonStyle1}"/>
+        <AppBarButton Grid.Column="0" Name="Home" Label="Home" Tapped="Button_Tapped" Icon="Home" HorizontalAlignment="Center"/>
         <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 18, 0, 0"/>
-        <AppBarButton Grid.Column="1" Name="Friends" Icon="People" Label="Friends" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource AppBarButtonStyle1}"/>
+        <AppBarButton Grid.Column="1" Name="Social" Icon="zoom" Label="Social" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
         <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 18, 0, 0"/>
         <Grid Grid.Column="2">
             <Image Height="35" VerticalAlignment="Top" Margin="0, 16, 0, 0" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
-            <AppBarButton Name="LoopCreation" HorizontalAlignment="Center" Label="Create" Tapped="Button_Tapped" Style="{StaticResource AppBarButtonStyle1}"/>
+            <AppBarButton Name="LoopCreation" HorizontalAlignment="Center" Label="Create" Tapped="Button_Tapped"/>
         </Grid>
         <Line Grid.Column="2" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 13, 0, 0"/>
-        <ui:MyAppBarButton Grid.Column="3" x:Name="Messages" Icon="Message" Label="Messages" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource AppBarButtonStyle1}"/>
+        <ui:MyAppBarButton Grid.Column="3" x:Name="Conversation" Icon="Message" Label="Messages" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
         <Line Grid.Column="3" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 13, 0, 0"/>
-        <ui:MyAppBarButton Grid.Column="4" x:Name="Profile" Icon="Contact" Label="Profile" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource AppBarButtonStyle1}"/>
+        <ui:MyAppBarButton Grid.Column="4" x:Name="Profile" Icon="Contact" Label="Profile" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

@@ -1,9 +1,9 @@
-﻿using System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Imaging;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
+using Windows.UI.Core;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
+using Orphee.ViewModels;
 
 namespace Orphee.Views
 {
@@ -12,18 +12,18 @@ namespace Orphee.Views
         public ProfilePage()
         {
             this.InitializeComponent();
-      
+            if (RestApiManagerBase.Instance.IsConnected)
+                RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
         }
 
-        private void ConnectionGridTapped(object sender, TappedRoutedEventArgs e)
+        private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            App.MyNavigationService.Navigate("Login", null);
-        }
-
-        private void TextBlockTapped(object sender, TappedRoutedEventArgs e)
-        {
-            var textblock = sender as TextBlock;
-            App.MyNavigationService.Navigate(textblock.Name, null);
+            if (e.PropertyName == "_pictureHasBeenUplaodedWithSuccess" && RestApiManagerBase.Instance.UserData.User.PictureHasBeenUplaodedWithSuccess == true)
+                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => 
+                {
+                    ((ProfilePageViewModel) this.DataContext).UpdatePictureSource();
+                    RestApiManagerBase.Instance.UserData.User.PictureHasBeenUplaodedWithSuccess = false;
+                }));
         }
     }
 }

@@ -19,7 +19,8 @@ namespace Orphee.UI
 
             set
             {
-                SetValue(NotificationDotVisibilityProperty, value);
+                if (App.MyNavigationService.CurrentPageName != this.Name)
+                    SetValue(NotificationDotVisibilityProperty, value);
             }
         }
     }
