@@ -4,6 +4,8 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Interfaces;
+using Orphee.RestApiManagement.Models;
+using Orphee.RestApiManagement.Posters.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels

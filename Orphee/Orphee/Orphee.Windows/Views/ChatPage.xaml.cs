@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
 
 namespace Orphee.Views

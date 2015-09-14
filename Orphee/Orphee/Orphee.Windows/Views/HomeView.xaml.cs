@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
 
 namespace Orphee.Views

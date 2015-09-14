@@ -12,6 +12,7 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels

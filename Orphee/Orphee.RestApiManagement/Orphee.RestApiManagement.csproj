@@ -34,59 +34,59 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Comment.cs" />
-    <Compile Include="CommentSender.cs" />
-    <Compile Include="ConnectionManager.cs" />
-    <Compile Include="Conversation.cs" />
-    <Compile Include="Creation.cs" />
-    <Compile Include="CreationCommentGetter.cs" />
-    <Compile Include="CreationUrls.cs" />
-    <Compile Include="FileUploader.cs" />
-    <Compile Include="FriendAccepter.cs" />
-    <Compile Include="FriendshipAsker.cs" />
-    <Compile Include="Interfaces\IConversation.cs" />
-    <Compile Include="Interfaces\IFriendAccepter.cs" />
-    <Compile Include="Interfaces\IMessage.cs" />
-    <Compile Include="Interfaces\INotifyer.cs" />
-    <Compile Include="Interfaces\IRoomGetter.cs" />
-    <Compile Include="Interfaces\IRoomMessageListGetter.cs" />
-    <Compile Include="Interfaces\IUserFriendListGetter.cs" />
-    <Compile Include="Interfaces\IUserNewsGetter.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="Notifyer.cs" />
-    <Compile Include="RoomGetter.cs" />
-    <Compile Include="RoomMessageListGetter.cs" />
-    <Compile Include="UserFluxGetter.cs" />
-    <Compile Include="Interfaces\IComment.cs" />
-    <Compile Include="Interfaces\ICommentSender.cs" />
-    <Compile Include="Interfaces\ICreation.cs" />
-    <Compile Include="Interfaces\ICreationCommentGetter.cs" />
-    <Compile Include="Interfaces\ICreationUrls.cs" />
-    <Compile Include="Interfaces\IFileUploader.cs" />
-    <Compile Include="Interfaces\IFriendshipAsker.cs" />
-    <Compile Include="Interfaces\ILikeSender.cs" />
-    <Compile Include="Interfaces\IUserCreationGetter.cs" />
-    <Compile Include="Interfaces\IUserFluxGetter.cs" />
-    <Compile Include="Interfaces\IUserListGetter.cs" />
-    <Compile Include="LikeSender.cs" />
-    <Compile Include="NotificationRecieiver.cs" />
-    <Compile Include="FriendListGetter.cs" />
-    <Compile Include="Interfaces\IConnectionManager.cs" />
-    <Compile Include="Interfaces\IFriendListGetter.cs" />
-    <Compile Include="Interfaces\IRegistrationManager.cs" />
-    <Compile Include="Interfaces\IRestApiManagerBase.cs" />
-    <Compile Include="Interfaces\IUser.cs" />
-    <Compile Include="Interfaces\IUserData.cs" />
+    <Compile Include="Getters\Interfaces\IUserListGetter.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Senders\CommentSender.cs" />
+    <Compile Include="Posters\ConnectionManager.cs" />
+    <Compile Include="Models\Conversation.cs" />
+    <Compile Include="Models\Creation.cs" />
+    <Compile Include="Getters\CreationCommentGetter.cs" />
+    <Compile Include="Models\CreationUrls.cs" />
+    <Compile Include="Senders\FileUploader.cs" />
+    <Compile Include="Getters\FriendAccepter.cs" />
+    <Compile Include="Getters\FriendshipAsker.cs" />
+    <Compile Include="Models\Interfaces\IConversation.cs" />
+    <Compile Include="Getters\Interfaces\IFriendAccepter.cs" />
+    <Compile Include="Models\Interfaces\IMessage.cs" />
+    <Compile Include="Senders\Interfaces\INotificationSender.cs" />
+    <Compile Include="Getters\Interfaces\IConversationGetter.cs" />
+    <Compile Include="Getters\Interfaces\IMessageListGetter.cs" />
+    <Compile Include="Getters\Interfaces\IUserFriendListGetter.cs" />
+    <Compile Include="Getters\Interfaces\IUserNewsGetter.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Senders\NotificationSender.cs" />
+    <Compile Include="Getters\ConversationGetter.cs" />
+    <Compile Include="Getters\MessageListGetter.cs" />
+    <Compile Include="Getters\UserFluxGetter.cs" />
+    <Compile Include="Models\Interfaces\IComment.cs" />
+    <Compile Include="Senders\Interfaces\ICommentSender.cs" />
+    <Compile Include="Models\Interfaces\ICreation.cs" />
+    <Compile Include="Getters\Interfaces\ICreationCommentGetter.cs" />
+    <Compile Include="Models\Interfaces\ICreationUrls.cs" />
+    <Compile Include="Senders\Interfaces\IFileUploader.cs" />
+    <Compile Include="Getters\Interfaces\IFriendshipAsker.cs" />
+    <Compile Include="Senders\Interfaces\ILikeSender.cs" />
+    <Compile Include="Getters\Interfaces\IUserCreationGetter.cs" />
+    <Compile Include="Getters\Interfaces\IUserFluxGetter.cs" />
+    <Compile Include="Senders\LikeSender.cs" />
+    <Compile Include="Socket Management\NotificationRecieiver.cs" />
+    <Compile Include="Getters\FriendListGetter.cs" />
+    <Compile Include="Posters\Interfaces\IConnectionManager.cs" />
+    <Compile Include="Getters\Interfaces\IFriendListGetter.cs" />
+    <Compile Include="Posters\Interfaces\IRegistrationManager.cs" />
+    <Compile Include="Models\Interfaces\IRestApiManagerBase.cs" />
+    <Compile Include="Models\Interfaces\IUser.cs" />
+    <Compile Include="Models\Interfaces\IUserData.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationManager.cs" />
-    <Compile Include="RestApiManagementBase.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserCreationGetter.cs" />
-    <Compile Include="UserData.cs" />
-    <Compile Include="UserFriendListGetter.cs" />
-    <Compile Include="UserListGetter.cs" />
-    <Compile Include="UserNewsGetter.cs" />
+    <Compile Include="Posters\RegistrationManager.cs" />
+    <Compile Include="Models\RestApiManagementBase.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Getters\UserCreationGetter.cs" />
+    <Compile Include="Models\UserData.cs" />
+    <Compile Include="Getters\UserFriendListGetter.cs" />
+    <Compile Include="Getters\UserListGetter.cs" />
+    <Compile Include="Getters\UserNewsGetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EngineIoClientDotNet, Version=0.9.21.0, Culture=neutral, processorArchitecture=MSIL">
@@ -109,6 +109,7 @@
     <TargetPlatform Include="Windows, Version=8.1" />
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -17,14 +17,14 @@
         </Grid.ColumnDefinitions>
         <AppBarButton Grid.Column="0" Name="Home" Label="Home" Tapped="Button_Tapped" Icon="Home" HorizontalAlignment="Center"/>
         <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 18, 0, 0"/>
-        <AppBarButton Grid.Column="1" Name="Social" Icon="zoom" Label="Friends" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
+        <AppBarButton Grid.Column="1" Name="Social" Icon="zoom" Label="Social" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
         <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 18, 0, 0"/>
         <Grid Grid.Column="2">
             <Image Height="35" VerticalAlignment="Top" Margin="0, 16, 0, 0" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
             <AppBarButton Name="LoopCreation" HorizontalAlignment="Center" Label="Create" Tapped="Button_Tapped"/>
         </Grid>
         <Line Grid.Column="2" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 13, 0, 0"/>
-        <ui:MyAppBarButton Grid.Column="3" x:Name="Messages" Icon="Message" Label="Messages" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
+        <ui:MyAppBarButton Grid.Column="3" x:Name="Conversation" Icon="Message" Label="Messages" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
         <Line Grid.Column="3" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 13, 0, 0"/>
         <ui:MyAppBarButton Grid.Column="4" x:Name="Profile" Icon="Contact" Label="Profile" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
     </Grid>

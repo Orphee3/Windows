@@ -2,6 +2,7 @@
 using Microsoft.Practices.Prism.Commands;
 using Orphee.Models;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
 
 namespace Orphee.ViewModels.Interfaces
 {

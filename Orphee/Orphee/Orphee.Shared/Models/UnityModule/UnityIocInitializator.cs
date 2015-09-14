@@ -10,7 +10,13 @@ using Orphee.CreationShared.Interfaces;
 using Orphee.FileManagement;
 using Orphee.FileManagement.Interfaces;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Getters;
+using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Interfaces;
+using Orphee.RestApiManagement.Posters;
+using Orphee.RestApiManagement.Posters.Interfaces;
+using Orphee.RestApiManagement.Senders;
+using Orphee.RestApiManagement.Senders.Interfaces;
 using Orphee.ViewModels;
 using Orphee.ViewModels.Interfaces;
 
@@ -20,10 +26,10 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
-            container.RegisterType<INotifyer, Notifyer>(new ContainerControlledLifetimeManager());
+            container.RegisterType<INotificationSender, NotificationSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserNewsGetter, UserNewsGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IRoomMessageListGetter, RoomMessageListGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IRoomGetter, RoomGetter>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IMessageListGetter, MessageListGetter>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IConversationGetter, ConversationGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFriendAccepter, FriendAccepter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserFriendListGetter, UserFriendListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserFluxGetter, UserFluxGetter>(new ContainerControlledLifetimeManager());

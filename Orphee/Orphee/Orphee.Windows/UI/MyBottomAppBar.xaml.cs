@@ -6,6 +6,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
 
 namespace Orphee.UI
 {
@@ -21,7 +22,7 @@ namespace Orphee.UI
             {
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
                 this.Profile.NotificationDotVisibility = RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification ? Visibility.Visible : Visibility.Collapsed;
-                this.Messages.NotificationDotVisibility = RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification ? Visibility.Visible : Visibility.Collapsed;
+                this.Conversation.NotificationDotVisibility = RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -55,7 +56,7 @@ namespace Orphee.UI
             if (e.PropertyName == "_hasReceivedFriendNotification" || e.PropertyName == "_hasReceivedFriendConfirmationNotification")
                 await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Profile.NotificationDotVisibility = Visibility.Visible; }));
             else if (e.PropertyName == "_hasReceivedMessageNotification")
-                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Messages.NotificationDotVisibility = Visibility.Visible; }));
+                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Conversation.NotificationDotVisibility = Visibility.Visible; }));
         }
 
         private void InitButtonColorForeground()
@@ -70,7 +71,7 @@ namespace Orphee.UI
             {
                 { "Home", this.Home },
                 { "Friends", this.Social },
-                { "Messages", this.Messages },
+                { "Messages", this.Conversation },
                 { "Profile", this.Profile},
             };
         }

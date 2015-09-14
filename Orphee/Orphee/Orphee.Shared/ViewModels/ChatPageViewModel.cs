@@ -9,6 +9,7 @@ using Microsoft.Practices.Prism.Mvvm;
 using Orphee.Models;
 using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Interfaces;
+using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -43,7 +44,7 @@ namespace Orphee.ViewModels
 
         public ChatPageViewModel()
         {
-            this.BackCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Messages", null));
+            this.BackCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Conversation", null));
             this.Conversation = new ObservableCollection<Message>();
             this.SendCommand = new DelegateCommand(SendCommandExec);
            

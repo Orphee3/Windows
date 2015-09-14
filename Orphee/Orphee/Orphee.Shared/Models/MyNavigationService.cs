@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm.Interfaces;
 using Orphee.Models.Interfaces;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
 
 namespace Orphee.Models
 {

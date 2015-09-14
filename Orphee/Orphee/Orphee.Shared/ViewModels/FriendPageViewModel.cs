@@ -6,7 +6,9 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Interfaces;
+using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -49,7 +51,7 @@ namespace Orphee.ViewModels
             this.ValidateConversationCreationCommand = new DelegateCommand(() =>
             {
                 var conversation  = new Conversation { UserList = this.FriendList.Where(f => f.IsChecked).ToList(), Name = ConversationName };
-                App.MyNavigationService.Navigate("Messages", conversation);
+                App.MyNavigationService.Navigate("Conversation", conversation);
             });
             this.FriendList = new ObservableCollection<User>();
         }

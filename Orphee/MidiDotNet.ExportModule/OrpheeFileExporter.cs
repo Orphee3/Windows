@@ -8,6 +8,7 @@ using MidiDotNet.ExportModule.Interfaces;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement.Interfaces;
+using Orphee.RestApiManagement.Senders.Interfaces;
 
 namespace MidiDotNet.ExportModule
 {

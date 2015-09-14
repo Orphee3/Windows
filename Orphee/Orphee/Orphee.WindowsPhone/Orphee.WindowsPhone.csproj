@@ -106,8 +106,8 @@
     <Compile Include="Views\LoopCreationPage.xaml.cs">
       <DependentUpon>LoopCreationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MessagesPage.xaml.cs">
-      <DependentUpon>MessagesPage.xaml</DependentUpon>
+    <Compile Include="Views\ConversationPage.xaml.cs">
+      <DependentUpon>ConversationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MyCreationsPage.xaml.cs">
       <DependentUpon>MyCreationsPage.xaml</DependentUpon>
@@ -232,7 +232,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MessagesPage.xaml">
+    <Page Include="Views\ConversationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

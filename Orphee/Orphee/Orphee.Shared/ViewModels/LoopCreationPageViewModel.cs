@@ -6,6 +6,7 @@ using MidiDotNet.ImportModule.Interfaces;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels

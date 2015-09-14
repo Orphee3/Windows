@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Models;
 
 namespace Orphee.Views
 {

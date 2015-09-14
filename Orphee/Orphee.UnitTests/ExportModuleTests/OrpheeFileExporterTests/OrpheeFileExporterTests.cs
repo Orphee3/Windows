@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Senders;
 
 namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.OrpheeFileExporterTests
 {
@@ -36,7 +37,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.OrpheeFileExporterT
             };
             this.OrpheeFile = new OrpheeFile();
             this.OrpheeFile.AddNewTrack(this.OrpheeTrack);
-            this.OrpheeFileExporter = new OrpheeFileExporter(new FileHeaderWriter(new SwapManager()), new TrackHeaderWriter(new TimeSignatureMessageWriter(), new TempoMessageWriter(), new SwapManager()), new NoteMessageWriter(new ProgramChangeMessageWriter(), new EndOfTrackMessageWriter()), new FileUploader(new Notifyer()));
+            this.OrpheeFileExporter = new OrpheeFileExporter(new FileHeaderWriter(new SwapManager()), new TrackHeaderWriter(new TimeSignatureMessageWriter(), new TempoMessageWriter(), new SwapManager()), new NoteMessageWriter(new ProgramChangeMessageWriter(), new EndOfTrackMessageWriter()), new FileUploader(new NotificationSender()));
         }
     }
 
