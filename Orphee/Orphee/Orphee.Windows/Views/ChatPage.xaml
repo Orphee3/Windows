@@ -126,50 +126,28 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <Grid Visibility="{Binding Path=ItsMessageVisibility}">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="{Binding Path=ColumnZeroWidth}"/>
+                                    <ColumnDefinition Width="{Binding Path=ColumnOneWidth}"/>
                                 </Grid.ColumnDefinitions>
-                                <Ellipse Width="50" Height="50" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <Ellipse Width="50" Height="50" Grid.Column="{Binding Path=ElipseColumnNumber}" HorizontalAlignment="Center" VerticalAlignment="Top">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="{Binding Path=UserPictureSource}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <Border Grid.Column="1" Background="#BDBEC0" CornerRadius="10,10,10,10" Margin="8, 0, 0, 0" HorizontalAlignment="Left">
-                                    <Grid Margin="15, 25, 15, 25">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding Path=Hour}" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
-                                    </Grid>
-                                </Border>
-                                <Polygon Grid.Column="1" Points="8,0 0,5, 8,10" Margin="0, 15, 0, 0" Fill="#BDBEC0"/>
-                            </Grid>
-                            <Grid Visibility="{Binding Path=MyMessageVisibility}" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="60"/>
-                                </Grid.ColumnDefinitions>
-                                <Ellipse Width="50" Height="50" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Path=UserPictureSource}"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <Border Grid.Column="0" Background="#78C7F9" CornerRadius="10,10,10,10" Margin="0, 0, 8, 0" HorizontalAlignment="Right">
+                                <Border Grid.Column="{Binding Path=MessageColumnNumber}" Background="{Binding Path=BackgroundMessageColor}" CornerRadius="10,10,10,10" Margin="8, 0, 8, 0" HorizontalAlignment="{Binding Path=MessageHorizontalAlignment}">
                                     <Grid Margin="15, 25, 15, 25">
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Grid.Row="0" Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
+                                        <TextBlock Grid.Row="0"  Text="{Binding Path=ReceivedMessage}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
                                         <TextBlock Grid.Row="1" Text="{Binding Path=Hour}" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
                                     </Grid>
                                 </Border>
-                                <Polygon Grid.Column="0" Points="0,0 8,5, 0,10" Margin="0, 15, 0, 0" Fill="#78C7F9" HorizontalAlignment="Right"/>
+                                <Polygon Grid.Column="{Binding Path=MessageColumnNumber}" Points="{Binding Path=PolygonPoints}" Margin="0, 15, 0, 0" Fill="{Binding Path=BackgroundMessageColor}" HorizontalAlignment="{Binding Path=MessageHorizontalAlignment}"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>

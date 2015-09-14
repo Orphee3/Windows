@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
 using Orphee.Models;
+using Orphee.RestApiManagement;
 
 namespace Orphee.ViewModels.Interfaces
 {
@@ -10,6 +11,6 @@ namespace Orphee.ViewModels.Interfaces
         DelegateCommand SendCommand { get; }
         string Message { get; set; }
         string ConversationName { get; set; }
-        ObservableCollection<MyDictionary> Conversation { get; }
+        ObservableCollection<Message> Conversation { get; }
     }
 }

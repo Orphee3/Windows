@@ -20,6 +20,8 @@ namespace Orphee.RestApiManagement
                     if (!response.IsSuccessStatusCode)
                         return null;
                     messageList = JsonConvert.DeserializeObject<List<Message>>(responseData);
+                    foreach (var message in messageList)
+                        message.SetProperties();
                     messageList.Reverse();
                 }
             }

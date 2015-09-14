@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Microsoft.Practices.Prism.Commands;
 using Orphee.RestApiManagement;
+using Orphee.RestApiManagement.Annotations;
 
 namespace Orphee.ViewModels.Interfaces
 {
@@ -14,5 +15,6 @@ namespace Orphee.ViewModels.Interfaces
         Visibility CheckBoxVisibility { get; set; }
         Visibility InvitationStackPanelVisibility { get; set; }
         string ConversationName { get; set; }
+        string UserPictureSource { get; set; }
     }
 }

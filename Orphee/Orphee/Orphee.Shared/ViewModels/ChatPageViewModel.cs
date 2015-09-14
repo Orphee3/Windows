@@ -27,7 +27,7 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._message, value);
             }
         }
-        public ObservableCollection<MyDictionary> Conversation { get; private set; }
+        public ObservableCollection<Message> Conversation { get; private set; }
         private string _conversationName;
 
         public string ConversationName
@@ -44,7 +44,7 @@ namespace Orphee.ViewModels
         public ChatPageViewModel()
         {
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Messages", null));
-            this.Conversation = new ObservableCollection<MyDictionary>();
+            this.Conversation = new ObservableCollection<Message>();
             this.SendCommand = new DelegateCommand(SendCommandExec);
            
         }
@@ -52,7 +52,7 @@ namespace Orphee.ViewModels
         public void InitConversation(List<Message> messages)
         {
             foreach (var message in messages)
-                this.Conversation.Add(new MyDictionary(message));
+                this.Conversation.Add(message);
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
@@ -67,9 +67,11 @@ namespace Orphee.ViewModels
         {
             if (this.Message.Any())
             {
-                this.Conversation.Add(new MyDictionary(new Message { User = RestApiManagerBase.Instance.UserData.User, Date = DateTime.Now, ReceivedMessage = this.Message}));
+                var newMessage = new Message { User = RestApiManagerBase.Instance.UserData.User, Date = DateTime.Now, ReceivedMessage = this.Message};
+                newMessage.SetProperties();
+                this.Conversation.Add(newMessage);
                 RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList);
-                this.Message = String.Empty;
+                this.Message = string.Empty;
             }
         }
     }

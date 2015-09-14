@@ -39,6 +39,7 @@ namespace Orphee.ViewModels
         }
         private readonly IUserFriendListGetter _userFriendListGetter;
         public string ConversationName { get; set; }
+        public string UserPictureSource { get; set; }
 
         public FriendPageViewModel(IUserFriendListGetter userFriendListGetter)
         {
@@ -53,7 +54,7 @@ namespace Orphee.ViewModels
             this.FriendList = new ObservableCollection<User>();
         }
 
-        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this.FriendList.Clear();
             this.CheckBoxVisibility = navigationParameter != null ? Visibility.Visible : Visibility.Collapsed;

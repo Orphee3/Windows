@@ -30,7 +30,7 @@ namespace Orphee.RestApiManagement
                 {
                     using (var response = await httpClient.PostAsync(RestApiManagerBase.Instance.RestApiPath["comment"], content))
                     {
-                        string responseData = await response.Content.ReadAsStringAsync();
+                        var responseData = await response.Content.ReadAsStringAsync();
                         if (!response.IsSuccessStatusCode)
                             return false;
                         var result = await this._notifyer.SendNotification("comments", creationId);

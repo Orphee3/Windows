@@ -96,6 +96,8 @@ namespace Orphee.RestApiManagement
         {
             this.PendingMessageList = new List<Message>();
             this.PendingFriendList = new List<User>();
+            if (string.IsNullOrEmpty(this.Picture))
+                this.Picture = "/Assets/defaultUser.png";
         }
 
         [NotifyPropertyChangedInvocator]
