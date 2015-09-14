@@ -11,18 +11,14 @@ namespace Orphee.Views
         {
             this.InitializeComponent();
         }
+
         private void Grid_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             var grid = (Grid) sender;
             var stackPanel = (StackPanel) grid.Children[0];
-          //  foreach (var child in stackPanel.Children)
-               // if (child is TextBlock)
-                   // ((IMyCreationsPageViewModel)this.DataContext).PlaySelectedFile(((TextBlock)child).Text);
-        }
-
-        public void Connect(int connectionId, object target)
-        {
-            throw new System.NotImplementedException();
+            //  foreach (var child in stackPanel.Children)
+            // if (child is TextBlock)
+            // ((IMyCreationsPageViewModel)this.DataContext).PlaySelectedFile(((TextBlock)child).Text);
         }
     }
 }

@@ -8,10 +8,5 @@ namespace Orphee.Views
         {
             this.InitializeComponent();
         }
-
-        public void Connect(int connectionId, object target)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
-using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement;
 
 namespace Orphee.ViewModels.Interfaces
@@ -11,8 +9,8 @@ namespace Orphee.ViewModels.Interfaces
         ObservableCollection<Creation> CreationList { get; }
         DelegateCommand BackCommand { get; }
         string UserName { get; set; }
-        int TotalLikeNumber { get; set; }
-        int TotalCommentNumber { get; set; }
+        int FriendNumber { get; set; }
+        int CreationNumber { get; set; }
         string UserPictureSource { get; set; }
     }
 }

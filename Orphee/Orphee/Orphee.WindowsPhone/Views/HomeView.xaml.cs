@@ -18,10 +18,5 @@ namespace Orphee.Views
             var midiFile = await KnownFolders.MusicLibrary.GetFileAsync("loop1.mid");
             MyMidiPlayer.Play(midiFile.Path);
         }
-
-        public void Connect(int connectionId, object target)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -41,7 +41,12 @@ namespace Orphee.ViewModels
             openPicker.FileTypeFilter.Add(".jpeg");
             openPicker.FileTypeFilter.Add(".jpg");
             openPicker.FileTypeFilter.Add(".png");
+
+#if WINDOWS_PHONE_APP
+            var pictureFile = await openPicker.PickSingleFileAndContinue();
+#else
             var pictureFile = await openPicker.PickSingleFileAsync();
+#endif
             if (pictureFile != null)
                 if (await this._fileUploader.UploadImage(pictureFile))
                     return pictureFile.Path;

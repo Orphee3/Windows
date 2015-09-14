@@ -20,6 +20,7 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
+            container.RegisterType<IUserNewsGetter, UserNewsGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRoomMessageListGetter, RoomMessageListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRoomGetter, RoomGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<INewConversationConfigPageViewModel, NewConversationConfigPageViewModel>(new ContainerControlledLifetimeManager());

@@ -44,6 +44,7 @@ namespace Orphee.ViewModels
 
         public void FillFlowListWithNewFriendCreations()
         {
+         
             this.FlowList.Clear();
             for (var i = 0; i < 12; i++)
                 this.FlowList.Add(new User() {Name = "Friend Boucle " + i});

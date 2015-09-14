@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
@@ -8,18 +7,16 @@ using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using Newtonsoft.Json;
 using Orphee.RestApiManagement;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
-    public class ProfilePageViewModel : ViewModel, IProfilePageViewModel, INavigationAware
+    public class ProfilePageViewModel : ViewModel, IProfilePageViewModel
     {
         public string UserName { get; private set; }
         public int NumberOfCreations { get; private set; }
@@ -70,7 +67,6 @@ namespace Orphee.ViewModels
         public DelegateCommand LogoutCommand { get; private set; }
         public DelegateCommand FriendPageCommand { get; private set; }
         public DelegateCommand EditProfileCommand { get; private set; }
-
         public ProfilePageViewModel()
         {
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
@@ -88,8 +84,8 @@ namespace Orphee.ViewModels
         private void SetPropertiesDependingOnConnectionState()
         {
             if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            { 
-                this.UserPictureSource = RestApiManagerBase.Instance.UserData.User.Picture;
+            {
+                this.UserPictureSource = RestApiManagerBase.Instance.UserData.User.Picture ?? "/Assets/defaultUser.png";
                 InitBackgroundPictureColor();
                 this.DisconnectedStackPanelVisibility = Visibility.Collapsed;
                 this.ConnectedStackPanelVisibility = Visibility.Visible;
@@ -125,22 +121,23 @@ namespace Orphee.ViewModels
 
         private async Task<Color> SearchDominantPictureColor()
         {
-            var streamReference = RandomAccessStreamReference.CreateFromUri(new Uri(this.UserPictureSource)).OpenReadAsync();
-            var stream = await streamReference;
+            IRandomAccessStream stream;
+            if (RestApiManagerBase.Instance.UserData.User.Picture != null)
+            {
+                var streamReference = RandomAccessStreamReference.CreateFromUri(new Uri(this.UserPictureSource)).OpenReadAsync();
+                stream = await streamReference;
+            }
+            else
+            { 
+                var storageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx://" + this.UserPictureSource));
+                stream = await storageFile.OpenAsync(FileAccessMode.Read);
+            } 
             //Create a decoder for the image
             var decoder = await BitmapDecoder.CreateAsync(stream);
-
             //Create a transform to get a 1x1 image
-            var myTransform = new BitmapTransform {ScaledHeight = decoder.PixelHeight, ScaledWidth = decoder.PixelWidth};
-
+            var myTransform = new BitmapTransform {ScaledHeight = 10, ScaledWidth = 10};
             //Get the pixel provider
-            var pixels = await decoder.GetPixelDataAsync(
-                BitmapPixelFormat.Rgba8,
-                BitmapAlphaMode.Straight,
-                myTransform,
-                ExifOrientationMode.RespectExifOrientation,
-                ColorManagementMode.ColorManageToSRgb);
-
+            var pixels = await decoder.GetPixelDataAsync(BitmapPixelFormat.Rgba8, BitmapAlphaMode.Straight, myTransform, ExifOrientationMode.RespectExifOrientation, ColorManagementMode.ColorManageToSRgb);
             //Get the bytes of the 1x1 scaled image
             var bytes = pixels.DetachPixelData();
 

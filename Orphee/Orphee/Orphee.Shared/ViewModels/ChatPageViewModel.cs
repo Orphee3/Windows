@@ -52,10 +52,10 @@ namespace Orphee.ViewModels
         public void InitConversation(List<Message> messages)
         {
             foreach (var message in messages)
-                this.Conversation.Add(new MyDictionary(message.User.Id == RestApiManagerBase.Instance.UserData.User.Id ? Visibility.Visible: Visibility.Collapsed,message.User.Id == RestApiManagerBase.Instance.UserData.User.Id ? Visibility.Collapsed : Visibility.Visible, message.ReceivedMessage,  message.Date));
+                this.Conversation.Add(new MyDictionary(message));
         }
 
-        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this._actualConversation = navigationParameter as Conversation;
             this.ConversationName = this._actualConversation.Name;
@@ -67,7 +67,7 @@ namespace Orphee.ViewModels
         {
             if (this.Message.Any())
             {
-                this.Conversation.Add(new MyDictionary(Visibility.Visible, Visibility.Collapsed, this.Message, DateTime.Now));
+                this.Conversation.Add(new MyDictionary(new Message { User = RestApiManagerBase.Instance.UserData.User, Date = DateTime.Now, ReceivedMessage = this.Message}));
                 RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList);
                 this.Message = String.Empty;
             }

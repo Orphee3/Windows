@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.Streams;
 using Newtonsoft.Json;
 using Orphee.RestApiManagement.Interfaces; 
 
@@ -16,7 +13,6 @@ namespace Orphee.RestApiManagement
     public class FileUploader : IFileUploader
     {
         private string _newCreationId;
-        private string _imageId;
         public async Task<bool> UploadFile(StorageFile fileToUpload)
         {
             var createNewCreationEntryResult = await CreateNewCreationEntry(fileToUpload.Name);

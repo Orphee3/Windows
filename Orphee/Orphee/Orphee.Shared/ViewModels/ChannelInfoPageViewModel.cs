@@ -16,25 +16,25 @@ namespace Orphee.ViewModels
     {
         public ObservableCollection<Creation> CreationList { get; private set; }
         public DelegateCommand BackCommand { get; private set; }
-        private int _totalLikeNumber;
+        private int _creationNumber;
 
-        public int TotalLikeNumber
+        public int CreationNumber
         {
-            get { return this._totalLikeNumber; }
+            get { return this._creationNumber; }
             set
             {
-                if (this._totalLikeNumber != value)
-                    SetProperty(ref this._totalLikeNumber, value);
+                if (this._creationNumber != value)
+                    SetProperty(ref this._creationNumber, value);
             }
         }
-        private int _totalCommentNumber;
-        public int TotalCommentNumber
+        private int _friendNumber;
+        public int FriendNumber
         {
-            get { return this._totalCommentNumber; }
+            get { return this._friendNumber; }
             set
             {
-                if (this._totalCommentNumber != value)
-                    SetProperty(ref this._totalCommentNumber, value);
+                if (this._friendNumber != value)
+                    SetProperty(ref this._friendNumber, value);
             }
         }
         private string _userName;
@@ -71,8 +71,8 @@ namespace Orphee.ViewModels
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this.CreationList.Clear();
-            this.TotalCommentNumber = 0;
-            this.TotalLikeNumber = 0;
+            this.FriendNumber = 0;
+            this.CreationNumber = 0;
             var user = navigationParameter as User;
             if (user == null)
             {
@@ -80,9 +80,9 @@ namespace Orphee.ViewModels
                 return;
             }
             this.UserName = user.Name;
-            //this.TotalLikeNumber = user.Likes.Count;
+            this.FriendNumber = user.Friends?.Count ?? 0;
             var creations = await this._userCreationGetter.GetUserCreations(user.Id);
-            this.TotalCommentNumber = creations?.Count ?? 0;
+            this.CreationNumber = creations?.Count ?? 0;
             SetUserPicture(user.Picture);
             if (creations == null)
                 return;
@@ -95,10 +95,7 @@ namespace Orphee.ViewModels
 
         private void SetUserPicture(string pictureUri)
         {
-            if (string.IsNullOrEmpty(pictureUri))
-                this.UserPictureSource = "/Assets/defaultUser.png";
-            else
-                this.UserPictureSource = pictureUri;
+            this.UserPictureSource = string.IsNullOrEmpty(pictureUri) ? "/Assets/defaultUser.png" : pictureUri;
         }
     }
 }

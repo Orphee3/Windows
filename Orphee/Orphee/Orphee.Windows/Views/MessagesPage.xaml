@@ -142,7 +142,7 @@
 
                             <Ellipse Width="50" Height="50" Grid.Column="0" HorizontalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                    <ImageBrush ImageSource="{Binding Path=ConversationPictureSource}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <TextBlock Grid.Column="1" Text="19:46" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="#BDBEC0" FontSize="10"/>

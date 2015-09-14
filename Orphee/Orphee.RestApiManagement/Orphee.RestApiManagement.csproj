@@ -50,6 +50,7 @@
     <Compile Include="Interfaces\IRoomGetter.cs" />
     <Compile Include="Interfaces\IRoomMessageListGetter.cs" />
     <Compile Include="Interfaces\IUserFriendListGetter.cs" />
+    <Compile Include="Interfaces\IUserNewsGetter.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="RoomGetter.cs" />
     <Compile Include="RoomMessageListGetter.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="UserData.cs" />
     <Compile Include="UserFriendListGetter.cs" />
     <Compile Include="UserListGetter.cs" />
+    <Compile Include="UserNewsGetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EngineIoClientDotNet, Version=0.9.21.0, Culture=neutral, processorArchitecture=MSIL">

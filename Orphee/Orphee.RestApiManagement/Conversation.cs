@@ -15,6 +15,7 @@ namespace Orphee.RestApiManagement
         public DateTime LastMessageDate { get; set; }
         public List<User> UserList { get; set; }
         public List<Message> Messages { get; set; } 
+        public string ConversationPictureSource { get; set; }
 
         public Conversation()
         {

@@ -30,7 +30,7 @@ namespace Orphee.CreationShared
             }
             catch (Exception e)
             {
-                throw new Exception();
+                throw new Exception("", e);
             }
             this._velocity = 75;
 

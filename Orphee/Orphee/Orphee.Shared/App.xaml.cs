@@ -17,7 +17,7 @@ namespace Orphee
     public sealed partial class App : MvvmAppBase
     {
         private IUnityContainer _container;
-        public bool IsSuspending;
+        private bool _isSuspending;
         public static IMyNavigationService MyNavigationService { get; private set; }
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
@@ -48,9 +48,9 @@ namespace Orphee
             return Task.FromResult<object>(null);
         }
 
-        private async void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            IsSuspending = true;
+            _isSuspending = true;
             try
             {
                 var deferral = e.SuspendingOperation.GetDeferral();
@@ -65,7 +65,7 @@ namespace Orphee
             }
             finally
             {
-                IsSuspending = false;
+                _isSuspending = false;
             }
         }
     }

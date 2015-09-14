@@ -60,11 +60,11 @@
                 </StackPanel>
             </Grid>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <Button Content="My Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="25" Foreground="#BDBEC0" Command="{Binding FriendPageCommand}" Margin="0, 5, 0, 5"/>
+                <Button Content="My Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="25" Foreground="#BDBEC0" Command="{Binding FriendPageCommand}" Margin="0, 7, 0, 7"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="25" Foreground="#BDBEC0" Margin="0, 5, 0 , 5"/>
+                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="25" Foreground="#BDBEC0" Margin="0, 7, 0 , 7"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
@@ -72,7 +72,7 @@
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
                 </Grid>
-                <Button Content="Logout" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="25" Foreground="#BDBEC0" Command="{Binding LogoutCommand}" Margin="0, 5, 0, 5"/>
+                <Button Content="Logout" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="25" Foreground="#BDBEC0" Command="{Binding LogoutCommand}" Margin="0, 7, 0, 7"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
                 </Grid>

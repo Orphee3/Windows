@@ -2,7 +2,6 @@
 using Windows.Networking.Connectivity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Quobject.Collections.Immutable;
 using Quobject.SocketIoClientDotNet.Client;
 
 namespace Orphee.RestApiManagement

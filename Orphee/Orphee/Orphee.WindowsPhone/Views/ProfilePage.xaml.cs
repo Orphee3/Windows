@@ -25,10 +25,5 @@ namespace Orphee.Views
             var textblock = sender as TextBlock;
             App.MyNavigationService.Navigate(textblock.Name, null);
         }
-
-        public void Connect(int connectionId, object target)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

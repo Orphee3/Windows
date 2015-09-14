@@ -71,7 +71,10 @@ namespace Orphee.ViewModels
                         foreach (var user in room.Users)
                         {
                             if (user.ToString() != RestApiManagerBase.Instance.UserData.User.Id)
+                            {
+                                room.ConversationPictureSource = userFriends.FirstOrDefault(uf => uf.Id == user.ToString()).Picture ?? "/Assets/defaultUser.png";
                                 room.UserList.Add(userFriends.FirstOrDefault(uf => uf.Id == user.ToString()));
+                            }
                         }
                         if (room.UserList.Count == 1)
                             room.Name = room.UserList[0].Name;
