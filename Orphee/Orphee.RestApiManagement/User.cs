@@ -90,8 +90,6 @@ namespace Orphee.RestApiManagement
             }
         }
 
-        public string PicturePath { get; set; }
-
         public User()
         {
             this.PendingMessageList = new List<Message>();

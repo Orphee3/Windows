@@ -33,6 +33,5 @@ namespace Orphee.RestApiManagement.Interfaces
         bool HasReceivedFriendValidationNotification { get; set; }
         bool HasReceivedFriendConfirmationNotification { get; set; }
         bool PictureHasBeenUplaodedWithSuccess { get; set; }
-        string PicturePath { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace Orphee.ViewModels
         {
             string picturePath;
             if ((picturePath = await OpenFilePicker()) != "")
-                RestApiManagerBase.Instance.UserData.User.PicturePath = picturePath;
+                RestApiManagerBase.Instance.UserData.User.Picture = picturePath;
         }
 
         private async Task<string> OpenFilePicker()

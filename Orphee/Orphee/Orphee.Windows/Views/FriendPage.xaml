@@ -144,10 +144,10 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay}" Visibility="{Binding CheckBoxVisibility}" Foreground="#78C7F9" BorderBrush="#BDBEC0" BorderThickness="2" Margin="0, 0, 10 , 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay}" Visibility="{Binding DataContext.CheckBoxVisibility, ElementName=Page}" Foreground="#78C7F9" BorderBrush="#BDBEC0" BorderThickness="2" Margin="0, 0, 10 , 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <Ellipse Width="50" Height="50" HorizontalAlignment="Center">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                            <ImageBrush ImageSource="{Binding Path=Picture}"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                 </StackPanel>
