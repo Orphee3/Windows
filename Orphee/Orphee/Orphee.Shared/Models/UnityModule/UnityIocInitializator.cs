@@ -20,10 +20,10 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
+            container.RegisterType<INotifyer, Notifyer>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserNewsGetter, UserNewsGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRoomMessageListGetter, RoomMessageListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRoomGetter, RoomGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<INewConversationConfigPageViewModel, NewConversationConfigPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFriendAccepter, FriendAccepter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserFriendListGetter, UserFriendListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserFluxGetter, UserFluxGetter>(new ContainerControlledLifetimeManager());
@@ -32,21 +32,6 @@ namespace Orphee.UnityModule
             container.RegisterType<ICreationCommentGetter, CreationCommentGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserCreationGetter, UserCreationGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IInvitationPageViewModel, InvitationPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ISocialPageViewModel, SocialPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IFriendPageViewModel, FriendPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IChatPageViewModel, ChatPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IChannelInfoPageViewModel, ChannelInfoPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ICreationInfoPageViewModel, CreationInfoPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IFollowersPageViewModel, FollowersPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IFollowsPageViewModel, FollowsPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IMyCreationsPageViewModel, MyCreationsPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ILoginPageViewModel, LoginPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IRegisterPageViewModel, RegisterPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IHomePageViewModel, HomePageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ISocialPageViewModel, SocialPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IMessagesPageViewModel, MessagesPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IMyCreationsPageViewModel, MyCreationsPageViewModel>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ILoopCreationPageViewModel, LoopCreationPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeTrack, OrpheeTrack>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeFile, OrpheeFile>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMidiLibRepository, MidiLibRepository>(new ContainerControlledLifetimeManager());

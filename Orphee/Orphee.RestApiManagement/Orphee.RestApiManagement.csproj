@@ -47,11 +47,13 @@
     <Compile Include="Interfaces\IConversation.cs" />
     <Compile Include="Interfaces\IFriendAccepter.cs" />
     <Compile Include="Interfaces\IMessage.cs" />
+    <Compile Include="Interfaces\INotifyer.cs" />
     <Compile Include="Interfaces\IRoomGetter.cs" />
     <Compile Include="Interfaces\IRoomMessageListGetter.cs" />
     <Compile Include="Interfaces\IUserFriendListGetter.cs" />
     <Compile Include="Interfaces\IUserNewsGetter.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="Notifyer.cs" />
     <Compile Include="RoomGetter.cs" />
     <Compile Include="RoomMessageListGetter.cs" />
     <Compile Include="UserFluxGetter.cs" />

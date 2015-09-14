@@ -13,6 +13,11 @@ namespace Orphee.RestApiManagement
     public class FileUploader : IFileUploader
     {
         private string _newCreationId;
+        private readonly INotifyer _notifyer;
+        public FileUploader(INotifyer notifyer)
+        {
+            this._notifyer = notifyer;
+        }
         public async Task<bool> UploadFile(StorageFile fileToUpload)
         {
             var createNewCreationEntryResult = await CreateNewCreationEntry(fileToUpload.Name);
@@ -20,9 +25,12 @@ namespace Orphee.RestApiManagement
             {
                 using (var response = await httpClient.GetAsync("api/upload/audio/x-midi"))
                 {
-                    string responseData = await response.Content.ReadAsStringAsync();
+                    var responseData = await response.Content.ReadAsStringAsync();
                     var urlPair = JsonConvert.DeserializeObject<CreationUrls>(responseData);
                     if (!createNewCreationEntryResult || !response.IsSuccessStatusCode || !await SendNewCreationRequestToAws(urlPair.PutUrl, fileToUpload) || !await UpdateNewCreationEntry(urlPair.GetUrl))
+                        return false;
+                    var result = await this._notifyer.SendNotification("creations", this._newCreationId);
+                    if (!result)
                         return false;
                 }
             }

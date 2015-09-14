@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.UI.StartScreen;
 using Orphee.RestApiManagement.Interfaces;
 
 namespace Orphee.RestApiManagement
 {
     public class CommentSender : ICommentSender
     {
+        private readonly INotifyer _notifyer;
+        public CommentSender(INotifyer notifyer)
+        {
+            this._notifyer = notifyer;
+        }
         public async Task<bool> SendComment(string comment, string creationId)
         {
             var values = new Dictionary<string, string>()
@@ -26,6 +32,9 @@ namespace Orphee.RestApiManagement
                     {
                         string responseData = await response.Content.ReadAsStringAsync();
                         if (!response.IsSuccessStatusCode)
+                            return false;
+                        var result = await this._notifyer.SendNotification("comments", creationId);
+                        if (!result)
                             return false;
                     }
                 }

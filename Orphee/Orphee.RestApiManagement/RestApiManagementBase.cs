@@ -33,16 +33,19 @@ namespace Orphee.RestApiManagement
 
         private void InitializeRestApiPath()
         {
-            this.RestApiPath = new Dictionary<string, string>();
-            this.RestApiPath.Add("register", "api/register");
-            this.RestApiPath.Add("login", "api/login");
-            this.RestApiPath.Add("users", "api/user");
-            this.RestApiPath.Add("askfriend", "api/askfriend");
-            this.RestApiPath.Add("creation", "api/creation");
-            this.RestApiPath.Add("comment", "api/comment");
-            this.RestApiPath.Add("acceptfriend", "api/acceptfriend");
-            this.RestApiPath.Add("like", "api/like");
-            this.RestApiPath.Add("roomMessages", "api/room/privateMessage");
+            this.RestApiPath = new Dictionary<string, string>
+            {
+                {"register", "api/register"},
+                {"login", "api/login"},
+                {"users", "api/user"},
+                {"askfriend", "api/askfriend"},
+                {"creation", "api/creation"},
+                {"comment", "api/comment"},
+                {"acceptfriend", "api/acceptfriend"},
+                {"like", "api/like"},
+                {"roomMessages", "api/room/privateMessage"},
+                {"notify", "api/notify/"}
+            };
         }
 
         private void RetrieveUserNamesFromCacheMemory()

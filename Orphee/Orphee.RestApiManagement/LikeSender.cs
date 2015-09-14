@@ -7,6 +7,12 @@ namespace Orphee.RestApiManagement
 {
     public class LikeSender : ILikeSender
     {
+        private readonly INotifyer _notifyer;
+
+        public LikeSender(INotifyer notifyer)
+        {
+            this._notifyer = notifyer;
+        }
         public async Task<bool> SendLike(string creationId)
         {
             var values = new Dictionary<string, string>()
@@ -26,6 +32,9 @@ namespace Orphee.RestApiManagement
                     {
                         string responseData = await response.Content.ReadAsStringAsync();
                         if (!response.IsSuccessStatusCode)
+                            return false;
+                        var result = await this._notifyer.SendNotification("likes", creationId);
+                        if (!result)
                             return false;
                     }
                 }
