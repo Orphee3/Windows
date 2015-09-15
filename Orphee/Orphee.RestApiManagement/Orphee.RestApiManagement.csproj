@@ -34,7 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Getters\Interfaces\IPopularCreationGetter.cs" />
     <Compile Include="Getters\Interfaces\IUserListGetter.cs" />
+    <Compile Include="Getters\PopularCreationGetter.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Senders\CommentSender.cs" />
     <Compile Include="Posters\ConnectionManager.cs" />

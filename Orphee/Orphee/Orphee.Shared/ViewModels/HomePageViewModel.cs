@@ -16,8 +16,9 @@ namespace Orphee.ViewModels
 {
     public class HomePageViewModel : ViewModel, IHomePageViewModel
     {
-        public ObservableCollection<User> FlowList { get; set; }
+        public ObservableCollection<Creation> FlowList { get; set; }
         private readonly IUserFluxGetter _userFluxGetter;
+        private readonly IPopularCreationGetter _popularCreationGetter;
         public SolidColorBrush PopularCreationsTitleTextBoxForegroundColor { get; set; }
         public SolidColorBrush NewFriendsCreationsTitleTextBoxForegroundColor { get; set; }
         private Visibility _searchBoxVisibility;
@@ -34,40 +35,37 @@ namespace Orphee.ViewModels
             }
         }
 
-        public HomePageViewModel(IUserFluxGetter userFluxGetter)
+        public HomePageViewModel(IUserFluxGetter userFluxGetter, IPopularCreationGetter popularCreationGetter)
         {
             this._userFluxGetter = userFluxGetter;
-            this.FlowList = new ObservableCollection<User>();
+            this._popularCreationGetter = popularCreationGetter;
+            this.FlowList = new ObservableCollection<Creation>();
             this.NewFriendsCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Colors.White);
             this.PopularCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Color.FromArgb(100, 13, 71, 161));
             this.SearchBoxVisibility = Visibility.Collapsed;
             FillFlowListWithPopularCreations();
         }
 
-        public void FillFlowListWithNewFriendCreations()
+        public async void FillFlowListWithNewFriendCreations()
         {
-         
-            this.FlowList.Clear();
-            for (var i = 0; i < 12; i++)
-                this.FlowList.Add(new User() {Name = "Friend Boucle " + i});
-            SetTitleTexBoxForegroundColor(false);
-        }
-
-        public void FillFlowListWithPopularCreations()
-        {
-            if (this.FlowList.Count > 0)
-                this.FlowList.Clear();
-            for (var i = 0; i < 12; i++)
-                this.FlowList.Add(new User() { Name = "Popular Boucle " + i });
-            SetTitleTexBoxForegroundColor(true);
-        }
-
-        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
-        {
-            if (RestApiManagerBase.Instance.IsConnected)
+            if (RestApiManagerBase.Instance.IsConnected && this.FlowList.Count == 0)
             {
-                var result = await this._userFluxGetter.GetUserFlux();
+                var friendNews = await this._userFluxGetter.GetUserFlux();
+                for (var i = 0; i < 12; i++)
+                    this.FlowList.Add(new Creation {Name = "Friend Boucle " + i});
+                SetTitleTexBoxForegroundColor(false);
             }
+        }
+
+        public async void FillFlowListWithPopularCreations()
+        {
+            var popularCreation = await this._popularCreationGetter.GetpopularCreation();
+            foreach (var creation in popularCreation)
+            {
+                creation.Name = creation.Name.Split('.')[0];
+                this.FlowList.Add(creation);
+            }
+            SetTitleTexBoxForegroundColor(true);
         }
 
         private void SetTitleTexBoxForegroundColor(bool option)

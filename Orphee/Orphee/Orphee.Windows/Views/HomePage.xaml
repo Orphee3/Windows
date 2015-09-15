@@ -43,12 +43,12 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                                 <Ellipse Width="50" Height="50" HorizontalAlignment="Center" Tapped="UserPicture_OnTapped">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                        <ImageBrush ImageSource="{Binding Path=Creator[0].Picture}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <StackPanel Margin="50, 0, 0, 0" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
-                                    <TextBlock Text="CreatorName" Foreground="#78C7F9" FontSize="15"/>
+                                    <TextBlock Text="{Binding Path=Creator[0].Name}" Foreground="#78C7F9" FontSize="15"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition/>

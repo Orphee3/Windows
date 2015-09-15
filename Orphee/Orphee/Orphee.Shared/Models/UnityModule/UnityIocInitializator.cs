@@ -9,7 +9,6 @@ using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.FileManagement;
 using Orphee.FileManagement.Interfaces;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Interfaces;
@@ -26,6 +25,7 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
+            container.RegisterType<IPopularCreationGetter, PopularCreationGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<INotificationSender, NotificationSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserNewsGetter, UserNewsGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMessageListGetter, MessageListGetter>(new ContainerControlledLifetimeManager());

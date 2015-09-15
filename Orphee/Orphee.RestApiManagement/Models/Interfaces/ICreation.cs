@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Orphee.RestApiManagement.Models.Interfaces
@@ -14,7 +15,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         [JsonProperty(PropertyName = "comments")]
         JArray Comments { get; set; }
         [JsonProperty(PropertyName = "creator")]
-        JArray Creator { get; set; }
+        List<User> Creator { get; set; }
         [JsonProperty(PropertyName = "url")]
         string GetUrl { get; set; }
         int NumberOfComment { get; set; }
