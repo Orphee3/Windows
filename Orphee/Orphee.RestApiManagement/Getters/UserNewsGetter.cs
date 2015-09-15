@@ -1,15 +1,17 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 
 namespace Orphee.RestApiManagement.Getters
 {
     public class UserNewsGetter : IUserNewsGetter
     {
-        public async Task<object> GetUserNews()
+        public async Task<List<News>> GetUserNews()
         {
+            List<News> newsList;
             using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
             {
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", "Bearer " + RestApiManagerBase.Instance.UserData.Token);
@@ -17,9 +19,10 @@ namespace Orphee.RestApiManagement.Getters
                 {
                     var responseData = await response.Content.ReadAsStringAsync();
                     if (!response.IsSuccessStatusCode)
-                        return false;
+                        return null;
+                    newsList = JsonConvert.DeserializeObject<List<News>>(responseData);
                 }
-                return true;
+                return newsList;
             }
         }
     }

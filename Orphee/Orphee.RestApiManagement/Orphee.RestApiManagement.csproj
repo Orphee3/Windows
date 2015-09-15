@@ -38,6 +38,8 @@
     <Compile Include="Getters\Interfaces\IUserListGetter.cs" />
     <Compile Include="Getters\PopularCreationGetter.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Interfaces\INews.cs" />
+    <Compile Include="Models\News.cs" />
     <Compile Include="Senders\CommentSender.cs" />
     <Compile Include="Posters\ConnectionManager.cs" />
     <Compile Include="Models\Conversation.cs" />
@@ -59,7 +61,6 @@
     <Compile Include="Senders\NotificationSender.cs" />
     <Compile Include="Getters\ConversationGetter.cs" />
     <Compile Include="Getters\MessageListGetter.cs" />
-    <Compile Include="Getters\UserFluxGetter.cs" />
     <Compile Include="Models\Interfaces\IComment.cs" />
     <Compile Include="Senders\Interfaces\ICommentSender.cs" />
     <Compile Include="Models\Interfaces\ICreation.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="Getters\Interfaces\IFriendshipAsker.cs" />
     <Compile Include="Senders\Interfaces\ILikeSender.cs" />
     <Compile Include="Getters\Interfaces\IUserCreationGetter.cs" />
-    <Compile Include="Getters\Interfaces\IUserFluxGetter.cs" />
     <Compile Include="Senders\LikeSender.cs" />
     <Compile Include="Socket Management\NotificationRecieiver.cs" />
     <Compile Include="Getters\FriendListGetter.cs" />

@@ -17,7 +17,9 @@ namespace Orphee.ViewModels
     public class HomePageViewModel : ViewModel, IHomePageViewModel
     {
         public ObservableCollection<Creation> FlowList { get; set; }
-        private readonly IUserFluxGetter _userFluxGetter;
+        private List<News> _friendNewsList;
+        private List<Creation> _popularCreationList; 
+        private readonly IUserNewsGetter _userFluxGetter;
         private readonly IPopularCreationGetter _popularCreationGetter;
         public SolidColorBrush PopularCreationsTitleTextBoxForegroundColor { get; set; }
         public SolidColorBrush NewFriendsCreationsTitleTextBoxForegroundColor { get; set; }
@@ -35,11 +37,13 @@ namespace Orphee.ViewModels
             }
         }
 
-        public HomePageViewModel(IUserFluxGetter userFluxGetter, IPopularCreationGetter popularCreationGetter)
+        public HomePageViewModel(IUserNewsGetter userFluxGetter, IPopularCreationGetter popularCreationGetter)
         {
             this._userFluxGetter = userFluxGetter;
             this._popularCreationGetter = popularCreationGetter;
             this.FlowList = new ObservableCollection<Creation>();
+            this._popularCreationList = new List<Creation>();
+            this._friendNewsList = new List<News>();
             this.NewFriendsCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Colors.White);
             this.PopularCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Color.FromArgb(100, 13, 71, 161));
             this.SearchBoxVisibility = Visibility.Collapsed;
@@ -48,9 +52,9 @@ namespace Orphee.ViewModels
 
         public async void FillFlowListWithNewFriendCreations()
         {
-            if (RestApiManagerBase.Instance.IsConnected && this.FlowList.Count == 0)
+            if (RestApiManagerBase.Instance.IsConnected && this._friendNewsList.Count == 0)
             {
-                var friendNews = await this._userFluxGetter.GetUserFlux();
+                this._friendNewsList = await this._userFluxGetter.GetUserNews();
                 for (var i = 0; i < 12; i++)
                     this.FlowList.Add(new Creation {Name = "Friend Boucle " + i});
                 SetTitleTexBoxForegroundColor(false);

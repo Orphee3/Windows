@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Orphee.RestApiManagement.Models;
 
 namespace Orphee.RestApiManagement.Getters.Interfaces
 {
     public interface IUserNewsGetter
     {
-        Task<object> GetUserNews();
+        Task<List<News>> GetUserNews();
     }
 }

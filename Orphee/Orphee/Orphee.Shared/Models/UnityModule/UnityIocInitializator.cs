@@ -32,7 +32,6 @@ namespace Orphee.UnityModule
             container.RegisterType<IConversationGetter, ConversationGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFriendAccepter, FriendAccepter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserFriendListGetter, UserFriendListGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IUserFluxGetter, UserFluxGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<ILikeSender, LikeSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICommentSender, CommentSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICreationCommentGetter, CreationCommentGetter>(new ContainerControlledLifetimeManager());
