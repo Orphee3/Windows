@@ -15,12 +15,12 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         [JsonProperty(PropertyName = "comments")]
         JArray Comments { get; set; }
         [JsonProperty(PropertyName = "creator")]
-        List<User> Creator { get; set; }
+        JArray Creator { get; set; }
         [JsonProperty(PropertyName = "url")]
         string GetUrl { get; set; }
         int NumberOfComment { get; set; }
         int NumberOfLike { get; set; }
-
+        List<User> CreatorList { get; set; } 
         void UpdateNumberOfLikeAndCommentValue();
     }
 }

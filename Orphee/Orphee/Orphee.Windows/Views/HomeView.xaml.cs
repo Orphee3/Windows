@@ -45,7 +45,7 @@ namespace Orphee.Views
 
         private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            var channel = ((Ellipse) sender).DataContext as User;
+            var channel = ((Creation)((Ellipse) sender).DataContext).CreatorList[0];
             App.MyNavigationService.Navigate("ChannelInfo", channel);
         }
 

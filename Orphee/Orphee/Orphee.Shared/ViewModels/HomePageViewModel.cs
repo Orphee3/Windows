@@ -67,6 +67,7 @@ namespace Orphee.ViewModels
             foreach (var creation in popularCreation)
             {
                 creation.Name = creation.Name.Split('.')[0];
+                creation.CreatorList = new List<User> {creation.Creator[0].ToObject<User>()};
                 this.FlowList.Add(creation);
             }
             SetTitleTexBoxForegroundColor(true);
