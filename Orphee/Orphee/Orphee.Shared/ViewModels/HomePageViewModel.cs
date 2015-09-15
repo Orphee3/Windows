@@ -3,12 +3,8 @@ using System.Collections.ObjectModel;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
@@ -63,14 +59,17 @@ namespace Orphee.ViewModels
 
         public async void FillFlowListWithPopularCreations()
         {
-            var popularCreation = await this._popularCreationGetter.GetpopularCreation();
-            foreach (var creation in popularCreation)
+            if (this._popularCreationList.Count == 0)
             {
-                creation.Name = creation.Name.Split('.')[0];
-                creation.CreatorList = new List<User> {creation.Creator[0].ToObject<User>()};
-                this.FlowList.Add(creation);
+                var popularCreation = await this._popularCreationGetter.GetpopularCreation();
+                foreach (var creation in popularCreation)
+                {
+                    creation.Name = creation.Name.Split('.')[0];
+                    creation.CreatorList = new List<User> {creation.Creator[0].ToObject<User>()};
+                    this.FlowList.Add(creation);
+                }
+                SetTitleTexBoxForegroundColor(true);
             }
-            SetTitleTexBoxForegroundColor(true);
         }
 
         private void SetTitleTexBoxForegroundColor(bool option)
