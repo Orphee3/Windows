@@ -31,7 +31,10 @@ namespace Orphee.ViewModels
         {
             bool isInternetConnected;
             if ((isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet()) && await this._registrationManager.RegisterUser(this.UserName, this.MailAdress, this.Password))
+            {
                 App.MyNavigationService.GoBack();
+                App.MyNavigationService.GoBack();
+            }
             else
                 DisplayErrorMessage(isInternetConnected);
         }
