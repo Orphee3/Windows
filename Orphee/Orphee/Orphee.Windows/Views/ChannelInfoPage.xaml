@@ -108,6 +108,9 @@
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding UserName}" FontSize="25" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
             <AppBarButton Icon="Back" Command="{Binding BackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
         </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>

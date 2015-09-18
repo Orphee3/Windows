@@ -107,6 +107,9 @@
             <AppBarButton Icon="Back" Command="{Binding GoBackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CreationName}" FontSize="25"/>
         </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>

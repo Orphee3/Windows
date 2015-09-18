@@ -97,25 +97,30 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="#78C7F9">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <AppBarButton Grid.Column="0" Name="Home" Label="Home" Tapped="Button_Tapped" Icon="Home" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>
-        <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
-        <AppBarButton Grid.Column="1" Name="Social" Icon="zoom" Label="Social" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>
-        <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
-        <Grid Grid.Column="2">
-            <Image Height="35" VerticalAlignment="Top" Margin="0, 6, 0, 0" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
-            <AppBarButton Name="LoopCreation" HorizontalAlignment="Center" Label="Create" Tapped="Button_Tapped" Style="{StaticResource MyAppBarButton}"/>
+    <StackPanel>
+        <Grid>
+            <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
-        <Line Grid.Column="2" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
-        <ui:MyAppBarButton Grid.Column="3" x:Name="Conversation" Icon="Message" Label="Messages" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>
-        <Line Grid.Column="3" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
-        <ui:MyAppBarButton Grid.Column="4" x:Name="Profile" Icon="Contact" Label="Profile" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>
-    </Grid>
+        <Grid Background="#78C7F9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <AppBarButton Grid.Column="0" Name="Home" Label="Home" Tapped="Button_Tapped" Icon="Home" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>
+            <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
+            <AppBarButton Grid.Column="1" Name="Social" Icon="zoom" Label="Social" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>
+            <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
+            <Grid Grid.Column="2">
+                <Image Height="35" VerticalAlignment="Top" Margin="0, 6, 0, 0" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
+                <AppBarButton Name="LoopCreation" HorizontalAlignment="Center" Label="Create" Tapped="Button_Tapped" Style="{StaticResource MyAppBarButton}"/>
+            </Grid>
+            <Line Grid.Column="2" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
+            <ui:MyAppBarButton Grid.Column="3" x:Name="Conversation" Icon="Message" Label="Messages" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>
+            <Line Grid.Column="3" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
+            <ui:MyAppBarButton Grid.Column="4" x:Name="Profile" Icon="Contact" Label="Profile" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>
+        </Grid>
+    </StackPanel>
 </UserControl>

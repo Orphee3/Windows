@@ -23,6 +23,9 @@
             </StackPanel>
             <SearchBox Margin="20, 0, 20, 5" Visibility="{Binding SearchBoxVisibility, Mode=TwoWay}" VerticalAlignment="Bottom"/>
         </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+        </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding FlowList}" Height="Auto"  ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None" ManipulationMode="TranslateX, System" ManipulationStarted="UIElement_OnManipulationStarted" ManipulationCompleted="UIElement_OnManipulationCompleted">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -45,7 +48,7 @@
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <StackPanel Margin="50, 0, 0, 0" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="25" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>
                                     <TextBlock Text="{Binding Path=CreatorList[0].Name}" Foreground="#78C7F9" FontSize="15"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>

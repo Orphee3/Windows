@@ -108,6 +108,9 @@
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="New Conversation Settings" FontSize="25"/>
             <AppBarButton VerticalAlignment="Center" Icon="Add" Command="{Binding GoBackCommand}" Style="{StaticResource MyBackButton}" Visibility="{Binding ListViewVisibility}"/>
         </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+        </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding FriendList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

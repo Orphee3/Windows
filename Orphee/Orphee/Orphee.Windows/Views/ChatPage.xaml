@@ -112,6 +112,9 @@
                 <AppBarButton Icon="Back" Command="{Binding BackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
                 <AppBarButton Icon="Add" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource MyBackButton}"/>
             </Grid>
+            <Grid Grid.Row="1" VerticalAlignment="Top">
+                <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+            </Grid>
             <ListView Name="ConversationListView" Grid.Row="1" ItemsSource="{Binding Conversation}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None" HorizontalAlignment="Stretch">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -131,7 +134,7 @@
                                     <ColumnDefinition Width="{Binding Path=ColumnZeroWidth}"/>
                                     <ColumnDefinition Width="{Binding Path=ColumnOneWidth}"/>
                                 </Grid.ColumnDefinitions>
-                                <Ellipse Width="50" Height="50" Grid.Column="{Binding Path=ElipseColumnNumber}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <Ellipse Width="50" Height="50" Grid.Column="{Binding Path=ElipseColumnNumber}" HorizontalAlignment="Center" VerticalAlignment="Top" Tapped="UserPicture_OnTapped">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="{Binding Path=UserPictureSource}"/>
                                     </Ellipse.Fill>
