@@ -21,7 +21,6 @@ namespace Orphee.ViewModels
         private string _creationName;
         private Creation _creation;
         private int _commentNumber;
-
         public int CommentNumber
         {
             get { return this._commentNumber; }
@@ -40,9 +39,7 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._creationName, value);
             }
         }
-
         private int _likeNumber;
-
         public int LikeNumber
         {
             get { return this._likeNumber; }
@@ -52,6 +49,7 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._likeNumber, value);
             }
         }
+        public string UserPictureSource { get; private set; }
         private readonly ICommentSender _commentSender;
         private readonly ICreationCommentGetter _creationCommentGetter;
 
@@ -59,6 +57,7 @@ namespace Orphee.ViewModels
         {
             this._creationCommentGetter = creationCommentGetter;
             this._commentSender = commentsender;
+            this.UserPictureSource = RestApiManagerBase.Instance.IsConnected ? RestApiManagerBase.Instance.UserData.User.Picture : "/Assets/defaultUser.png";
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.CommentList = new ObservableCollection<Comment>();
         }

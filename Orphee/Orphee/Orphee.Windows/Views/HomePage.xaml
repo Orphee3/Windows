@@ -6,8 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -51,18 +49,18 @@
                                     <TextBlock Text="{Binding Path=CreatorList[0].Name}" Foreground="#78C7F9" FontSize="15"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="30"/>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="115"/>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="115"/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                            <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
-                                            <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                                            <Image Source="/Assets/commentary-icon.png" Height="15" Width="15" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="1 500" Foreground="#BDBEC0" FontSize="15" Margin="5, 0, 0, 0" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                         <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                         <StackPanel Orientation="Horizontal" Grid.Column="2">
-                                            <Image Source="/Assets/heart-icon.png" Height="15" Width="15"/>
-                                            <TextBlock Text="1500" Foreground="#BDBEC0" FontSize="15"/>
+                                            <Image Source="/Assets/heart-icon.png" Height="15" Width="15" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="1 500"  Foreground="#BDBEC0" Margin="5, 0, 0, 0" FontSize="15" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>
