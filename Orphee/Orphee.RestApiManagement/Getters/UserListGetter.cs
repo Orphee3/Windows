@@ -23,8 +23,8 @@ namespace Orphee.RestApiManagement.Getters
                         if (response.StatusCode != HttpStatusCode.OK)
                             return null;
                         userList = JsonConvert.DeserializeObject<List<User>>(result);
-                        /*if (RestApiManagerBase.Instance.IsConnected)
-                            userList.Remove(userList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));*/
+                        if (RestApiManagerBase.Instance.IsConnected)
+                            userList.Remove(userList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
                     }
             }
             return userList;

@@ -17,8 +17,9 @@ namespace Orphee.ViewModels.Interfaces
         SolidColorBrush BackgroundPictureColor { get; }
         Visibility DisconnectedStackPanelVisibility { get; set; }
         Visibility ConnectedStackPanelVisibility { get; set; }
-        DelegateCommand LoginCommand { get; }
+        DelegateCommand MyCreationsCommand { get; }
         DelegateCommand LogoutCommand { get; }
+        DelegateCommand LoginCommand { get; }
         DelegateCommand FriendPageCommand { get; }
         void UpdatePictureSource();
     }

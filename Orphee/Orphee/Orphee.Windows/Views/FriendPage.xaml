@@ -152,7 +152,7 @@
                                     </Ellipse>
                                 </StackPanel>
                                 <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
-                                <AppBarButton Grid.Column="2" Foreground="#BDBEC0" Command="{Binding DataContext.DeleteFriendCommand, ElementName=Page}"  CommandParameter="{Binding}"  Visibility="{Binding DataContext.CheckBoxVisibility, ElementName=Page}" Icon="Delete" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
+                                <AppBarButton Grid.Column="2" Foreground="#BDBEC0" Command="{Binding DataContext.DeleteFriendCommand, ElementName=Page}"  CommandParameter="{Binding}"  Visibility="{Binding DataContext.InvitationStackPanelVisibility, ElementName=Page}" Icon="Delete" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
                             </Grid>
                             <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
                         </StackPanel>

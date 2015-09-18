@@ -19,7 +19,8 @@
         <Grid Background="#78C7F9" Grid.Row="0" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Name="PopularTextBox" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Popular" FontSize="25" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
-                <TextBlock Name="FriendNewsTextBox" Text="Friend news" FontSize="25" VerticalAlignment="Center" Margin="30, 0, 0, 0" Foreground="{Binding NewFriendsCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
+                <Line Stroke="White" X1="0" Y1="5" X2="0" Y2="20" Margin="20, 0, 0, 0" VerticalAlignment="Center"/>
+                <TextBlock Name="FriendNewsTextBox" Text="Friend news" FontSize="25" VerticalAlignment="Center" Margin="20, 0, 0, 0" Foreground="{Binding NewFriendsCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
             </StackPanel>
             <SearchBox Margin="20, 0, 20, 5" Visibility="{Binding SearchBoxVisibility, Mode=TwoWay}" VerticalAlignment="Bottom"/>
         </Grid>
@@ -36,37 +37,39 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Center">
                         <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                            <Grid x:Name="CreationImageGrid" Tapped="Play" HorizontalAlignment="Center">
-                                <Image Source="/Assets/creation-background.png" VerticalAlignment="Top" Stretch="Fill"/>
-                                <Image Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
-                                <Image Source="/Assets/play-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height='100' Width="100" Opacity="0.6" Margin="10, 0, 0, 0"/>
-                            </Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                <Ellipse Width="50" Height="50" HorizontalAlignment="Center" Tapped="UserPicture_OnTapped">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Path=CreatorList[0].Picture}"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <StackPanel Margin="50, 0, 0, 0" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid x:Name="CreationImageGrid" Tapped="Play" HorizontalAlignment="Left" Height="120" Width="120">
+                                    <Image Source="/Assets/creation-background.png" VerticalAlignment="Top" Stretch="Fill"/>
+                                    <Image Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
+                                    <Image Source="/Assets/play-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height='100' Width="100" Opacity="0.6" Margin="10, 0, 0, 0"/>
+                                </Grid>
+                                <StackPanel VerticalAlignment="Center" Margin="50, 0, 0, 0">
                                     <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>
-                                    <TextBlock Text="{Binding Path=CreatorList[0].Name}" Foreground="#78C7F9" FontSize="15"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="115"/>
-                                            <ColumnDefinition Width="20"/>
-                                            <ColumnDefinition Width="115"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                            <Image Source="/Assets/commentary-icon.png" Height="15" Width="15" HorizontalAlignment="Center"/>
-                                            <TextBlock Text="1 500" Foreground="#BDBEC0" FontSize="15" Margin="5, 0, 0, 0" HorizontalAlignment="Center"/>
+                                            <Image Source="/Assets/commentary-icon.png" Height="15" Width="15" HorizontalAlignment="Left"/>
+                                            <TextBlock Text="1 500" Foreground="#BDBEC0" FontSize="15" Margin="5, 0, 0, 0" HorizontalAlignment="Left"/>
                                         </StackPanel>
-                                        <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" Margin="15, 0, 15, 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                         <StackPanel Orientation="Horizontal" Grid.Column="2">
                                             <Image Source="/Assets/heart-icon.png" Height="15" Width="15" HorizontalAlignment="Center"/>
                                             <TextBlock Text="1 500"  Foreground="#BDBEC0" Margin="5, 0, 0, 0" FontSize="15" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0, 5, 0, 0">
+                                <Ellipse Width="50" Height="50" HorizontalAlignment="Center" Tapped="UserPicture_OnTapped">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Path=CreatorList[0].Picture}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Text="{Binding Path=CreatorList[0].Name}" Foreground="#78C7F9" FontSize="15" Margin="25, 0, 0, 0" VerticalAlignment="Center"/>                                
                             </StackPanel>
                             <Grid HorizontalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
@@ -81,7 +84,7 @@
                                     <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
                                 </Button>
                             </Grid>
-                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
+                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 0, 0, 10" VerticalAlignment="Bottom"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

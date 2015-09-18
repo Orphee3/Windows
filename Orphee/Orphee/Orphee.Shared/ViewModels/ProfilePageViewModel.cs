@@ -64,13 +64,15 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._connectedStackPanelVisibility, value);
             }
         }
-        public DelegateCommand LoginCommand { get; private set; }
+        public DelegateCommand MyCreationsCommand { get; private set; }
         public DelegateCommand LogoutCommand { get; private set; }
         public DelegateCommand FriendPageCommand { get; private set; }
+        public DelegateCommand LoginCommand { get; private set; }
         public DelegateCommand EditProfileCommand { get; private set; }
         public ProfilePageViewModel()
         {
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
+            this.MyCreationsCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("MyCreations", null));
             this.LogoutCommand = new DelegateCommand(LogoutCommandExec);
             this.FriendPageCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", null));
             this.EditProfileCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("ProfileEdition", null));

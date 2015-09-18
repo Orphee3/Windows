@@ -67,7 +67,7 @@
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="20" Foreground="#BDBEC0" Margin="0, 7, 0 , 7"/>
+                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="20" Foreground="#BDBEC0" Margin="0, 7, 0 , 7" Command="{Binding MyCreationsCommand}"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
