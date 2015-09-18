@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -94,6 +95,20 @@ namespace Orphee.ViewModels
                     this.CommentNumber++;
                     this.CommentList.Insert(0, comment);
                 }
+            }
+        }
+
+        public async void UpdateCommentList(List<Comment> pendingCommentList)
+        {
+            if (pendingCommentList.Any(c => c.CreationId == this._creation.Id))
+            {
+                var commentList = await this._creationCommentGetter.GetCreationComments(this._creation.Id);
+                foreach (var comment in commentList)
+                    if (!this.CommentList.Any(c => c.Id == comment.Id))
+                    {
+                        this.CommentList.Insert(0, comment);
+                        this.CommentNumber++;
+                    }
             }
         }
     }

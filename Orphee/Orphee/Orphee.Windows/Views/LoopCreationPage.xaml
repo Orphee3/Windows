@@ -301,7 +301,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </StackPanel>
-                        <Button Height="480" HorizontalAlignment="Stretch" Content="+" BorderBrush="#BDBEC0" Foreground="#BDBEC0" Command="{Binding AddColumnsCommand}"/>
+                        <Button Height="520" HorizontalAlignment="Stretch" Content="+" BorderBrush="#BDBEC0" Foreground="#BDBEC0" Command="{Binding AddColumnsCommand}"/>
                 </StackPanel>
                 </ScrollViewer>
                 <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">

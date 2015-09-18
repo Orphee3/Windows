@@ -21,6 +21,7 @@ namespace Orphee.RestApiManagement.Getters
                     if (response.StatusCode != HttpStatusCode.OK)
                         return null;
                     friendList = JsonConvert.DeserializeObject<List<User>>(result);
+                    RestApiManagerBase.Instance.UserData.User.FriendList = JsonConvert.DeserializeObject<List<User>>(result);
                 }
             }
             return friendList;

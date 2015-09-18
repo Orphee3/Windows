@@ -15,5 +15,6 @@ namespace Orphee.ViewModels.Interfaces
         string CreationName { get; }
         int CommentNumber { get; set; }
         int LikeNumber { get; set; }
+        void UpdateCommentList(List<Comment> commentList);
     }
 }

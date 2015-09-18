@@ -12,6 +12,7 @@ namespace Orphee.CreationShared
         {
             this.NoteNameList = new Dictionary<string, Note>()
             {
+                {"B3", Note.B3},
                 {"C", Note.C4},
                 {"C#", Note.CSharp4},
                 {"D", Note.D4},
@@ -33,7 +34,7 @@ namespace Orphee.CreationShared
 
             foreach (var pair in this.NoteNameList)
             {
-                if (pair.Value == note || index == 11)
+                if (pair.Value == note || index == 12)
                     return index;
                 index++;
             }

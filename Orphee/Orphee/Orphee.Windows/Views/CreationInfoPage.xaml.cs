@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Threading.Tasks;
 using Windows.System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json.Linq;
+using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -22,11 +27,24 @@ namespace Orphee.Views
         public CreationInfoPage()
         {
             this.InitializeComponent();
+            if (RestApiManagerBase.Instance.IsConnected)
+                RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
+        }
+
+        private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (e.PropertyName == "_hasReceivedCommentNotification")
+                    ((CreationInfoPageViewModel)this.DataContext).UpdateCommentList(RestApiManagerBase.Instance.UserData.User.PendingCommentList);
+                RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification = false;
+                RestApiManagerBase.Instance.UserData.User.PendingCommentList.Clear();
+            }));
         }
 
         public void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            var channel = sender;
+            var channel = ((Comment)((Ellipse)sender).DataContext).Creator;
             App.MyNavigationService.Navigate("ChannelInfo", channel);
         }
 

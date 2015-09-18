@@ -10,8 +10,10 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         [JsonProperty(PropertyName = "message")]
         string Message { get; set; }
         [JsonProperty(PropertyName = "creator")]
-        string CreatorId { get; set; }
+        User Creator { get; set; }
         [JsonProperty(PropertyName = "child")]
         JArray Child { get; set; }
+        [JsonProperty(PropertyName = "creation")]
+        string CreationId { get; set; }
     }
 }

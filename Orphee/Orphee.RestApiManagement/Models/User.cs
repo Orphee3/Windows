@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Annotations;
 using Orphee.RestApiManagement.Models.Interfaces;
@@ -22,7 +23,22 @@ namespace Orphee.RestApiManagement.Models
         public JArray Likes { get; set; }
         public JArray Creations { get; set; }
         public List<User> PendingFriendList { get; set; }
-        public List<Message> PendingMessageList { get; set; } 
+        public List<Comment> PendingCommentList { get; set; } 
+        public List<User> FriendList { get; set; } 
+        public List<Message> PendingMessageList { get; set; }
+        private bool _hasReceivedCommentNotification;
+        public bool HasReceivedCommentNotification
+        {
+            get { return _hasReceivedCommentNotification; }
+            set
+            {
+                if (this._hasReceivedCommentNotification != value)
+                {
+                    this._hasReceivedCommentNotification = value;
+                    OnPropertyChanged(nameof(_hasReceivedCommentNotification));
+                }
+            }
+        }
         private bool _hasReceivedFriendNotification;
         public bool HasReceivedFriendNotification
         {
@@ -75,7 +91,7 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
-
+        public Visibility AddButtonVisibility { get; set; }
         private bool _pictureHasBeenUplaodedWithSuccess;
         public bool PictureHasBeenUplaodedWithSuccess
         {
@@ -89,13 +105,14 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
-
         public User()
         {
             this.PendingMessageList = new List<Message>();
             this.PendingFriendList = new List<User>();
-            if (string.IsNullOrEmpty(this.Picture))
+            this.PendingCommentList = new List<Comment>();
+;            if (string.IsNullOrEmpty(this.Picture))
                 this.Picture = "/Assets/defaultUser.png";
+            this.AddButtonVisibility = Visibility.Visible;
         }
 
         [NotifyPropertyChangedInvocator]

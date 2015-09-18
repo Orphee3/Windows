@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using Midi;
 using Orphee.CreationShared.Interfaces;
 
@@ -33,7 +32,7 @@ namespace Orphee.CreationShared
 
         public OrpheeTrack(int trackPos, Channel channel)
         {
-            this.TrackName = "New Loop";
+            this.TrackName = "New Creation";
             this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
             this.Channel = channel;
             this.TrackPos = trackPos;

@@ -7,7 +7,8 @@ namespace Orphee.RestApiManagement.Models
     {
         public string Id { get; set; }
         public string Message { get; set; }
-        public string CreatorId { get; set; }
+        public User Creator { get; set; }
         public JArray Child { get; set; }
+        public string CreationId { get; set; }
     }
 }

@@ -178,10 +178,13 @@
 
                             <Ellipse Width="50" Height="50" Grid.Column="0" Tapped="UserPicture_OnTapped" Margin="20, 0, 0, 0" VerticalAlignment="Top">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                                    <ImageBrush ImageSource="{Binding Path=Creator.Picture}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <TextBlock Grid.Column="1" Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#BDBEC0" FontSize="25" TextWrapping="WrapWholeWords"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Path=Creator.Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#78C7F9" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Path=Message}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#BDBEC0" FontSize="25" TextWrapping="WrapWholeWords"/>
+                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
@@ -33,19 +32,18 @@ namespace Orphee.ViewModels
 
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-            if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && !this.UserList.Any())
+            if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
-                this.UserList.Clear();
                 var temporaryList = (await this._userListGetter.GetUserList(0, 30)).OrderBy(u => u.UserName);
-                foreach (var friend in temporaryList)
+                foreach (var user in temporaryList)
                 {
-                    if (string.IsNullOrEmpty(friend.Picture))
-                        friend.Picture = "/Assets/defaultUser.png";
-                    this.UserList.Add(friend);
+                    if (string.IsNullOrEmpty(user.Picture))
+                        user.Picture = "/Assets/defaultUser.png";
+                    if (!RestApiManagerBase.Instance.IsConnected)
+                        user.AddButtonVisibility = Visibility.Collapsed;
+                    this.UserList.Add(user);
                 }
             }
-            if (RestApiManagerBase.Instance.IsConnected)
-                this.UserList.Remove(this.UserList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
         }
 
         private async void NewFriendCommandExec(User friend)

@@ -54,6 +54,25 @@ namespace Orphee.RestApiManagement.Socket_Management
             {
                 RestApiManagerBase.Instance.UserData.User.HasReceivedFriendConfirmationNotification = true;
             });
+            this._socket.On("comments", (data) =>
+            {
+                var userJson = JObject.FromObject(data);
+                var media = JsonConvert.DeserializeObject<Creation>(userJson["media"].ToString());
+                var comment = new Comment
+                {
+                    CreationId = media.Id,
+                };
+                RestApiManagerBase.Instance.UserData.User.PendingCommentList.Add(comment);
+                RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification = true;
+            });
+            this._socket.On("likes", (data) =>
+            {
+
+            });
+            this._socket.On("creations", (data) =>
+            {
+
+            });
             this._socket.On(Socket.EVENT_CONNECT_ERROR, (data) =>
             {
                 CloseSocket();

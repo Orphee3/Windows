@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Windows.UI.Xaml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -27,7 +28,10 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         DateTime DateCreaion { get; set; }
         bool IsChecked { get; set; }
         List<User> PendingFriendList { get; set; }
-        List<Message> PendingMessageList { get; set; } 
+        List<Message> PendingMessageList { get; set; }
+        List<Comment> PendingCommentList { get; set; }
+        Visibility AddButtonVisibility { get; set; }
+        bool HasReceivedCommentNotification { get; set; }
         bool HasReceivedFriendNotification { get; set; }
         bool HasReceivedMessageNotification { get; set; }
         bool HasReceivedFriendValidationNotification { get; set; }
