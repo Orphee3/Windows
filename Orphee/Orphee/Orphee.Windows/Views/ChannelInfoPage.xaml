@@ -100,12 +100,12 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0" >
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding UserName}" FontSize="35" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding UserName}" FontSize="25" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
             <AppBarButton Icon="Back" Command="{Binding BackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
         </Grid>
         <Grid Grid.Row="1">

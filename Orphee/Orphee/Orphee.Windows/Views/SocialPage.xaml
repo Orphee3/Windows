@@ -100,13 +100,13 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Social" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Social" FontSize="25"/>
         </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding UserList}" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center" ItemClick="User_OnItemClick" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>

@@ -102,13 +102,13 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0">
             <AppBarButton Icon="Back" Command="{Binding BackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="My Creations" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="My Creations" FontSize="25"/>
         </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding CreationList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None">
             <ListView.ItemsPanel>

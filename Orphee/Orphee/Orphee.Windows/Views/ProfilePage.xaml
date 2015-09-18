@@ -11,12 +11,12 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
         <Grid Background="#78C7F9" Grid.Row="0">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="25"/>
         </Grid>
         <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
             <Image Stretch="Fill" Source="/Assets/login_windows.png"/>

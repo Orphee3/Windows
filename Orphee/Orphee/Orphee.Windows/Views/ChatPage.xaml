@@ -102,13 +102,13 @@
         <Image Source="/Assets/loginScreen.jpg" Stretch="Fill"/>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="125"/>
+                <RowDefinition Height="110"/>
                 <RowDefinition/>
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
 
             <Grid Background="#78C7F9" Grid.Row="0" >
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ConversationName}" FontSize="35" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ConversationName}" FontSize="25" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
                 <AppBarButton Icon="Back" Command="{Binding BackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
                 <AppBarButton Icon="Add" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource MyBackButton}"/>
             </Grid>

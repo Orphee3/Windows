@@ -14,7 +14,7 @@ namespace Orphee.ViewModels
     {
         public ObservableCollection<Creation> FlowList { get; set; }
         private List<News> _friendNewsList;
-        private List<Creation> _popularCreationList; 
+        private readonly List<Creation> _popularCreationList; 
         private readonly IUserNewsGetter _userFluxGetter;
         private readonly IPopularCreationGetter _popularCreationGetter;
         public SolidColorBrush PopularCreationsTitleTextBoxForegroundColor { get; set; }
@@ -48,8 +48,9 @@ namespace Orphee.ViewModels
 
         public async void FillFlowListWithNewFriendCreations()
         {
-            if (RestApiManagerBase.Instance.IsConnected && this._friendNewsList.Count == 0)
+            if (RestApiManagerBase.Instance.IsConnected)
             {
+                this.FlowList.Clear();
                 this._friendNewsList = await this._userFluxGetter.GetUserNews();
                 for (var i = 0; i < 12; i++)
                     this.FlowList.Add(new Creation {Name = "Friend Boucle " + i});
@@ -61,6 +62,7 @@ namespace Orphee.ViewModels
         {
             if (this._popularCreationList.Count == 0)
             {
+                this.FlowList.Clear();
                 var popularCreation = await this._popularCreationGetter.GetpopularCreation();
                 foreach (var creation in popularCreation)
                 {

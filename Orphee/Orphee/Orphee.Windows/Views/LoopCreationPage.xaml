@@ -257,12 +257,12 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="#78C7F9">
-            <TextBlock Text="{Binding TrackName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="45"/>
+            <TextBlock Text="{Binding TrackName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
             <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
         </Grid>
         <Grid Grid.Row="1">

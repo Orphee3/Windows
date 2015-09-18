@@ -99,13 +99,13 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0">
             <AppBarButton Icon="Back" Command="{Binding GoBackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CreationName}" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CreationName}" FontSize="25"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
