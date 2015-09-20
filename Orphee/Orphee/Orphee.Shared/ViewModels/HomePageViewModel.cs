@@ -14,9 +14,9 @@ namespace Orphee.ViewModels
     {
         public ObservableCollection<Creation> FlowList { get; set; }
         private List<News> _friendNewsList;
-        private readonly List<Creation> _popularCreationList; 
+        private readonly List<Creation> _popularCreationList;
+        private IGetter _getter;
         private readonly IUserNewsGetter _userFluxGetter;
-        private readonly IPopularCreationGetter _popularCreationGetter;
         public SolidColorBrush PopularCreationsTitleTextBoxForegroundColor { get; set; }
         public SolidColorBrush NewFriendsCreationsTitleTextBoxForegroundColor { get; set; }
         private Visibility _searchBoxVisibility;
@@ -33,10 +33,10 @@ namespace Orphee.ViewModels
             }
         }
 
-        public HomePageViewModel(IUserNewsGetter userFluxGetter, IPopularCreationGetter popularCreationGetter)
+        public HomePageViewModel(IUserNewsGetter userFluxGetter, IGetter getter)
         {
+            this._getter = getter;
             this._userFluxGetter = userFluxGetter;
-            this._popularCreationGetter = popularCreationGetter;
             this.FlowList = new ObservableCollection<Creation>();
             this._popularCreationList = new List<Creation>();
             this._friendNewsList = new List<News>();
@@ -51,9 +51,13 @@ namespace Orphee.ViewModels
             if (RestApiManagerBase.Instance.IsConnected)
             {
                 this.FlowList.Clear();
-                this._friendNewsList = await this._userFluxGetter.GetUserNews();
-                for (var i = 0; i < 12; i++)
-                    this.FlowList.Add(new Creation {Name = "Friend Boucle " + i});
+                this._friendNewsList = await this._getter.GetInfo<List<News>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/news");
+                foreach (var news in this._friendNewsList)
+                {
+                    var creation = new Creation();
+                    creation.CreatorList.Add(new User());
+                    //this.FlowList.Add(new Creation {Name = "Friend Boucle " + i});
+                }
                 SetTitleTexBoxForegroundColor(false);
             }
         }
@@ -63,9 +67,11 @@ namespace Orphee.ViewModels
             if (this._popularCreationList.Count == 0)
             {
                 this.FlowList.Clear();
-                var popularCreation = await this._popularCreationGetter.GetpopularCreation();
+                var popularCreation = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"]);
                 foreach (var creation in popularCreation)
                 {
+                    creation.NumberOfComment = creation.Comments?.Count ?? 0;
+                    creation.NumberOfLike = 0;
                     creation.Name = creation.Name.Split('.')[0];
                     creation.CreatorList = new List<User> {creation.Creator[0].ToObject<User>()};
                     this.FlowList.Add(creation);

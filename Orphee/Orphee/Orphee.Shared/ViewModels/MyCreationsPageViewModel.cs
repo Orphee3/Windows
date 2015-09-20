@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Windows.Storage;
+﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.FileManagement.Interfaces;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
@@ -34,6 +29,8 @@ namespace Orphee.ViewModels
                 var result = await this._userCreationGetter.GetUserCreations(RestApiManagerBase.Instance.UserData.User.Id);
                 foreach (var creation in result)
                 {
+                    creation.NumberOfComment = creation.Comments?.Count ?? 0;
+                    creation.NumberOfLike = 0;
                     creation.Name = creation.Name.Split('.')[0];
                     this.CreationList.Add(creation);
                 }

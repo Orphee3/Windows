@@ -121,7 +121,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Center">
+                    <Grid HorizontalAlignment="Center" Tapped="Creation_OnTapped">
                         <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                             <StackPanel Orientation="Horizontal">
                                 <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
@@ -139,12 +139,12 @@
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Orientation="Horizontal" Grid.Column="0">
                                             <Image Source="/Assets/commentary-icon.png" Height="15" Width="15" HorizontalAlignment="Left"/>
-                                            <TextBlock Text="1 500" Foreground="#BDBEC0" FontSize="15" Margin="5, 0, 0, 0" HorizontalAlignment="Left"/>
+                                            <TextBlock Text="{Binding NumberOfComment}" Foreground="#BDBEC0" FontSize="15" Margin="5, 0, 0, 0" HorizontalAlignment="Left"/>
                                         </StackPanel>
                                         <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" Margin="15, 0, 15, 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                         <StackPanel Orientation="Horizontal" Grid.Column="2">
                                             <Image Source="/Assets/heart-icon.png" Height="15" Width="15" HorizontalAlignment="Center"/>
-                                            <TextBlock Text="1 500"  Foreground="#BDBEC0" Margin="5, 0, 0, 0" FontSize="15" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding NumberOfLike}"  Foreground="#BDBEC0" Margin="5, 0, 0, 0" FontSize="15" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>

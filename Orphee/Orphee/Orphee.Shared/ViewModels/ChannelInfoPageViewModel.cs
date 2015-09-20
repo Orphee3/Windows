@@ -80,6 +80,11 @@ namespace Orphee.ViewModels
             this.UserName = user.Name;
             this.FriendNumber = user.Friends?.Count ?? 0;
             var creations = await this._userCreationGetter.GetUserCreations(user.Id);
+            foreach (var creation in creations)
+            {
+                creation.NumberOfComment = creation.Comments?.Count ?? 0;
+                creation.NumberOfLike = 0;
+            }
             this.CreationNumber = creations?.Count ?? 0;
             SetUserPicture(user.Picture);
             if (creations == null)

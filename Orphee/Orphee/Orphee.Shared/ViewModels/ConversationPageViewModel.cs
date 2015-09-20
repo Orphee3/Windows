@@ -111,5 +111,10 @@ namespace Orphee.ViewModels
                 channelName = conversation.Name;
             this.ConversationList.Add(new Conversation() {Name = channelName, UserList = conversation.UserList, ConversationPictureSource = conversation.UserList.Count > 1 ? "/Assets/defaultUser.png" : conversation.UserList[0].Picture });
         }
+
+        public void CreateNewConversationOnMessageReceived(Message message)
+        {
+            
+        }
     }
 }

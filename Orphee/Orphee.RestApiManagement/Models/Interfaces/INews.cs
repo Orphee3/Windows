@@ -8,9 +8,9 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         [JsonProperty(PropertyName = "_id")]
         string Id { get; set; }
         [JsonProperty(PropertyName = "userSource")]
-        string Creator { get; set; }
+        User Creator { get; set; }
         [JsonProperty(PropertyName = "media")]
-        string Creation { get; set; }
+        Creation Creation { get; set; }
         [JsonProperty(PropertyName = "type")]
         string NewsType { get; set; }
         [JsonProperty(PropertyName = "dateCreation")]

@@ -24,7 +24,7 @@ namespace Orphee.Views
         {
             await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (e.PropertyName == "_hasReceivedCommentNotification")
+                if (e.PropertyName == "_hasReceivedCommentNotification" && RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification)
                     ((CreationInfoPageViewModel)this.DataContext).UpdateCommentList(RestApiManagerBase.Instance.UserData.User.PendingCommentList);
                 RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification = false;
                 RestApiManagerBase.Instance.UserData.User.PendingCommentList.Clear();

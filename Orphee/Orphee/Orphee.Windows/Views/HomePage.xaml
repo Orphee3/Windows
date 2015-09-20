@@ -37,6 +37,14 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Center">
                         <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0, 0, 0, 10">
+                                <Ellipse Width="50" Height="50" HorizontalAlignment="Center" Tapped="UserPicture_OnTapped">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Path=CreatorList[0].Picture}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Text="{Binding Path=CreatorList[0].Name}" Foreground="#78C7F9" FontSize="15" Margin="25, 0, 0, 0" VerticalAlignment="Center"/>
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Grid x:Name="CreationImageGrid" Tapped="Play" HorizontalAlignment="Left" Height="120" Width="120">
                                     <Image Source="/Assets/creation-background.png" VerticalAlignment="Top" Stretch="Fill"/>
@@ -53,23 +61,15 @@
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Orientation="Horizontal" Grid.Column="0">
                                             <Image Source="/Assets/commentary-icon.png" Height="15" Width="15" HorizontalAlignment="Left"/>
-                                            <TextBlock Text="1 500" Foreground="#BDBEC0" FontSize="15" Margin="5, 0, 0, 0" HorizontalAlignment="Left"/>
+                                            <TextBlock Text="{Binding NumberOfComment}" Foreground="#BDBEC0" FontSize="15" Margin="5, 0, 0, 0" HorizontalAlignment="Left"/>
                                         </StackPanel>
                                         <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="#BDBEC0" Margin="15, 0, 15, 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                         <StackPanel Orientation="Horizontal" Grid.Column="2">
                                             <Image Source="/Assets/heart-icon.png" Height="15" Width="15" HorizontalAlignment="Center"/>
-                                            <TextBlock Text="1 500"  Foreground="#BDBEC0" Margin="5, 0, 0, 0" FontSize="15" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding NumberOfLike}"  Foreground="#BDBEC0" Margin="5, 0, 0, 0" FontSize="15" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0, 5, 0, 0">
-                                <Ellipse Width="50" Height="50" HorizontalAlignment="Center" Tapped="UserPicture_OnTapped">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Path=CreatorList[0].Picture}"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <TextBlock Text="{Binding Path=CreatorList[0].Name}" Foreground="#78C7F9" FontSize="15" Margin="25, 0, 0, 0" VerticalAlignment="Center"/>                                
                             </StackPanel>
                             <Grid HorizontalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
@@ -84,7 +84,7 @@
                                     <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
                                 </Button>
                             </Grid>
-                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 0, 0, 10" VerticalAlignment="Bottom"/>
+                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" VerticalAlignment="Bottom"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

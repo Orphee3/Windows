@@ -137,7 +137,7 @@ namespace Orphee.RestApiManagement.Senders
                 {
                     using (var response = await httpClient.PutAsync("api/user/" + RestApiManagerBase.Instance.UserData.User.Id, content))
                     {
-                        await response.Content.ReadAsStringAsync();
+                        var result = await response.Content.ReadAsStringAsync();
                         if (!response.IsSuccessStatusCode)
                             return false;
                         RestApiManagerBase.Instance.UserData.User.Picture = getFileUri;

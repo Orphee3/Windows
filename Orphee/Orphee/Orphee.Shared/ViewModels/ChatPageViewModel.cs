@@ -53,7 +53,10 @@ namespace Orphee.ViewModels
         public void InitConversation(List<Message> messages)
         {
             foreach (var message in messages)
+            {
+                message.SetProperties();
                 this.Conversation.Add(message);
+            }
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)

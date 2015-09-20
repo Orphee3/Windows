@@ -12,7 +12,7 @@ namespace Orphee.RestApiManagement.Getters
     {
         public async Task<List<Comment>> GetCreationComments(string creationId)
         {
-            List<Comment> comments;
+            List<Comment> comments = new List<Comment>();
             using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
             {
                 using (var response = await httpClient.GetAsync(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + creationId ))

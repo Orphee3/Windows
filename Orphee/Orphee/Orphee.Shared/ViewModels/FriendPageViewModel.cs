@@ -63,7 +63,10 @@ namespace Orphee.ViewModels
             this.InvitationStackPanelVisibility = navigationParameter != null ? Visibility.Collapsed : Visibility.Visible;
             var friendList = (await this._userFriendListGetter.GetUserFriendList()).OrderBy(f => f.Name);
             foreach (var friend in friendList)
+            {
+                friend.Picture = friend.Picture ?? "/Assets/defaultUser.png";
                 this.FriendList.Add(friend);
+            }
         }
     }
 }

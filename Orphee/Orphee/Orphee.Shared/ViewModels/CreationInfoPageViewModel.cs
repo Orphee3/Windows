@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Senders.Interfaces;
 using Orphee.ViewModels.Interfaces;
@@ -71,8 +68,6 @@ namespace Orphee.ViewModels
                     App.MyNavigationService.Navigate("Login", null);
                     return;
                 }
-                this.CommentNumber++;
-                this.CommentList.Insert(0, new Comment {Message = newComment});
                 var result = await this._commentSender.SendComment(newComment, this._creation.Id);
             }
         }

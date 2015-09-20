@@ -25,7 +25,7 @@ namespace Orphee.UnityModule
     {
         public UnityIocInitializator(IUnityContainer container)
         {
-            container.RegisterType<IPopularCreationGetter, PopularCreationGetter>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IGetter, Getter>(new ContainerControlledLifetimeManager());
             container.RegisterType<INotificationSender, NotificationSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserNewsGetter, UserNewsGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMessageListGetter, MessageListGetter>(new ContainerControlledLifetimeManager());
