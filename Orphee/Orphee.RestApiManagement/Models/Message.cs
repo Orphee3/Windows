@@ -3,7 +3,6 @@ using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models.Interfaces;
 
 namespace Orphee.RestApiManagement.Models

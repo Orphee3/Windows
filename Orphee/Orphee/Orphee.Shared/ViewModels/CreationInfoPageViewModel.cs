@@ -6,7 +6,6 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
-using Orphee.RestApiManagement.Senders.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -47,13 +46,11 @@ namespace Orphee.ViewModels
             }
         }
         public string UserPictureSource { get; private set; }
-        private readonly ICommentSender _commentSender;
-        private readonly ICreationCommentGetter _creationCommentGetter;
+        private readonly IGetter _getter;
 
-        public CreationInfoPageViewModel(ICommentSender commentsender, ICreationCommentGetter creationCommentGetter)
+        public CreationInfoPageViewModel(IGetter getter)
         {
-            this._creationCommentGetter = creationCommentGetter;
-            this._commentSender = commentsender;
+            this._getter = getter;
             this.UserPictureSource = RestApiManagerBase.Instance.IsConnected ? RestApiManagerBase.Instance.UserData.User.Picture : "/Assets/defaultUser.png";
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.CommentList = new ObservableCollection<Comment>();
@@ -61,15 +58,15 @@ namespace Orphee.ViewModels
 
         public async void SendComment(string newComment)
         {
-            if (newComment.Any())
-            {
-                if (!RestApiManagerBase.Instance.IsConnected)
-                {
-                    App.MyNavigationService.Navigate("Login", null);
-                    return;
-                }
-                var result = await this._commentSender.SendComment(newComment, this._creation.Id);
-            }
+            //if (newComment.Any())
+            //{
+            //    if (!RestApiManagerBase.Instance.IsConnected)
+            //    {
+            //        App.MyNavigationService.Navigate("Login", null);
+            //        return;
+            //    }
+            //    var result = await this._commentSender.SendComment(newComment, this._creation.Id);
+            //}
         }
 
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
@@ -79,7 +76,7 @@ namespace Orphee.ViewModels
             this.LikeNumber = 0;
             this._creation = navigationParameter as Creation;
             this.CreationName = this._creation.Name.Split('.')[0];
-            var commentList = await this._creationCommentGetter.GetCreationComments(this._creation.Id);
+            var commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this._creation.Id);
             if (commentList == null)
                 return;
             foreach (var comment in commentList)
@@ -96,7 +93,7 @@ namespace Orphee.ViewModels
         {
             if (pendingCommentList.Any(c => c.CreationId == this._creation.Id))
             {
-                var commentList = await this._creationCommentGetter.GetCreationComments(this._creation.Id);
+                var commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this._creation.Id);
                 foreach (var comment in commentList)
                     if (!this.CommentList.Any(c => c.Id == comment.Id))
                     {

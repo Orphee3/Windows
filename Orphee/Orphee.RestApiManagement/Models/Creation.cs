@@ -16,6 +16,10 @@ namespace Orphee.RestApiManagement.Models
         public int NumberOfLike { get; set; }
         public List<User> CreatorList { get; set; }
 
+        public Creation()
+        {
+            this.CreatorList = new List<User>();
+        }
         public void UpdateNumberOfLikeAndCommentValue()
         {
             if (this.Comments != null)

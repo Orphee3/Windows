@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Senders.Interfaces;
 

@@ -15,7 +15,17 @@ namespace Orphee.ViewModels
         public ObservableCollection<Creation> CreationList { get; private set; }
         public DelegateCommand BackCommand { get; private set; }
         private int _creationNumber;
+        private string _userName;
 
+        public string UserName
+        {
+            get { return this._userName; }
+            set
+            {
+                if (this._userName != value)
+                    SetProperty(ref this._userName, value);
+            }
+        }
         public int CreationNumber
         {
             get { return this._creationNumber; }
@@ -25,24 +35,14 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._creationNumber, value);
             }
         }
-        private int _friendNumber;
-        public int FriendNumber
+        private int _likeNumber;
+        public int LikeNumber
         {
-            get { return this._friendNumber; }
+            get { return this._likeNumber; }
             set
             {
-                if (this._friendNumber != value)
-                    SetProperty(ref this._friendNumber, value);
-            }
-        }
-        private string _userName;
-        public string UserName
-        {
-            get { return this._userName; }
-            set
-            {
-                if (this._userName != value)
-                    SetProperty(ref this._userName, value);
+                if (this._likeNumber != value)
+                    SetProperty(ref this._likeNumber, value);
             }
         }
 
@@ -57,11 +57,11 @@ namespace Orphee.ViewModels
             }
         }
 
-        private readonly IUserCreationGetter _userCreationGetter;
+        private readonly IGetter _getter;
 
-        public ChannelInfoPageViewModel(IUserCreationGetter userCreationGetter)
+        public ChannelInfoPageViewModel(IGetter getter)
         {
-            this._userCreationGetter = userCreationGetter;
+            this._getter = getter;
             this.CreationList = new ObservableCollection<Creation>();
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
         }
@@ -69,22 +69,11 @@ namespace Orphee.ViewModels
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this.CreationList.Clear();
-            this.FriendNumber = 0;
-            this.CreationNumber = 0;
+
             var user = navigationParameter as User;
-            if (user == null)
-            {
-                this.UserName = "User";
-                return;
-            }
-            this.UserName = user.Name;
-            this.FriendNumber = user.Friends?.Count ?? 0;
-            var creations = await this._userCreationGetter.GetUserCreations(user.Id);
-            foreach (var creation in creations)
-            {
-                creation.NumberOfComment = creation.Comments?.Count ?? 0;
-                creation.NumberOfLike = 0;
-            }
+            this._userName = user.Name;
+            this.LikeNumber = user.Likes?.Count ?? 0;
+            var creations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + user.Id + "/creation");
             this.CreationNumber = creations?.Count ?? 0;
             SetUserPicture(user.Picture);
             if (creations == null)

@@ -18,13 +18,11 @@ namespace Orphee.ViewModels
         public ObservableCollection<User> UserList { get; set; }
         public DelegateCommand LoginCommand { get; private set; }
         public DelegateCommand<User> AddFriendCommand { get; private set; }
-        private readonly IFriendshipAsker _friendshipAsker;
-        private readonly IUserListGetter _userListGetter;
+        private IGetter _getter;
 
-        public SocialPageViewModel(IFriendshipAsker friendshipAsker, IUserListGetter userListGetter)
+        public SocialPageViewModel(IGetter getter)
         {
-            this._friendshipAsker = friendshipAsker;
-            this._userListGetter = userListGetter;
+            this._getter = getter;
             this.UserList = new ObservableCollection<User>();
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
             this.AddFriendCommand = new DelegateCommand<User>(NewFriendCommandExec);
@@ -34,7 +32,9 @@ namespace Orphee.ViewModels
         {
             if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
-                var temporaryList = (await this._userListGetter.GetUserList(0, 30)).OrderBy(u => u.UserName);
+                var temporaryList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + 0 + "&size=" + 20)).OrderBy(u => u.UserName).ToList();
+                if (RestApiManagerBase.Instance.IsConnected)
+                    temporaryList.Remove(temporaryList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
                 foreach (var user in temporaryList)
                 {
                     if (string.IsNullOrEmpty(user.Picture))
@@ -48,10 +48,10 @@ namespace Orphee.ViewModels
 
         private async void NewFriendCommandExec(User friend)
         {
-            bool? result;
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && (result = await this._friendshipAsker.SendFriendshipRequestToRestApi(friend.Id)) != null)
-            { 
-                var messageDialog = result == true ? new MessageDialog("Friendship request sent to " + friend.UserName) : new MessageDialog("Friendship already asked");
+            string result;
+            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && (result = await this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["askfriend"] + "/" + friend.Id)) != null)
+            {
+                var messageDialog = result == null ? new MessageDialog("Friendship already asked") : new MessageDialog("Friendship request sent to " + friend.UserName);
 
                 await messageDialog.ShowAsync();
             }

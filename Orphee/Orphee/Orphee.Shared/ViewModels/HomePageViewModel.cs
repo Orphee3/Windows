@@ -16,7 +16,6 @@ namespace Orphee.ViewModels
         private List<News> _friendNewsList;
         private readonly List<Creation> _popularCreationList;
         private IGetter _getter;
-        private readonly IUserNewsGetter _userFluxGetter;
         public SolidColorBrush PopularCreationsTitleTextBoxForegroundColor { get; set; }
         public SolidColorBrush NewFriendsCreationsTitleTextBoxForegroundColor { get; set; }
         private Visibility _searchBoxVisibility;
@@ -33,10 +32,9 @@ namespace Orphee.ViewModels
             }
         }
 
-        public HomePageViewModel(IUserNewsGetter userFluxGetter, IGetter getter)
+        public HomePageViewModel(IGetter getter)
         {
             this._getter = getter;
-            this._userFluxGetter = userFluxGetter;
             this.FlowList = new ObservableCollection<Creation>();
             this._popularCreationList = new List<Creation>();
             this._friendNewsList = new List<News>();
@@ -55,8 +53,10 @@ namespace Orphee.ViewModels
                 foreach (var news in this._friendNewsList)
                 {
                     var creation = new Creation();
-                    creation.CreatorList.Add(new User());
-                    //this.FlowList.Add(new Creation {Name = "Friend Boucle " + i});
+                    creation.CreatorList.Add(news.Creator);
+                    if (news.Creation != null)
+                        creation.Id = news.Creation.Id;
+                    this.FlowList.Add(creation);
                 }
                 SetTitleTexBoxForegroundColor(false);
             }
@@ -70,10 +70,8 @@ namespace Orphee.ViewModels
                 var popularCreation = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"]);
                 foreach (var creation in popularCreation)
                 {
-                    creation.NumberOfComment = creation.Comments?.Count ?? 0;
-                    creation.NumberOfLike = 0;
                     creation.Name = creation.Name.Split('.')[0];
-                    creation.CreatorList = new List<User> {creation.Creator[0].ToObject<User>()};
+                    creation.CreatorList.Add((creation.Creator[0].ToObject<User>()));
                     this.FlowList.Add(creation);
                 }
                 SetTitleTexBoxForegroundColor(true);

@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
+using Orphee.RestApiManagement.Getters.Interfaces;
+using System.Collections.Generic;
 
 namespace Orphee.ViewModels
 {
@@ -11,11 +12,11 @@ namespace Orphee.ViewModels
     {
         public ObservableCollection<Creation> CreationList { get; set; }
         public DelegateCommand BackCommand { get; private set; }
-        private readonly IUserCreationGetter _userCreationGetter;
+        private readonly IGetter _getter;
 
-        public MyCreationsPageViewModel(IUserCreationGetter userCreationGetter)
+        public MyCreationsPageViewModel(IGetter getter)
         {
-            this._userCreationGetter = userCreationGetter;
+            this._getter = getter;
             InitCreationList();
             this.CreationList = new ObservableCollection<Creation>();
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
@@ -26,11 +27,9 @@ namespace Orphee.ViewModels
             if (RestApiManagerBase.Instance.IsConnected &&
                 RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
-                var result = await this._userCreationGetter.GetUserCreations(RestApiManagerBase.Instance.UserData.User.Id);
+                var result = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/creation");
                 foreach (var creation in result)
                 {
-                    creation.NumberOfComment = creation.Comments?.Count ?? 0;
-                    creation.NumberOfLike = 0;
                     creation.Name = creation.Name.Split('.')[0];
                     this.CreationList.Add(creation);
                 }

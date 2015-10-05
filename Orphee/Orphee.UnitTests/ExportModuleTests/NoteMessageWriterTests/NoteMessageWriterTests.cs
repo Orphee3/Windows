@@ -9,7 +9,6 @@ using Moq;
 using NUnit.Framework;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Senders.Interfaces;
 
 namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.NoteMessageWriterTests

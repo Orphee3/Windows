@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models.Interfaces;
 
 namespace Orphee.RestApiManagement.Models

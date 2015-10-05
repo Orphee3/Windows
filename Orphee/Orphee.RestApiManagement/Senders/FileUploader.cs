@@ -6,7 +6,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Newtonsoft.Json;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Senders.Interfaces;
 

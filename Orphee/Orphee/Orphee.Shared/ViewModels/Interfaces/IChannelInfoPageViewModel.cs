@@ -10,7 +10,7 @@ namespace Orphee.ViewModels.Interfaces
         ObservableCollection<Creation> CreationList { get; }
         DelegateCommand BackCommand { get; }
         string UserName { get; set; }
-        int FriendNumber { get; set; }
+        int LikeNumber { get; set; }
         int CreationNumber { get; set; }
         string UserPictureSource { get; set; }
     }

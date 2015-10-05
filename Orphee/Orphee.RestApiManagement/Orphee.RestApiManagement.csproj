@@ -36,7 +36,6 @@
   <ItemGroup>
     <Compile Include="Getters\Getter.cs" />
     <Compile Include="Getters\Interfaces\IGetter.cs" />
-    <Compile Include="Getters\Interfaces\IUserListGetter.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Interfaces\INews.cs" />
     <Compile Include="Models\News.cs" />
@@ -44,37 +43,22 @@
     <Compile Include="Posters\ConnectionManager.cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Creation.cs" />
-    <Compile Include="Getters\CreationCommentGetter.cs" />
     <Compile Include="Models\CreationUrls.cs" />
     <Compile Include="Senders\FileUploader.cs" />
-    <Compile Include="Getters\FriendAccepter.cs" />
-    <Compile Include="Getters\FriendshipAsker.cs" />
     <Compile Include="Models\Interfaces\IConversation.cs" />
-    <Compile Include="Getters\Interfaces\IFriendAccepter.cs" />
     <Compile Include="Models\Interfaces\IMessage.cs" />
     <Compile Include="Senders\Interfaces\INotificationSender.cs" />
-    <Compile Include="Getters\Interfaces\IConversationGetter.cs" />
-    <Compile Include="Getters\Interfaces\IMessageListGetter.cs" />
-    <Compile Include="Getters\Interfaces\IUserFriendListGetter.cs" />
-    <Compile Include="Getters\Interfaces\IUserNewsGetter.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Senders\NotificationSender.cs" />
-    <Compile Include="Getters\ConversationGetter.cs" />
-    <Compile Include="Getters\MessageListGetter.cs" />
     <Compile Include="Models\Interfaces\IComment.cs" />
     <Compile Include="Senders\Interfaces\ICommentSender.cs" />
     <Compile Include="Models\Interfaces\ICreation.cs" />
-    <Compile Include="Getters\Interfaces\ICreationCommentGetter.cs" />
     <Compile Include="Models\Interfaces\ICreationUrls.cs" />
     <Compile Include="Senders\Interfaces\IFileUploader.cs" />
-    <Compile Include="Getters\Interfaces\IFriendshipAsker.cs" />
     <Compile Include="Senders\Interfaces\ILikeSender.cs" />
-    <Compile Include="Getters\Interfaces\IUserCreationGetter.cs" />
     <Compile Include="Senders\LikeSender.cs" />
     <Compile Include="Socket Management\NotificationRecieiver.cs" />
-    <Compile Include="Getters\FriendListGetter.cs" />
     <Compile Include="Posters\Interfaces\IConnectionManager.cs" />
-    <Compile Include="Getters\Interfaces\IFriendListGetter.cs" />
     <Compile Include="Posters\Interfaces\IRegistrationManager.cs" />
     <Compile Include="Models\Interfaces\IRestApiManagerBase.cs" />
     <Compile Include="Models\Interfaces\IUser.cs" />
@@ -84,11 +68,7 @@
     <Compile Include="Posters\RegistrationManager.cs" />
     <Compile Include="Models\RestApiManagementBase.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Getters\UserCreationGetter.cs" />
     <Compile Include="Models\UserData.cs" />
-    <Compile Include="Getters\UserFriendListGetter.cs" />
-    <Compile Include="Getters\UserListGetter.cs" />
-    <Compile Include="Getters\UserNewsGetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EngineIoClientDotNet, Version=0.9.21.0, Culture=neutral, processorArchitecture=MSIL">

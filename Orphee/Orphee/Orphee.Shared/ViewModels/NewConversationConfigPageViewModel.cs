@@ -6,7 +6,6 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
@@ -17,11 +16,11 @@ namespace Orphee.ViewModels
         public DelegateCommand GoBackCommand { get; private set; }
         public DelegateCommand CreateConversationCommand { get; private set; }
         public ObservableCollection<User> FriendList { get; private set; }
-        private readonly IUserFriendListGetter _userFriendListGetter;
+        private readonly IGetter _getter;
 
-        public NewConversationConfigPageViewModel(IUserFriendListGetter userFriendListGetter)
+        public NewConversationConfigPageViewModel(IGetter getter)
         {
-            this._userFriendListGetter = userFriendListGetter;
+            this._getter = getter;
             this.CreateConversationCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", this.FriendList.Where(f => f.IsChecked)));
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
         }
@@ -30,7 +29,7 @@ namespace Orphee.ViewModels
         {
             if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
-                var userFriends = await this._userFriendListGetter.GetUserFriendList();
+                var userFriends = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends")).OrderBy(f => f.Name);
                 foreach (var user in userFriends)
                     this.FriendList.Add(user);
             }

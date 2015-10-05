@@ -5,9 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
@@ -39,13 +37,13 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._invitationStackPanelVisibility, value);
             }
         }
-        private readonly IUserFriendListGetter _userFriendListGetter;
+        private readonly IGetter _getter;
         public string ConversationName { get; set; }
         public string UserPictureSource { get; set; }
 
-        public FriendPageViewModel(IUserFriendListGetter userFriendListGetter)
+        public FriendPageViewModel(IGetter getter)
         {
-            this._userFriendListGetter = userFriendListGetter;
+            this._getter = getter;
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.DeleteFriendCommand = new DelegateCommand<User>((user) => this.FriendList.Remove(user));
             this.ValidateConversationCreationCommand = new DelegateCommand(() =>
@@ -61,7 +59,7 @@ namespace Orphee.ViewModels
             this.FriendList.Clear();
             this.CheckBoxVisibility = navigationParameter != null ? Visibility.Visible : Visibility.Collapsed;
             this.InvitationStackPanelVisibility = navigationParameter != null ? Visibility.Collapsed : Visibility.Visible;
-            var friendList = (await this._userFriendListGetter.GetUserFriendList()).OrderBy(f => f.Name);
+            var friendList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends")).OrderBy(f => f.Name);
             foreach (var friend in friendList)
             {
                 friend.Picture = friend.Picture ?? "/Assets/defaultUser.png";

@@ -8,7 +8,6 @@ using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json;
 using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
@@ -39,15 +38,11 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._listViewVisibility, value);
             }
         }
-        private readonly IConversationGetter _conversationGetter;
-        private readonly IUserFriendListGetter _userFriendListGetter;
-        private readonly IMessageListGetter _messageListGetter;
+        private readonly IGetter _getter;
 
-        public ConversationPageViewModel(IConversationGetter conversationGetter, IUserFriendListGetter userFriendListGetter, IMessageListGetter messageListGetter)
+        public ConversationPageViewModel(IGetter getter)
         {
-            this._messageListGetter = messageListGetter;
-            this._conversationGetter = conversationGetter;
-            this._userFriendListGetter = userFriendListGetter;
+            this._getter = getter;
             this.ButtonsVisibility = Visibility.Visible;
             this.ListViewVisibility = Visibility.Collapsed;
             this.ConversationList = new ObservableCollection<Conversation>();
@@ -65,8 +60,8 @@ namespace Orphee.ViewModels
             App.MyNavigationService.CurrentPageName = "Messages";
             if (RestApiManagerBase.Instance.IsConnected)
             {
-                var conversationList = await this._conversationGetter.GetUserConversations();
-                var userFriends = await this._userFriendListGetter.GetUserFriendList();
+                var conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
+                var userFriends = await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends");
                 foreach (var conversation in conversationList)
                     if (this.ConversationList.Count(c => c.Id == conversation.Id) == 0)
                     {
@@ -80,7 +75,10 @@ namespace Orphee.ViewModels
                         }
                         if (conversation.UserList.Count == 1)
                             conversation.Name = conversation.UserList[0].Name;
-                        conversation.Messages = await this._messageListGetter.GetRoomMessageList(conversation.UserList[0].Id);
+                        conversation.Messages = await this._getter.GetInfo<List<Message>>(RestApiManagerBase.Instance.RestApiPath["roomMessages"] + "/" + conversation.UserList[0].Id);
+                        foreach (var message in conversation.Messages)
+                            message.SetProperties();
+                        conversation.Messages.Reverse();
                         conversation.LastMessagePreview = conversation.Messages.Last().ReceivedMessage;
                         this.ConversationList.Add(conversation);
                     }

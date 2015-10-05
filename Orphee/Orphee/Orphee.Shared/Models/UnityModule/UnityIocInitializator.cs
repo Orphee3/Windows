@@ -11,7 +11,6 @@ using Orphee.FileManagement;
 using Orphee.FileManagement.Interfaces;
 using Orphee.RestApiManagement.Getters;
 using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Interfaces;
 using Orphee.RestApiManagement.Posters;
 using Orphee.RestApiManagement.Posters.Interfaces;
 using Orphee.RestApiManagement.Senders;
@@ -27,15 +26,8 @@ namespace Orphee.UnityModule
         {
             container.RegisterType<IGetter, Getter>(new ContainerControlledLifetimeManager());
             container.RegisterType<INotificationSender, NotificationSender>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IUserNewsGetter, UserNewsGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IMessageListGetter, MessageListGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IConversationGetter, ConversationGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IFriendAccepter, FriendAccepter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IUserFriendListGetter, UserFriendListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<ILikeSender, LikeSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICommentSender, CommentSender>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ICreationCommentGetter, CreationCommentGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IUserCreationGetter, UserCreationGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IInvitationPageViewModel, InvitationPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeTrack, OrpheeTrack>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeFile, OrpheeFile>(new ContainerControlledLifetimeManager());
@@ -64,10 +56,7 @@ namespace Orphee.UnityModule
             container.RegisterType<IConnectionManager, ConnectionManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRegistrationManager, RegistrationManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeFilesGetter, OrpheeFilesGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IUserListGetter, UserListGetter>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IFriendListGetter, FriendListGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFileUploader, FileUploader>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IFriendshipAsker, FriendshipAsker>(new ContainerControlledLifetimeManager());
         }
     }
 }
