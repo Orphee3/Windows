@@ -10,7 +10,6 @@ namespace Orphee.CreationShared.Interfaces
         uint TimeSignatureClocksPerBeat { get; set; }
         uint TimeSignatureNumberOf32ThNotePerBeat { get; set; }
         uint Tempo { get; set; }
-        Channel Channel { get; set; }
 
         // Methods
 

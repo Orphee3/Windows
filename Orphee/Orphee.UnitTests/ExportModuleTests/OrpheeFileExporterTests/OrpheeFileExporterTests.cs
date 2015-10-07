@@ -32,7 +32,6 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.OrpheeFileExporterT
             };
             this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel1)
             {
-                PlayerParameters = this.PlayerParameters,
                 CurrentInstrument = Instrument.OrchestralHarp
             };
             this.OrpheeFile = new OrpheeFile();

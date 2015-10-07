@@ -1,5 +1,5 @@
 ﻿<Page x:Name="Page"
-    x:Class="Orphee.Views.LoopCreationPage"
+    x:Class="Orphee.Views.CreationPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -262,7 +262,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="#78C7F9">
-            <TextBlock Text="{Binding TrackName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
+            <TextBlock Text="{Binding DisplayedTrack.TrackName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
             <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
         </Grid>
         <Grid Grid.Row="1" VerticalAlignment="Top">
@@ -275,28 +275,43 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Background="#BDBEC0">
-                <ComboBox Margin="3, 100, 3, 0" Height="Auto" VerticalAlignment="top" Foreground="Black" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
+                <ComboBox Margin="3, 100, 3, 0" Height="Auto" VerticalAlignment="top" Foreground="Black" Width="Auto" ItemsSource="{Binding InstrumentManager.InstrumentList}" SelectedIndex="{Binding CurrentInstrumentIndex, Mode=TwoWay}" HorizontalAlignment="Stretch" Header="Instrument"/>
+                <ComboBox Margin="3, 0, 3, 0" HorizontalContentAlignment="Center" Height="Auto" VerticalAlignment="top" Foreground="Black" Width="Auto" ItemsSource="{Binding TempoValues}" SelectedIndex="{Binding CurrentTempoIndex, Mode=TwoWay}" HorizontalAlignment="Stretch" Header="Tempo"/>
                 <Button Content="Save" Command="{Binding SaveButtonCommand}" HorizontalAlignment="Stretch"/>
                 <Button Content="Load" Command="{Binding LoadButtonCommand}" HorizontalAlignment="Stretch"/>
                 <Button Content="Play" Command="{Binding PlayCommand}" HorizontalAlignment="Stretch"/>
+                <Button Content="Add a new track" Command="{Binding AddNewTrackCommand}" HorizontalAlignment="Stretch"/>
             </StackPanel>
             <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="150" Stretch="UniformToFill" Stroke="DimGray"/>
-            <Grid Grid.Column="2" Margin="25, 0, 10, 0">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.5*"/>
+                </Grid.RowDefinitions>
+                <Button Margin="25, 0, 10, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Content="+" BorderBrush="#BDBEC0" Foreground="#BDBEC0" Grid.Row="0" Command="{Binding AddOneLowerOctaveCommand}"/>
+                <ScrollViewer Margin="25, 0, 10, 0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource StackPanel1}">
-                            <ItemsControl ItemsSource="{Binding DisplayedTrack.NoteMap, Mode=TwoWay}">
+                            <ItemsControl ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <StackPanel Orientation="Horizontal"/>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
+                                        <ItemsControl ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding TrackVisibility}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                    <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                                    <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
@@ -304,12 +319,22 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </StackPanel>
-                        <Button Height="520" HorizontalAlignment="Stretch" Content="+" BorderBrush="#BDBEC0" Foreground="#BDBEC0" Command="{Binding AddColumnsCommand}"/>
-                </StackPanel>
+                        <Button Margin="25, 0, 10, 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="+" BorderBrush="#BDBEC0" Foreground="#BDBEC0" Command="{Binding AddColumnsCommand}"/>
+                    </StackPanel>
                 </ScrollViewer>
-                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5, 0, 0, 30" Content="Remove" Command="{Binding RemoveAColumnCommand}" BorderBrush="#BDBEC0" Foreground="#BDBEC0"/>
-                </StackPanel>
+                <Button Margin="25, 0, 10, 0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Content="+" BorderBrush="#BDBEC0" Foreground="#BDBEC0"  Grid.Row="2" Command="{Binding AddOneHigherOctaveCommand}"/>
+                <GridView Grid.Row="3" Background="Black" SelectionMode="None" ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}" >
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <ToggleButton Content="{Binding Path=TrackName, Mode=TwoWay}"  Command="{Binding DataContext.SelectedTrackCommand, ElementName=Page}" CommandParameter="{Binding}" IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"/>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
             </Grid>
         </Grid>
     </Grid>

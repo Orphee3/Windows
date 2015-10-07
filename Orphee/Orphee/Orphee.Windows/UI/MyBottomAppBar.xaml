@@ -115,7 +115,7 @@
             <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
             <Grid Grid.Column="2">
                 <Image Height="35" VerticalAlignment="Top" Margin="0, 6, 0, 0" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
-                <AppBarButton Name="LoopCreation" HorizontalAlignment="Center" Label="Create" Tapped="Button_Tapped" Style="{StaticResource MyAppBarButton}"/>
+                <AppBarButton Name="Creation" HorizontalAlignment="Center" Label="Create" Tapped="Button_Tapped" Style="{StaticResource MyAppBarButton}"/>
             </Grid>
             <Line Grid.Column="2" X1="0" Y1="0" X2="0" Y2="50" HorizontalAlignment="Right" Stroke="White" StrokeThickness="1" Margin="0, 8, 0, 0"/>
             <ui:MyAppBarButton Grid.Column="3" x:Name="Conversation" Icon="Message" Label="Messages" Tapped="Button_Tapped" HorizontalAlignment="Center" Style="{StaticResource MyAppBarButton}"/>

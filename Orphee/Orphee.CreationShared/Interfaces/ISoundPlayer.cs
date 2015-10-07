@@ -8,10 +8,11 @@ namespace Orphee.CreationShared.Interfaces
         // Properties
 
         // Methods
-        void PlayNote(Note note);
-        void UpdatePlayingInstrument(Instrument newPlayingInstrument);
+        void PlayNote(Note note, Channel channel);
+        void UpdateCurrentInstrument(Instrument instrument, Channel channel);
+        void UpdateTempo(uint tempo);
         IPlayerParameters GetPlayerParameters();
         void SetPlayerParameters(IPlayerParameters playerParameters);
-        void PlayTrack(IList<IOrpheeNoteMessage> noteMessageList);
+        void PlayTrack(IList<IOrpheeNoteMessage> noteMessageList, Instrument instrument, Channel channel);
     }
 }

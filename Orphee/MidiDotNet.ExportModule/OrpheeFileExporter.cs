@@ -83,7 +83,7 @@ namespace MidiDotNet.ExportModule
                 this._fileHeaderWriter.WriteFileHeader(this._writer, orpheeFile.OrpheeFileParameters);
                 foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
                 {
-                    this._trackHeaderWriter.WriteTrackHeader(this._writer, orpheeTrack.PlayerParameters, orpheeTrack.TrackLength);
+                   //this._trackHeaderWriter.WriteTrackHeader(this._writer, orpheeTrack.PlayerParameters, orpheeTrack.TrackLength);
                     this._noteMessageWriter.WriteNoteMessages(this._writer, orpheeTrack.OrpheeNoteMessageList, (int)orpheeTrack.Channel, orpheeTrack.CurrentInstrument);
                 }
             }

@@ -13,7 +13,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
 {
     public class WhenAToggleButtonNoteIsClicked
     {
-        protected ILoopCreationPageViewModel LoopCreationViewModel;
+        protected ICreationPageViewModel LoopCreationViewModel;
         protected Mock<IMidiLibRepository> MidiLibRepositoryMock;
         protected Mock<IInstrumentManager> InstrumentManagerMock;
         protected Mock<IOrpheeFileExporter> OrpheeFileExporterMock;
@@ -28,7 +28,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
             this.MidiLibRepositoryMock = new Mock<IMidiLibRepository>();
             this.SoundPlayer = new SoundPlayer(this.MidiLibRepositoryMock.Object);
-            this.LoopCreationViewModel = new LoopCreationPageViewModel(this.SoundPlayer, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
+            this.LoopCreationViewModel = new CreationPageViewModel(this.SoundPlayer, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
         }
     }
 
@@ -38,14 +38,14 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         [SetUp]
         public void Init()
         {
-            this.MidiLibRepositoryMock.Setup(mlr => mlr.PlayNote(It.IsAny<Note>()));
-            this.SoundPlayer.PlayNote(Note.C2);
+            this.MidiLibRepositoryMock.Setup(mlr => mlr.PlayNote(It.IsAny<Note>(), It.IsAny<Channel>()));
+            this.SoundPlayer.PlayNote(Note.C2, Channel.Channel1);
         }
 
         [Test]
         public void TheResultShouldBeTrue()
         {
-            this.MidiLibRepositoryMock.Verify(mlr => mlr.PlayNote(It.IsAny<Note>()), Times.Once());
+            this.MidiLibRepositoryMock.Verify(mlr => mlr.PlayNote(It.IsAny<Note>(), It.IsAny<Channel>()), Times.Once());
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
+using Orphee.RestApiManagement.Senders.Interfaces;
 
 namespace Orphee.ViewModels
 {
@@ -47,10 +48,12 @@ namespace Orphee.ViewModels
         }
         public string UserPictureSource { get; private set; }
         private readonly IGetter _getter;
+        private readonly ICommentSender _commentSender;
 
-        public CreationInfoPageViewModel(IGetter getter)
+        public CreationInfoPageViewModel(IGetter getter, ICommentSender commentSender)
         {
             this._getter = getter;
+            this._commentSender = commentSender;
             this.UserPictureSource = RestApiManagerBase.Instance.IsConnected ? RestApiManagerBase.Instance.UserData.User.Picture : "/Assets/defaultUser.png";
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.CommentList = new ObservableCollection<Comment>();
@@ -58,15 +61,15 @@ namespace Orphee.ViewModels
 
         public async void SendComment(string newComment)
         {
-            //if (newComment.Any())
-            //{
-            //    if (!RestApiManagerBase.Instance.IsConnected)
-            //    {
-            //        App.MyNavigationService.Navigate("Login", null);
-            //        return;
-            //    }
-            //    var result = await this._commentSender.SendComment(newComment, this._creation.Id);
-            //}
+            if (newComment.Any())
+            {
+                if (!RestApiManagerBase.Instance.IsConnected)
+                {
+                    App.MyNavigationService.Navigate("Login", null);
+                    return;
+                }
+                var result = await this._commentSender.SendComment(newComment, this._creation.Id);
+            }
         }
 
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)

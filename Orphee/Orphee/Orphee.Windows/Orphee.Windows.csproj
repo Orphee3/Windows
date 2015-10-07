@@ -138,8 +138,8 @@
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoopCreationPage.xaml.cs">
-      <DependentUpon>LoopCreationPage.xaml</DependentUpon>
+    <Compile Include="Views\CreationPage.xaml.cs">
+      <DependentUpon>CreationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -344,7 +344,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LoopCreationPage.xaml">
+    <Page Include="Views\CreationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

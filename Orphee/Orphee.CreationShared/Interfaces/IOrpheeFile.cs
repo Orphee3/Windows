@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Orphee.CreationShared.Interfaces
 {
@@ -6,7 +7,8 @@ namespace Orphee.CreationShared.Interfaces
     {
         // Properties
         IOrpheeFileParameters OrpheeFileParameters { get; set; }
-        IList<IOrpheeTrack> OrpheeTrackList { get; set; }
+        ObservableCollection<IOrpheeTrack> OrpheeTrackList { get; set; }
+        IPlayerParameters PlayerParameters { get; set; }
         string FileName { get; set; }
 
         // Methods

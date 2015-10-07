@@ -27,7 +27,6 @@ namespace Orphee.ViewModels
 
         private async void ChangePictureCommandExec()
         {
-            string picturePath;
             var result = await OpenFilePicker();
         }
 

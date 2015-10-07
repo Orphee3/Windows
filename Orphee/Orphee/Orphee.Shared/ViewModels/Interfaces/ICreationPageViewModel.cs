@@ -1,24 +1,27 @@
-﻿using Microsoft.Practices.Prism.Commands;
+﻿using System.Collections.Generic;
+using Microsoft.Practices.Prism.Commands;
+using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.ViewModels.Interfaces
 {
-    public interface ILoopCreationPageViewModel
+    public interface ICreationPageViewModel
     {
         // Methods
         void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote);
-
         // Properties
-        IInstrumentManager InstrumentManager { get; }
         int CurrentInstrumentIndex { get; set; }
-        IOrpheeTrack DisplayedTrack { get; }
+        int CurrentTempoIndex { get; set; }
+        List<uint> TempoValues { get; }
+        IOrpheeFile OrpheeFile { get; }
         DelegateCommand AddColumnsCommand { get; }
         DelegateCommand RemoveAColumnCommand { get; }
         DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; }
         DelegateCommand SaveButtonCommand { get; }
         DelegateCommand LoadButtonCommand { get; }
         DelegateCommand BackButtonCommand { get; }
+        DelegateCommand<OrpheeTrack> SelectedTrackCommand { get; }
+        DelegateCommand AddNewTrackCommand { get; }
         DelegateCommand PlayCommand { get; }
-        string TrackName { get; set; }
     }
 }

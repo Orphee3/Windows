@@ -13,7 +13,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
 {
     public class InstrumentManagerTestsBase
     {
-        protected ILoopCreationPageViewModel LoopCreationViewModel;
+        protected ICreationPageViewModel LoopCreationViewModel;
         protected IInstrumentManager InstrumentManager;
         protected Instrument CurrentInstrument;
         protected Mock<ISoundPlayer> SoundPlayerMock;
@@ -26,7 +26,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.SoundPlayerMock = new Mock<ISoundPlayer>();
             this.OrpheeFileImporterMock = new Mock<IOrpheeFileImporter>();
             this.InstrumentManager = new InstrumentManager();
-            this.LoopCreationViewModel = new LoopCreationPageViewModel(this.SoundPlayerMock.Object, this.InstrumentManager, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
+            this.LoopCreationViewModel = new CreationPageViewModel(this.SoundPlayerMock.Object, this.InstrumentManager, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
         }
     }
 

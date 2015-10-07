@@ -16,7 +16,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
 {
     public class NoteMapTestsBase
     {
-        protected ILoopCreationPageViewModel LoopCreationViewModel;
+        protected ICreationPageViewModel LoopCreationViewModel;
         protected IList<ObservableCollection<IToggleButtonNote>> NoteMap;
         protected Mock<IInstrumentManager> InstrumentManagerMock;
         protected Mock<ISoundPlayer> SoundPlayerMock;
@@ -29,7 +29,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.OrpheeFileImporterMock = new Mock<IOrpheeFileImporter>();
             this.SoundPlayerMock = new Mock<ISoundPlayer>();
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
-            this.LoopCreationViewModel =new LoopCreationPageViewModel(this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
+            this.LoopCreationViewModel =new CreationPageViewModel(this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
         }
     }
     public class WhenYouCreateLoopCreationViewModel : NoteMapTestsBase
@@ -43,7 +43,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         [SetUp]
         public void Init()
         {
-            this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
+            this.NoteMap = this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap;
         }
 
         [Test]
@@ -89,8 +89,8 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         [SetUp]
         public void Init()
         {
-            NoteMapManager.Instance.AddColumnsToThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
-            this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
+            NoteMapManager.Instance.AddColumnsToThisNoteMap(this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap);
+            this.NoteMap = this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap;
         }
 
         [Test]
@@ -106,8 +106,8 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         public void Init()
         {
             for (var counter = 0; counter < 20; counter++)
-                NoteMapManager.Instance.AddColumnsToThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
-            this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
+                NoteMapManager.Instance.AddColumnsToThisNoteMap(this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap);
+            this.NoteMap = this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap;
         }
 
         [Test]
@@ -128,8 +128,8 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         [SetUp]
         public void Init()
         {
-            NoteMapManager.Instance.RemoveAColumnFromThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
-            this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
+            NoteMapManager.Instance.RemoveAColumnFromThisNoteMap(this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap);
+            this.NoteMap = this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap;
         }
 
         [Test]
@@ -145,8 +145,8 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         public void Init()
         {
             for (var counter = 0; counter < 11; counter++)
-                NoteMapManager.Instance.RemoveAColumnFromThisNoteMap(this.LoopCreationViewModel.DisplayedTrack.NoteMap);
-            this.NoteMap = this.LoopCreationViewModel.DisplayedTrack.NoteMap;
+                NoteMapManager.Instance.RemoveAColumnFromThisNoteMap(this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap);
+            this.NoteMap = this.LoopCreationViewModel.OrpheeFile.OrpheeTrackList[0].NoteMap;
         }
 
         [Test]

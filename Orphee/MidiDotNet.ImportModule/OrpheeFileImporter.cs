@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -72,7 +73,6 @@ namespace MidiDotNet.ImportModule
                 CurrentInstrument   = (Instrument)this._trackHeaderReader.ProgramChangeMessageReader.InstrumentIndex,
                 OrpheeNoteMessageList = this._noteMessageReader.OrpheeNoteMessageList,
                 TrackLength = this._trackHeaderReader.TrackLength,
-                PlayerParameters = this._trackHeaderReader.PlayerParameters
             };
             this.OrpheeFile.OrpheeTrackList.Add(newOrpheeTrack);
         }
@@ -88,7 +88,7 @@ namespace MidiDotNet.ImportModule
                     NumberOfTracks = this._fileHeaderReader.NumberOfTracks,
                     DeltaTicksPerQuarterNote = this._fileHeaderReader.DeltaTicksPerQuarterNote,
                 },
-                OrpheeTrackList = new List<IOrpheeTrack>(),
+                OrpheeTrackList = new ObservableCollection<IOrpheeTrack>(),
             };
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Windows.UI.Xaml;
 using Midi;
 using Orphee.CreationShared.Interfaces;
 
@@ -9,8 +10,8 @@ namespace Orphee.CreationShared
     public class OrpheeTrack : IOrpheeTrack, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private IList<ObservableCollection<IToggleButtonNote>> _noteMap;
-        public IList<ObservableCollection<IToggleButtonNote>> NoteMap
+        private ObservableCollection<ObservableCollection<IToggleButtonNote>> _noteMap;
+        public ObservableCollection<ObservableCollection<IToggleButtonNote>> NoteMap
         {
             get { return this._noteMap; }
             set
@@ -24,36 +25,75 @@ namespace Orphee.CreationShared
         }
         public IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; } 
         public Instrument CurrentInstrument { get; set; }
-        public IPlayerParameters PlayerParameters { get; set; }
         public Channel Channel { get; set; }
+        public Visibility TrackVisibility
+        {
+            get { return this._trackVisibility; }
+            set
+            {
+                if (this._trackVisibility != value)
+                {
+                    this._trackVisibility = value;
+                    OnPropertyChanged("TrackVisibility");
+                }
+            }
+        }
+        private Visibility _trackVisibility;
         public int TrackPos { get; set; }
         public uint TrackLength { get; set; }
-        public string TrackName { get; set; }
+        private string _trackName;
+
+        public bool IsChecked
+        {
+            get { return this._isChecked; }
+            set
+            {
+                if (this._isChecked != value)
+                {
+                    this._isChecked = value;
+                    OnPropertyChanged("IsChecked");
+                }
+            }
+        }
+        private bool _isChecked;
+
+        public string TrackName
+        {
+            get { return this._trackName; }
+            set
+            {
+                if (this._trackName != value)
+                {
+                    this._trackName = value;
+                    OnPropertyChanged("TrackName");
+                }
+            }
+        }
 
         public OrpheeTrack(int trackPos, Channel channel)
         {
-            this.TrackName = "New Creation";
+            this.TrackName = this.CurrentInstrument.Name();
             this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
             this.Channel = channel;
             this.TrackPos = trackPos;
-            if (this.TrackPos == 0)
-            {
-                this.PlayerParameters = new PlayerParameters();
-                this.TrackLength = 22;
-            }
-            else
-                this.TrackLength = 7;
+            this.TrackLength = (uint) (this.TrackPos == 0 ? 22 : 7);
+        }
+
+        public void UpdateCurrentInstrument(Instrument instrument)
+        {
+            this.CurrentInstrument = instrument;
+            this.TrackName = this.CurrentInstrument.Name();
         }
 
         public void UpdateOrpheeTrack(IOrpheeTrack orpheeTrack)
         {
-            foreach (var line in this.NoteMap)
-                line.Clear();
-            this.NoteMap = NoteMapManager.Instance.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList);     
+            this.NoteMap = NoteMapManager.Instance.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList);
             this.Channel = orpheeTrack.Channel;
             this.TrackPos = orpheeTrack.TrackPos;
-            this.PlayerParameters = orpheeTrack.PlayerParameters;
+            this.TrackName = this.CurrentInstrument.Name();
+            this.CurrentInstrument = orpheeTrack.CurrentInstrument;
             this.TrackLength = TrackLength;
+            this.IsChecked = orpheeTrack.IsChecked;
         }
 
         public void ConvertNoteMapToOrpheeMessage()

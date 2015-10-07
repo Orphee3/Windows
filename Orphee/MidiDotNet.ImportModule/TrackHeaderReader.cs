@@ -35,7 +35,6 @@ namespace MidiDotNet.ImportModule
                 TimeSignatureDenominator = this.TimeSignatureMessageReader.Denominator,
                 TimeSignatureClocksPerBeat = this.TimeSignatureMessageReader.ClocksPerBeat,
                 TimeSignatureNumberOf32ThNotePerBeat = this.TimeSignatureMessageReader.NumberOf32ThNotePerBeat,
-                Channel = (Channel) this.ProgramChangeMessageReader.Channel,
                 Tempo = this.TempoMessageReader.Tempo
             };
             this.TrackLength -= 15;
