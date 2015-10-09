@@ -10,6 +10,8 @@ namespace Orphee.CreationShared
 
         public OrpheeFileParameters()
         {
+            this.NumberOfTracks = 1;
+            this.OrpheeFileType = 1;
             this.DeltaTicksPerQuarterNote = 60;
         }
     }

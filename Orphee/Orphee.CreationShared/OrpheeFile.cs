@@ -8,7 +8,6 @@ namespace Orphee.CreationShared
     public class OrpheeFile : IOrpheeFile
     {
         public IOrpheeFileParameters OrpheeFileParameters { get; set; }
-        public IPlayerParameters PlayerParameters { get; set; }
         public ObservableCollection<IOrpheeTrack> OrpheeTrackList { get; set; }
         public string FileName { get; set; }
 
@@ -16,7 +15,7 @@ namespace Orphee.CreationShared
         {
             this.OrpheeTrackList = new ObservableCollection<IOrpheeTrack> {new OrpheeTrack(0, 0) {IsChecked = true, TrackVisibility = Visibility.Visible} };
             this.OrpheeFileParameters = new OrpheeFileParameters();
-            this.PlayerParameters = new PlayerParameters();
+            this.FileName = "Test.mid";
         }
 
         public void AddNewTrack(IOrpheeTrack orpheeTrack)
@@ -27,10 +26,5 @@ namespace Orphee.CreationShared
             this.OrpheeTrackList.Add(orpheeTrack);
         }
 
-        public void UpdateOrpheeFileParameters()
-        {
-            this.OrpheeFileParameters.NumberOfTracks = (ushort) this.OrpheeTrackList.Count;
-            this.OrpheeFileParameters.OrpheeFileType = (ushort) (this.OrpheeFileParameters.NumberOfTracks < 2 ? 0 : 1);
-        }
     }
 }

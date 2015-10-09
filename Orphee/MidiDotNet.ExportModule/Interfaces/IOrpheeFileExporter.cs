@@ -8,7 +8,6 @@ namespace MidiDotNet.ExportModule.Interfaces
 
         // Methods
         void ConvertTracksNoteMapToOrpheeNoteMessageList(IOrpheeFile orpheeFile);
-        void SaveOrpheeTrack(IOrpheeTrack orpheeTrack);
-        bool SaveOrpheeFile(IOrpheeFile orpheeFile);
+        void SaveOrpheeFile(IOrpheeFile orpheeFile);
     }
 }

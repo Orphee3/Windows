@@ -23,6 +23,7 @@ namespace Orphee.CreationShared
                 }
             }
         }
+        public IPlayerParameters PlayerParameters { get; set; }
         public IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; } 
         public Instrument CurrentInstrument { get; set; }
         public Channel Channel { get; set; }
@@ -76,7 +77,8 @@ namespace Orphee.CreationShared
             this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
             this.Channel = channel;
             this.TrackPos = trackPos;
-            this.TrackLength = (uint) (this.TrackPos == 0 ? 22 : 7);
+            this.PlayerParameters = this.TrackPos == 0 ? new PlayerParameters() : null;
+            this.TrackLength = (uint) (this.TrackPos == 0 ?  22 : 7);
         }
 
         public void UpdateCurrentInstrument(Instrument instrument)
@@ -92,6 +94,7 @@ namespace Orphee.CreationShared
             this.TrackPos = orpheeTrack.TrackPos;
             this.TrackName = this.CurrentInstrument.Name();
             this.CurrentInstrument = orpheeTrack.CurrentInstrument;
+            this.PlayerParameters = orpheeTrack.PlayerParameters;
             this.TrackLength = TrackLength;
             this.IsChecked = orpheeTrack.IsChecked;
         }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using MidiDotNet.ExportModule.Interfaces;
@@ -112,7 +111,7 @@ namespace Orphee.ViewModels
         private void UpdateTempoValue()
         {
             var newTempo = this.TempoValues[this.CurrentTempoIndex];
-            this.OrpheeFile.PlayerParameters.Tempo = newTempo;
+            this.OrpheeFile.OrpheeTrackList[0].PlayerParameters.Tempo = newTempo;
             this._soundPlayer.UpdateTempo(newTempo);
         }
 
@@ -123,8 +122,8 @@ namespace Orphee.ViewModels
                 App.MyNavigationService.Navigate("Login", null);
                     return;
             }
-            //this.DisplayedTrack.PlayerParameters = this._soundPlayer.GetPlayerParameters();
-            //this._orpheeFileExporter.SaveOrpheeTrack(this.DisplayedTrack);
+            this.OrpheeFile.OrpheeTrackList[0].PlayerParameters = this._soundPlayer.GetPlayerParameters();
+            this._orpheeFileExporter.SaveOrpheeFile(this.OrpheeFile);
         }
 
         private async void LoadButtonCommandExec()
@@ -162,7 +161,10 @@ namespace Orphee.ViewModels
         private void AddNewTrackCommandExec()
         {
             if (this.OrpheeFile.OrpheeTrackList.Count < 16)
+            { 
                 this.OrpheeFile.AddNewTrack(new OrpheeTrack(this.OrpheeFile.OrpheeTrackList.Count, (Channel) this.OrpheeFile.OrpheeTrackList.Count) {TrackVisibility = Visibility.Collapsed});
+                this.OrpheeFile.OrpheeFileParameters.NumberOfTracks++;
+            }
         }
     }
 }

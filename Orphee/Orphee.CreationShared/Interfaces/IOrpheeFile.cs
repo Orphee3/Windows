@@ -8,11 +8,9 @@ namespace Orphee.CreationShared.Interfaces
         // Properties
         IOrpheeFileParameters OrpheeFileParameters { get; set; }
         ObservableCollection<IOrpheeTrack> OrpheeTrackList { get; set; }
-        IPlayerParameters PlayerParameters { get; set; }
         string FileName { get; set; }
 
         // Methods
         void AddNewTrack(IOrpheeTrack orpheeTrack);
-        void UpdateOrpheeFileParameters();
     }
 }

@@ -48,7 +48,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.OrpheeFileExporterT
         [SetUp]
         public void Init()
         {
-            this.OrpheeFileExporter.SaveOrpheeTrack(this.OrpheeTrack);
+            //this.OrpheeFileExporter.SaveOrpheeTrack(this.OrpheeTrack);
             var result = RetrieveCreatedFile().Result;
         }
 

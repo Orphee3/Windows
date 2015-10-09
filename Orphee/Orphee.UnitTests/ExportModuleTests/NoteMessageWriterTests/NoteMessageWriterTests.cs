@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Windows.Networking.Connectivity;
 using Midi;
 using MidiDotNet.ExportModule;
 using MidiDotNet.ExportModule.Interfaces;

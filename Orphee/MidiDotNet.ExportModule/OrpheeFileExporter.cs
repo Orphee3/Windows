@@ -37,9 +37,17 @@ namespace MidiDotNet.ExportModule
             }
         }
 
-        public bool SaveOrpheeFile(IOrpheeFile orpheeFile)
+        public async void SaveOrpheeFile(IOrpheeFile orpheeFile)
         {
-            return false;
+            foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
+            {
+                var trackLength = orpheeTrack.TrackLength;
+                orpheeTrack.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(orpheeTrack.NoteMap, (int) orpheeTrack.Channel, ref trackLength);
+                orpheeTrack.TrackLength = trackLength;
+            }
+            var result2 = await GetTheSaveFilePicker(orpheeFile);
+            foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
+                orpheeTrack.TrackLength = (uint) ((orpheeTrack.TrackPos == 0) ? 22 : 7);
         }
 
         private async Task<bool> GetTheSaveFilePicker(IOrpheeFile orpheeFile)
@@ -55,25 +63,10 @@ namespace MidiDotNet.ExportModule
             {
                 CachedFileManager.DeferUpdates(this._storageFile);
                 WriteEventsInFile(orpheeFile);
-                var result = await this._fileUploader.UploadFile(this._storageFile);
+                //var result = await this._fileUploader.UploadFile(this._storageFile);
                 return true;
             }
             return false;
-        }
-
-        public async void SaveOrpheeTrack(IOrpheeTrack orpheeTrack)
-        {
-            var trackLength = orpheeTrack.TrackLength;
-            orpheeTrack.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(orpheeTrack.NoteMap, (int) orpheeTrack.Channel, ref trackLength);
-            orpheeTrack.TrackLength = trackLength;
-            var orpheeFile = new OrpheeFile()
-            {
-                FileName = orpheeTrack.TrackName,
-            };
-            orpheeFile.AddNewTrack(orpheeTrack);
-            orpheeFile.UpdateOrpheeFileParameters();
-            var result2 = await GetTheSaveFilePicker(orpheeFile);
-            orpheeTrack.TrackLength = (uint) (orpheeTrack.TrackPos == 0 ? 22 : 7);
         }
 
         private void WriteEventsInFile(IOrpheeFile orpheeFile)
@@ -83,7 +76,7 @@ namespace MidiDotNet.ExportModule
                 this._fileHeaderWriter.WriteFileHeader(this._writer, orpheeFile.OrpheeFileParameters);
                 foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
                 {
-                   //this._trackHeaderWriter.WriteTrackHeader(this._writer, orpheeTrack.PlayerParameters, orpheeTrack.TrackLength);
+                    this._trackHeaderWriter.WriteTrackHeader(this._writer, orpheeTrack.PlayerParameters, orpheeTrack.TrackLength);
                     this._noteMessageWriter.WriteNoteMessages(this._writer, orpheeTrack.OrpheeNoteMessageList, (int)orpheeTrack.Channel, orpheeTrack.CurrentInstrument);
                 }
             }

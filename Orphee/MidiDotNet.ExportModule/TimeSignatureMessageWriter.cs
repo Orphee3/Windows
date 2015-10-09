@@ -12,7 +12,7 @@ namespace MidiDotNet.ExportModule
             writer.Write((byte) 0x00);
             writer.Write((byte) 0xFF);
             writer.Write((byte) 0x58);
-            writer.Write((byte) 4);
+            writer.Write((byte) 0x04);
             writer.Write((byte) playerParameters.TimeSignatureNominator);
             writer.Write((byte) Math.Log(playerParameters.TimeSignatureDenominator, 2));
             writer.Write((byte) playerParameters.TimeSignatureClocksPerBeat);
