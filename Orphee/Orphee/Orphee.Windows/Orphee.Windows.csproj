@@ -294,6 +294,10 @@
     <Reference Include="midi.net4.5">
       <HintPath>..\..\midi.net4.5.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.3.1.416.3\lib\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -389,14 +393,6 @@
     <ProjectReference Include="..\..\Orphee.FileManagement\Orphee.FileManagement.csproj">
       <Project>{f6cbb9a6-ec88-4dcb-9758-8460579d4544}</Project>
       <Name>Orphee.FileManagement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Orphee.LoopCreation\Orphee.LoopCreation.csproj">
-      <Project>{38e95812-30a2-4ad0-9981-b1a8efa81212}</Project>
-      <Name>Orphee.LoopCreation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Orphee.PieceCreation\Orphee.PieceCreation.csproj">
-      <Project>{3057f081-9671-4d19-82e5-73901249fd17}</Project>
-      <Name>Orphee.PieceCreation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Orphee.RestApiManagement\Orphee.RestApiManagement.csproj">
       <Project>{2623f847-a3a6-4884-9fe3-e31742f3c745}</Project>

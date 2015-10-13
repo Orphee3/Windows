@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
+﻿using Windows.UI.Xaml.Input;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Orphee.Views
 {
@@ -7,6 +8,11 @@ namespace Orphee.Views
         public CreationPage()
         {
             this.InitializeComponent();
+        }
+
+        private void UIElement_OnHolding(object sender, HoldingRoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

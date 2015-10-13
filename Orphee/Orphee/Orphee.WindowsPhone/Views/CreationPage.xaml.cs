@@ -2,9 +2,9 @@
 
 namespace Orphee.Views
 {
-    public sealed partial class LoopCreationPage : IView
+    public sealed partial class CreationPage : IView
     {
-        public LoopCreationPage()
+        public CreationPage()
         {
             this.InitializeComponent();
         }

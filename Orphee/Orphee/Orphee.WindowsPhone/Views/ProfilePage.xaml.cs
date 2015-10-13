@@ -18,10 +18,10 @@ namespace Orphee.Views
 
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "_pictureHasBeenUplaodedWithSuccess" && RestApiManagerBase.Instance.UserData.User.PictureHasBeenUplaodedWithSuccess == true)
-                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => 
+            if (e.PropertyName == "_pictureHasBeenUplaodedWithSuccess" && RestApiManagerBase.Instance.UserData.User.PictureHasBeenUplaodedWithSuccess)
+                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    ((ProfilePageViewModel) this.DataContext).UpdatePictureSource();
+                    ((ProfilePageViewModel)this.DataContext).UpdatePictureSource();
                     RestApiManagerBase.Instance.UserData.User.PictureHasBeenUplaodedWithSuccess = false;
                 }));
         }

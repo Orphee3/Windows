@@ -102,13 +102,13 @@
     
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Messages" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Messages" FontSize="25"/>
             <AppBarButton HorizontalAlignment="Right" VerticalAlignment="Center" Icon="Add" Style="{StaticResource MyBackButton}" Visibility="{Binding ListViewVisibility}">
                 <AppBarButton.Flyout>
                     <Flyout>
@@ -124,6 +124,9 @@
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
+        </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding ConversationList}" Height="Auto" ShowsScrollingPlaceholders="True" SelectionMode="None" Visibility="{Binding ListViewVisibility}">
             <ListView.ItemsPanel>

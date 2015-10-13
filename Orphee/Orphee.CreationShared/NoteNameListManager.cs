@@ -135,5 +135,11 @@ namespace Orphee.CreationShared
                 return -1;
             return ((int)note / 12) - 2;
         }
+
+        public int GetNoteLineIndex(Note note, int lowerOctave)
+        {
+            var lowerNote = this.NoteNameList["C" + lowerOctave];
+            return note - lowerNote;
+        }
     }
 }

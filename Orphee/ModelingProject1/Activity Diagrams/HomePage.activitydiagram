@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="5c154a97-f754-4de2-8449-cc8fb5e59671" name="Activity1" linkedPackageId="9f485db0-9d6a-49a0-be0b-f5911db460fe" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="30dab844-ebf8-4246-98c0-880a971f579c">
+      <elementDefinition Id="a8127b82-e98a-4563-98cc-9871edbd3200" />
+      <body>
+Utilisateur connecté ?</body>
+    </comment>
+    <comment Id="dba719c2-44f2-45b0-ad71-ac46535bcb41">
+      <elementDefinition Id="870c725a-c919-4eb4-98bd-0a494687e91f" />
+      <body>Oui</body>
+    </comment>
+    <comment Id="61fb3475-0dcd-4934-a79a-f93e4fe591ba">
+      <elementDefinition Id="bd18b20f-b82d-477f-84eb-32dbac941b2f" />
+      <body>Non</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="a467a28e-435b-4f9a-acfe-7304196aeb4d">
+      <profileInstance Id="39aec9fd-962d-4687-a066-e1387826ed45" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="b0065073-4350-466e-a8ae-e2c96f580e8c">
+      <profileInstance Id="af8bba97-f7c1-4904-b6ae-0c6d63b95fb1" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="13ae3603-727f-4135-897c-0175d3bec74a" name="Activity1" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="c669f2c8-bcac-4fc3-8027-2b8c5c17bf17" />
+        <nodes>
+          <opaqueAction Id="05f07989-8f75-469a-9306-945b225b3808" name="Lancement de l'application" isLeaf="false">
+            <elementDefinition Id="2fe9e25e-399c-4d70-a2de-374538dc1110" />
+            <flowNodeTargets>
+              <controlFlow Id="0f89f935-0566-42f0-b921-cad84cdb4d5e" isLeaf="false">
+                <opaqueActionMoniker Id="8c594f6b-a263-4874-b698-8efb48453321" LastKnownName="Home page" />
+                <elementDefinition Id="ae658e06-72e2-4df6-8b20-1be6e9633124" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="8c594f6b-a263-4874-b698-8efb48453321" name="Home page" isLeaf="false">
+            <elementDefinition Id="9de43c5e-ccb5-4d16-82c5-edb6c1ecef99" />
+            <flowNodeTargets>
+              <controlFlow Id="d6f3a365-59ea-4f01-90d6-3ecdf134381b" isLeaf="false">
+                <opaqueActionMoniker Id="fd546a04-381b-4b63-9a97-d7f9833f3c2e" LastKnownName="Jouer un morceau" />
+                <elementDefinition Id="140cd8da-adee-46f6-b484-6a0a8c7fe39b" />
+              </controlFlow>
+              <controlFlow Id="2aebaa0f-e8d6-4085-a092-5e72b2a59852" isLeaf="false">
+                <opaqueActionMoniker Id="12543e6e-d94b-401a-bdc1-a10b3957d552" LastKnownName="Acceder à la page de description du morceau" />
+                <elementDefinition Id="34ec689b-ff31-4809-a734-468dc92188d4" />
+              </controlFlow>
+              <controlFlow Id="89329c43-4b26-4052-b8be-382869779fca" isLeaf="false">
+                <opaqueActionMoniker Id="1d1db064-a8cd-4786-8d48-e18bfd84f94e" LastKnownName="Acceder à la page de l'utalisateur ayant créer le morceau" />
+                <elementDefinition Id="d6c56b99-49be-4267-b7c1-0342a388c27e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="fd546a04-381b-4b63-9a97-d7f9833f3c2e" name="Jouer un morceau" isLeaf="false">
+            <elementDefinition Id="c5326a6d-97a4-4612-8810-96866be9ee6a" />
+          </opaqueAction>
+          <opaqueAction Id="12543e6e-d94b-401a-bdc1-a10b3957d552" name="Acceder à la page de description du morceau" isLeaf="false">
+            <elementDefinition Id="863eb94d-296e-4e84-837b-7aa0bbf72db2" />
+            <flowNodeTargets>
+              <controlFlow Id="27e68a40-8b91-48f1-ac92-26473ebef38f" isLeaf="false">
+                <opaqueActionMoniker Id="fd546a04-381b-4b63-9a97-d7f9833f3c2e" LastKnownName="Jouer un morceau" />
+                <elementDefinition Id="3c01b2db-b214-4114-9258-76ae1d8b7593" />
+              </controlFlow>
+              <controlFlow Id="21c2e89a-3402-43f2-b6d6-a1daa8441eea" isLeaf="false">
+                <opaqueActionMoniker Id="dbafaf34-3b61-44e9-8080-c4ed1ee56217" LastKnownName="Envoyer un commentaire" />
+                <elementDefinition Id="72b57464-0924-4946-99cc-cbb017c8115c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="1d1db064-a8cd-4786-8d48-e18bfd84f94e" name="Acceder à la page de l'utalisateur ayant créer le morceau" isLeaf="false">
+            <elementDefinition Id="e2a55c25-bdac-4083-ba21-1815f280d344" />
+            <flowNodeTargets>
+              <controlFlow Id="7fb00854-db2a-456d-88d0-d18fdadcf24d" isLeaf="false">
+                <opaqueActionMoniker Id="fd546a04-381b-4b63-9a97-d7f9833f3c2e" LastKnownName="Jouer un morceau" />
+                <elementDefinition Id="a704c0a4-386d-448b-8f3a-db6727e30022" />
+              </controlFlow>
+              <controlFlow Id="02e3ecb8-b774-4523-9c11-8b3a6b8948cc" isLeaf="false">
+                <opaqueActionMoniker Id="12543e6e-d94b-401a-bdc1-a10b3957d552" LastKnownName="Acceder à la page de description du morceau" />
+                <elementDefinition Id="5b2ebc60-d91a-4b68-a7e8-c7164690d165" />
+              </controlFlow>
+              <controlFlow Id="8bb9563f-c37b-4b17-ac09-fa97e7568e06" isLeaf="false">
+                <opaqueActionMoniker Id="5c28cf13-931e-440f-8f9a-cb7bf683b729" LastKnownName="Like le morceau" />
+                <elementDefinition Id="61777f15-f221-4a2f-967b-530b4e49fcbf" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="dbafaf34-3b61-44e9-8080-c4ed1ee56217" name="Envoyer un commentaire" isLeaf="false">
+            <elementDefinition Id="61b6db31-6b4a-4ba2-8a10-80a544298508" />
+            <flowNodeTargets>
+              <controlFlow Id="410c2e40-3ffd-461f-972f-ab8a2dbd9a3b" isLeaf="false">
+                <joinNodeMoniker Id="84c466df-3a84-4f65-bf17-f75420f5af99" LastKnownName="Join1" />
+                <elementDefinition Id="e865a3cf-8094-4a72-98fe-7314eb470f15" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="c514620a-44c7-4204-b07c-2b77148f15cd" name="Decision1" isLeaf="false">
+            <elementDefinition Id="51b80ef2-42f3-4824-82f9-dfe38996fd26" />
+            <flowNodeTargets>
+              <controlFlow Id="20500d4c-d60c-4b19-a64e-d58c0b300362" isLeaf="false">
+                <opaqueActionMoniker Id="3602d3d1-600e-4504-88c1-194a9588cd86" LastKnownName="Commentaire envoyé" />
+                <elementDefinition Id="3e7ce21e-c20a-430a-902a-e90d96d3243c" />
+              </controlFlow>
+              <controlFlow Id="c596be5c-48ae-4af0-b719-412df1dba78f" isLeaf="false">
+                <opaqueActionMoniker Id="2d6b43fd-4181-42c1-8651-93e079baff44" LastKnownName="Redirection vers la page de login" />
+                <elementDefinition Id="779d1518-134b-437c-a535-3f222c8d942d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="3602d3d1-600e-4504-88c1-194a9588cd86" name="Commentaire envoyé" isLeaf="false">
+            <elementDefinition Id="7049ed09-6785-43aa-bee3-c99b4f9f329a" />
+          </opaqueAction>
+          <opaqueAction Id="2d6b43fd-4181-42c1-8651-93e079baff44" name="Redirection vers la page de login" isLeaf="false">
+            <elementDefinition Id="221a26b7-fb05-40a5-b26c-5657c574903d" />
+          </opaqueAction>
+          <opaqueAction Id="5c28cf13-931e-440f-8f9a-cb7bf683b729" name="Like le morceau" isLeaf="false">
+            <elementDefinition Id="b371712f-7ebf-46dd-a95a-a0c7f6eb8fce" />
+            <flowNodeTargets>
+              <controlFlow Id="d2a2a78b-bf44-488c-8cd7-32d1ea7a5af9" isLeaf="false">
+                <joinNodeMoniker Id="84c466df-3a84-4f65-bf17-f75420f5af99" LastKnownName="Join1" />
+                <elementDefinition Id="7d8e5487-33d0-4f61-ac0b-9e87b126fc55" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode Id="84c466df-3a84-4f65-bf17-f75420f5af99" name="Join1" isLeaf="false">
+            <elementDefinition Id="28054fc7-eee3-4b64-829c-1c11f2033830" />
+            <flowNodeTargets>
+              <controlFlow Id="35d18192-30b0-4680-83da-5318c7538a9d" isLeaf="false">
+                <decisionNodeMoniker Id="c514620a-44c7-4204-b07c-2b77148f15cd" LastKnownName="Decision1" />
+                <elementDefinition Id="fb8fdc9e-66c9-4369-b263-276fbc928c4b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <initialNode Id="14d71214-031b-4a63-9c19-1c58855f2391" name="Initial1" isLeaf="false">
+            <elementDefinition Id="fa30c591-b269-47d3-96db-31cbf6dc55ef" />
+            <flowNodeTargets>
+              <controlFlow Id="d2eda06f-afae-494c-b0a0-db2e64429bcd" isLeaf="false">
+                <opaqueActionMoniker Id="05f07989-8f75-469a-9306-945b225b3808" LastKnownName="Lancement de l'application" />
+                <elementDefinition Id="d599f7b6-e634-4357-addc-df92478c7346" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="9f485db0-9d6a-49a0-be0b-f5911db460fe" name="ModelingProject1">
+    <elementDefinition Id="617d173b-ebd3-4c3f-a156-d067adad1322" />
+  </package>
+</activityRootModel>

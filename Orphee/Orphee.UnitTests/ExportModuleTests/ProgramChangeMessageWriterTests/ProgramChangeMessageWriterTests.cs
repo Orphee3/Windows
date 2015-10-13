@@ -15,7 +15,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.ProgramChangeMessag
 
         public WhenProgramChangeMessageIsCalled()
         {
-            this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel1)
+            this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel1, true)
             {
                 CurrentInstrument = Instrument.Banjo
             };

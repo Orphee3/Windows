@@ -100,13 +100,16 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Social" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Social" FontSize="25"/>
+        </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding UserList}" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center" ItemClick="User_OnItemClick" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>
@@ -134,7 +137,7 @@
                                     <ImageBrush ImageSource="{Binding Path=Picture}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <AppBarButton Grid.Column="0" Foreground="#BDBEC0" Command="{Binding DataContext.AddFriendCommand, ElementName=Page}" CommandParameter="{Binding}" Icon="Add" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
+                            <AppBarButton Grid.Column="0" Foreground="#BDBEC0" Command="{Binding DataContext.AddFriendCommand, ElementName=Page}" CommandParameter="{Binding}" Icon="Add" BorderThickness="0" Style="{StaticResource MyBackButton}" Visibility="{Binding Path=AddButtonVisibility}"/>
                             <TextBlock Grid.Column="2" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
                         </Grid>
                         <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>

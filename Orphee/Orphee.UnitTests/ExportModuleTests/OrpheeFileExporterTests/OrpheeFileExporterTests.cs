@@ -30,7 +30,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.OrpheeFileExporterT
                 Tempo = 120,
                 TimeSignatureNumberOf32ThNotePerBeat = 4
             };
-            this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel1)
+            this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel1, true)
             {
                 CurrentInstrument = Instrument.OrchestralHarp
             };

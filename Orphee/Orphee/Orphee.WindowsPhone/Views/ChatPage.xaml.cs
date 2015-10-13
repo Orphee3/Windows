@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Models;
@@ -25,6 +27,12 @@ namespace Orphee.Views
                 RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
                 RestApiManagerBase.Instance.UserData.User.PendingMessageList.Clear();
             }));
+        }
+
+        private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var channel = ((Message) ((Ellipse) sender).DataContext).User;
+            App.MyNavigationService.Navigate("ChannelInfo", channel);
         }
     }
 }

@@ -162,7 +162,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
 
         public WhenYouCallConvertNoteMapToOrpheeMessageListWithAnEmptyNoteMap()
         {
-            this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
+            this.NoteMap = NoteMapManager.Instance.GenerateNoteMap(4);
         }
     }
 
@@ -197,7 +197,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
 
         public WhenYouCallConvertNoteMapToOrpheeMessageListWithAnNonEmptyNoteMap()
         {
-            this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
+            this.NoteMap = NoteMapManager.Instance.GenerateNoteMap(4);
             this.NoteMap[0][0].Note = Note.C4;
             this.NoteMap[0][0].ColumnIndex = 0;
             this.NoteMap[0][0].LineIndex = 0;

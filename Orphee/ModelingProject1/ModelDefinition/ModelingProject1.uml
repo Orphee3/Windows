@@ -1,0 +1,2382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="617d173b-ebd3-4c3f-a156-d067adad1322"
+  name="ModelingProject1" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="a8127b82-e98a-4563-98cc-9871edbd3200">
+      <body>
+Utilisateur connecté ?</body>
+    </comment>
+    <comment
+      Id="870c725a-c919-4eb4-98bd-0a494687e91f">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="bd18b20f-b82d-477f-84eb-32dbac941b2f">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="c80f7644-d50b-48f3-b746-159bdb27d9d9">
+      <body>
+Utilisateur connecté ?</body>
+    </comment>
+    <comment
+      Id="24e9129d-b9c0-4e8d-b76c-7ed703549ca0">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="1084fcc7-ced7-4308-b7b9-615f3eedf45e">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="056c8bc0-f387-4dc2-a7a5-0eb4ed79b212">
+      <body>Si l'utilisateur est connecté</body>
+    </comment>
+    <comment
+      Id="817b5169-d018-4849-8373-35fd65cc3253">
+      <body>
+Utilisateur connecté ?</body>
+    </comment>
+    <comment
+      Id="bcd86f46-bf60-4657-b6df-eb339c727115">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="9e46758e-fed3-4ce9-8c19-12038a2bddb7">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="34d22400-a578-48d6-9288-3b435af449ed">
+      <body>
+Utilisateur connecté ?</body>
+    </comment>
+    <comment
+      Id="126f0f82-5616-43d6-9abf-aefb67f96d17">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="0fdb2f79-1a3e-417d-8bac-42dd3b1b5199">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="955a0cfe-c4ae-4533-9673-0c02a63a51e9">
+      <body>
+Utilisateur connecté ?</body>
+    </comment>
+    <comment
+      Id="db856b64-16ca-46f3-92f1-0b367b7f343a">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="2bcd297c-3509-49c6-b770-047041318fe3">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="baf11f81-e7ae-4295-ba3c-e50882158bbf">
+      <body>
+Utilisateur connecté ?</body>
+    </comment>
+    <comment
+      Id="aeac0f25-5860-4d81-aebb-aa1fb68359f3">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="9b8bf41c-456c-4f42-b219-7222debe8fd5">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="b83d3967-ad44-4031-99cd-13b4dd062819">
+      <body>
+Utilisateur connecté ?</body>
+    </comment>
+    <comment
+      Id="8b836787-464d-4c53-ad82-586dc8129ccb">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="cbe069ec-475e-481b-aea7-8f8d231c3281">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="19f1fda8-e232-4930-8e5c-9e7c7c86dbf6">
+      <body>Déjà séléctionné ?
+</body>
+    </comment>
+    <comment
+      Id="1a1c571a-a5dc-4208-9e29-fdce5d5d660e">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="cdcd4f0c-cdf2-4832-b5ad-77bbf2736099">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="2e33e810-0355-4e6c-a0c2-3357b54f31aa">
+      <body>&lt; ou &gt; aux limites d'octotave imposé ?</body>
+    </comment>
+    <comment
+      Id="895b5cb4-7a51-46f9-bc13-b05bce4bafb0">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="804f003a-b5ad-4017-8642-e05f35acfaff">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="d85c6af8-419a-42c3-957b-571aaa3ae1b4">
+      <body>Nombre de piste &lt; 16 ?</body>
+    </comment>
+    <comment
+      Id="57823846-dd52-47a0-b228-326bb7a4beb3">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="001ff83b-4d7f-4cb0-861c-cc1801fdfaa6">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="c7c2e64b-62ad-4353-8681-452ea1b934c0">
+      <body>Morceau contient au moins 1 note ?</body>
+    </comment>
+    <comment
+      Id="c1aae847-4e66-4085-9aa0-a481cacfe13f">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="685db847-3a42-4c3b-ab54-c04733aa6756">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="3f61451a-7d26-4066-b492-cf20011f8947">
+      <body>Connecter ?
+</body>
+    </comment>
+    <comment
+      Id="4f116d72-dad0-494c-8119-f1efc2cf9d55">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="ae67da4e-c6a7-4681-b1b5-5beaec765110">
+      <body>Oui</body>
+    </comment>
+    <comment
+      Id="fac8bc85-f05a-4228-b297-76fb872cd2bd">
+      <body>Déjà séléctionné ?
+</body>
+    </comment>
+    <comment
+      Id="1baacb31-8a12-4df0-a644-560d323507ac">
+      <body>Non</body>
+    </comment>
+    <comment
+      Id="b79c29a2-c86e-41c7-8c9d-9112729546ca">
+      <body>Oui</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <activity
+        Id="c669f2c8-bcac-4fc3-8027-2b8c5c17bf17"
+        name="Activity1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <opaqueAction
+            Id="2fe9e25e-399c-4d70-a2de-374538dc1110"
+            name="Lancement de l'application"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ae658e06-72e2-4df6-8b20-1be6e9633124"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="9de43c5e-ccb5-4d16-82c5-edb6c1ecef99"
+                  LastKnownName="Home page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="9de43c5e-ccb5-4d16-82c5-edb6c1ecef99"
+            name="Home page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="140cd8da-adee-46f6-b484-6a0a8c7fe39b"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c5326a6d-97a4-4612-8810-96866be9ee6a"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="34ec689b-ff31-4809-a734-468dc92188d4"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="863eb94d-296e-4e84-837b-7aa0bbf72db2"
+                  LastKnownName="Acceder à la page de description du morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="d6c56b99-49be-4267-b7c1-0342a388c27e"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="e2a55c25-bdac-4083-ba21-1815f280d344"
+                  LastKnownName="Acceder à la page de l'utalisateur ayant créer le morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="c5326a6d-97a4-4612-8810-96866be9ee6a"
+            name="Jouer un morceau"
+            isLeaf="false" />
+          <opaqueAction
+            Id="863eb94d-296e-4e84-837b-7aa0bbf72db2"
+            name="Acceder à la page de description du morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3c01b2db-b214-4114-9258-76ae1d8b7593"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c5326a6d-97a4-4612-8810-96866be9ee6a"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="72b57464-0924-4946-99cc-cbb017c8115c"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="61b6db31-6b4a-4ba2-8a10-80a544298508"
+                  LastKnownName="Envoyer un commentaire"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="e2a55c25-bdac-4083-ba21-1815f280d344"
+            name="Acceder à la page de l'utalisateur ayant créer le morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="a704c0a4-386d-448b-8f3a-db6727e30022"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c5326a6d-97a4-4612-8810-96866be9ee6a"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="5b2ebc60-d91a-4b68-a7e8-c7164690d165"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="863eb94d-296e-4e84-837b-7aa0bbf72db2"
+                  LastKnownName="Acceder à la page de description du morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="61777f15-f221-4a2f-967b-530b4e49fcbf"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b371712f-7ebf-46dd-a95a-a0c7f6eb8fce"
+                  LastKnownName="Like le morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="61b6db31-6b4a-4ba2-8a10-80a544298508"
+            name="Envoyer un commentaire"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e865a3cf-8094-4a72-98fe-7314eb470f15"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="28054fc7-eee3-4b64-829c-1c11f2033830"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="51b80ef2-42f3-4824-82f9-dfe38996fd26"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3e7ce21e-c20a-430a-902a-e90d96d3243c"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7049ed09-6785-43aa-bee3-c99b4f9f329a"
+                  LastKnownName="Commentaire envoyé"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="779d1518-134b-437c-a535-3f222c8d942d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="221a26b7-fb05-40a5-b26c-5657c574903d"
+                  LastKnownName="Redirection vers la page de login"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="7049ed09-6785-43aa-bee3-c99b4f9f329a"
+            name="Commentaire envoyé"
+            isLeaf="false" />
+          <opaqueAction
+            Id="221a26b7-fb05-40a5-b26c-5657c574903d"
+            name="Redirection vers la page de login"
+            isLeaf="false" />
+          <opaqueAction
+            Id="b371712f-7ebf-46dd-a95a-a0c7f6eb8fce"
+            name="Like le morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="7d8e5487-33d0-4f61-ac0b-9e87b126fc55"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="28054fc7-eee3-4b64-829c-1c11f2033830"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode
+            Id="28054fc7-eee3-4b64-829c-1c11f2033830"
+            name="Join1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="fb8fdc9e-66c9-4369-b263-276fbc928c4b"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="51b80ef2-42f3-4824-82f9-dfe38996fd26"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <initialNode
+            Id="fa30c591-b269-47d3-96db-31cbf6dc55ef"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="d599f7b6-e634-4357-addc-df92478c7346"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="2fe9e25e-399c-4d70-a2de-374538dc1110"
+                  LastKnownName="Lancement de l'application"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="e0cccdb3-da50-41ce-9231-c62575931c4c"
+        name="SocialPage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <opaqueAction
+            Id="abfba0c7-30c7-4db4-9eaa-26295c0cb5af"
+            name="Social Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c7d23e14-9be4-4bfd-af59-a7f2efe3c2d1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7167a148-4cbf-43db-84ee-ef3e8f03d376"
+                  LastKnownName="Affichage d'un liste aléatoire de 20-25 utilisateurs"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="7167a148-4cbf-43db-84ee-ef3e8f03d376"
+            name="Affichage d'un liste aléatoire de 20-25 utilisateurs"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="9c60b90b-99d8-483a-ad41-431aa4b875ea"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7a2330b0-30d8-4cde-bc76-79a1e69bbe50"
+                  LastKnownName="Rechercher un utilisateur"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="7a2330b0-30d8-4cde-bc76-79a1e69bbe50"
+            name="Rechercher un utilisateur"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="23335359-7e97-41dc-b346-846f1eab860e"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="b1055e70-553c-4bc8-b220-15468f4e8b4e"
+                  LastKnownName="Fork1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="0d253587-34f6-4a18-b758-02b87b2740d8"
+            name="Ajouter un utilisateur en amis"
+            isLeaf="false" />
+          <opaqueAction
+            Id="0db082eb-eb7e-4aee-a023-e0fa133518f7"
+            name="Jouer un morceau"
+            isLeaf="false" />
+          <opaqueAction
+            Id="b60c9ab9-59cb-484a-82f3-eef0b0874076"
+            name="Acceder à la page de description du morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="aec8d7ac-0326-409a-bd54-b963ab267025"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="0db082eb-eb7e-4aee-a023-e0fa133518f7"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="471ccdbe-b911-4c34-94d4-74fd7b4a3ba0"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="bf3550df-88d1-4d91-a4a4-84d11f9c9062"
+                  LastKnownName="Envoyer un commentaire"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="47fed1af-a074-435a-aab0-c646e8ab8a46"
+            name="Acceder à la page de l'utalisateur contenant la liste de ses morceaux"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="48c37bcc-d532-4e9a-a198-978f2258aa87"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="0db082eb-eb7e-4aee-a023-e0fa133518f7"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="abf9dce9-81a4-4c23-a7ac-d48e994e75c3"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b60c9ab9-59cb-484a-82f3-eef0b0874076"
+                  LastKnownName="Acceder à la page de description du morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="a5fa4cce-d904-4e48-a4a8-81bb38ca9362"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="537b6465-df7b-4c4d-a352-ac6e86d4fca9"
+                  LastKnownName="Like le morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="bf3550df-88d1-4d91-a4a4-84d11f9c9062"
+            name="Envoyer un commentaire"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="59bb950c-e361-40e5-8a3d-98410c18ac2b"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="2d5f4679-c4f7-4a48-a5d4-64afc9d09c96"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="7a3170fd-7e10-4591-b22b-a744e66c4e93"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="cc576ee4-41fe-4045-95b4-42140549f820"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="daa4f22a-23e3-4e37-bf36-b9bc8e2b2141"
+                  LastKnownName="Commentaire envoyé"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="0210ca45-bed9-49af-9d72-da8a0df29360"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="183c1e0b-f50f-4226-82d8-b56c627714ee"
+                  LastKnownName="Redirection vers la page de login"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="daa4f22a-23e3-4e37-bf36-b9bc8e2b2141"
+            name="Commentaire envoyé"
+            isLeaf="false" />
+          <opaqueAction
+            Id="183c1e0b-f50f-4226-82d8-b56c627714ee"
+            name="Redirection vers la page de login"
+            isLeaf="false" />
+          <opaqueAction
+            Id="537b6465-df7b-4c4d-a352-ac6e86d4fca9"
+            name="Like le morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="db4dfc37-f8c6-4418-9bd6-eafde7c7e9c2"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="2d5f4679-c4f7-4a48-a5d4-64afc9d09c96"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode
+            Id="2d5f4679-c4f7-4a48-a5d4-64afc9d09c96"
+            name="Join1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="047e7f29-b8e5-4463-a9f0-b9d37147b437"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="7a3170fd-7e10-4591-b22b-a744e66c4e93"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <forkNode
+            Id="b1055e70-553c-4bc8-b220-15468f4e8b4e"
+            name="Fork1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="dc29679b-09da-44ae-8fec-a52c443af20d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="47fed1af-a074-435a-aab0-c646e8ab8a46"
+                  LastKnownName="Acceder à la page de l'utalisateur contenant la liste de ses morceaux"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="7ee049c0-5dd1-44f5-9aaa-b0111b0fee6a"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="0d253587-34f6-4a18-b758-02b87b2740d8"
+                  LastKnownName="Ajouter un utilisateur en amis"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <initialNode
+            Id="9e23b025-cd92-43ba-9a4d-13e502b029bb"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="cde4ad16-8a89-4fef-b4bb-ae29dbe908f3"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="abfba0c7-30c7-4db4-9eaa-26295c0cb5af"
+                  LastKnownName="Social Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="2f6ff145-7b83-4a73-90a2-7dbc5018e3e7"
+        name="MessagesPage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <opaqueAction
+            Id="90ee0ea8-b582-469f-b77b-896cb04f5931"
+            name="Messages Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c3e7266d-81f4-4494-a42d-79baf97898dd"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="ce792240-d338-4eef-8664-cb319fe2c7fa"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a2bc8a01-17b0-44df-8850-f9b5bed57f41"
+            name="Acceder à une conversation existante"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="98090ad1-922e-43ce-9027-82129b452647"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="bec4921d-21bc-4a0f-91b9-fe1458e094fc"
+                  LastKnownName="Fork2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="9e54cac8-5040-4e38-b7a4-e3d9c5e39e90"
+            name="Créer une nouvelle conversation"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="528a193e-800f-4d20-b8ef-bb678ad3ebb6"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="bb5bff78-d26d-4e9c-a7ad-f41173d2b8bd"
+                  LastKnownName="Accès à la Friend Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="ce792240-d338-4eef-8664-cb319fe2c7fa"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ee5d8aa6-621c-488f-8505-ee3cf6c3cc04"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="e68b2d36-053b-417c-ac56-46c94d5e6f12"
+                  LastKnownName="Redirection vers la page de login"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="fedf626e-31af-4b32-ae24-4576e17e37ff"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="d1c18b49-72e8-4da8-8658-0c4882cd04c5"
+                  LastKnownName="Fork1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="e68b2d36-053b-417c-ac56-46c94d5e6f12"
+            name="Redirection vers la page de login"
+            isLeaf="false" />
+          <forkNode
+            Id="d1c18b49-72e8-4da8-8658-0c4882cd04c5"
+            name="Fork1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="82dc1b9e-137a-4fd3-ae79-8507a23ce6bc"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a2bc8a01-17b0-44df-8850-f9b5bed57f41"
+                  LastKnownName="Acceder à une conversation existante"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="957aaef3-fc21-4578-8f76-c097b34725a0"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="9e54cac8-5040-4e38-b7a4-e3d9c5e39e90"
+                  LastKnownName="Créer une nouvelle conversation"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <opaqueAction
+            Id="c2f2624d-7ae3-4b51-9d71-cd73d45d3a11"
+            name="Jouer un morceau"
+            isLeaf="false" />
+          <opaqueAction
+            Id="aee20aa5-ac24-4aae-9995-5d42d2e5d94f"
+            name="Acceder à la page de description du morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3fa488e9-9b97-4163-b0b4-44a3e4afaff8"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c2f2624d-7ae3-4b51-9d71-cd73d45d3a11"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="d338f3f1-2c15-462e-bffa-f4bf0ed3a634"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="6db31a92-c20a-49c4-bcfd-33db347bfaa6"
+                  LastKnownName="Envoyer un commentaire"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="738f39f4-5cfc-4630-b500-0df9825abe15"
+            name="Acceder à la page de l'utalisateur contenant la liste de ses morceaux"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="32191530-23df-4fc9-8741-b0a1247665f1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c2f2624d-7ae3-4b51-9d71-cd73d45d3a11"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="0f7831a3-0e22-4a8a-b617-ebe38ab8f82d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="aee20aa5-ac24-4aae-9995-5d42d2e5d94f"
+                  LastKnownName="Acceder à la page de description du morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="f6b2e0e0-34ee-4150-a67e-cf056373eae6"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b68c18be-7b6d-454b-ba11-91a4749d95d5"
+                  LastKnownName="Like le morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="6db31a92-c20a-49c4-bcfd-33db347bfaa6"
+            name="Envoyer un commentaire"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="91b2f906-96bb-4499-b0bf-053de0aaece8"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="8fe25e62-ea80-43d1-8458-be10c24e6950"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="6791784d-215b-4d03-967f-23a4e564f66f"
+            name="Decision11"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="592a553d-93e7-4941-bfc5-fea39a5eabf4"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a5f21bf3-36ed-4d8c-ab25-c4edc2a7491f"
+                  LastKnownName="Commentaire envoyé"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="b2b0e8f2-92d3-4ebd-b406-4ca3266372b9"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="bcba5b46-ff63-43d9-8920-474ae0a06fc8"
+                  LastKnownName="Redirection vers la page de login1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="a5f21bf3-36ed-4d8c-ab25-c4edc2a7491f"
+            name="Commentaire envoyé"
+            isLeaf="false" />
+          <opaqueAction
+            Id="bcba5b46-ff63-43d9-8920-474ae0a06fc8"
+            name="Redirection vers la page de login1"
+            isLeaf="false" />
+          <opaqueAction
+            Id="b68c18be-7b6d-454b-ba11-91a4749d95d5"
+            name="Like le morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="5670435d-b345-4638-8b12-6ba26e6f1a59"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="8fe25e62-ea80-43d1-8458-be10c24e6950"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode
+            Id="8fe25e62-ea80-43d1-8458-be10c24e6950"
+            name="Join1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="691658f6-d926-4bc4-924d-70a56eb9ba62"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="6791784d-215b-4d03-967f-23a4e564f66f"
+                  LastKnownName="Decision11"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <opaqueAction
+            Id="cd9bad80-4e0b-4e3c-99e0-35302b60ec25"
+            name="Envoyer un message"
+            isLeaf="false" />
+          <forkNode
+            Id="bec4921d-21bc-4a0f-91b9-fe1458e094fc"
+            name="Fork2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="72463d88-2381-4030-bbf0-afe4fdefe500"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="738f39f4-5cfc-4630-b500-0df9825abe15"
+                  LastKnownName="Acceder à la page de l'utalisateur contenant la liste de ses morceaux"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="9f55e8ab-8753-4534-a787-af1c9d9be869"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="cd9bad80-4e0b-4e3c-99e0-35302b60ec25"
+                  LastKnownName="Envoyer un message"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <opaqueAction
+            Id="bb5bff78-d26d-4e9c-a7ad-f41173d2b8bd"
+            name="Accès à la Friend Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3fc43f08-827e-4ef5-b0ad-211c1453572b"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="5d5f7a19-0d7d-458c-a7f9-9675d2b920f9"
+                  LastKnownName="Fork3"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <initialNode
+            Id="944ec507-16a9-46be-a6a5-45bf5e825d1d"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="bbbcf5ad-6557-48f8-9900-33d9d261d205"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="90ee0ea8-b582-469f-b77b-896cb04f5931"
+                  LastKnownName="Messages Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="db37f4dd-0de4-4be0-9f8e-0d5ed697ab95"
+            name="Validation de la selection d'amis avec au moins un amis sléléctionné"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="aaf55a15-d969-4c53-ac82-07ba0057880c"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a2bc8a01-17b0-44df-8850-f9b5bed57f41"
+                  LastKnownName="Acceder à une conversation existante"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="d508e98b-32c9-4f2f-9924-0002d6186449"
+            name="Selection d'amis non validé"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c36026b6-7d59-49ca-bc79-3d12de4a3749"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="513b9fff-d2c4-418e-a76e-2b167467249c"
+                  LastKnownName="Join2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="8c68778b-b8a8-477e-a70a-6134711059ad"
+            name="Validation de la séléction d'amis sans aucun amis séléctionné"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="1f7c8720-449c-4b9e-9e2e-813e054f285f"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="513b9fff-d2c4-418e-a76e-2b167467249c"
+                  LastKnownName="Join2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <forkNode
+            Id="5d5f7a19-0d7d-458c-a7f9-9675d2b920f9"
+            name="Fork3"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="2f97483f-b64e-4d80-b1f2-ed68f10c93d2"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="db37f4dd-0de4-4be0-9f8e-0d5ed697ab95"
+                  LastKnownName="Validation de la selection d'amis avec au moins un amis sléléctionné"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="602e1b5b-5b75-42df-8a62-bdde5e4058e2"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="d508e98b-32c9-4f2f-9924-0002d6186449"
+                  LastKnownName="Selection d'amis non validé"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="6c17087b-4a84-4973-8941-b66766d76239"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="8c68778b-b8a8-477e-a70a-6134711059ad"
+                  LastKnownName="Validation de la séléction d'amis sans aucun amis séléctionné"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <joinNode
+            Id="513b9fff-d2c4-418e-a76e-2b167467249c"
+            name="Join2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="073c4bef-5083-4bed-bb44-39b415941bcd"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="90ee0ea8-b582-469f-b77b-896cb04f5931"
+                  LastKnownName="Messages Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="0808b8e5-8444-4c39-82a0-ed328b732a3e"
+        name="ProfilePage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <opaqueAction
+            Id="24139d6e-98af-495c-889d-fe076fb35f5a"
+            name="Profile Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="f6d071aa-5afe-4b32-aff7-9c8b15e62c50"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="8419898f-0c58-4c8a-bf33-4e0a3e3f3ba3"
+                  LastKnownName="Decision11"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <initialNode
+            Id="b0fcf439-3dcc-454d-8a65-7841a8f3ce0b"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="f1a51ed8-6ba9-4bb4-a004-6bb73023438a"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="24139d6e-98af-495c-889d-fe076fb35f5a"
+                  LastKnownName="Profile Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="c696460a-e92b-4acc-9081-4c5d38d34cd4"
+            name="Acceder à la liste d'amis"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="fbca1ca3-bc49-43cc-a897-ec34cef00aea"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="1c5ba13d-c082-4556-91ad-eb622c86516c"
+                  LastKnownName="Fork3"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="948890ca-afa5-4c09-82f9-e681f17708e0"
+            name="Se déconnecter"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="717674c8-a891-4ee4-a9f3-3c597f145cec"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="24139d6e-98af-495c-889d-fe076fb35f5a"
+                  LastKnownName="Profile Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a853b690-83a2-4409-8411-af46a447d762"
+            name="Acceder aux paramètres du compte"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="dbe1a5bf-62a8-4d59-8817-5dbfcd49b8e4"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="3c6a76e7-3c2c-4aba-b208-3dfe49288503"
+                  LastKnownName="Fork2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="eed46c1d-1d0d-46c8-ac4b-50a6bf7ad852"
+            name="Acceder aux morceaux de l'utilisateur"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="2e4fea8d-01ef-48c9-bc36-94bafa9db380"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c34cc9be-222d-48d1-8bd0-1ef37ccb0054"
+                  LastKnownName="Acceder à la page de description du morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <forkNode
+            Id="a79bd592-9e89-4408-b9f8-5ee42924413a"
+            name="Fork1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ba01ad37-91a8-40c4-9e6b-ec20518e5df8"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c696460a-e92b-4acc-9081-4c5d38d34cd4"
+                  LastKnownName="Acceder à la liste d'amis"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="4ec6e0be-8cc5-4748-a316-2469139aff64"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="948890ca-afa5-4c09-82f9-e681f17708e0"
+                  LastKnownName="Se déconnecter"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="d31dc305-cfce-4cc6-a56a-e493005dad20"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="eed46c1d-1d0d-46c8-ac4b-50a6bf7ad852"
+                  LastKnownName="Acceder aux morceaux de l'utilisateur"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="6107e317-449d-4041-bb66-7aed44eee8ad"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a853b690-83a2-4409-8411-af46a447d762"
+                  LastKnownName="Acceder aux paramètres du compte"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <decisionNode
+            Id="8419898f-0c58-4c8a-bf33-4e0a3e3f3ba3"
+            name="Decision11"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="639a0a04-a6ec-4bf1-86a4-00b08c452ac8"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="2d730052-37ef-47be-91d1-1eab809ac06e"
+                  LastKnownName="Redirection vers la page de login"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="6ed16660-be44-4878-b204-893f7e98e0b4"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="a79bd592-9e89-4408-b9f8-5ee42924413a"
+                  LastKnownName="Fork1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="2d730052-37ef-47be-91d1-1eab809ac06e"
+            name="Redirection vers la page de login"
+            isLeaf="false" />
+          <opaqueAction
+            Id="acf11a74-4112-432d-8ea1-376425197144"
+            name="Modifier la photo de l'utilisateur"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b6440c8a-61b1-44b3-949b-27d91dd9d5b4"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="c13a68b8-6643-4faf-b959-a9ba6ec89b54"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="78795b97-4544-49c3-82c2-55d063aa3dc4"
+            name="Supprimer son compte"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="653af3a6-878d-489f-8bbf-360c0295a4de"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="2cf23c64-84fe-4a5f-811f-9e51356c8f8d"
+                  LastKnownName="ActivityFinal2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="51f5ba5b-9b5b-48e1-b7ea-7c5c11180ef3"
+            name="Changer le mot de passe de l'utilisateur"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="35891aa7-ffa7-4822-94be-795f92f3648e"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="1ab665b4-ca94-420f-bb8a-98b5da3267a3"
+                  LastKnownName="ActivityFinal3"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a694af5f-0be0-454a-904b-92fd30bdadc1"
+            name="Changer l'adresse mail associé au compte"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ca67d004-2da5-4724-a03c-2d82e302e668"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="c285e440-f270-4824-afb4-a6183ea2ff9e"
+                  LastKnownName="ActivityFinal4"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <forkNode
+            Id="3c6a76e7-3c2c-4aba-b208-3dfe49288503"
+            name="Fork2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="fd216e5d-9255-45b6-ad4b-f83afd561c48"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="acf11a74-4112-432d-8ea1-376425197144"
+                  LastKnownName="Modifier la photo de l'utilisateur"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="82313f0c-6bcf-4b46-bcb6-eb23d4acd9c4"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="78795b97-4544-49c3-82c2-55d063aa3dc4"
+                  LastKnownName="Supprimer son compte"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="a8df2c0a-bd08-4594-b6d8-7dfd0e575ee7"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="51f5ba5b-9b5b-48e1-b7ea-7c5c11180ef3"
+                  LastKnownName="Changer le mot de passe de l'utilisateur"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="4ab04a93-2dd2-4457-9ef9-603b61b93cd1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a694af5f-0be0-454a-904b-92fd30bdadc1"
+                  LastKnownName="Changer l'adresse mail associé au compte"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <activityFinalNode
+            Id="c13a68b8-6643-4faf-b959-a9ba6ec89b54"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="2cf23c64-84fe-4a5f-811f-9e51356c8f8d"
+            name="ActivityFinal2"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="1ab665b4-ca94-420f-bb8a-98b5da3267a3"
+            name="ActivityFinal3"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="c285e440-f270-4824-afb4-a6183ea2ff9e"
+            name="ActivityFinal4"
+            isLeaf="false" />
+          <opaqueAction
+            Id="a97fa78f-33f1-4d01-b588-cb25095705f1"
+            name="Jouer un morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="a8fb18c6-1f01-497f-8b01-df8444d41dc1"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="98864e86-423c-427e-a047-020873725a4c"
+                  LastKnownName="ActivityFinal9"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="c34cc9be-222d-48d1-8bd0-1ef37ccb0054"
+            name="Acceder à la page de description du morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="aa38c0a9-ed40-435b-b2f0-221862c99e35"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a97fa78f-33f1-4d01-b588-cb25095705f1"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="cbe51dbd-50d8-4cd6-8a0f-a07e0e3addb7"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7bab2a01-bbbe-4c48-a032-dfabacf0b033"
+                  LastKnownName="Envoyer un commentaire"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="7bab2a01-bbbe-4c48-a032-dfabacf0b033"
+            name="Envoyer un commentaire"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="16bb53fb-e4a9-4e77-adae-7d7ab337c60e"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="3362170a-149b-4ab9-b947-8ad827884072"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="3362170a-149b-4ab9-b947-8ad827884072"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="caafae1c-0fdc-49d0-a89d-06f92d7d2398"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="35f25627-5328-47f1-9407-25d6e4bf730f"
+                  LastKnownName="Commentaire envoyé"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="b4fdf10c-51a9-4d3f-a610-4d4c958f33b5"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="805819c7-0546-4970-bb86-7a9a1cf83d2d"
+                  LastKnownName="Redirection vers la page de login"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="35f25627-5328-47f1-9407-25d6e4bf730f"
+            name="Commentaire envoyé"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e1c414bf-1695-4ae5-ac2d-08f1b90f4b0d"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="9b2efddf-e93c-4599-b889-d2d285147af7"
+                  LastKnownName="ActivityFinal10"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="805819c7-0546-4970-bb86-7a9a1cf83d2d"
+            name="Redirection vers la page de login"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="cc13410b-e9a4-4fda-926c-034b7abdb212"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="b72d2d87-b2f1-481e-b45f-8280d9635f3d"
+                  LastKnownName="ActivityFinal11"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="0299e089-98ba-4507-89ef-1aedd5614072"
+            name="Jouer un morceau"
+            isLeaf="false" />
+          <opaqueAction
+            Id="da9902b4-4554-422e-a0a9-5497f23a3134"
+            name="Acceder à la page de description du morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="5eb2e2e9-6369-4539-bd77-a0584e75517f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="0299e089-98ba-4507-89ef-1aedd5614072"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="434a10bd-5fb8-43ca-846e-29c7c1358899"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="127e4797-505c-4bba-b290-311b3bd6d01d"
+                  LastKnownName="Envoyer un commentaire"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="2b3780d4-6126-41fb-b6c5-b4cf5841d8cd"
+            name="Acceder à la page d'un amis contenant la liste de ses morceaux"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="9ef39c9e-277a-4f07-824f-e9590649a445"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="0299e089-98ba-4507-89ef-1aedd5614072"
+                  LastKnownName="Jouer un morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="e3d37bfe-cf8a-4854-a15a-9559eab9f105"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="da9902b4-4554-422e-a0a9-5497f23a3134"
+                  LastKnownName="Acceder à la page de description du morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="471a1bda-37fa-4142-b3ba-5a847d5580a7"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="73ac3ecf-dd27-4db5-94fa-662a48bda3a6"
+                  LastKnownName="Like le morceau"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="127e4797-505c-4bba-b290-311b3bd6d01d"
+            name="Envoyer un commentaire"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e9e2ca83-9b84-4794-8b20-1d97b12089db"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="aed16589-1192-4369-ae57-04fd3b58a873"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="092bfd0f-9af6-4858-8e33-51faab223eb6"
+            name="Decision12"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ea6a34c0-d359-472c-b571-5230a25040dd"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="bc0c9a0b-79d3-46c0-a2aa-5abed2f45110"
+                  LastKnownName="Commentaire envoyé"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="abebf902-dc48-452a-9fb0-ecf5345cc4d8"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="1a2e2e19-3add-4231-a78f-c9ff1b18292f"
+                  LastKnownName="Redirection vers la page de login"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="bc0c9a0b-79d3-46c0-a2aa-5abed2f45110"
+            name="Commentaire envoyé"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="6c06d223-cfe9-4474-905a-42c74e079bb9"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="5cf0bff5-5e12-4cb7-8328-1c8e92ef5b1c"
+                  LastKnownName="ActivityFinal6"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="1a2e2e19-3add-4231-a78f-c9ff1b18292f"
+            name="Redirection vers la page de login"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="78fe0492-6817-48ff-8641-f48ad3b9ed83"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="094b22dd-a190-463f-a60e-3920a2094c33"
+                  LastKnownName="ActivityFinal5"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="73ac3ecf-dd27-4db5-94fa-662a48bda3a6"
+            name="Like le morceau"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="2507ac2e-30ab-4458-956e-53f65ce53113"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="aed16589-1192-4369-ae57-04fd3b58a873"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode
+            Id="aed16589-1192-4369-ae57-04fd3b58a873"
+            name="Join1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="631a0239-c1b1-4fa7-a75f-3a0132ec1832"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="092bfd0f-9af6-4858-8e33-51faab223eb6"
+                  LastKnownName="Decision12"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <forkNode
+            Id="1c5ba13d-c082-4556-91ad-eb622c86516c"
+            name="Fork3"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="9478c95a-e8f5-4a77-9d6a-197d3f774e13"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="2b3780d4-6126-41fb-b6c5-b4cf5841d8cd"
+                  LastKnownName="Acceder à la page d'un amis contenant la liste de ses morceaux"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="fa85a77a-0811-4165-a70f-9890c5afdc74"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="3d206b49-629a-4da2-9ff0-e00a6905058b"
+                  LastKnownName="Acceder à la page des invitations en attente de validation"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="792c5718-0c9e-479c-ad16-9e92ed45fd79"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7433ca7d-3efe-4ee8-a7c1-d1e5ecf6745c"
+                  LastKnownName="Supprimer un amis"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <opaqueAction
+            Id="3d206b49-629a-4da2-9ff0-e00a6905058b"
+            name="Acceder à la page des invitations en attente de validation"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="9a00f4f4-2d66-44fd-a7a0-031908b88b7d"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="5999545c-23a7-405e-b29f-8f4b1eb7fd51"
+                  LastKnownName="ActivityFinal8"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="7433ca7d-3efe-4ee8-a7c1-d1e5ecf6745c"
+            name="Supprimer un amis"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="51638ff5-3a90-4b7f-9c83-6e3950eb0f52"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="caba062b-39c1-4ce4-82e0-8afd4980958d"
+                  LastKnownName="ActivityFinal7"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="094b22dd-a190-463f-a60e-3920a2094c33"
+            name="ActivityFinal5"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="5cf0bff5-5e12-4cb7-8328-1c8e92ef5b1c"
+            name="ActivityFinal6"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="caba062b-39c1-4ce4-82e0-8afd4980958d"
+            name="ActivityFinal7"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="5999545c-23a7-405e-b29f-8f4b1eb7fd51"
+            name="ActivityFinal8"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="98864e86-423c-427e-a047-020873725a4c"
+            name="ActivityFinal9"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="9b2efddf-e93c-4599-b889-d2d285147af7"
+            name="ActivityFinal10"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="b72d2d87-b2f1-481e-b45f-8280d9635f3d"
+            name="ActivityFinal11"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="21f7beb3-5c6d-4bb9-aa31-93e50efe9676"
+        name="CréationPage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="a59fa3ca-b884-4dc0-8142-01c6c9c18f3a"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="8c179c1d-4775-4aa0-8759-a060ff636612"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="1d7e7210-a702-4349-a4ff-4a02e1e17f2b"
+                  LastKnownName="Creation Page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="1d7e7210-a702-4349-a4ff-4a02e1e17f2b"
+            name="Creation Page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="eb81773e-b2e3-495a-8342-f31b345924b8"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="e478b27d-c4ec-41bf-8462-4eff3c32a324"
+                  LastKnownName="Fork1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <forkNode
+            Id="e478b27d-c4ec-41bf-8462-4eff3c32a324"
+            name="Fork1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="48713c91-c317-4fbd-8f2d-22b169857378"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="19df3c3d-42cc-4f71-910b-c78c3533d6df"
+                  LastKnownName="Importer un morceau déja existant"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="f3c2d42a-4ca1-48d1-b781-5eeefed8503f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="3f0316b2-1105-4b31-97ef-43d8764f483d"
+                  LastKnownName="Créer un nouveau morceaux"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <opaqueAction
+            Id="19df3c3d-42cc-4f71-910b-c78c3533d6df"
+            name="Importer un morceau déja existant"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="0daaca52-afd8-47d1-9624-5209d234e6f0"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="6162dd8d-d8d7-450e-83e4-a1417819070a"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="1b832124-cfe8-4417-8295-4275336c5ad8"
+            name="Changer d'instrument"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="0991f540-2ca7-4a84-9309-b666214d0a55"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="572e44c3-992a-47dd-a95c-e6a31c2323f8"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="ff965b0c-a66a-46e9-8c3a-199c836ea229"
+            name="Changer le tempo"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="206012d5-8d2b-4689-a80a-69805cce93a2"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="d2c8ca37-dc16-4a2e-b61d-774e45fc0c0e"
+                  LastKnownName="ActivityFinal2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="924979a8-c06c-4175-910b-50a56da71f70"
+            name="Ajouter une piste"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="5cb38820-f514-469e-85d4-b28e75013406"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="a135b326-7930-49bc-8541-a9207f8a3987"
+                  LastKnownName="Decision12"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="cf57f31d-276f-47b2-ae37-6927b8247fcb"
+            name="Selectionner note"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="1beb1b99-0764-48bb-a0c1-179095a05b91"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="a4aec57b-daa8-4f0b-b436-95fb7ca43b15"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="48c0267f-642c-4c6d-af69-1c7886ab89fc"
+            name="Ajouter une octave"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b7cf8397-fd8d-4064-a0c3-0e977d604e16"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="1673a638-897a-4ef3-908c-eaf416e18577"
+                  LastKnownName="Decision11"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="b58c7c6d-19f3-45d7-a60b-047ab6f34013"
+            name="Afficher une autre piste"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ba9145e5-d9a3-472c-90d1-7b92990a5f49"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="c9b79b8c-fc18-4102-a6b0-7c2d998159c5"
+                  LastKnownName="Decision15"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="3f0316b2-1105-4b31-97ef-43d8764f483d"
+            name="Créer un nouveau morceaux"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="710dca9a-14a1-4011-95f2-05710089040e"
+                isLeaf="false">
+                <joinNodeMoniker
+                  Id="6162dd8d-d8d7-450e-83e4-a1417819070a"
+                  LastKnownName="Join1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode
+            Id="6162dd8d-d8d7-450e-83e4-a1417819070a"
+            name="Join1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e0fdf4b7-4251-4c5f-9750-0e90ebee68bc"
+                isLeaf="false">
+                <forkNodeMoniker
+                  Id="abb8bcee-3a53-463e-913a-5212bb5d34c3"
+                  LastKnownName="Fork2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <forkNode
+            Id="abb8bcee-3a53-463e-913a-5212bb5d34c3"
+            name="Fork2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="88a3fb3d-91e2-4f7a-b227-06c99fbca526"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="19df3c3d-42cc-4f71-910b-c78c3533d6df"
+                  LastKnownName="Importer un morceau déja existant"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="c7f1aeca-30f6-40cc-a472-dbde802e117b"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="3f0316b2-1105-4b31-97ef-43d8764f483d"
+                  LastKnownName="Créer un nouveau morceaux"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="33d914df-139d-443a-9a67-5a234baf3778"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="cf57f31d-276f-47b2-ae37-6927b8247fcb"
+                  LastKnownName="Selectionner note"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="d5d695a9-fd33-451f-ba3c-9327c913aea3"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="1b832124-cfe8-4417-8295-4275336c5ad8"
+                  LastKnownName="Changer d'instrument"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="c478ae23-84f7-49c9-9814-4cbe42d47772"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="ff965b0c-a66a-46e9-8c3a-199c836ea229"
+                  LastKnownName="Changer le tempo"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="9d70b5f7-3f2a-4fa6-b5f9-4b9b43e831dc"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="48c0267f-642c-4c6d-af69-1c7886ab89fc"
+                  LastKnownName="Ajouter une octave"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="ebd54dc8-5b43-4d74-b0ef-dd4a6469a7d9"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="924979a8-c06c-4175-910b-50a56da71f70"
+                  LastKnownName="Ajouter une piste"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="e01233ed-cb61-4ad2-94b9-3f2401eb4beb"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="b58c7c6d-19f3-45d7-a60b-047ab6f34013"
+                  LastKnownName="Afficher une autre piste"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="216af5ef-ceba-471a-847b-bab3e16468f1"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="d8a7131b-62b0-4759-8401-249b6574d156"
+                  LastKnownName="Decision13"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <decisionNode
+            Id="a4aec57b-daa8-4f0b-b436-95fb7ca43b15"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="780864da-88b0-4a4b-b196-9e58edff72f6"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="0a67c10b-6c8a-42a5-99cb-fc94424200c8"
+                  LastKnownName="Séléctionne la note"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="7cc813e9-3298-4c3d-bbbd-3300789556dc"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a9e9e51d-4227-42de-9892-e32972cdb55e"
+                  LastKnownName="Déséléctionne la note"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="0a67c10b-6c8a-42a5-99cb-fc94424200c8"
+            name="Séléctionne la note"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ca16040b-c75f-458e-beec-86fb60185bc8"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="c493736a-be22-4cd8-a429-9aab76b90d21"
+                  LastKnownName="Joue la note"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="c493736a-be22-4cd8-a429-9aab76b90d21"
+            name="Joue la note"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="21e7edcf-ed8d-4bfa-a895-67abc726e698"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="85bd2f89-6ec8-4577-a29e-926a10421205"
+                  LastKnownName="ActivityFinal12"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a9e9e51d-4227-42de-9892-e32972cdb55e"
+            name="Déséléctionne la note"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="16c1f065-e84f-4fda-9d48-946314a473a4"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="cb9ddf63-d805-4769-b7f7-2a5b66703de7"
+                  LastKnownName="ActivityFinal13"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="572e44c3-992a-47dd-a95c-e6a31c2323f8"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="d2c8ca37-dc16-4a2e-b61d-774e45fc0c0e"
+            name="ActivityFinal2"
+            isLeaf="false" />
+          <decisionNode
+            Id="1673a638-897a-4ef3-908c-eaf416e18577"
+            name="Decision11"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="a3677827-31cc-4f79-b7c7-6f9307e56a70"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7391d08f-615e-44d9-88b5-3e46054e6305"
+                  LastKnownName="Octave ajoutée"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="797b4bb7-62f4-4fe3-9d8b-a27eafb0109f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="4aaa85ad-02a3-4126-ae88-dc6f60478546"
+                  LastKnownName="Pas d'octave ajoutée"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="7391d08f-615e-44d9-88b5-3e46054e6305"
+            name="Octave ajoutée"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="1e9d76c5-c017-4e35-875f-127608fe1032"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="a86e5ba4-4299-4ce3-b35f-7ce563c11b5b"
+                  LastKnownName="ActivityFinal4"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="4aaa85ad-02a3-4126-ae88-dc6f60478546"
+            name="Pas d'octave ajoutée"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b75af3cf-11fb-4020-8a7f-644a804e897c"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="6d574223-ae71-44d8-9ae4-6589dae33155"
+                  LastKnownName="ActivityFinal3"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="a135b326-7930-49bc-8541-a9207f8a3987"
+            name="Decision12"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="815f3320-e8f7-44d3-a4ca-6440fa168a47"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="649294c8-aaea-4199-9762-ccbb56002930"
+                  LastKnownName="Nouvelle piste non ajouté"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="f4ed0e17-b4eb-4546-a757-f1818b452cd0"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="36a6d5cf-6e51-4127-976d-f26582c6b845"
+                  LastKnownName="Ajout d'une nouvelle piste"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="649294c8-aaea-4199-9762-ccbb56002930"
+            name="Nouvelle piste non ajouté"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="02de3356-12ce-4fbd-9977-631d687dde2a"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="899aff92-e759-4361-98b9-1e44e2620db0"
+                  LastKnownName="ActivityFinal6"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="36a6d5cf-6e51-4127-976d-f26582c6b845"
+            name="Ajout d'une nouvelle piste"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="8a2c79e4-f883-4042-83c5-95d311ab1180"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="6a4648fc-5783-4a3c-b793-2b7641813db5"
+                  LastKnownName="ActivityFinal5"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="6d574223-ae71-44d8-9ae4-6589dae33155"
+            name="ActivityFinal3"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="a86e5ba4-4299-4ce3-b35f-7ce563c11b5b"
+            name="ActivityFinal4"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="6a4648fc-5783-4a3c-b793-2b7641813db5"
+            name="ActivityFinal5"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="899aff92-e759-4361-98b9-1e44e2620db0"
+            name="ActivityFinal6"
+            isLeaf="false" />
+          <decisionNode
+            Id="d8a7131b-62b0-4759-8401-249b6574d156"
+            name="Decision13"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="fbf6e614-3e48-4059-95ae-1607aa595766"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="54217d38-c5c2-4d5d-b624-6ae55f007e20"
+                  LastKnownName="Sauvegarder"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="ce61c109-4a70-462e-b0a9-22ae757be071"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a9ac9abd-a0bd-4fdb-91d1-4aa86be8d0db"
+                  LastKnownName="Sauvegarde indisponible"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="54217d38-c5c2-4d5d-b624-6ae55f007e20"
+            name="Sauvegarder"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3860ae61-3c65-4729-8141-56282e8d6792"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="4e4a605f-83a7-49bd-ab13-39f8b99e01b0"
+                  LastKnownName="Decision14"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a9ac9abd-a0bd-4fdb-91d1-4aa86be8d0db"
+            name="Sauvegarde indisponible"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="462f778f-f359-4675-bdc1-63da239d22fc"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="4acf824d-38b3-454b-8f39-4c24daef95b5"
+                  LastKnownName="ActivityFinal11"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="4e4a605f-83a7-49bd-ab13-39f8b99e01b0"
+            name="Decision14"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="6012a8bf-b839-4c3a-b2b8-b48978551463"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="0dc71a6a-ba43-47b8-a3cf-93802a32f16b"
+                  LastKnownName="Redirection vers la login page"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="e86897f0-93df-4d6a-889d-a64a2a4f217a"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="4b0ea024-4fbd-4c2b-b3df-7b43b4e97809"
+                  LastKnownName="Fichier sauvegardé"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="0dc71a6a-ba43-47b8-a3cf-93802a32f16b"
+            name="Redirection vers la login page"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="c6480515-13cf-43b6-bdfd-2599254c4343"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="201e4efa-ee72-418f-9739-89ed0a79a1f2"
+                  LastKnownName="ActivityFinal10"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="4b0ea024-4fbd-4c2b-b3df-7b43b4e97809"
+            name="Fichier sauvegardé"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="46fdf32d-fdef-4d44-87a0-616c9c27f93d"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="0830f2ab-13d7-465e-8dbe-aa52c44a2c4f"
+                  LastKnownName="ActivityFinal9"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="c9b79b8c-fc18-4102-a6b0-7c2d998159c5"
+            name="Decision15"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="3adbbffd-3a0b-4147-8b7e-f9b289f6f656"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="10ffcba0-e388-4f53-bf1f-a3f32b4bab41"
+                  LastKnownName="Séléction de la piste"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="6a60f573-4f8f-44f0-b6cb-e98ca674b134"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="41731444-e94d-40b4-bbb9-dc3fb8c21657"
+                  LastKnownName="Rien ne se passe"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="10ffcba0-e388-4f53-bf1f-a3f32b4bab41"
+            name="Séléction de la piste"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="f050bc57-c86a-4581-b9ec-03b305af32e6"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a650e878-270f-4967-9234-208e05a5bd1c"
+                  LastKnownName="Affichage de la nouvelle piste"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="a650e878-270f-4967-9234-208e05a5bd1c"
+            name="Affichage de la nouvelle piste"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="6bc64d15-4cae-43fa-9ce9-5fa6d996ea2b"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="bcb86580-725c-475e-b910-72d0bf2ae8c0"
+                  LastKnownName="ActivityFinal7"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="41731444-e94d-40b4-bbb9-dc3fb8c21657"
+            name="Rien ne se passe"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="532b2abb-6090-4da7-976f-1ba622def3fa"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="e4fbe95d-2038-49ba-924a-d4b6f1becf97"
+                  LastKnownName="ActivityFinal8"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="bcb86580-725c-475e-b910-72d0bf2ae8c0"
+            name="ActivityFinal7"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="e4fbe95d-2038-49ba-924a-d4b6f1becf97"
+            name="ActivityFinal8"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="0830f2ab-13d7-465e-8dbe-aa52c44a2c4f"
+            name="ActivityFinal9"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="201e4efa-ee72-418f-9739-89ed0a79a1f2"
+            name="ActivityFinal10"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="4acf824d-38b3-454b-8f39-4c24daef95b5"
+            name="ActivityFinal11"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="85bd2f89-6ec8-4577-a29e-926a10421205"
+            name="ActivityFinal12"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="cb9ddf63-d805-4769-b7f7-2a5b66703de7"
+            name="ActivityFinal13"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b5d88810-1f9f-438b-b618-8d34e720d681"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="16e7905c-22a4-4163-9432-bc1486b60cb3"
+        name="Class2"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

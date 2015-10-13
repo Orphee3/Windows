@@ -10,7 +10,7 @@ namespace Orphee.CreationShared
     {
         private static NoteMapManager _instance;
         private int _columnNumberToAdd;
-        private int _lineNumber;
+        private int _lineNumberToAdd;
         public static NoteMapManager Instance 
         {
             get
@@ -26,14 +26,15 @@ namespace Orphee.CreationShared
         {
             this.NoteNameListManager = new NoteNameListManager();
             this._columnNumberToAdd = 10;
-            this._lineNumber = 12;
+            this._lineNumberToAdd = 12;
         }
 
-        public ObservableCollection<ObservableCollection<IToggleButtonNote>> GenerateNoteMap()
+        public ObservableCollection<ObservableCollection<IToggleButtonNote>> GenerateNoteMap(int startingOctave)
         {
             var noteMap = new ObservableCollection<ObservableCollection<IToggleButtonNote>>();
-            for (var lineIndex = 0; lineIndex < this._lineNumber; lineIndex++)
-                noteMap.Add(NoteMapLineGenerator(lineIndex, 4));
+            for (var lineIndex = 0; lineIndex < this._lineNumberToAdd; lineIndex++)
+                noteMap.Add(NoteMapLineGenerator(lineIndex, startingOctave));
+            this._lineNumberToAdd = 12;
             return noteMap;
         }
 
@@ -80,7 +81,7 @@ namespace Orphee.CreationShared
         {
             if (noteMap == null || noteMap[0].Count <= 1)
                 return;
-            for (var lineIndex = 0; lineIndex < this._lineNumber; lineIndex++)
+            for (var lineIndex = 0; lineIndex < noteMap.Count; lineIndex++)
                 noteMap[lineIndex].RemoveAt(noteMap[lineIndex].Count - 1);
         }
 
@@ -93,7 +94,6 @@ namespace Orphee.CreationShared
                 orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? deltaTime : 0, MessageCode = 0x90, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 76} );
             for (var iterator = 0; iterator < extractedToggleButtonNotes.Count; iterator++)
                 orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? 48 : 0, MessageCode = 0x80, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 0 });
-            
             return (uint)bytesToAdd;
         }
 
@@ -140,18 +140,21 @@ namespace Orphee.CreationShared
         public ObservableCollection<ObservableCollection<IToggleButtonNote>> ConvertOrpheeMessageListToNoteMap(IList<IOrpheeNoteMessage> orpheeNoteMessageLists)
         {
             this._columnNumberToAdd = orpheeNoteMessageLists.Sum(message => message.DeltaTime / 48);
-            var noteMap = GenerateNoteMap();
+            var lowerOctave = ((int) orpheeNoteMessageLists.Min(message => message.Note) / 12) - 1;
+            var higherOctave = ((int) orpheeNoteMessageLists.Max(message => message.Note) / 12) - 1;
+            this._lineNumberToAdd = ((higherOctave - lowerOctave) + 1) * 12;
+            var noteMap = GenerateNoteMap(lowerOctave);
             var columnIndex = 0;
 
             foreach (var noteMessage in orpheeNoteMessageLists)
             {
-                /*var lineIndex = NoteNameListManager.GetLineIndexFromNote(noteMessage.Note);
+                var lineIndex = NoteNameListManager.GetNoteLineIndex(noteMessage.Note, lowerOctave);
                 columnIndex += GetColumnIndexFromDeltaTime(noteMessage.DeltaTime);
                 if ((noteMessage.MessageCode & 0x90) == 0x90)
                 {
                     noteMap[lineIndex][columnIndex].IsChecked = true;
                     noteMap[lineIndex][columnIndex].Note = noteMessage.Note;
-                }*/
+                }
             }
             this._columnNumberToAdd = 10;
             return noteMap;

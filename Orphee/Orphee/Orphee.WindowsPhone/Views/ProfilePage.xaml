@@ -11,12 +11,15 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
         <Grid Background="#78C7F9" Grid.Row="0">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="45"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="25"/>
+        </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
         <Grid Grid.Row="1" Visibility="{Binding DisconnectedStackPanelVisibility}">
             <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
@@ -28,7 +31,7 @@
         <Grid Grid.Row="1" Visibility="{Binding ConnectedStackPanelVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="250"/>
+                <RowDefinition Height="220"/>
             </Grid.RowDefinitions>
             <Grid Background="{Binding BackgroundPictureColor}">
                 <Ellipse  Height="250" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
@@ -60,22 +63,19 @@
                 </StackPanel>
             </Grid>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <Button Content="My Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="25" Foreground="#BDBEC0" Command="{Binding FriendPageCommand}" Margin="0, 7, 0, 7"/>
+                <Button Content="My Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding FriendPageCommand}" Margin="0, 7, 0, 7"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="25" Foreground="#BDBEC0" Margin="0, 7, 0 , 7"/>
+                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="20" Foreground="#BDBEC0" Margin="0, 7, 0 , 7" Command="{Binding MyCreationsCommand}"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <Button Content="Edit profile" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="25" Foreground="#BDBEC0" Command="{Binding EditProfileCommand}" Margin="0, 5, 0, 5"/>
+                <Button Content="Edit profile" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding EditProfileCommand}" Margin="0, 5, 0, 5"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
                 </Grid>
-                <Button Content="Logout" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="25" Foreground="#BDBEC0" Command="{Binding LogoutCommand}" Margin="0, 7, 0, 7"/>
-                <Grid>
-                    <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
-                </Grid>
+                <Button Content="Logout" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding LogoutCommand}" Margin="0, 7, 0, 7"/>
             </StackPanel>
         </Grid>
         <ui:MyBottomAppBar Grid.Row="2" x:Name="MyBottomAppBar"/>

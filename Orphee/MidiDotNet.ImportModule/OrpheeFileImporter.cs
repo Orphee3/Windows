@@ -68,12 +68,14 @@ namespace MidiDotNet.ImportModule
 
         private void AddNewTrackToOrpheeFile(int trackPos)
         {
-            var newOrpheeTrack = new OrpheeTrack(trackPos, (Channel)this._trackHeaderReader.ProgramChangeMessageReader.Channel)
+            var newOrpheeTrack = new OrpheeTrack(trackPos, (Channel)this._trackHeaderReader.ProgramChangeMessageReader.Channel, false)
             {
-                CurrentInstrument   = (Instrument)this._trackHeaderReader.ProgramChangeMessageReader.InstrumentIndex,
                 OrpheeNoteMessageList = this._noteMessageReader.OrpheeNoteMessageList,
                 TrackLength = this._trackHeaderReader.TrackLength,
             };
+            if (trackPos == 0)
+                newOrpheeTrack.PlayerParameters = this._trackHeaderReader.PlayerParameters;
+            newOrpheeTrack.UpdateCurrentInstrument((Instrument)this._trackHeaderReader.ProgramChangeMessageReader.InstrumentIndex);
             this.OrpheeFile.OrpheeTrackList.Add(newOrpheeTrack);
         }
 

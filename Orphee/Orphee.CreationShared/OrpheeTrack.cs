@@ -71,10 +71,10 @@ namespace Orphee.CreationShared
             }
         }
 
-        public OrpheeTrack(int trackPos, Channel channel)
+        public OrpheeTrack(int trackPos, Channel channel, bool isNewTrack)
         {
             this.TrackName = this.CurrentInstrument.Name();
-            this.NoteMap = NoteMapManager.Instance.GenerateNoteMap();
+            this.NoteMap = isNewTrack ? NoteMapManager.Instance.GenerateNoteMap(4) : null;
             this.Channel = channel;
             this.TrackPos = trackPos;
             this.PlayerParameters = this.TrackPos == 0 ? new PlayerParameters() : null;
@@ -93,10 +93,11 @@ namespace Orphee.CreationShared
             this.Channel = orpheeTrack.Channel;
             this.TrackPos = orpheeTrack.TrackPos;
             this.TrackName = this.CurrentInstrument.Name();
-            this.CurrentInstrument = orpheeTrack.CurrentInstrument;
+            UpdateCurrentInstrument(orpheeTrack.CurrentInstrument);
             this.PlayerParameters = orpheeTrack.PlayerParameters;
             this.TrackLength = TrackLength;
-            this.IsChecked = orpheeTrack.IsChecked;
+            this.IsChecked = this.TrackPos == 0;
+            this.TrackVisibility = this.TrackPos == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void ConvertNoteMapToOrpheeMessage()

@@ -23,7 +23,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.TrackHeaderWriterTe
 
         public WhenTrackHeaderWriterIsCalled()
         {
-            this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel1);
+            this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel1, true);
             this.SwapManager = new SwapManager();
             this.TempoMessageWriterMock = new Mock<ITempoMessageWriter>();
             this.TimeSignatureMessageWriterMock = new Mock<ITimeSignatureMessageWriter>();

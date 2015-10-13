@@ -41,7 +41,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.NoteMessageWriterTe
             this.ProgramChangeMessageWriterMock = new Mock<IProgramChangeMessageWriter>();
             this.DeltaTimeRetriever = new DeltaTimeReader();
             this.OrpheeFile = new OrpheeFile();
-            this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel5)
+            this.OrpheeTrack = new OrpheeTrack(0, Channel.Channel5, true)
             {
                 CurrentInstrument = Instrument.AcousticGuitarSteel,
             };

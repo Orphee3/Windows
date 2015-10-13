@@ -5,7 +5,6 @@ using MidiDotNet.ExportModule.Interfaces;
 using MidiDotNet.ImportModule.Interfaces;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
-using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -115,33 +114,39 @@ namespace Orphee.ViewModels
             this._soundPlayer.UpdateTempo(newTempo);
         }
 
-        private void SaveButtonCommandExec()
+        private async void SaveButtonCommandExec()
         {
-            if (!RestApiManagerBase.Instance.IsConnected)
-            {
-                App.MyNavigationService.Navigate("Login", null);
-                    return;
-            }
+            //if (!RestApiManagerBase.Instance.IsConnected)
+            //{
+            //    App.MyNavigationService.Navigate("Login", null);
+            //        return;
+            //}
             this.OrpheeFile.OrpheeTrackList[0].PlayerParameters = this._soundPlayer.GetPlayerParameters();
-            this._orpheeFileExporter.SaveOrpheeFile(this.OrpheeFile);
+            var result = await this._orpheeFileExporter.SaveOrpheeFile(this.OrpheeFile);
         }
 
         private async void LoadButtonCommandExec()
         {
-            if (!RestApiManagerBase.Instance.IsConnected)
-            {
-                App.MyNavigationService.Navigate("Login", null);
-                return;
-            }
+            //if (!RestApiManagerBase.Instance.IsConnected)
+            //{
+            //    App.MyNavigationService.Navigate("Login", null);
+            //    return;
+            //}
             var importedOrpheeFile = await this._orpheeFileImporter.ImportFile(".mid");
 
             if (importedOrpheeFile == null)
                 return;
-            var firstTrack = importedOrpheeFile.OrpheeTrackList[0];
-            //this.DisplayedTrack.UpdateOrpheeTrack(firstTrack, true);
-            //this.DisplayedTrack.CurrentInstrument = firstTrack.CurrentInstrument;
-            //this._soundPlayer.UpdateCurrentInstrument(this.DisplayedTrack.CurrentInstrument, this.DisplayedTrack.Channel);
-            //this._soundPlayer.SetPlayerParameters(this.DisplayedTrack.PlayerParameters);
+            for (var trackIndex = 0; trackIndex < importedOrpheeFile.OrpheeTrackList.Count; trackIndex++)
+            {
+                if (trackIndex >= this.OrpheeFile.OrpheeTrackList.Count)
+                    this.OrpheeFile.AddNewTrack(new OrpheeTrack(trackIndex, (Channel) trackIndex + 1, false));
+                this.OrpheeFile.OrpheeTrackList[trackIndex].UpdateOrpheeTrack(
+                    importedOrpheeFile.OrpheeTrackList[trackIndex]);
+            }
+            var firstTrack = this.OrpheeFile.OrpheeTrackList[0];
+            this.CurrentTempoIndex = (int)firstTrack.PlayerParameters.Tempo - 40;
+            this._currentChannel = firstTrack.Channel;
+            this.CurrentInstrumentIndex = (int)firstTrack.CurrentInstrument;
         }
 
         private void SelectedTrackCommandExec(OrpheeTrack selectedTrack)
@@ -162,7 +167,7 @@ namespace Orphee.ViewModels
         {
             if (this.OrpheeFile.OrpheeTrackList.Count < 16)
             { 
-                this.OrpheeFile.AddNewTrack(new OrpheeTrack(this.OrpheeFile.OrpheeTrackList.Count, (Channel) this.OrpheeFile.OrpheeTrackList.Count) {TrackVisibility = Visibility.Collapsed});
+                this.OrpheeFile.AddNewTrack(new OrpheeTrack(this.OrpheeFile.OrpheeTrackList.Count, (Channel) this.OrpheeFile.OrpheeTrackList.Count, true) {TrackVisibility = Visibility.Collapsed});
                 this.OrpheeFile.OrpheeFileParameters.NumberOfTracks++;
             }
         }

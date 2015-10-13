@@ -37,7 +37,7 @@ namespace MidiDotNet.ExportModule
             }
         }
 
-        public async void SaveOrpheeFile(IOrpheeFile orpheeFile)
+        public async Task<bool> SaveOrpheeFile(IOrpheeFile orpheeFile)
         {
             foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
             {
@@ -45,9 +45,10 @@ namespace MidiDotNet.ExportModule
                 orpheeTrack.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(orpheeTrack.NoteMap, (int) orpheeTrack.Channel, ref trackLength);
                 orpheeTrack.TrackLength = trackLength;
             }
-            var result2 = await GetTheSaveFilePicker(orpheeFile);
+            var result = await GetTheSaveFilePicker(orpheeFile);
             foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
                 orpheeTrack.TrackLength = (uint) ((orpheeTrack.TrackPos == 0) ? 22 : 7);
+            return result;
         }
 
         private async Task<bool> GetTheSaveFilePicker(IOrpheeFile orpheeFile)

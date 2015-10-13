@@ -1,4 +1,5 @@
-﻿using Orphee.CreationShared.Interfaces;
+﻿using System.Threading.Tasks;
+using Orphee.CreationShared.Interfaces;
 
 namespace MidiDotNet.ExportModule.Interfaces
 {
@@ -8,6 +9,6 @@ namespace MidiDotNet.ExportModule.Interfaces
 
         // Methods
         void ConvertTracksNoteMapToOrpheeNoteMessageList(IOrpheeFile orpheeFile);
-        void SaveOrpheeFile(IOrpheeFile orpheeFile);
+        Task<bool> SaveOrpheeFile(IOrpheeFile orpheeFile);
     }
 }

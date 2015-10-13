@@ -7,6 +7,8 @@ namespace Orphee.CreationShared.Interfaces
         // Methods
 
         // Properties
+        int Width { get; }
+        int Height { get; }
         int LineIndex { get; set; }
         int ColumnIndex { get; set; }
         Note Note { get; set; }
