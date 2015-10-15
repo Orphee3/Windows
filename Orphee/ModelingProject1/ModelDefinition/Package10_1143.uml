@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="818b900d-2811-48c5-8bc5-8b72cfaabc67"
+  name="Media"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="8a93fc57-c33a-4b78-a5d9-fd28ff2bb927"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWindows.UI.Xaml.Media"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="588263aa-cba5-442b-a711-c77106591832"
+        LastKnownName="Animation"
+        LastKnownLocation="Package11_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b4489111-a7f3-41ff-a166-8e7773bada6c"
+        name="SolidColorBrush"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="002915b1-366f-4f6a-b71a-6c8f817b5be2"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Phone Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.UI.Xaml.Media Type%3DSolidColorBrush"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="dc6d116e-b1d9-4a90-9443-5199762eae32"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e1c42f4d-9822-4176-99f9-7ea11c770077">
+                <propertyInstance
+                  Id="282d1d74-2a15-4c1c-b5b1-89f5ef9c5ed2"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cb26cc3d-9c2c-4721-a5db-e04ef5a15b5a">
+                <propertyInstance
+                  Id="11733ca9-552d-47c2-9e5a-6f764305d82b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="19592c73-1b5a-498e-82bb-1bc1f0a0ce70">
+                <propertyInstance
+                  Id="f154f3fe-5e45-497b-a52b-3072cb855f19"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d08a10f4-93a1-4a12-b23a-5005563ce4ad">
+                <propertyInstance
+                  Id="e487d1c7-e98a-4c05-ac2d-45863de1287b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4708475b-aabe-40c1-9789-f7d93ddc794f">
+                <propertyInstance
+                  Id="758ffc90-cf4d-4277-965c-66189e6b61d7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

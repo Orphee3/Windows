@@ -4,8 +4,18 @@ using MidiDotNet.ExportModule.Interfaces;
 
 namespace MidiDotNet.ExportModule
 {
+    /// <summary>
+    /// Class containing the needed function to write tempoMessages
+    /// in the MIDI file
+    /// </summary>
     public class TempoMessageWriter : ITempoMessageWriter
     {
+        /// <summary>
+        /// Function writting the tempoMessage
+        /// in the MIDI file
+        /// </summary>
+        /// <param name="writer">Instance of the BinaryWriter class writting the noteMessages in the MIDI file</param>
+        /// <param name="tempo">Value representing the tempo value to be written</param>
         public void WriteTempoMessage(BinaryWriter writer, uint tempo)
         {
             writer.Write((byte) 0x00);
@@ -19,7 +29,7 @@ namespace MidiDotNet.ExportModule
             writer.Write(tempoToByteArray[3]);
         }
 
-        public byte[] ConvertTempoToByteArray(uint tempo)
+        private byte[] ConvertTempoToByteArray(uint tempo)
         {
             var intBytes = BitConverter.GetBytes(tempo);
             if (BitConverter.IsLittleEndian)

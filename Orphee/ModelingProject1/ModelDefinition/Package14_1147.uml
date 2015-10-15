@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="afab88a5-d763-42b7-9ee4-d4a8946003c8"
+  name="Interfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="4e45f8fc-3879-482d-816e-dd0b4166adcd"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.CreationShared.Interfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="c62121f5-55e3-4339-ac32-d27e07aa8fea"
+        name="ISoundPlayer"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="e10097de-f93a-4e51-8ea6-42fb26cdd5bb"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.CreationShared%2Fbin%2FDebug%2FOrphee.CreationShared.dll&quot; Namespace%3DOrphee.CreationShared.Interfaces Type%3DISoundPlayer"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="53f2420d-4148-4ff0-9685-74cecdac3565"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="73344e00-9eca-4fe5-bebb-5d442b43c747">
+                <propertyInstance
+                  Id="5b62cd20-af71-4c89-b80e-e55a93cd1ec8"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2544f313-36f0-4a91-92df-0ad5d2af04d8">
+                <propertyInstance
+                  Id="1da17470-d781-4778-8970-59b2c2ca39a5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6c200119-096f-418c-bb8a-d86ba5fe2113">
+                <propertyInstance
+                  Id="4fd3150d-369e-4eb6-9c63-f5377896744a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f9dc50e3-1ece-4e84-bc3e-1264f0c6bebd">
+                <propertyInstance
+                  Id="03f040ee-1ac5-45c7-b7a6-8a6b9e730f80"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b379c036-4192-4fcc-b72f-9ac63e0c546d"
+        name="IInstrumentManager"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="1ce58ea0-6c17-409f-a28f-8e4c3050fdf2"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.CreationShared%2Fbin%2FDebug%2FOrphee.CreationShared.dll&quot; Namespace%3DOrphee.CreationShared.Interfaces Type%3DIInstrumentManager"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="a3428946-10f8-4374-9df8-f5554ecf3204"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2ad1304c-a191-4e14-adef-67c080bd34f0">
+                <propertyInstance
+                  Id="2eefc9ac-8b4e-4aa6-aec1-ab58ddd70aaf"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c446c601-aac0-40f0-b6b5-1503d6046507">
+                <propertyInstance
+                  Id="9336318c-caed-4c3a-ad22-532b94cf2de0"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f5433b00-7d93-40c2-8dab-5ccd12d901c2">
+                <propertyInstance
+                  Id="2333dc6d-bd2d-49e1-aee7-cf8686f462c7"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6c7053c3-0a4d-4540-90b6-0428f54eb3d2">
+                <propertyInstance
+                  Id="4828910f-3370-4a2d-b69e-0056ea082a64"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="7172d37a-8ebe-4b55-9b2b-623d8dce48ef"
+        name="IToggleButtonNote"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="1f1e8b65-2be1-4320-b3de-ef183049186c"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.CreationShared%2Fbin%2FDebug%2FOrphee.CreationShared.dll&quot; Namespace%3DOrphee.CreationShared.Interfaces Type%3DIToggleButtonNote"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f80b4636-0cba-4432-92de-6994880035df"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="22e3d63c-dc39-41ad-a4c6-5e46afdb95c9">
+                <propertyInstance
+                  Id="d0d09731-eca8-4716-9040-358ff1636ab8"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="95b73be4-9acb-425e-8ac9-a7c8200ea63d">
+                <propertyInstance
+                  Id="3b70eb55-1efd-4bec-8537-15def620ae6f"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f7fbf530-5f47-42c9-8f8c-578c6e8e0fd3">
+                <propertyInstance
+                  Id="85bbfa6c-3dba-4d44-8a8b-223e86bbf6ca"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ce2bbf46-b780-4fb2-8eb1-e1f89d0b6b94">
+                <propertyInstance
+                  Id="a440f0c6-b10e-4b78-9663-9c845896c0fa"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="6ccc9200-1fe0-41f0-a722-e3ff6671437b"
+        name="IOrpheeFile"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="e1c53d93-f78c-492d-ab4d-e3c1970566ae"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.CreationShared%2Fbin%2FDebug%2FOrphee.CreationShared.dll&quot; Namespace%3DOrphee.CreationShared.Interfaces Type%3DIOrpheeFile"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="2c420de0-3b46-4591-83f6-ed260efd4427"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8c3e854b-9103-406b-8be8-d3d3aeed493d">
+                <propertyInstance
+                  Id="7e821631-9551-4e37-a158-a0ca80f67eab"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f153291b-5982-4bd3-904f-d09c7075f5d3">
+                <propertyInstance
+                  Id="6c25096d-17fa-42e7-8843-d40b37533d6c"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6cb32c64-0da1-4aef-9aa5-2c68bcf9ceed">
+                <propertyInstance
+                  Id="e219b7ec-885a-464f-b0be-242694dd66c3"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1a32746a-d618-4327-8be7-064dd7542315">
+                <propertyInstance
+                  Id="5317408d-eda2-44ee-9c03-edf7edc065bc"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

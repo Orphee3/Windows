@@ -1,11 +1,19 @@
 ﻿using System.IO;
-using Orphee.CreationShared.Interfaces;
-using IEndOfTrackMessageWriter = MidiDotNet.ExportModule.Interfaces.IEndOfTrackMessageWriter;
+using MidiDotNet.ExportModule.Interfaces;
 
 namespace MidiDotNet.ExportModule
 {
+    /// <summary>
+    /// This class writes the endOfTrack message at the end of each
+    /// track composing the MIDI file.
+    /// </summary>
     public class EndOfTrackMessageWriter : IEndOfTrackMessageWriter
     {
+        /// <summary>
+        /// Function writting the endOfTrack message at the end of
+        /// each track composing the MIDI file.
+        /// </summary>
+        /// <param name="writer">Instance of the BinaryWriter class writting the endOfTrack message in the MIDI file</param>
         public void WriteEndOfTrackMessage(BinaryWriter writer)
         {
             writer.Write((byte) 0x00);

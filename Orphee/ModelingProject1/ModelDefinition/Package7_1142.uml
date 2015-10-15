@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="35ba53aa-3fd8-49e1-ba97-b6ce6b32dba2"
+  name="Windows"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="bf32a8a2-3daa-45a3-a2fc-8c096e4c36ae"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWindows"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="d42b0be6-4bdf-4633-85f6-f550115e36a0"
+        LastKnownName="Storage"
+        LastKnownLocation="Package8_1142.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="434af1e5-b569-42a7-b39c-584634b9dde7"
+        LastKnownName="ApplicationModel"
+        LastKnownLocation="Package1_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="36520137-ec80-418b-88d1-869282b30c31"
+        LastKnownName="UI"
+        LastKnownLocation="Package8_1143.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

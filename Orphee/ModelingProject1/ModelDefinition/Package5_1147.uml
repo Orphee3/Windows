@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="a13c8da1-74aa-488b-a387-02b97b4af98c"
+  name="Models"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="4bad3bbf-ae7f-4096-8713-58231f4393ae"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.RestApiManagement.Models"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="0248fbc4-3daa-472c-9baf-7fc41337b198"
+        name="Message"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="5d0a9071-94a4-4e69-bf21-1c05072df9eb"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Models Type%3DMessage"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b53c9a4d-d1e8-4d57-ab95-f7b314190684"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3b2d78c8-e88c-4ab9-ab4f-f7a774bf9a8c">
+                <propertyInstance
+                  Id="63e7bdee-b86f-429c-af68-ec27da2bc103"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7f2d6251-46b0-49ac-8d9a-a38ac33929ac">
+                <propertyInstance
+                  Id="23816d1b-bafc-4ca8-bdb2-535bffcb28df"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="74fca07f-0a60-4417-b9bd-a7878ca19716">
+                <propertyInstance
+                  Id="a73da2e1-a3ae-4d0a-a3c9-b496a9e4ea1b"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8e8c5e32-9f70-47d5-a95c-abc362ad6567">
+                <propertyInstance
+                  Id="7eb647d6-0e7d-464c-96d7-419826f911f6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f213866c-beaa-4e9b-9f78-14629ec3d841">
+                <propertyInstance
+                  Id="dc20292e-3aba-4ba1-ab47-7700a4671f37"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e7d69128-65b2-4513-9be5-84d0330a0998"
+        name="Conversation"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="77c40240-587f-4537-a4cf-c92c1d4b514f"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Models Type%3DConversation"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="300fb114-6f8f-411a-83c3-e78e7c711e45"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="da8eacaa-9595-4c68-b61e-cc4dba4a25d3">
+                <propertyInstance
+                  Id="f24f3ea5-ce93-48b2-8ad5-aa86acc5e017"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d13fe65d-77d9-4016-8f74-d334fde9f58a">
+                <propertyInstance
+                  Id="ed3b3925-09cc-49be-b396-f98a10d2456d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e006fb6d-7b33-4078-910f-74783da98e53">
+                <propertyInstance
+                  Id="6dd32fba-5ed0-4838-b8f6-8a74f20a15ed"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="189ec815-ed35-468f-b1a5-a0004f67eeed">
+                <propertyInstance
+                  Id="64cce971-3d52-4ba0-868c-770e86b9d6da"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="52f7d28b-5fda-49b8-bc46-c0de9fa885b7">
+                <propertyInstance
+                  Id="527676f1-c1bc-4930-8d30-e5eaa7709bc1"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6b2a6595-7226-4265-89de-6ca258e82a60"
+        name="Comment"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="e3bd4f76-dad5-4701-a925-ca1b1a29b839"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Models Type%3DComment"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="6c87a330-f490-45fe-ad78-73000d9813d7"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="497cd16e-4dc2-4a0a-9ad5-930dcb12f8a3">
+                <propertyInstance
+                  Id="a737398b-7554-4199-b7ce-bd3c1e1ccb4c"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4ccbebd5-e89c-4399-80f8-eb55d9f0acce">
+                <propertyInstance
+                  Id="7d65b56a-b658-4517-92e6-8563108a15a2"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="49547543-b062-48f8-9933-2f4e54188413">
+                <propertyInstance
+                  Id="0866bdb4-e12a-4d53-b2d9-9f1aa4ed40f6"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b7f6f358-6be6-4124-a1df-387841dd8f4f">
+                <propertyInstance
+                  Id="1952eb5c-f2e3-4729-901c-58ef236deb0f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="715934e3-4eaf-46b6-b3e7-3fa582679b0b">
+                <propertyInstance
+                  Id="060a7323-5785-4cf5-bd2f-46a43660a620"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="df04c7a6-9337-4e35-bae9-d4e7df29e0e9"
+        name="Creation"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="22d743b5-5344-4ea3-afb6-c7f43f0803ac"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Models Type%3DCreation"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="e95f4b71-581e-4a82-bfac-98a32808146a"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a35356c4-963d-42f7-ab13-6e54547e264d">
+                <propertyInstance
+                  Id="af5fc7b4-cb08-484b-ace0-49b476da5578"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b2ed0691-1280-490b-b80d-be7f73cfa85c">
+                <propertyInstance
+                  Id="13a8b83a-50ec-48a0-b619-f9b29cc4214f"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6e20cc49-55d1-4834-a99c-006053eb0684">
+                <propertyInstance
+                  Id="65466bfc-c298-4534-bea9-57749c2e8366"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f69d709b-2375-4a4b-86a4-e62795bf6648">
+                <propertyInstance
+                  Id="2cc24c4f-f590-436f-aaed-904da6be5202"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="42467abf-ebb6-43e8-9451-ce5e648e91fc">
+                <propertyInstance
+                  Id="04095420-2bdf-4a89-83c5-820da9c8813c"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d10f3cbe-c6c9-4576-9b1d-35c841f4eac2"
+        name="User"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="7525ff86-151a-4707-89b9-f6011e1b4faf"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Models Type%3DUser"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="4ef625fc-fd6d-4372-9f62-c3a20dd48bf2"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2cdaa8c6-75bb-49b0-b024-dfd4c58e43c0">
+                <propertyInstance
+                  Id="f1cc0874-1292-4827-9b3e-076099d26d07"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e35d3e82-b604-4097-bc6c-9dcd22d06f65">
+                <propertyInstance
+                  Id="2d8a6f97-dca7-4bfa-aed6-b665d398f288"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="eaf9f083-ef84-4a81-8b2a-64f512fa84f4">
+                <propertyInstance
+                  Id="801bee19-82d4-4c6a-8075-8e234466928f"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8a872a48-cb47-4d75-922a-ca40483c3090">
+                <propertyInstance
+                  Id="94dc47f9-4b7b-4c4f-8cfe-3d5a39d92f43"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a258cc59-a5cc-4443-9435-3f536ed9c552">
+                <propertyInstance
+                  Id="2d7fca3d-cec8-4b16-ba62-c8a4b43440c2"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9c322ec0-c75b-4322-baa0-255ab4b5d417"
+        name="News"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="6fcddd0c-8589-40ec-9f34-16c47a186204"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Models Type%3DNews"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="5ee5539d-39d7-4c3d-a32f-fcb101585d5f"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7fe4c012-43b9-4ef3-902f-9def19d7d987">
+                <propertyInstance
+                  Id="d11db232-cf68-4836-ace5-9c50affebf60"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f8f1bba0-63d5-401a-b0b3-20ef97392019">
+                <propertyInstance
+                  Id="e1472bf5-3977-4b97-82fb-26a152d18763"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="854f3e46-3e7a-4c26-94a0-bac181818940">
+                <propertyInstance
+                  Id="9e0eb441-c04e-4ef4-bf78-35f0e8a05ce4"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8ce1ed75-c4e6-4768-98b0-24bac5fc4a79">
+                <propertyInstance
+                  Id="cde1f5fb-61cc-4032-8460-06f1448ae7eb"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3098d666-79a1-4de8-aa38-ff049a5a0cb3">
+                <propertyInstance
+                  Id="03f7510a-0540-48e1-9b5a-8eed33d956ea"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="434af1e5-b569-42a7-b39c-584634b9dde7"
+  name="ApplicationModel"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="f79e63bb-a229-46e6-827c-075d0e172725"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWindows.ApplicationModel"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="a764204c-77db-4583-bf3c-bca30b6b0b11">
+      <profileInstance
+        Id="4c65855f-2eb6-4203-a616-8e47c19ace6a"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="806d422e-34a1-42dd-bac2-a340a5eaa984"
+        LastKnownName="Activation"
+        LastKnownLocation="Package2_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="cd122674-6b8c-40d6-897b-b14d64a4e2de"
+        name="SuspendingEventArgs"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="51694016-a1ae-4fb5-ba9b-dfdc846414ea"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.ApplicationModel Type%3DSuspendingEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="294c2477-e444-4808-912c-7da43116a7ef"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ce6c7ca4-1474-4bc2-9c96-f670110128c6">
+                <propertyInstance
+                  Id="69dd466d-5faa-4a57-8607-080dd97b33cc"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f4f36b3e-5748-4b51-99b1-48316aa37de5">
+                <propertyInstance
+                  Id="e01aae8b-76b1-468f-9d95-a2a8fff672aa"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="023f603c-81f5-48fe-b6b0-8e3ae28c7844">
+                <propertyInstance
+                  Id="f953d7f5-0de7-4a2a-b69c-48d6c58ec7be"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="60ef481f-8526-4ff7-bc30-8ef17f87f3f4">
+                <propertyInstance
+                  Id="67309174-ee1c-453a-9883-c0ba4316acde"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b940e62c-9581-4931-b006-0a47fc6e49f4">
+                <propertyInstance
+                  Id="a95f733b-927b-4afc-8d1a-1fd2d6c4c6ed"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

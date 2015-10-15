@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="f13ef3b9-4db2-4b90-b7f5-fa9686b93505"
+  name="Interfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="d4045df3-b50e-4b06-8f31-08b948c49de1"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.Models.Interfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="663a8662-a6a6-4da2-b9a8-39237939fa4d"
+        name="IMyNavigationService"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="80906005-7bcd-435c-82f6-59b5ed225413"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.Models.Interfaces Type%3DIMyNavigationService"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="6c412526-7958-4f3a-8957-24db82aa2cce"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d3385c5a-8578-4480-8526-283a78b23490">
+                <propertyInstance
+                  Id="18acfc37-4deb-41f0-9bf0-399c70deeb3a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6cd6e0b4-1400-45a6-a546-bdfa5a187db9">
+                <propertyInstance
+                  Id="6fd6ae60-2ab5-4e5f-a9d0-63610fdbb5d8"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f4e1e1fe-757b-4b8b-a185-f6f14d63ce5e">
+                <propertyInstance
+                  Id="ffbe28e9-2da3-49ef-b085-aebc4da278e2"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="81c924c7-a3d5-40dd-8b21-47cb6b31185d">
+                <propertyInstance
+                  Id="9e36b671-ac72-46e0-b2a4-ab8949e72054"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="2f40171e-d754-4726-a62b-632acf43b3cb"
+  name="Xaml"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="9dae84a1-d411-4358-ad52-d539d0c81822"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWindows.UI.Xaml"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="818b900d-2811-48c5-8bc5-8b72cfaabc67"
+        LastKnownName="Media"
+        LastKnownLocation="Package10_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="3a46928e-0724-46d0-94da-4b3517c46e71"
+        LastKnownName="Markup"
+        LastKnownLocation="Package12_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="0d3d4fb5-3026-4bc3-81bc-af820f143459"
+        LastKnownName="Navigation"
+        LastKnownLocation="Package1_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="eb42709a-d114-461f-a22a-ad0565885866"
+        name="Visibility"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="e29cfabf-ae88-4bb6-a776-a558eb4728df"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Phone Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.UI.Xaml Type%3DVisibility"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="faebf3f0-71dc-46a4-8d4f-7b67cf43d38a"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7a769d6a-5823-4777-a642-7069cd81c11e">
+                <propertyInstance
+                  Id="57dfb660-7415-4074-8b48-5e393f2e2f2d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4812b45e-199c-425f-ac01-d3fc1ae96153">
+                <propertyInstance
+                  Id="32f027e4-1eb0-4197-b22f-8ac57822e663"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="40d91e70-9fd5-4c32-92cf-ddc8dbeb39f0">
+                <propertyInstance
+                  Id="0f82c0e5-76cd-4528-b516-7d7fb8c4c986"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

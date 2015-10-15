@@ -1,0 +1,1610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="0bfac555-ff31-4ce4-8c4a-cf5b1d6bf440"
+  name="Orphee"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="c8da9bcf-c748-49c0-81cc-10a7cb55bcf2"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="aca41746-80b0-4716-b365-cac51f172876">
+      <profileInstance
+        Id="7b1372c7-f6e9-4409-8282-fe7b80880219"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="af39d2c6-a5c9-4204-90f8-fb54fd9c8c72"
+        name="App"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="ff7f19c5-c34e-4d9c-b035-670d85b341f3"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="e700dea4-18b5-4719-afe0-4a9613fd0289"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="17aafd67-9257-4ebc-8895-ef655859890b">
+                <propertyInstance
+                  Id="888f6d02-ec33-4151-ba64-5bc466027964"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d617f6fc-df2a-406e-ad0c-6fe0fd3b0429">
+                <propertyInstance
+                  Id="98fee0fe-74a9-4aaa-8978-9b4c9a560bb0"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5febd47b-1aa2-4e08-95fc-a7ebe435eb7e">
+                <propertyInstance
+                  Id="441a9238-5465-4eef-93ca-8feadfd9f750"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6276ee31-73b8-4ce2-8114-0bc6415e84a5">
+                <propertyInstance
+                  Id="b3aedd70-10ef-4145-a9a2-ad6c59e51a05"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f88535f3-46e3-402f-85fc-17079f5c7cd0">
+                <propertyInstance
+                  Id="b938b636-99f4-4d34-94da-144ef81c8d1c"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="9a9b9847-1c3e-4a69-85b9-7c5a0d79f0d0">
+            <interfaceMoniker
+              Id="3f881b2c-a514-4085-8e3d-b7ccd95d5335"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package12_1143.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="10735751-d0b6-419a-bb7d-0ba3b80566aa">
+            <interfaceMoniker
+              Id="890ca47a-f452-4df1-bfc7-577948cfb688"
+              LastKnownName="IXamlMetadataProvider"
+              LastKnownLocation="Package12_1143.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="2bc9900e-1ba5-49b3-aca9-d081415f6e58"
+            isSubstitutable="false">
+            <classMoniker
+              Id="eae587b5-9dd5-4394-bfcd-913bb1a5da7e"
+              LastKnownName="MvvmAppBase"
+              LastKnownLocation="Package14_1143.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="91bd2059-bcab-471c-b10e-d5447e5fb550"
+            isDerived="false"
+            sourceEndRoleName="App"
+            targetEndRoleName="MyNavigationService"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="663a8662-a6a6-4da2-b9a8-39237939fa4d"
+              LastKnownName="IMyNavigationService"
+              LastKnownLocation="Package4_1143.uml" />
+            <description>Property MyNavigationService references type IMyNavigationService.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e7e5e85a-cd76-47ef-85ee-ea4c76026994"
+                  name="App"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="dee92e97-38aa-4266-8a35-521204fde54f"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="600b3ca3-3c17-4f6c-b1bd-f07e6a65091b"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c6f5e416-2ca1-4f03-bb2d-4bbfb42842c2"
+                  name="MyNavigationService"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="f7ea9aca-9fbd-42b2-9c2a-6465c95651d0"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="31c6849c-f246-48eb-9199-92fbe1ff3ec9"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="96a8ecf3-ebdd-4749-b870-e23f7dc7549e"
+            name="MyNavigationService"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="7bf28483-002d-45f0-9cd6-b78236a8a52e"
+                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3DMyNavigationService"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a53041c1-b12c-4fbd-91dd-6b987bb57c78"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0b81fe3c-571b-49ae-b991-aa1e52334d1d">
+                    <propertyInstance
+                      Id="d43666ba-476e-4999-a64f-7005f981ba17"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5838d41b-eba4-4791-91c9-b0e16d05dd5e">
+                    <propertyInstance
+                      Id="5560e1b1-fe07-4572-bc4e-4a9421a53ddc"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5ad17932-a1a3-4424-8cf8-017dbf0b0090">
+                    <propertyInstance
+                      Id="de301301-f646-40f5-bc13-a71ae5dcda94"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ad86cf85-65e3-4d1e-b64b-208643c3b0e9">
+                    <propertyInstance
+                      Id="0faf5ebe-1b4b-444d-9c1e-329becc53f6a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c126371a-2857-4bda-b3ce-ae163b3975ae">
+                    <propertyInstance
+                      Id="536c8eb5-056f-4367-8c39-b8efeae770fe"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="947d78e5-ad09-4d5e-8cbc-334340d67198">
+                    <propertyInstance
+                      Id="bc344420-003b-4048-9107-e6f5bdc7a513"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="625c52ba-c2ff-4a67-a794-5305d216ea57">
+                    <propertyInstance
+                      Id="be4a18a6-74b7-43a0-aa2c-7dfda00d8500"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="663a8662-a6a6-4da2-b9a8-39237939fa4d"
+                LastKnownName="IMyNavigationService"
+                LastKnownLocation="Package4_1143.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="7079c017-fc41-4b37-93ff-072b85e5640b"
+            name="_container"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="1fe441f8-cfcf-4697-963f-e08fdf4d1799"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D_container"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="12b3d795-0fb7-4bd4-9fbd-d4844766b1d6"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5270135a-ab7e-4eba-8413-5a63810df4e5">
+                    <propertyInstance
+                      Id="88e43c46-2bf3-4cfa-a837-78c019b5bbd2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d7703246-5dd1-43bc-b47d-99ec5a80c8d1">
+                    <propertyInstance
+                      Id="7291915d-a5f4-4fe9-b4ec-ec97cd4228bb"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="27bb47ed-b03c-498a-b6e4-58a930975319">
+                    <propertyInstance
+                      Id="ad493cf0-6cc3-4429-8617-a23cd3c683a6"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0a69207a-e2e0-4c48-b9e5-54a26b634494">
+                    <propertyInstance
+                      Id="60a99049-c903-4ca0-96cd-02b9d8764132"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="92943d5c-2d95-4655-b714-da20bd37ddcf">
+                    <propertyInstance
+                      Id="7eb24496-7388-4635-a8d6-3952dd17dc86"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="d6bfd925-d934-4be2-9573-4873a78afab4"
+                LastKnownName="IUnityContainer"
+                LastKnownLocation="Package7_1143.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="a1253fac-5d04-4c43-8f04-f0a6e0c8d0b9"
+            name="_isSuspending"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="b12dbbb3-d16a-4636-b922-cd36aad5054d"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D_isSuspending"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a3c8599d-0f2e-412e-8d85-544a18ba580e"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="182df268-ee77-42c4-80ba-33aaf57d8ce6">
+                    <propertyInstance
+                      Id="64d88583-787d-45fe-a5c9-3e87a6726259"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0207eafe-c1ff-4174-ae49-090f9581e475">
+                    <propertyInstance
+                      Id="152f22cc-8724-41a7-ad56-94b2d8a18df9"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9f534ccb-5881-40ff-9f26-b5374ade969e">
+                    <propertyInstance
+                      Id="5978926a-e4bf-4a7e-8ffe-22cc58d75995"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f32208c0-2086-4dad-9b9d-c083f1969745">
+                    <propertyInstance
+                      Id="3a56f487-d2ae-4848-b239-82b47cd3ad28"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="de562d6e-f8ba-412b-b3c0-b1fdca2e8bce">
+                    <propertyInstance
+                      Id="1513b5a0-c0e7-41cb-b2a9-5e1e9b428806"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="e5a6b2a1-ea7a-447a-ac8c-eeb808d709ea"
+                LastKnownName="Boolean"
+                LastKnownLocation="Package3_1142.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="1a8c296a-e075-4e9b-93c6-247db5e6ce29"
+            name="_contentLoaded"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="9870b3ac-c7e2-428a-8520-9ff0890c0087"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D_contentLoaded"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2886397e-895e-4b6a-ad2f-d22f00d86607"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bcf18e73-fccf-40b6-98dc-31d47abb633e">
+                    <propertyInstance
+                      Id="1aaa2c07-6f5b-43f7-887a-de5de01e5ea5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aee56657-59e5-429c-b4e6-4ab44b0a1a3f">
+                    <propertyInstance
+                      Id="5bfbc42f-6a30-4669-a93d-e1df76f9fd76"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="42a3663e-9692-4f52-9b60-6de28f60d52f">
+                    <propertyInstance
+                      Id="bb801d2f-cf44-4d63-b88a-9b19b0252963"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5d6f8dde-511f-4e98-8e57-988d46658cda">
+                    <propertyInstance
+                      Id="fcb5929a-92de-438e-8caf-8dd7c90434e5"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bbe5bb49-6777-4922-a0cc-59f2759224f2">
+                    <propertyInstance
+                      Id="65068a00-34bd-4a8d-a4ac-25560fd4f35d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="e5a6b2a1-ea7a-447a-ac8c-eeb808d709ea"
+                LastKnownName="Boolean"
+                LastKnownLocation="Package3_1142.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3d473258-8c06-4b10-bad6-09199487c8ce"
+            name="_provider"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d6385ae2-0ab9-45d8-80df-a0b529a1d47c"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D_provider"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0ff702b5-698a-4507-a54a-39e5efc28ae4"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f5bd8a66-2778-4301-b4b2-e95d195e0412">
+                    <propertyInstance
+                      Id="8bd7cad5-1150-4c14-94ef-f3843dfff2d5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="54d883bb-3a3b-4d7f-874b-863d254d6ac4">
+                    <propertyInstance
+                      Id="11b4f162-cafe-447a-8247-97af73a95074"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c3e4ceef-3b2c-4d32-8949-31567672380f">
+                    <propertyInstance
+                      Id="83fe5741-e845-4666-ad5e-ccd232b1d9cf"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="314ea685-6ad0-4140-abb4-0c74555e399a">
+                    <propertyInstance
+                      Id="3f67da53-47fd-4546-9eb5-f05a8045f170"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9644b22f-ad69-4fb0-b317-39e7e082dfaa">
+                    <propertyInstance
+                      Id="0968ccb7-1726-4081-babb-16c537ed330b"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="1867de85-0838-4f3f-a87b-515f7ba3d964"
+                LastKnownName="XamlTypeInfoProvider"
+                LastKnownLocation="Package15_1143.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="db4b5876-915b-428e-86a1-ab19d6578629"
+            name="InitializeMyNavigatorService"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a9173f7d-0a0c-461a-9d73-ad29d13c5fc0"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3DInitializeMyNavigatorService"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="bfd9c112-bcb0-4c18-82ae-087ac357d28e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f67f2832-5bb6-4e48-bfec-5d89182c5f6e">
+                    <propertyInstance
+                      Id="1afca3ad-9fbe-43bf-a51b-70675f0c55a4"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7cc96d47-ca7e-413a-868e-0c1bac8206a6">
+                    <propertyInstance
+                      Id="48702382-c424-460f-8b5b-f098aa71ba52"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="093bb587-bf43-4fc5-8990-26077b5a789a">
+                    <propertyInstance
+                      Id="1cd86acc-653e-4ce3-929d-14bc39ea897f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c32ff58a-6bad-404b-a001-8fd9d15a1236">
+                    <propertyInstance
+                      Id="c6355f01-23e4-4f29-9973-c5db3a641c38"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4b5b8708-9069-405c-bd8c-5125457fe91c">
+                    <propertyInstance
+                      Id="edd4318c-6b45-4c7c-95f1-166edb821fd4"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="22144517-8a33-4762-91f3-3d3d433239c9">
+                    <propertyInstance
+                      Id="cf40a0eb-3dea-484d-a6ee-998b0deaf6b0"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="d2620224-232a-4d33-bee4-b778b6978f09"
+            name="OnLaunchApplicationAsync"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="7f2d27e0-2261-45c6-a603-c636c63f9920"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DOnLaunchApplicationAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.ApplicationModel.Activation Type%3DLaunchActivatedEventArgs)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0647de36-3aa4-4f91-b65a-5b948519ffee"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8d92adb7-e35e-438f-b0a7-0cfb37b91c71">
+                    <propertyInstance
+                      Id="78816504-5bd9-4112-989e-e311edc02e3f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3ad6bb05-1456-4c3d-b436-f22b8c1395f2">
+                    <propertyInstance
+                      Id="f690799c-e8b0-4df7-b27e-9ae4e4d87db3"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fefd8f0f-7104-4770-b43c-57ab92cea681">
+                    <propertyInstance
+                      Id="84d1fdb0-b1b5-41fa-9ba5-208453982b9f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0853c672-e4ac-4028-8830-fb7ee04a06af">
+                    <propertyInstance
+                      Id="92901852-ae6e-43f6-b701-36422ca763b8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b552e468-653c-4f1d-ae75-e9aa14e2e2a0">
+                    <propertyInstance
+                      Id="327c5083-ab5a-47d4-987f-520a053485d7"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="63a4253e-722c-43de-905a-8f173cab1fa8">
+                    <propertyInstance
+                      Id="0ae67820-2d5d-416d-9e90-6c1d1da12ce6"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ccc24fac-7d54-4249-881e-97c95e46711e"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="6cd1f839-ad49-4400-9798-d1b7c0b6798c"
+                      LastKnownName="Task"
+                      LastKnownLocation="Package5_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="40a61e8c-0658-484a-8dd8-451d6b0d49ca"
+                  name="args"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="eafd2d67-352e-4f1f-a563-964f2eb7aa6c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DOnLaunchApplicationAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.ApplicationModel.Activation Type%3DLaunchActivatedEventArgs)]) ParameterIdentifier%3Dargs"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4dd9f3c1-e9fa-443a-bd16-87ee5d81a2c5"
+                      LastKnownName="LaunchActivatedEventArgs"
+                      LastKnownLocation="Package2_1143.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a8cdfc39-3816-4d02-8576-54e9b4b14244"
+            name="OnInitializeAsync"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="5206cc96-1bbc-4c37-b4fa-31f592f44c01"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DOnInitializeAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.ApplicationModel.Activation Type%3DIActivatedEventArgs)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ef49708b-cdf6-43f4-91d7-6791fe3c1cde"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1eed821-55e6-4537-8c13-ae827f360cd9">
+                    <propertyInstance
+                      Id="082f8227-a2f6-4852-9f8a-33c6cace7739"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d029814e-8002-455a-b7a2-24350375c8e9">
+                    <propertyInstance
+                      Id="089b5d82-c1e7-4bcc-a379-39afa08995e2"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="707c5a59-2ecd-42ad-ba9e-aa46f8b46dcf">
+                    <propertyInstance
+                      Id="fc78e5f1-413a-4fd6-a429-e2717010bb3c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="944fc445-0128-49e5-a213-19fa0e7e88b1">
+                    <propertyInstance
+                      Id="2e221dbb-37d1-4cb8-b9ba-a22104dbf1bd"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="38b49912-c42a-4163-96b2-10c47ff21209">
+                    <propertyInstance
+                      Id="b3e63ee9-7abd-474e-921d-2afadd28c25e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8a4ff87d-3175-48e4-ad71-ac1bc6722ccc">
+                    <propertyInstance
+                      Id="428e5b37-6acb-4a24-b9f0-3ffde9fc6ee6"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c1e5493f-fc49-44f5-9521-c7c70690a6ba"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="6cd1f839-ad49-4400-9798-d1b7c0b6798c"
+                      LastKnownName="Task"
+                      LastKnownLocation="Package5_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d652163a-cdad-45ef-9f83-41b0b025d18c"
+                  name="args"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="ee3a6a21-b8c4-4ce6-b44c-7ca6ea3a6a56"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DOnInitializeAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.ApplicationModel.Activation Type%3DIActivatedEventArgs)]) ParameterIdentifier%3Dargs"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="6624fc17-57e1-4944-a357-f27c37aa994a"
+                      LastKnownName="IActivatedEventArgs"
+                      LastKnownLocation="Package2_1143.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5fca9933-3c0e-4e5f-87d7-36454b7fd09c"
+            name="OnSuspending"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="3c712a1a-0e68-409f-a2aa-6ece5b0c0b8d"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DOnSuspending OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.ApplicationModel Type%3DSuspendingEventArgs)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ba2ac7bd-122a-429b-9eca-fc9143a4d605"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7d97c759-10cd-42f3-b4d5-09809aeeaf0f">
+                    <propertyInstance
+                      Id="eed344b6-5ee6-4047-a003-cd0857db8422"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6a2348c9-fe87-49f5-a368-a7a14b4a5e7f">
+                    <propertyInstance
+                      Id="be28a9b5-a9ca-47a9-b413-cc633c28627b"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="99460e07-9af9-445c-aa12-c2296cc555fc">
+                    <propertyInstance
+                      Id="ae77327a-42d4-41ad-bd04-30bf37d79c64"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7651c4b5-38bf-496e-a203-96e3663c6bef">
+                    <propertyInstance
+                      Id="8d2548b2-91ba-4be4-a56b-94bf3e811539"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="87d9d05e-7cc1-47a1-8335-a348c91e4abc">
+                    <propertyInstance
+                      Id="e745e25a-7259-46b9-bae1-6d486300f407"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="44c9ecc8-28d0-4989-8988-0bf718184432">
+                    <propertyInstance
+                      Id="21373e2f-0e54-4c21-808c-90be30ac1f75"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9f85c348-e762-4a32-8970-f11a53b8ca1b"
+                  name="sender"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="af5feb6c-11c3-4576-a413-437a57c6c22a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DOnSuspending OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.ApplicationModel Type%3DSuspendingEventArgs)]) ParameterIdentifier%3Dsender"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="0b85cf95-7517-4b85-86b5-c0e3c0645d1b"
+                      LastKnownName="Object"
+                      LastKnownLocation="Package3_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4e02dce8-1f26-4cea-8361-20b129cff7b5"
+                  name="e"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="a3411989-2745-411b-8178-972798849e76"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DOnSuspending OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.ApplicationModel Type%3DSuspendingEventArgs)]) ParameterIdentifier%3De"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="cd122674-6b8c-40d6-897b-b14d64a4e2de"
+                      LastKnownName="SuspendingEventArgs"
+                      LastKnownLocation="Package1_1143.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="280e8647-0588-4722-8327-47120ed79007"
+            name="Connect"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="92ace00f-d815-4006-80c4-74713c652c6a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DConnect OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DObject)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="aadf565d-e465-4b10-b9eb-7dc99b037c57"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f53971ac-2f1b-4e5e-ab78-10fd483713ac">
+                    <propertyInstance
+                      Id="ea2e80eb-85f8-4887-8cec-6e6be2a6024e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1dea107a-2c1a-4ce9-86b1-8383a60065d0">
+                    <propertyInstance
+                      Id="128d97bb-be04-4e61-b0f6-1de15fd135f4"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3fdfb722-df4f-4c92-98aa-3bef2b72dcca">
+                    <propertyInstance
+                      Id="649d4549-a85b-4ac7-b6b1-d0804ba3f305"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="22c489a6-6d8b-421d-8767-e15e93e09383">
+                    <propertyInstance
+                      Id="200dbf34-40e1-4eba-95ce-b2f48d646db6"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fc75a2b4-30bc-44f2-9c9d-b9c33462fbec">
+                    <propertyInstance
+                      Id="6ab4d4b1-42eb-461b-8b8a-7625a72e2f33"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="77d7af0a-f5e9-4814-971f-7a00de45025a">
+                    <propertyInstance
+                      Id="eb0990c7-e022-4535-b68d-953e7d4630d7"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="10005634-65ed-4f24-a97c-8227b187b038"
+                  name="connectionId"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="23d9fc77-8edc-413d-9390-8100b8183570"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DConnect OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DObject)]) ParameterIdentifier%3DconnectionId"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4244a081-4759-4b73-b67f-a0d945d4db0d"
+                      LastKnownName="Int32"
+                      LastKnownLocation="Package3_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2212d656-0b44-42d3-9eae-1b4b9dae482b"
+                  name="target"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="5ea1569d-4b8c-446c-a4a5-8fd25c771e7f"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DConnect OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DObject)]) ParameterIdentifier%3Dtarget"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="0b85cf95-7517-4b85-86b5-c0e3c0645d1b"
+                      LastKnownName="Object"
+                      LastKnownLocation="Package3_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="f83a1f5d-c134-42a1-9e69-fd5de507f689"
+            name="InitializeComponent"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="2a55b0db-283b-4192-b490-1b261debe771"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3DInitializeComponent"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="25467deb-a330-4115-924d-1853d5347ec2"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f3b21ce3-89c5-4f1c-8ae2-25e8d5606c61">
+                    <propertyInstance
+                      Id="6776e144-ad10-4285-ae94-78b565f32114"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3fc6a802-74ed-48a1-99dd-79cace1754bb">
+                    <propertyInstance
+                      Id="4b2c3b05-fe5c-4ab9-a696-1b89224efb5b"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="85fa3412-bf6c-48ef-b7c4-0ada2020e538">
+                    <propertyInstance
+                      Id="be024668-2995-4f9e-8e6d-146b6a833e4a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0417fa9a-73b6-4cb7-9eff-9151ebb71e56">
+                    <propertyInstance
+                      Id="c080c9f0-b29c-43f1-9ad5-e878db4681ff"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ccd6757-5c92-4a3e-94d1-52a01b3a12f1">
+                    <propertyInstance
+                      Id="88d7a62e-d808-4e59-8275-ed626bc8c8a9"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d4317dfe-2c5f-4888-a32c-a0f8417c780a">
+                    <propertyInstance
+                      Id="b783355c-de8d-43d0-a383-2ceda7157219"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="32eb6d18-af00-468f-9555-f050756abb10"
+            name="App"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="cfde1271-0763-4a09-adfc-303ccf26a476"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b139c773-7cfb-413a-bedc-c8563c9c86d0"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e14c4fe2-20f7-42b9-89c8-e2d76cefecbe">
+                    <propertyInstance
+                      Id="267b3875-db84-4b94-a5e7-cc91b6c81219"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3d43073f-e9f3-41e8-8585-f6951922b0ce">
+                    <propertyInstance
+                      Id="0293c196-f6d4-431f-a1ee-8cdd36579455"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="49b25fd6-94c3-44e5-be76-c32fd1dd3807">
+                    <propertyInstance
+                      Id="77cbcbc7-131c-4ee0-a563-e12a278531fa"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7e580d46-9e46-4658-8356-c2f655c8d25e">
+                    <propertyInstance
+                      Id="d1e302b3-929b-4716-b5e2-81162eb9b4c8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="97b889ee-f506-48f8-b1b0-69fb54860b0f">
+                    <propertyInstance
+                      Id="62882718-f30a-48c7-b685-f34e677d3509"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2df0377c-7998-40a4-83dc-94b002af9767">
+                    <propertyInstance
+                      Id="840a801f-2277-4b9b-a596-1aabe810c587"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="f0e87eaa-345c-496b-9442-1a046616b392"
+            name="GetXamlType"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="8128efd8-1cb8-4acc-8383-586703cd11de"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DGetXamlType OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DType)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3d2d91c8-ad3c-40e6-adb5-419599e63775"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="518a651b-c397-4e7b-8bdb-01e1126db053">
+                    <propertyInstance
+                      Id="121c0624-1cfa-4f2b-8019-2b6de9e74436"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d7ced2a1-c281-4926-bb9c-b2d4933574f6">
+                    <propertyInstance
+                      Id="577b25ad-1c19-4b61-81e0-67a272599279"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="390f56f5-aa93-48c6-9982-e1d67c13d194">
+                    <propertyInstance
+                      Id="8a2e0836-b444-45a3-9954-8c4bb82a9598"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2737de75-bbca-4041-bb6d-00d8ad42d73f">
+                    <propertyInstance
+                      Id="27e7e85c-3648-42b2-b311-428586486060"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8820f5f1-62f1-4a56-aaf2-3e6bbf3b140c">
+                    <propertyInstance
+                      Id="fb0f71eb-f8e5-4c79-b1d7-e5f558f2751e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f6124199-34db-4fe5-b0df-aa3eb83d6bd0">
+                    <propertyInstance
+                      Id="ea276ec5-db5c-4d8b-b78b-c2428b28b7ff"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9a7184bc-5b6a-4803-bf0f-5e744593b00b"
+                  direction="Return">
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="58b2dfda-d6e2-46aa-8e27-65a27351678a"
+                      LastKnownName="IXamlType"
+                      LastKnownLocation="Package12_1143.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3bdd8ef2-4cd4-440e-bed9-e3b00be64632"
+                  name="type"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="2a721bba-7942-49b4-9fd5-cfd1a2b20c65"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DGetXamlType OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DType)]) ParameterIdentifier%3Dtype"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="dfb7e835-23c8-41a7-9ed3-f2ebd1aef4af"
+                      LastKnownName="Type"
+                      LastKnownLocation="Package3_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ca8a419f-15b1-4d3e-8c63-c27902a60bdd"
+            name="GetXamlType"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="1be38ea1-afac-4311-b6ab-d7a77076bc6e"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DGetXamlType OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9962354b-44f5-41c1-a99a-0b7a27140e92"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="37452d18-dd18-4d0d-a792-8e428ad3387a">
+                    <propertyInstance
+                      Id="1547ccc4-26a3-439f-be96-22dabf134f58"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="154a32e4-d7d2-445b-95e0-b7039ee8ea24">
+                    <propertyInstance
+                      Id="2d7afbaf-e590-41d8-bc0f-027f10d32cfc"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="18ee91f1-bbc9-485b-acf3-cdfd26b038fd">
+                    <propertyInstance
+                      Id="6a0ff38c-e295-4796-9f37-66e3a2da6d15"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e8290c51-4e94-45c6-be5c-579c49a973b2">
+                    <propertyInstance
+                      Id="d96a2999-f443-4273-b903-1c6bba7011c6"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="812fe642-2d05-4b8c-beb4-6fa5b9d7928d">
+                    <propertyInstance
+                      Id="7e813c68-5e16-4429-817f-dc27e2d0f13d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="04df67ec-27cf-42ea-b984-d7ad93fbf3f4">
+                    <propertyInstance
+                      Id="6841c677-0cb1-4450-b23c-42ba61538162"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8abd4c8b-b9e8-4398-b8cc-a59399d84862"
+                  direction="Return">
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="58b2dfda-d6e2-46aa-8e27-65a27351678a"
+                      LastKnownName="IXamlType"
+                      LastKnownLocation="Package12_1143.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1e74cc10-be37-45fb-a1d1-362912453c2b"
+                  name="fullName"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="2b569601-a1bf-431f-8cb5-f5c09bc253af"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3D(Name%3DGetXamlType OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DfullName"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="fbda7b6a-cc5e-4c8c-900a-48166da17fe6"
+                      LastKnownName="String"
+                      LastKnownLocation="Package3_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="556b78a1-4ffe-4c52-a880-03300234e38d"
+            name="GetXmlnsDefinitions"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="40284653-baa4-49b4-b67f-8798cb67a909"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DApp Member%3DGetXmlnsDefinitions"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9431c85d-4794-40fc-b19d-ec8078242fbb"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6eca4750-8edd-4d81-84a8-9a723c49e000">
+                    <propertyInstance
+                      Id="eb31c8c6-de5e-49e4-8599-896c504e3713"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5daa9c36-834a-446a-aee8-636519a6b710">
+                    <propertyInstance
+                      Id="2f8df83a-fb84-4ac8-99d3-b2dbd0b90433"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dbb66f40-d896-4afc-b427-7f36b5c2302e">
+                    <propertyInstance
+                      Id="72893f01-edff-418f-8187-d260870d2fcb"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="47ba126b-b2f1-4a70-bd9b-89cafab5bdbe">
+                    <propertyInstance
+                      Id="1e34eb24-7660-43ba-8008-04e824ab3d41"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="02b44e49-2d91-49cb-a154-e623dfe8ee96">
+                    <propertyInstance
+                      Id="2e097b56-5207-42db-a724-5b201a0929c0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6532f1bf-5394-48a9-a342-0bcf60abc3ae">
+                    <propertyInstance
+                      Id="66ef2276-fb4f-4614-afa4-1de04836d5c6"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a48ea4bb-04a6-474f-8958-8b79850f9a79"
+                  direction="Return"
+                  isOrdered="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="8c81877c-b01b-4526-ab8b-cb5f6c6170f4"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="b3901411-8ec8-4662-adac-614dacf6c5de"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2fa2d35e-5493-4da4-bb7f-f6ecbc437ebd"
+                      LastKnownName="XmlnsDefinition"
+                      LastKnownLocation="Package12_1143.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="7c28d9bf-01fd-4f20-8510-c02686952a14"
+        LastKnownName="Models"
+        LastKnownLocation="Package3_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4befeef1-2bbd-4a04-bb33-eca08edffcf3"
+        name="Program"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="4327f299-93fe-494f-b8f5-2340be02cc38"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DProgram"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="6ac36cf5-8440-4dab-8e32-bd732d5af559"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ba15d47b-4980-4fb4-87d2-3170e7b6b5ad">
+                <propertyInstance
+                  Id="b0c7642e-69db-46a8-b0df-e59f482eed3a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3759f502-d654-4b69-b284-bd7d65816fd1">
+                <propertyInstance
+                  Id="c0af5398-c706-4a4d-8419-c6b8a481f46e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9aaf315b-4944-4eb0-ba3b-a331522fee09">
+                <propertyInstance
+                  Id="37f5f5ce-c0f2-40d2-b1a7-e05a8c194188"
+                  name="IsStatic"
+                  value="True" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5deb6753-0204-4909-a31f-ad7c6af0036b">
+                <propertyInstance
+                  Id="fc290c11-e69f-4b95-a145-81d760fda1ae"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bc22f1e9-0e5c-43d5-a698-2fdff298f635">
+                <propertyInstance
+                  Id="e61719e5-ec21-401f-aefc-a5338fd9d280"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="1f2b8ba8-3e3b-4e8c-9c0d-c257a7b0b4d8"
+            name="Main"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="1994fcb9-a60b-4167-9850-c1556d8fe3c7"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DProgram Member%3D(Name%3DMain OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3D(Name%3DString ArrayRank%3D1 ParentType%3DString))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="8b59d908-0cd3-49d7-82da-1054c50c631c"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="36663e8e-003d-47ba-b5f3-9ee594f579d4">
+                    <propertyInstance
+                      Id="67d11474-c1bb-4476-bff5-9eb26a6e85d9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="98aa7328-d319-4d73-ba20-662b4af83708">
+                    <propertyInstance
+                      Id="d16d2adf-26b9-480b-b0bf-d73827c8e12d"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f4c9fd93-2549-43cd-8aae-62d7d48d596a">
+                    <propertyInstance
+                      Id="dd253a86-e476-474b-a4f8-3c1788673d28"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="512652ab-1a22-4c8a-ac34-3091e02791fa">
+                    <propertyInstance
+                      Id="85682b5e-fa46-4bac-a324-b1f9aa2830d6"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="affdbbb8-f1c1-49ee-a587-52d9979c7ef1">
+                    <propertyInstance
+                      Id="0fe4e5af-a4fa-41b5-b19b-6e6df6d30b1e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="747c5b1c-1e67-45e8-a9b7-297f315af335">
+                    <propertyInstance
+                      Id="00c542ac-102b-4436-936e-ca13c08e8d76"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="85573a79-fb61-484a-9bc8-6873296bbe13"
+                  name="args"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="81551b78-5664-4ab0-84c1-d57447f7bd05"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee Type%3DProgram Member%3D(Name%3DMain OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3D(Name%3DString ArrayRank%3D1 ParentType%3DString))]) ParameterIdentifier%3Dargs"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="379c9d45-c7fb-4a32-bf8f-c8aef7336f54"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="f094fc74-010d-458f-86bb-2a9132d22c98"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="fbda7b6a-cc5e-4c8c-900a-48166da17fe6"
+                      LastKnownName="String"
+                      LastKnownLocation="Package3_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="6fcd2707-6b86-494b-b462-447f79834278"
+        LastKnownName="Orphee_Windows_XamlTypeInfo"
+        LastKnownLocation="Package15_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="363898df-df53-4742-8c61-daf4b4af7c2a"
+        LastKnownName="ViewModels"
+        LastKnownLocation="Package_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="754bf1a0-f649-4690-a613-fd55a131d814"
+        LastKnownName="RestApiManagement"
+        LastKnownLocation="Package4_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="cd023967-83da-4526-93f6-e0732d421ebb"
+        LastKnownName="CreationShared"
+        LastKnownLocation="Package13_1147.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

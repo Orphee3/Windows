@@ -3,8 +3,18 @@ using MidiDotNet.ExportModule.Interfaces;
 
 namespace MidiDotNet.ExportModule
 {
+    /// <summary>
+    /// This class writes the delta time of every MIDI message
+    /// in the MIDI file.
+    /// </summary>
     public class DeltaTimeWriter : IDeltaTimeWriter
     {
+        /// <summary>
+        /// Function writting the delta time of each MIDI message
+        /// in the MIDI file.
+        /// </summary>
+        /// <param name="writer">Instance of the BinaryWriter class writting the noteMessage in the MIDI file</param>
+        /// <param name="deltaTime">Delta time value to write</param>
         public void WriteDeltaTime(BinaryWriter writer, int deltaTime)
         {
             var pos = 0;

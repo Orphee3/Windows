@@ -162,6 +162,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Assets\test.loop" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

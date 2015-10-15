@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using MidiDotNet.ExportModule.Interfaces;
@@ -7,7 +8,9 @@ using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.ViewModels.Interfaces;
 using System.Linq;
+using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Midi;
 
 namespace Orphee.ViewModels

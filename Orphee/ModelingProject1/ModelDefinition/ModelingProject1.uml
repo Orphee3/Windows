@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
   dslVersion="1.0.0.0"
   Id="617d173b-ebd3-4c3f-a156-d067adad1322"
   name="ModelingProject1" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -187,6 +187,12 @@ Utilisateur connecté ?</body>
       <profileInstance
         Id="532ea607-fb19-44b8-8502-3351b05452be"
         name="StandardProfileL3" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="5ae38195-6668-4cbc-8a05-bc1a06808d3c">
+      <profileInstance
+        Id="fe15e67e-5f78-43d3-a8d0-36a59dd5fcdd"
+        name="CSharpProfile" />
     </packageHasProfileInstances>
   </profileInstances>
   <packagedElements>
@@ -2357,6 +2363,2162 @@ Utilisateur connecté ?</body>
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="4ef3b94c-e5de-4f8b-a3dc-978a7bc3fcb0"
+        LastKnownName="MidiDotNet"
+        LastKnownLocation="Package_1142.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="103e24c1-f6e0-432f-bd59-f4aeef30b69e"
+        LastKnownName="System"
+        LastKnownLocation="Package3_1142.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="35ba53aa-3fd8-49e1-ba97-b6ce6b32dba2"
+        LastKnownName="Windows"
+        LastKnownLocation="Package7_1142.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="0bfac555-ff31-4ce4-8c4a-cf5b1d6bf440"
+        LastKnownName="Orphee"
+        LastKnownLocation="Package_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="8da69b1d-71ba-4e07-8445-28037f03487b"
+        LastKnownName="Microsoft"
+        LastKnownLocation="Package5_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="4257878a-b620-4b22-88df-000196582152"
+        LastKnownName="Midi"
+        LastKnownLocation="Package19_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="30c71617-d93f-4b2b-945c-0c32677acc28"
+        name="Serveur"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="023cfca2-fcf0-4bea-8de6-9ab1521191c7"
+        name="Gestionnaire de son"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <part
+            Id="ad9f8c25-e408-425c-aa60-8753c92a583d"
+            name="Lecteur de fichiers MIDI"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="ada1e456-8670-45a2-8029-8f03da62f839"
+                LastKnownName="Component1"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="4ecf2a3d-4610-4379-a589-48be5d848509"
+            name="Interface avec la librairie MIDI"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="a7ff5322-2aa8-4a47-a997-7dd08330a37f"
+                LastKnownName="Component5"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="61369707-2d08-4129-b716-53a3e93ed200"
+        name="Gestionnaire de requetes"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="52a8464b-1963-4d73-b3f1-3d01743a23c1">
+            <componentMoniker
+              Id="30c71617-d93f-4b2b-945c-0c32677acc28"
+              LastKnownName="Serveur"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <part
+            Id="4e43ab5e-210d-4a92-a9d3-6af02403dfcc"
+            name="Module de gestion des &quot;Get&quot;"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="c0ce58f2-c3ee-4b6a-b852-db89472f1611"
+                LastKnownName="Component6"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="ab843970-24e3-401d-9ed9-62ffa5465be8"
+            name="Module de gestion des &quot;Put&quot;"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="4bf26aac-ed27-46f0-9b88-73d48824577f"
+                LastKnownName="Component7"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="454774a6-f08f-4540-903a-817cbe22e59f"
+            name="Module de gestion des &quot;Post&quot;"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="f4b3163c-efc2-41c4-aa6c-25eb257e7334"
+                LastKnownName="Component8"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="10a6d4a6-6fee-4bf6-91ad-a12f70cb3a61"
+        name="Gestionnaire de notifications"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="ad8f3fe4-d923-46c4-b137-dd702f506961">
+            <componentMoniker
+              Id="30c71617-d93f-4b2b-945c-0c32677acc28"
+              LastKnownName="Serveur"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <part
+            Id="585f6dd3-57db-4204-8957-334ffcc779c7"
+            name="Module s'émission des notifications"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="a8f82c56-8cef-4147-8f6d-91f6c4cec4d5"
+                LastKnownName="Component9"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="213d6ca4-ea84-4230-9127-6fc9d8c6bf00"
+            name="Module de reception des notifications"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="4e3d2bb5-951e-4fe2-b019-75ba67ecd3f0"
+                LastKnownName="Component10"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="27572423-6a56-42ee-a56f-f5c6279a4d1a"
+        name="Gestionnaire de création"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="de635600-1eb5-46a0-a212-3941ac7ffa32">
+            <componentMoniker
+              Id="023cfca2-fcf0-4bea-8de6-9ab1521191c7"
+              LastKnownName="Gestionnaire de son"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <part
+            Id="d4c85e7f-ad63-4962-8524-c472e43da488"
+            name="Module de Sauvegarde des morceaux"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="b64cd3b5-fc77-4ec5-be40-a0db1940aad5"
+                LastKnownName="Component2"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="616a167c-1943-44b2-b1c4-fb9118f13cbd"
+            name="Module d'import des morceaux"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="29b5489f-38c0-4998-b03e-e0e999b7915c"
+                LastKnownName="Component3"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="4e45e5d9-0ed1-40b3-8ce8-a66799142ecd"
+            name="Gestionnaire d'options du morceau"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="b2663f20-1f36-4aa3-b45d-3223c28ba143"
+                LastKnownName="Component4"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="5b8f62b3-d888-40ae-bb65-6980d95ff31d"
+        name="Client Mobile"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="a6aef9ad-94a9-4d43-969d-5a2cfcea61c2">
+            <componentMoniker
+              Id="27572423-6a56-42ee-a56f-f5c6279a4d1a"
+              LastKnownName="Gestionnaire de création"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="f05e8b69-06b0-4162-ac0c-29e039aa03e0">
+            <componentMoniker
+              Id="023cfca2-fcf0-4bea-8de6-9ab1521191c7"
+              LastKnownName="Gestionnaire de son"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="012dddbd-f0e0-4a7b-8612-3cabd25fe9bb">
+            <componentMoniker
+              Id="61369707-2d08-4129-b716-53a3e93ed200"
+              LastKnownName="Gestionnaire de requetes"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="18375486-e57c-4083-9be0-85a39ba18553">
+            <componentMoniker
+              Id="10a6d4a6-6fee-4bf6-91ad-a12f70cb3a61"
+              LastKnownName="Gestionnaire de notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="285c5973-e4fd-4df2-bfd3-f8bcb65d9510"
+        name="Client Web"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="6234c285-733a-4b5c-a7f1-c96ade206344">
+            <componentMoniker
+              Id="10a6d4a6-6fee-4bf6-91ad-a12f70cb3a61"
+              LastKnownName="Gestionnaire de notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="48d62bc2-77c3-4e68-86f0-772f304568d9">
+            <componentMoniker
+              Id="61369707-2d08-4129-b716-53a3e93ed200"
+              LastKnownName="Gestionnaire de requetes"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+          <dependency
+            Id="a816ac08-55f7-4601-9ad7-ad435d8852b3">
+            <componentMoniker
+              Id="023cfca2-fcf0-4bea-8de6-9ab1521191c7"
+              LastKnownName="Gestionnaire de son"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="ada1e456-8670-45a2-8029-8f03da62f839"
+        name="Component1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="b64cd3b5-fc77-4ec5-be40-a0db1940aad5"
+        name="Component2"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="29b5489f-38c0-4998-b03e-e0e999b7915c"
+        name="Component3"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="b2663f20-1f36-4aa3-b45d-3223c28ba143"
+        name="Component4"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="a7ff5322-2aa8-4a47-a997-7dd08330a37f"
+        name="Component5"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="c0ce58f2-c3ee-4b6a-b852-db89472f1611"
+        name="Component6"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="4bf26aac-ed27-46f0-9b88-73d48824577f"
+        name="Component7"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="f4b3163c-efc2-41c4-aa6c-25eb257e7334"
+        name="Component8"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="a8f82c56-8cef-4147-8f6d-91f6c4cec4d5"
+        name="Component9"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="4e3d2bb5-951e-4fe2-b019-75ba67ecd3f0"
+        name="Component10"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="fe7a9aff-9fc5-42a8-9b0f-88aaf66ebffb"
+        name="Utilisateur"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="1b6352cc-396c-43a4-a7ba-bf9ef1d10e35"
+            isDerived="false"
+            sourceEndRoleName="Actor1"
+            targetEndRoleName="Connecté"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="73790d23-8c08-4d2f-b531-c628bf367a1f"
+              LastKnownName="Connecté"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7ebb7733-2605-4b27-baa1-ccb01c00bead"
+                  name="Actor1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="882da658-e5c0-435b-8b28-63ba08801317"
+                  name="Connecté"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="3ee0f4b9-9475-4546-ae17-043dbeeb70df"
+            isDerived="false"
+            sourceEndRoleName="Actor1"
+            targetEndRoleName="Non connecté"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="61bb1a73-d3c5-49d6-bce3-5cda029ecd46"
+              LastKnownName="Non connecté"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d3e80190-e4f4-4d73-8a5b-5578fb4ba2c0"
+                  name="Actor1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5be59e85-764e-4cfc-be43-8aeb088dbd55"
+                  name="Non connecté"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="affd9551-a642-41f7-951b-f517b29e6e66"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="Créer un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="3b3eaa8c-dee3-4ce1-8491-3b3fd31327ab"
+              LastKnownName="Créer un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="960f1f10-14e5-4145-b2a0-4f9ec47f1aad"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="22e47c7e-5511-4a71-b0e2-e41bcfcfa6dd"
+                  name="Créer un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="0674272d-1f16-48af-9983-bd50c5dc7890"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="Ecouter un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="0a4cdf3f-75e6-4d36-a1a1-f747c5d60bcc"
+              LastKnownName="Ecouter un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="91ac4789-e05b-42fa-92f4-d369a8d88f9f"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b7bcb95b-5d10-456f-a381-dd095b04b20a"
+                  name="Ecouter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="a53cdfbf-fa60-4458-8159-3c4f3389db84"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="Liker un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="40e2bfe8-f03b-42b0-a197-ce592eebf4c0"
+              LastKnownName="Liker un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7b68ccb4-12f9-4075-9e27-950d3c9ca590"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6512c450-35a3-4317-97c7-73dce4e22a08"
+                  name="Liker un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="2a09ed29-2ec8-48fd-95d2-1c1c75d9878a"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="Commenter un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="950870c7-073a-4cda-8309-25dd3f2f1921"
+              LastKnownName="Commenter un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1af4ec0b-de66-4c9c-b837-5323771252ba"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="04ece03a-7732-43e5-bee7-042ad71d8602"
+                  name="Commenter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="53ec76b3-6dae-42b7-856f-dc08ce162bcc"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="Utilisateur"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="fe7a9aff-9fc5-42a8-9b0f-88aaf66ebffb"
+              LastKnownName="Utilisateur"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ae4ac717-7c92-40cc-a942-cff60c41aa42"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b8619f51-4139-49be-8601-b8576effc320"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="4990c810-1332-4857-bd7c-21b64d255d19"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="Envoyer un message à un autre utilisateur"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="7f5370da-3a22-431c-a63c-26612e9247da"
+              LastKnownName="Envoyer un message à un autre utilisateur"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="57aa9ea5-ec97-4ae7-924a-35e4247b713a"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a1d8acc6-8223-47f8-9f12-7c580df4d14a"
+                  name="Envoyer un message à un autre utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f184fa6b-6bb7-4a5f-a4f2-35f3caf61bd4"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="Demander un autre utilisateur en amis"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9a8a6346-1a38-49d6-b9ac-6ff70fa967d4"
+              LastKnownName="Demander un autre utilisateur en amis"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="051b665f-300c-47bb-90d0-6ef8741878e4"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="62578a18-2739-4feb-a7a7-2779def3a0a6"
+                  name="Demander un autre utilisateur en amis"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="73790d23-8c08-4d2f-b531-c628bf367a1f"
+        name="Connecté"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="61bb1a73-d3c5-49d6-bce3-5cda029ecd46"
+        name="Non connecté"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="5db1100d-d6e7-4b63-879b-01c40155ba85"
+        name="Client"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="594e6ae8-6da4-4300-8ba2-ffe0b2e2b02b"
+        name="Utilisateur1"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="9eec27be-a91f-4bc8-9a49-ef55d3672a9d"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur1"
+            targetEndRoleName="Créer un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a69470a5-1927-49d4-b854-820abefb942d"
+              LastKnownName="Créer un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9fea0614-700c-4912-bc63-b70a6dc8eebe"
+                  name="Utilisateur1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3114baba-e58a-4762-ace7-2fe4c567ce86"
+                  name="Créer un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="456ecf6f-5349-4615-b8a5-7f1576004434"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur1"
+            targetEndRoleName="Ecouter un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="b8150bc9-b9bc-452e-a89b-98c8c1e7a88e"
+              LastKnownName="Ecouter un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7e15dc4f-0708-4227-a5a2-b42a4202842a"
+                  name="Utilisateur1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7a4e511d-853f-4eb4-94b5-ad56c02f6827"
+                  name="Ecouter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ead03a8e-d71b-490a-9efd-c26d41124159"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur1"
+            targetEndRoleName="Liker un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="db3bdb7f-3833-495f-b330-5b85c6c079f5"
+              LastKnownName="Liker un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8e75b02d-8108-4b8b-b517-dd69dce801f2"
+                  name="Utilisateur1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8bc5e4dd-360d-4394-922e-af3191872e31"
+                  name="Liker un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8c35d00c-9462-4365-9742-1b2bcc4332e1"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur1"
+            targetEndRoleName="Commenter un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="fca3b598-90e0-4cbb-91b9-1a902a99fa75"
+              LastKnownName="Commenter un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6931d1d4-1edc-4c5a-8c7e-21735a0a6be4"
+                  name="Utilisateur1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6a4630a5-332b-4411-9713-6edb9bc6d731"
+                  name="Commenter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="a7a66961-3b8b-48c2-8cf0-886f0045e6e0"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur1"
+            targetEndRoleName="Envoyer un message à un autre utilisateur"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="44b02838-304a-4216-85e9-aa7cb8dcd5bc"
+              LastKnownName="Envoyer un message à un autre utilisateur"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="51c6e047-0d5a-40d1-8e66-44c05cf84116"
+                  name="Utilisateur1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d63eb2ff-b393-40d4-8fa1-31ca5886c8c3"
+                  name="Envoyer un message à un autre utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="d669c69f-663e-4603-b7a8-27e1998de240"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur1"
+            targetEndRoleName="Demander un autre utilisateur en amis"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="c8dc1cd0-09c7-4bb7-bd66-adc28ec0ea94"
+              LastKnownName="Demander un autre utilisateur en amis"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4f2ef5b3-87c7-4a3e-8a98-cfdf219ccad2"
+                  name="Utilisateur1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6ee18f88-4340-4085-b229-e12989180023"
+                  name="Demander un autre utilisateur en amis"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="b96f0f0e-0f5b-49fc-8872-b644cd45380d"
+        name="Utilisateur2"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="818fe972-fecf-4b3d-b098-a71eaf284712"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur2"
+            targetEndRoleName="Créer un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a69470a5-1927-49d4-b854-820abefb942d"
+              LastKnownName="Créer un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2591a866-513b-4367-a542-72aa92cb24fc"
+                  name="Utilisateur2"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="eff3ca04-3a3d-4b9e-92fe-de2509f8b793"
+                  name="Créer un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="f220cd25-9307-4d63-b707-5ec8c7289623"
+        name="Utilisateur3"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3b3eaa8c-dee3-4ce1-8491-3b3fd31327ab"
+        name="Créer un morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="43e99a1a-b0aa-4bc2-929c-89961276f6ea"
+            isDerived="false"
+            sourceEndRoleName="Créer un morceau"
+            targetEndRoleName="Sauvegarde du morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a5d02943-6866-45ec-983c-6dd1e2e0fb1a"
+              LastKnownName="Sauvegarde du morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="78f05054-4380-4f41-a330-0299163608ab"
+                  name="Créer un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="be9f262f-499a-4896-b3a8-c6f043cf479d"
+                  name="Sauvegarde du morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="5db1100d-d6e7-4b63-879b-01c40155ba85"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0a4cdf3f-75e6-4d36-a1a1-f747c5d60bcc"
+        name="Ecouter un morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="5db1100d-d6e7-4b63-879b-01c40155ba85"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="40e2bfe8-f03b-42b0-a197-ce592eebf4c0"
+        name="Liker un morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="7e81d130-6145-4de0-8ebc-22d68a0d1525"
+            isDerived="false"
+            sourceEndRoleName="Liker un morceau"
+            targetEndRoleName="Reception et dispatch des notifications"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+              LastKnownName="Reception et dispatch des notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e1d591c4-2d07-4267-8439-416b42c05e33"
+                  name="Liker un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="37c2fb2c-a33a-4b09-9743-90b22fcf547e"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="5db1100d-d6e7-4b63-879b-01c40155ba85"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="950870c7-073a-4cda-8309-25dd3f2f1921"
+        name="Commenter un morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="14e3cd85-b521-4f09-ba86-0ad6aa54e851"
+            isDerived="false"
+            sourceEndRoleName="Commenter un morceau"
+            targetEndRoleName="Reception et dispatch des notifications"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+              LastKnownName="Reception et dispatch des notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1d7788ac-702e-4f14-abd3-8a28a4b491bc"
+                  name="Commenter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e7d2c6e4-5375-419d-b13d-da7d479ce035"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="5db1100d-d6e7-4b63-879b-01c40155ba85"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7f5370da-3a22-431c-a63c-26612e9247da"
+        name="Envoyer un message à un autre utilisateur"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="79b25b5e-21ad-4bfb-a823-cde44f796e15"
+            isDerived="false"
+            sourceEndRoleName="Envoyer un message à un autre utilisateur"
+            targetEndRoleName="Reception et dispatch des notifications"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+              LastKnownName="Reception et dispatch des notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="59347c9e-cdde-4ff9-a5b1-0db874684bb8"
+                  name="Envoyer un message à un autre utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="90add652-1dfe-424a-813c-3a876bc015bf"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="5db1100d-d6e7-4b63-879b-01c40155ba85"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9a8a6346-1a38-49d6-b9ac-6ff70fa967d4"
+        name="Demander un autre utilisateur en amis"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="8bb5ce47-ad07-451d-9dc8-6feac8a0b5b4"
+            isDerived="false"
+            sourceEndRoleName="Demander un autre utilisateur en amis"
+            targetEndRoleName="Reception et dispatch des notifications"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+              LastKnownName="Reception et dispatch des notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="caaf6cbb-adee-46bb-bafd-7ccdad59f6e0"
+                  name="Demander un autre utilisateur en amis"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bea942f6-0824-49c9-9d20-959b4fa0b522"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="5db1100d-d6e7-4b63-879b-01c40155ba85"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="b3b1f0fb-0ee0-47e6-af65-134feda45f3d"
+        name="Serveur"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a5d02943-6866-45ec-983c-6dd1e2e0fb1a"
+        name="Sauvegarde du morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="b3b1f0fb-0ee0-47e6-af65-134feda45f3d"
+            LastKnownName="Serveur"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ea49ebc6-35e3-4b40-b892-5f86720efa1e"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0e77d1d4-1bae-4b43-bb7a-b84a8da0beae"
+        name="Morceau lisible par les autres utilisateurs"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="422103df-7303-4fdb-84c1-2a0ad9b894b1"
+            isDerived="false"
+            sourceEndRoleName="Morceau lisible par les autres utilisateurs"
+            targetEndRoleName="Ecouter un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="0a4cdf3f-75e6-4d36-a1a1-f747c5d60bcc"
+              LastKnownName="Ecouter un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="08594298-8409-4a19-a6cb-643364aaadad"
+                  name="Morceau lisible par les autres utilisateurs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="89000784-8feb-4e28-8950-826779706efc"
+                  name="Ecouter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="cb0eb840-7946-487c-8f82-e6ef8ada66e8"
+            isDerived="false"
+            sourceEndRoleName="Morceau lisible par les autres utilisateurs"
+            targetEndRoleName="Ecouter un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="b8150bc9-b9bc-452e-a89b-98c8c1e7a88e"
+              LastKnownName="Ecouter un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b8200b87-e1c1-45d3-81b8-7754a2548a10"
+                  name="Morceau lisible par les autres utilisateurs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c9ac04ce-fadc-40f3-b0f8-90d73f51d212"
+                  name="Ecouter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="b3b1f0fb-0ee0-47e6-af65-134feda45f3d"
+            LastKnownName="Serveur"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+        name="Reception et dispatch des notifications"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="f31d8904-b016-48cd-82ae-8b351d6df0d3"
+            isDerived="false"
+            sourceEndRoleName="Reception et dispatch des notifications"
+            targetEndRoleName="Demander un autre utilisateur en amis"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9a8a6346-1a38-49d6-b9ac-6ff70fa967d4"
+              LastKnownName="Demander un autre utilisateur en amis"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1d09d959-01c8-4d76-ba4d-df92b1d6e364"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9dc16cc6-6321-4960-8923-51682d4aee8e"
+                  name="Demander un autre utilisateur en amis"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="5d824999-5054-4e69-9c3e-99083e1575d1"
+            isDerived="false"
+            sourceEndRoleName="Reception et dispatch des notifications"
+            targetEndRoleName="Envoyer un message à un autre utilisateur"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="7f5370da-3a22-431c-a63c-26612e9247da"
+              LastKnownName="Envoyer un message à un autre utilisateur"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e99d3ba2-4eb7-4ec0-b704-b90ed496a448"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="62994727-1be5-4bdd-b99c-389647adfe86"
+                  name="Envoyer un message à un autre utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ac3a19a5-0752-4cb6-8aea-cfdf22fa9864"
+            isDerived="false"
+            sourceEndRoleName="Reception et dispatch des notifications"
+            targetEndRoleName="Commenter un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="950870c7-073a-4cda-8309-25dd3f2f1921"
+              LastKnownName="Commenter un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2e242bac-3f74-4c34-92a0-08b1b91ec17b"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="05acfb3f-5033-4fb1-96a8-339e2e639ebe"
+                  name="Commenter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="c4d3fbeb-dfa5-4e9e-a261-b9bf0daec672"
+            isDerived="false"
+            sourceEndRoleName="Reception et dispatch des notifications"
+            targetEndRoleName="Liker un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="40e2bfe8-f03b-42b0-a197-ce592eebf4c0"
+              LastKnownName="Liker un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a096ac4d-213f-445d-b711-bea045a57b35"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="639b8a61-942b-42de-9ccd-25c4937263ec"
+                  name="Liker un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="656dbb90-0cc2-4e46-b1fc-69fb525139ef"
+            isDerived="false"
+            sourceEndRoleName="Reception et dispatch des notifications"
+            targetEndRoleName="Commenter un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="fca3b598-90e0-4cbb-91b9-1a902a99fa75"
+              LastKnownName="Commenter un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bc77c56f-97e8-416d-98db-86892da03b6c"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e53f96ff-75bb-415f-af54-2040bd34123b"
+                  name="Commenter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="422057bd-666b-4438-985f-cb386343a216"
+            isDerived="false"
+            sourceEndRoleName="Reception et dispatch des notifications"
+            targetEndRoleName="Envoyer un message à un autre utilisateur"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="44b02838-304a-4216-85e9-aa7cb8dcd5bc"
+              LastKnownName="Envoyer un message à un autre utilisateur"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7e1e6d37-6b02-44de-8cb5-7c76f44d775d"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="767dd43c-3bdd-41f4-bfc9-ff36380fd872"
+                  name="Envoyer un message à un autre utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1a91ab91-f7ec-469c-94f8-de2eca00c186"
+            isDerived="false"
+            sourceEndRoleName="Reception et dispatch des notifications"
+            targetEndRoleName="Demander un autre utilisateur en amis"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="c8dc1cd0-09c7-4bb7-bd66-adc28ec0ea94"
+              LastKnownName="Demander un autre utilisateur en amis"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="56016c3b-dbc7-410c-b3af-560bbbd43127"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="77296f35-442d-48e4-9e52-309eaa8cf441"
+                  name="Demander un autre utilisateur en amis"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="d41b32ce-d48b-40e4-b641-6e9825db5e4c"
+            isDerived="false"
+            sourceEndRoleName="Reception et dispatch des notifications"
+            targetEndRoleName="Liker un morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="db3bdb7f-3833-495f-b330-5b85c6c079f5"
+              LastKnownName="Liker un morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="acae5e4f-d0be-497f-9b34-b639f03c0b20"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4681f46a-7017-4db1-a44a-fa3c52618083"
+                  name="Liker un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="b3b1f0fb-0ee0-47e6-af65-134feda45f3d"
+            LastKnownName="Serveur"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="fb738590-0239-4fd9-a9dc-df18e514bd91"
+        name="Client"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a69470a5-1927-49d4-b854-820abefb942d"
+        name="Créer un morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="f4c1db5b-4a9a-4420-8cf7-637a2e2fbb7a"
+            isDerived="false"
+            sourceEndRoleName="Créer un morceau1"
+            targetEndRoleName="Sauvegarde du morceau"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a5d02943-6866-45ec-983c-6dd1e2e0fb1a"
+              LastKnownName="Sauvegarde du morceau"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="660e961f-4288-4760-b6c1-38c22c2a7d23"
+                  name="Créer un morceau1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1a5a24be-707c-463a-b6b0-c90382b09728"
+                  name="Sauvegarde du morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="fb738590-0239-4fd9-a9dc-df18e514bd91"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b8150bc9-b9bc-452e-a89b-98c8c1e7a88e"
+        name="Ecouter un morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="fb738590-0239-4fd9-a9dc-df18e514bd91"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="db3bdb7f-3833-495f-b330-5b85c6c079f5"
+        name="Liker un morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="124c253f-720d-43df-956f-50f566e7aa9e"
+            isDerived="false"
+            sourceEndRoleName="Liker un morceau"
+            targetEndRoleName="Reception et dispatch des notifications"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+              LastKnownName="Reception et dispatch des notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d9e3533e-70ac-4a2a-b138-2708cca76086"
+                  name="Liker un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5caa3e3e-ea03-4247-90c6-c86f360d5d48"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="fb738590-0239-4fd9-a9dc-df18e514bd91"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="fca3b598-90e0-4cbb-91b9-1a902a99fa75"
+        name="Commenter un morceau"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="b7c4a9a7-d43f-448b-b322-a6afd98514f3"
+            isDerived="false"
+            sourceEndRoleName="Commenter un morceau"
+            targetEndRoleName="Reception et dispatch des notifications"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+              LastKnownName="Reception et dispatch des notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dd591c4f-1a8e-4dd0-907c-2cf6ab7b3d1f"
+                  name="Commenter un morceau"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8001d196-6e8a-43d8-b766-7756e4f1b1dc"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="fb738590-0239-4fd9-a9dc-df18e514bd91"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="44b02838-304a-4216-85e9-aa7cb8dcd5bc"
+        name="Envoyer un message à un autre utilisateur"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="2f095bb2-7609-4ad7-aa69-3d7d87918c08"
+            isDerived="false"
+            sourceEndRoleName="Envoyer un message à un autre utilisateur"
+            targetEndRoleName="Reception et dispatch des notifications"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+              LastKnownName="Reception et dispatch des notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8b51078a-35d9-48cb-99d7-39cf4832a609"
+                  name="Envoyer un message à un autre utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f3cb3db3-eef5-4f72-af41-62efcfcaaae1"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="fb738590-0239-4fd9-a9dc-df18e514bd91"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c8dc1cd0-09c7-4bb7-bd66-adc28ec0ea94"
+        name="Demander un autre utilisateur en amis"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="fe930952-38f3-4067-862c-83c4c81598b5"
+            isDerived="false"
+            sourceEndRoleName="Demander un autre utilisateur en amis"
+            targetEndRoleName="Reception et dispatch des notifications"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5a4138c1-1901-4d73-b659-53a45c855b25"
+              LastKnownName="Reception et dispatch des notifications"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4587fa49-866e-43b7-8ab2-1fd07232760b"
+                  name="Demander un autre utilisateur en amis"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="233549b6-46d9-4843-b5c8-e8f58427586b"
+                  name="Reception et dispatch des notifications"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="fb738590-0239-4fd9-a9dc-df18e514bd91"
+            LastKnownName="Client"
+            LastKnownLocation="ModelingProject1.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

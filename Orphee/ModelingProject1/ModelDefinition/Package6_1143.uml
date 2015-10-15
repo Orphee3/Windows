@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="aba5d51e-e30d-4e72-a28c-3ea4391e8235"
+  name="Practices"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="647b867f-f0df-4cac-94aa-056ebf3c7aac"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.Practices"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="383bc8fa-6fdf-4ce4-864c-1c2a321992c6"
+        LastKnownName="Unity"
+        LastKnownLocation="Package7_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ac9bc587-d07a-4f94-a2e9-3d274c2218c3"
+        LastKnownName="Prism"
+        LastKnownLocation="Package13_1143.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

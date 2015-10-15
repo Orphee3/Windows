@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Midi;
 
 namespace Orphee.CreationShared.Interfaces
@@ -9,6 +10,8 @@ namespace Orphee.CreationShared.Interfaces
     {
         // Properties
         ObservableCollection<ObservableCollection<IToggleButtonNote>> NoteMap { get; }
+        int TrackColorIndex { get; set; }
+        List<SolidColorBrush> ColorBrushList { get; }
         IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; }
         Instrument CurrentInstrument { get; set; }
         IPlayerParameters PlayerParameters { get; set; }

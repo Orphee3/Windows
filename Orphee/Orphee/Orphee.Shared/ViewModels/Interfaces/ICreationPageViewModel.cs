@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Commands;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;

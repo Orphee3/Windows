@@ -1,0 +1,765 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="e52af154-96c3-45b6-bd34-30c764de01cb"
+  name="Interfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="3e3fd0b3-651b-4c0b-867d-2719d989ec9a"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.ViewModels.Interfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="bcdee468-3f8c-4294-8844-4a5cab326dfe"
+        name="IChatPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="6cbbd0ea-cda0-4477-94e1-3304de26483f"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.WindowsPhone%2Fbin%2FDebug%2FOrphee.WindowsPhone.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIChatPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0f768947-0657-48e7-a47b-7c77b1676fbf"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="87e782bf-2cfa-4989-b73b-629c62693fb5">
+                <propertyInstance
+                  Id="c6949098-9d39-4648-9c59-5b40d44f2c7e"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5493e595-2ef8-4c52-b448-766935cf7e08">
+                <propertyInstance
+                  Id="09818886-f19c-4180-a06b-d1f8b12dd43a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bd71277d-e0f4-4afc-a2aa-30d2d01b8749">
+                <propertyInstance
+                  Id="735a0ad2-1e24-450b-9012-cb7b7b8bad6b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="290d7408-e0f4-45fc-ac08-39f385a96a0e">
+                <propertyInstance
+                  Id="5b2d1667-9669-453e-a875-a1f7dc40842b"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="1c68e6dc-7d3d-46a5-8fe8-dcd795baf567"
+        name="IConversationPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="b5074215-7cac-4dc0-844e-17e2cc9b0593"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIConversationPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="01e94f3a-107f-4fca-b15b-bb479f2b490d"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="719adcd6-041e-4188-8c02-6de2022cd08c">
+                <propertyInstance
+                  Id="06937467-8deb-44e6-80f2-d03e1c7f5966"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5babcee1-898a-4ee7-b658-edb3ae76bb8a">
+                <propertyInstance
+                  Id="0c6c0227-9969-4aea-b5e4-084ae52eabfa"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7510338c-6b76-4128-8d94-5439c5aa9882">
+                <propertyInstance
+                  Id="19f6b78d-da82-40f6-afe0-d05aaf52efd0"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1cf5f16e-4104-450c-a6f2-db305bfb8155">
+                <propertyInstance
+                  Id="44f4eca3-44a8-434a-a61a-032e2e1fcab9"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="550f53e4-d72a-4ac0-894e-61c384109e7b"
+        name="ICreationInfoPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="b0404fea-f5c4-43d1-911d-750dafffeb58"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DICreationInfoPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="7d1cd5ac-1a0a-434a-8a82-2300696221b8"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9e8a38bd-a3b4-4815-aa00-26b37263007a">
+                <propertyInstance
+                  Id="7dc8a94f-c003-4e87-9363-5dd9e4ca3474"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7e0067b4-ea73-4a0d-a015-b157ef55009a">
+                <propertyInstance
+                  Id="0d5e9541-17ba-441b-950d-34aa2b6a2808"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="aca5ed1a-6d30-4fd5-a4ee-38c8b5202069">
+                <propertyInstance
+                  Id="65a4abf3-62cf-47b9-8694-ce8be1005ddf"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e107f53e-e56a-40a8-9652-bbee6beb9c9e">
+                <propertyInstance
+                  Id="36d6f18b-4000-4365-8cae-7b1d601ffe7d"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="cee7e7f7-de2b-4f83-b6a9-d2a7246fc967"
+        name="ICreationPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="c5bba22f-8817-48fc-86a4-7340799fc7ee"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DICreationPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="5675ba5b-fc99-4538-b891-259327ea71a0"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ab7cc67c-b106-4078-acdb-34c068786d56">
+                <propertyInstance
+                  Id="649e79be-51c3-46c9-9a72-5b920a6fd587"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="90d113bc-5234-4f2f-a4da-cada64054e1f">
+                <propertyInstance
+                  Id="31bf6018-d91f-4712-b842-8304c638515a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e3649193-cee3-404a-b34c-695787b7e670">
+                <propertyInstance
+                  Id="92379945-3cb4-4c64-a70c-9d523185a458"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="00ee8a08-13ff-4b59-971c-580801dd1a09">
+                <propertyInstance
+                  Id="a3f3b36c-7cac-4988-b892-ef3fc0c8c5e2"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="951265c8-bb61-441c-8501-1fd26d4853d3"
+        name="IFriendPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="9dde339f-e309-4ee4-8836-0f83be2a87f7"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIFriendPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="a62d9320-4d18-4493-9392-c75ad275b2c5"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0d992de5-2d54-4455-b56f-63462ca37323">
+                <propertyInstance
+                  Id="69dd62fa-6997-4faa-b05f-fe1bf2229ba4"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2e01300b-faaa-4dcf-a7f9-6b5dc281da8c">
+                <propertyInstance
+                  Id="0b78c9d8-331d-4831-bc55-07dc43c0ebbe"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7337247f-c5d1-4e4f-8d0d-23d6d38b9900">
+                <propertyInstance
+                  Id="65773f04-63a5-456e-9840-488a2148d953"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="888c0998-ea1d-4b5f-bd33-6aa12d2176dd">
+                <propertyInstance
+                  Id="c5e36561-18b7-49f4-9b03-3bcb4e2e3d82"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="35ca374e-2e41-4a68-bf9c-e5911cb576d6"
+        name="IHomePageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="aed30b49-2e71-4975-9f1f-389237e92cb2"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.WindowsPhone%2Fbin%2FDebug%2FOrphee.WindowsPhone.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIHomePageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="9cba0b07-90ab-47bf-a88e-be02d083ccf9"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e4c627a3-9aa6-44fc-b872-8d0e76639ec6">
+                <propertyInstance
+                  Id="cebbd0f8-d0b2-4a6e-9dc5-2c68f2c9c81d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5fac2005-4cee-43ea-8b0a-d1582b9145d3">
+                <propertyInstance
+                  Id="b07b68e1-1833-49b5-9a46-97c9e640957a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="28d096d0-064b-4c85-8b57-6fe8bbf5711e">
+                <propertyInstance
+                  Id="a1e7bdc9-6ca0-47bb-908d-775f5fd07968"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ba93eb01-b0fd-4858-934c-1ef7f8de26f9">
+                <propertyInstance
+                  Id="f87345ed-c53c-44cd-bd5c-b7728d974e6a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="9f97a8e8-3327-463b-aaae-1abd5e910c08"
+        name="IInvitationPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="198b8203-3a3b-4697-a109-681cb834d100"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIInvitationPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f5832a8f-2af1-4bb5-8239-c014644f3640"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2e07e48e-76aa-423a-82c1-f59cdc4e9a01">
+                <propertyInstance
+                  Id="bbb6e8d0-ac07-4ea9-ad0e-621a3a66aeb6"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="08d08412-afbd-4236-ad94-5a6fcd4351ff">
+                <propertyInstance
+                  Id="579349d6-4ee3-41f0-b185-4100ae9b5138"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3a645984-212a-49e5-93e8-49aaeb23211e">
+                <propertyInstance
+                  Id="fe6db101-a852-482b-b602-8f4d9c1fa3d6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c84a2351-926f-422f-8801-b64ed201ac29">
+                <propertyInstance
+                  Id="18cb4bb2-ca44-4a4a-af48-882e38ae9512"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="2a3f26d2-67a8-4796-aabb-6fb8909cc168"
+        name="ILoginPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="e560a9e7-0a2e-42f6-a29f-68207962907f"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DILoginPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="2bfe1f0e-783a-4092-b0a5-ca3a63efd8d6"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cac150f7-c5cd-4497-b354-c7ff169fcaad">
+                <propertyInstance
+                  Id="6e0e25a1-3066-4a92-81b6-f5149805828b"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cac1a112-63a8-46cd-8318-bf08fd48f215">
+                <propertyInstance
+                  Id="1256e2d9-ed50-4a0e-8579-a4b693081937"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f25452dd-b08b-414d-adb2-1cdd071d04fb">
+                <propertyInstance
+                  Id="c378f93b-42a3-4125-95a3-ed8b3dd2b0eb"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c578fec4-41a1-4565-9857-cc4df7b10b51">
+                <propertyInstance
+                  Id="ed5f650a-8e14-4a55-827f-27df35f9368d"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="29b564fe-9740-43b0-8ce5-eb32350243ef"
+        name="IMyCreationsPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="8a434753-0963-4abc-ab66-b0cfe3b8c0bc"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIMyCreationsPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="57aed31b-aa56-4111-800a-82f38ed2a3ef"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="96264d9d-4418-491b-acd6-2c8a4c4b3cf8">
+                <propertyInstance
+                  Id="bee4e760-d2e2-4a96-b8be-ddc5e277ac39"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1d046238-963a-472d-8102-d9ef62198416">
+                <propertyInstance
+                  Id="6a186507-688d-4b4b-bdf1-944d72516aa5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="12515385-716e-412e-bf83-e3abb635127c">
+                <propertyInstance
+                  Id="04666eae-0388-4527-a9b9-0b4d7048c583"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="84b797a7-7a06-4123-b1c1-0e20784fc213">
+                <propertyInstance
+                  Id="c65e9460-825d-4704-b09f-87ab88984cef"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="5a74b2e5-f4b5-49dc-af39-26199de59524"
+        name="INewConversationConfigPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="89c2e0f9-96f6-4899-993e-917948bd4933"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DINewConversationConfigPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="715e5e43-29bd-442e-9356-4d1a9cdc10e6"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dab74522-4346-4341-89c8-e6d8dacc928f">
+                <propertyInstance
+                  Id="dfe11dd0-d90e-496d-b411-874442f6570d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1c4f1170-68ac-42a3-a946-ed3ca4f9b72f">
+                <propertyInstance
+                  Id="38d2ca0b-cf81-42de-b5eb-e424732dfce3"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="eba41a34-e0d7-45b8-bb8e-34dc94ef551b">
+                <propertyInstance
+                  Id="51d59653-12aa-487a-9caa-438609b398a7"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8365897c-c3dd-4516-afaa-3b6b764b5b9e">
+                <propertyInstance
+                  Id="94b76149-ccfa-4602-bea0-66f700a1cc75"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b0191142-e635-46df-a0cd-fb44284187a6"
+        name="IProfileEditionPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="468d9959-edcd-41a2-8907-89ad7b63e4a5"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIProfileEditionPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="2d5e375b-aac8-4e94-9abc-39ae879c2c45"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="782d7010-c7d6-4c32-a879-5ca2e53a2f9d">
+                <propertyInstance
+                  Id="afa1c57f-aa74-4595-af46-00fa1ad10c95"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="57b685be-6bb3-4c7b-9bc8-db5decbe9fee">
+                <propertyInstance
+                  Id="9786e09e-ad7a-4951-9bbf-348ff1f1ff6a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3a6b7bd9-116d-49c2-8295-0916b832669a">
+                <propertyInstance
+                  Id="b1d6b51c-5c7a-40be-8ce8-9a3a337d09c6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f3dea18f-d291-4f7b-8a79-a015d506c80a">
+                <propertyInstance
+                  Id="74c607b0-3c04-4f41-8a63-bec7627c0224"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="4de32949-be18-4322-8fbe-91ec4dae6320"
+        name="IProfilePageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="b2a5aac6-0421-4596-bbc0-d8d618af94f4"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIProfilePageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f6b89a49-4d52-4d4e-bae0-98e8efa9c5d7"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="107eb4cf-51a0-4513-bd36-f73bb2c4dd5f">
+                <propertyInstance
+                  Id="c64a853a-241f-456b-9c01-301dd52ed07a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fd80aeee-0d04-4534-9628-5c3696fc2a40">
+                <propertyInstance
+                  Id="ecc245fa-53f1-4fb6-96cc-d3fee1194650"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c14b1a1f-362b-4221-90ad-5e86837c269d">
+                <propertyInstance
+                  Id="6ac46774-0ba9-46bb-b5d6-52ddfa493a2f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="acf7a1e2-c39b-4cb7-b333-eb1fddb791d8">
+                <propertyInstance
+                  Id="4febbefc-97ae-466a-8291-fcd1368f54d9"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="f53adf87-38cd-45ef-a2ff-5aba35dbfd09"
+        name="IRegisterPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="c6bd864a-c952-4b9c-83ba-909454fc30d7"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIRegisterPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="e3f1610c-c93a-4d9c-8a25-a9626d69e752"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="62d63861-343c-4a9b-9cce-cf8238b4c8c2">
+                <propertyInstance
+                  Id="cb25b80f-c1da-441c-baa0-100a2041163c"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="45575bfd-2c72-4012-8786-dd3b3f37c7f1">
+                <propertyInstance
+                  Id="6d8165e5-9ed6-47ba-8774-1deb3af5b7bb"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f139344f-df86-4149-bd8f-2634ead51199">
+                <propertyInstance
+                  Id="8a1c8236-5808-440f-bed5-c6eb61bfd480"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c19f5277-f12e-4f7a-868f-0b9b509c1008">
+                <propertyInstance
+                  Id="8f918e2e-8b60-40f4-b9c0-1b3cf2dcf0f9"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ad323fb3-13b0-4e2d-9d62-247fe551e246"
+        name="ISocialPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="244b8b78-88bc-4e50-a3aa-43c8f5e8dbf5"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DISocialPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="64ff1a93-1395-4f2f-8d91-e7e949f3d16e"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="696d72ad-4400-4c26-a617-b3a11694b78e">
+                <propertyInstance
+                  Id="a5b1beb1-6113-48ac-af29-6619603b9ee2"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9636e964-31f6-4dd3-8b80-6a7b18f4d10d">
+                <propertyInstance
+                  Id="6b07693d-13c9-47e2-9fa9-62c020f0a95e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d20c80b0-ba0e-4524-ab61-0f2dd2efb393">
+                <propertyInstance
+                  Id="ddf6f1b7-2b5c-4ded-bc0d-317238b65a9a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="651825d3-d8ad-4c5f-b86b-324308daa864">
+                <propertyInstance
+                  Id="45f28e73-6c07-45e3-833a-4072fabc81bf"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="0f0d3a13-0ce0-4cd0-b589-c7a42b71069a"
+        name="IChannelInfoPageViewModel"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="cdc7eb20-3701-4c46-a748-fe80f432c5d7"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.ViewModels.Interfaces Type%3DIChannelInfoPageViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f4cbfbd8-a85f-441b-a50a-345fa12a4b9e"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d95f6b7a-9c0e-4955-9bb8-ace30a264be0">
+                <propertyInstance
+                  Id="97a71fa5-b1ae-4426-905f-e05057e8f3ba"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a50d1a26-ea09-466e-baf9-ca324fffe11a">
+                <propertyInstance
+                  Id="13c78a66-1c8f-4d4c-979f-ae68ccc63484"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e5a361e5-e95f-4c92-8d7c-da2be87fa04e">
+                <propertyInstance
+                  Id="f12695c3-346a-4d65-babb-6e83825f8e29"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9c6ea483-be71-47c6-8596-73be5e412377">
+                <propertyInstance
+                  Id="6d50fcb2-1c33-4baa-8f3d-4d69a17ffce5"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

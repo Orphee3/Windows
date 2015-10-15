@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="6fcd2707-6b86-494b-b462-447f79834278"
+  name="Orphee_Windows_XamlTypeInfo"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="5f312932-21f9-44ef-a1a5-8a2d2ee297c2"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.Orphee_Windows_XamlTypeInfo"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="1867de85-0838-4f3f-a87b-515f7ba3d964"
+        name="XamlTypeInfoProvider"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="2a4aeed9-33b5-40ea-ab1e-9ee268bfbdd9"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee%2FOrphee.Windows%2Fbin%2FDebug%2FOrphee.Windows.exe&quot; Namespace%3DOrphee.Orphee_Windows_XamlTypeInfo Type%3DXamlTypeInfoProvider"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="320666e3-41fe-41fc-8942-2ba0b1941645"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="97c499a9-7aad-45b1-a11a-3e687944fcdf">
+                <propertyInstance
+                  Id="d7c3813b-f2ff-4641-8b89-8ddbf21c8b4a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4e1fbad0-38da-4ad3-b082-fafc6611962a">
+                <propertyInstance
+                  Id="c67c1375-a947-451e-8792-c194388a2292"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e4a4dfb8-7511-4756-8a98-a25997c967e3">
+                <propertyInstance
+                  Id="7de96f8f-b0b8-48dd-b0bc-8db4ca975346"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a9813ab6-32ea-4569-9a47-ec69acb0835d">
+                <propertyInstance
+                  Id="ad28f336-0664-43cd-9571-b85bfc82d32f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="84781c57-0e1b-46e5-80d3-2e7464cf9fe9">
+                <propertyInstance
+                  Id="a45e473d-4397-4efd-8fef-c24e57e1b0a3"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

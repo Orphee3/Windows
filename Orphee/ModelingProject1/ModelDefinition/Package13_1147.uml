@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="cd023967-83da-4526-93f6-e0732d421ebb"
+  name="CreationShared"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="31196008-934e-4f4c-9199-c0cfdeb6a56b"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.CreationShared"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="afab88a5-d763-42b7-9ee4-d4a8946003c8"
+        LastKnownName="Interfaces"
+        LastKnownLocation="Package14_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="54876e53-6784-449b-b099-f4a672112d78"
+        name="OrpheeTrack"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="41cd8caf-5fd6-4064-898f-fb86c16e272e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.CreationShared%2Fbin%2FDebug%2FOrphee.CreationShared.dll&quot; Namespace%3DOrphee.CreationShared Type%3DOrpheeTrack"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="fcfebbfc-cfb1-4e87-b8d9-aa5c4ce55814"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="394efa17-f194-49eb-af35-2932b9e6bf08">
+                <propertyInstance
+                  Id="81d133b8-55a4-4548-9796-4476435ca3b4"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1c0e2f69-efa5-48be-a677-081c8461c101">
+                <propertyInstance
+                  Id="60ad3656-cac4-42ce-b6ec-9e942eb86b96"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9e51de6d-7e42-41f9-a822-0857edde232d">
+                <propertyInstance
+                  Id="6df10696-4e5f-4f3e-8855-34d4b631b687"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="47169d6c-bc72-443b-95f5-7727400cdaea">
+                <propertyInstance
+                  Id="a7625749-4da2-4431-a263-ec45388975ad"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d8da0b2d-ff71-47c0-b320-c3a5ebcaac73">
+                <propertyInstance
+                  Id="c65e541a-5337-41ac-a5de-680af76c3b30"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="ed06ffc1-a639-4b9a-93aa-907c6bdb574d"
+  name="Interfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="c8cd63af-8886-4c4d-a8a9-d88aff3ee328"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.RestApiManagement.Posters.Interfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="d6b37753-e536-425a-8f94-e93302cc388c"
+        name="IConnectionManager"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="4b4d3c80-8399-4095-ab28-c4f464ec6ac5"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Posters.Interfaces Type%3DIConnectionManager"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="78cd3bba-3212-41b1-bfdb-03e435357a02"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fbc9c0c2-2447-4bb9-821b-fc8aaf346f07">
+                <propertyInstance
+                  Id="4ae257c0-625f-41e1-a8cd-eade5186ba1f"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="68622cd8-c940-419d-a5dd-4cbb08605058">
+                <propertyInstance
+                  Id="dc46723e-ade6-43c8-9a20-90304ec034cf"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8dccbabc-0852-41c3-b459-fc622a2ecb30">
+                <propertyInstance
+                  Id="72405e90-c91a-4f19-86d1-6c86d320e8f1"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3cc28ed1-d1b0-4445-8733-da10e631c27e">
+                <propertyInstance
+                  Id="d38b28d7-0deb-4fc0-9fa9-e8ad9fcd35c7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="6a36e18c-53a2-4e02-9166-e76a20626832"
+        name="IRegistrationManager"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="2b5278ad-1b5e-43b4-877d-f4994f2e59c9"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Posters.Interfaces Type%3DIRegistrationManager"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="002dd8cd-c287-4e69-b244-0e36b656788e"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a68fe168-33f6-4294-8f95-fdc256de17fe">
+                <propertyInstance
+                  Id="8660a303-6f49-43f3-89d3-3da1fef340f7"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="84f593ac-6a7b-4cfc-a786-6f985fc7717e">
+                <propertyInstance
+                  Id="7db2b808-1f12-40ed-a47d-af79ed75400f"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0e58b525-fb96-4136-baa0-3aa245f805a6">
+                <propertyInstance
+                  Id="4b768a3c-ecb0-47f1-9321-1383a13c5efb"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e4143c28-7efd-4b0c-8d07-f7c3fb85bd7a">
+                <propertyInstance
+                  Id="c04e8405-9084-4f4f-b854-259cd1049983"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

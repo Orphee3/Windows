@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="19e30693-9584-49a4-a855-34b78ac37207"
+  name="Interfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="8fd570c4-bbcb-4252-843e-e135dfdc8178"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMidiDotNet.ImportModule.Interfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="fc0b9f27-2a42-48bd-aa9d-d749e528181c"
+        name="IOrpheeFileImporter"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="cd699de9-6545-44be-9179-afd8b4385820"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FMidiDotNet.ImportModule%2Fbin%2FDebug%2FMidiDotNet.ImportModule.dll&quot; Namespace%3DMidiDotNet.ImportModule.Interfaces Type%3DIOrpheeFileImporter"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="01c587c4-a458-48ea-b80c-a55b106ae517"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="97ac48cd-bf77-4ebb-bd5e-38301b3995d7">
+                <propertyInstance
+                  Id="ebf79360-dd5a-4ce2-ae2c-a7bdc2eee9cb"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="eb2c06b8-bdfd-4f0f-a6f4-3f302b9ef8f4">
+                <propertyInstance
+                  Id="513292d9-78d5-4864-b721-3180d525f3e3"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8a9963ae-113b-481a-b6b6-75af2283337e">
+                <propertyInstance
+                  Id="608db900-5472-4656-845f-344c9f0e02ea"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5ba6c9fc-c9ca-4fc0-95f7-5b52b3b8a0f5">
+                <propertyInstance
+                  Id="f88706af-e0e6-4695-ade7-b0d524ec5cdc"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

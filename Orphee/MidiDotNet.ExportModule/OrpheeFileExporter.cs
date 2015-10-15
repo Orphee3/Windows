@@ -11,6 +11,10 @@ using Orphee.RestApiManagement.Senders.Interfaces;
 
 namespace MidiDotNet.ExportModule
 {
+    /// <summary>
+    /// Class creating the MIDI file and managing all the writers and converting
+    /// the view noteMessage data so that the messsages are writen accordingly to the MIDI convention
+    /// </summary>
     public class OrpheeFileExporter : IOrpheeFileExporter
     {
         private BinaryWriter _writer;
@@ -20,6 +24,14 @@ namespace MidiDotNet.ExportModule
         private readonly INoteMessageWriter _noteMessageWriter;
         private readonly IFileUploader _fileUploader;
 
+        /// <summary>
+        /// Constructor initializing fileHeaderWriter, 
+        /// trackHeaderWriter, noteMessageWriter and fileUploader through dependency injection
+        /// </summary>
+        /// <param name="fileHeaderWriter">Instance of the FileHeaderWriter class used to write the file header in the MIDI file</param>
+        /// <param name="trackHeaderWriter">Instance of the TrackHeaderWriter class used to write the track header of each track in the MIDI file</param>
+        /// <param name="noteMessageWriter">Instance of the NoteMessageWriter class used to write the noteMessage messages in the MIDI file</param>
+        /// <param name="fileUploader">Instance of the FileUploader class used to send the saved MIDI file to the remote server</param>
         public OrpheeFileExporter(IFileHeaderWriter fileHeaderWriter, ITrackHeaderWriter trackHeaderWriter, INoteMessageWriter noteMessageWriter, IFileUploader fileUploader)
         {
             this._fileUploader = fileUploader;
@@ -28,6 +40,11 @@ namespace MidiDotNet.ExportModule
             this._noteMessageWriter = noteMessageWriter;
         }
 
+        /// <summary>
+        /// Function converting view NoteMap to a list of noteMessage usable by
+        /// the NoteMessageWriter class
+        /// </summary>
+        /// <param name="orpheeFile">Instance of the OrpheeFile class containing the graphical representation of the noteMessage messages</param>
         public void ConvertTracksNoteMapToOrpheeNoteMessageList(IOrpheeFile orpheeFile)
         {
             foreach (var track in orpheeFile.OrpheeTrackList)
@@ -37,6 +54,10 @@ namespace MidiDotNet.ExportModule
             }
         }
 
+        /// <summary>
+        /// Function saving the actual piece to the MIDI file
+        /// </summary>
+        /// <param name="orpheeFile">Instance of the OrpheeFile class containing all the data needed to create the MIDI file</param>
         public async Task<bool> SaveOrpheeFile(IOrpheeFile orpheeFile)
         {
             foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
@@ -50,6 +71,7 @@ namespace MidiDotNet.ExportModule
                 orpheeTrack.TrackLength = (uint) ((orpheeTrack.TrackPos == 0) ? 22 : 7);
             return result;
         }
+
 
         private async Task<bool> GetTheSaveFilePicker(IOrpheeFile orpheeFile)
         {

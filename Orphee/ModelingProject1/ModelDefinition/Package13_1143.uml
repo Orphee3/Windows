@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="ac9bc587-d07a-4f94-a2e9-3d274c2218c3"
+  name="Prism"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="e9961eec-fe66-4484-ad41-6678b9ce5706"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.Practices.Prism"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="64079e3c-489c-4b40-9d43-5dd94f1422d4"
+        LastKnownName="Mvvm"
+        LastKnownLocation="Package14_1143.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="bdfbfc85-9358-4754-8edd-cd270b884b34"
+        LastKnownName="Commands"
+        LastKnownLocation="Package6_1147.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

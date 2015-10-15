@@ -5,8 +5,19 @@ using Orphee.CreationShared.Interfaces;
 
 namespace MidiDotNet.ExportModule
 {
+    /// <summary>
+    /// Class containing all the needed function
+    /// in order to write the timeSignatureMessage in 
+    /// the MIDI file
+    /// </summary>
     public class TimeSignatureMessageWriter : ITimeSignatureMessageWriter
     {
+        /// <summary>
+        /// Function writting the timeSignatureMessage
+        /// in the MIDI file
+        /// </summary>
+        /// <param name="writer">Instance of the BinaryWriter class writting the noteMessages in the MIDI file</param>
+        /// <param name="playerParameters">Instance of the PlayerParameters containing all the data needed to create the timeSignatureMessage to be written</param>
         public void WriteTimeSignatureMessage(BinaryWriter writer, IPlayerParameters playerParameters)
         {
             writer.Write((byte) 0x00);

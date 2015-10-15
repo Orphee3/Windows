@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Midi;
 using Orphee.CreationShared.Interfaces;
 
@@ -27,6 +28,21 @@ namespace Orphee.CreationShared
         public IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; } 
         public Instrument CurrentInstrument { get; set; }
         public Channel Channel { get; set; }
+        public List<SolidColorBrush> ColorBrushList { get; private set; }
+        public SolidColorBrush TrackColor
+        {
+            get { return this._trackColor; }
+            set
+            {
+                if (this._trackColor != value)
+                {
+                    this._trackColor = value;
+                    OnPropertyChanged("TrackColor");
+                }
+            }
+              
+        }
+        private SolidColorBrush _trackColor; 
         public Visibility TrackVisibility
         {
             get { return this._trackVisibility; }
@@ -40,6 +56,20 @@ namespace Orphee.CreationShared
             }
         }
         private Visibility _trackVisibility;
+        private int _trackColorIndex;
+        public int TrackColorIndex
+        {
+            get { return this._trackColorIndex; }
+            set
+            {
+                if (this._trackColorIndex != value)
+                {
+                    this._trackColorIndex = value;
+                    OnPropertyChanged("TrackColorIndex");
+                    this.TrackColor = this.ColorBrushList[this.TrackColorIndex];
+                }
+            }
+        }
         public int TrackPos { get; set; }
         public uint TrackLength { get; set; }
         private string _trackName;
@@ -73,7 +103,13 @@ namespace Orphee.CreationShared
 
         public OrpheeTrack(int trackPos, Channel channel, bool isNewTrack)
         {
-            this.TrackName = this.CurrentInstrument.Name();
+            this.TrackColorIndex = 0;
+            this.ColorBrushList = new List<SolidColorBrush>();
+            //var colorList = typeof (Colors).GetTypeInfo().DeclaredProperties.OfType<Color>();
+            //this.ColorBrushList.Add(new SolidColorBrush(Color.FromArgb(0, 120, 199, 249)));
+            //foreach (var color in colorList)
+            //    this.ColorBrushList.Add(new SolidColorBrush(color));
+            this.TrackName = (trackPos + 1) + ". " + this.CurrentInstrument.Name();
             this.NoteMap = isNewTrack ? NoteMapManager.Instance.GenerateNoteMap(4) : null;
             this.Channel = channel;
             this.TrackPos = trackPos;

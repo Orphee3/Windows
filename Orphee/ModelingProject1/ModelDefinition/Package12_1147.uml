@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="2cd49a73-29d6-47c4-9587-38d94a708c67"
+  name="Interfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="0f6242d9-92db-4d8d-855d-ff2cbbf8e7e1"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.RestApiManagement.Senders.Interfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="cf1271f3-9c98-46c7-8900-de7a55d9e8c4"
+        name="ICommentSender"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="bc23a03d-8e74-406e-b3ce-ce8f933e9960"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Senders.Interfaces Type%3DICommentSender"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b7965e2e-3015-46cf-9487-6fccddbe6a19"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5e0ec743-d118-4f1a-ad2e-df0a64a124fa">
+                <propertyInstance
+                  Id="b4b9d0da-b14a-465a-a799-5ce1749c2cb5"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a905f147-556e-4b76-a657-e5b362c767a5">
+                <propertyInstance
+                  Id="4af0da13-37dd-44f8-9a98-557f12f78d0e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b23bf1c5-3ac2-4320-bf59-8d40a0c135f7">
+                <propertyInstance
+                  Id="f921a43a-8e4c-49e4-9cbe-856995ae762f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7e18d5fd-785b-4941-a6fc-2824835af549">
+                <propertyInstance
+                  Id="fd246c73-2586-46ce-91c5-3ca9a0f8d67c"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="787b8a62-dbd0-4b62-8299-6bf508ab0a56"
+        name="IFileUploader"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="aab759a9-b515-4cd2-8b86-9196e13398de"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Senders.Interfaces Type%3DIFileUploader"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="e5abe758-2632-4990-baa8-acf6f6bd3f26"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="92ad0062-a614-4ea3-891e-43edfbef6abf">
+                <propertyInstance
+                  Id="f784a728-75b2-4087-ba71-b0bd26266d70"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9e82f25a-871d-47dc-b5c0-2f7f562ca05f">
+                <propertyInstance
+                  Id="6b26d306-8218-4c72-b73b-034c52b3a45f"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="23a3bf7d-2993-4e6d-ada5-f3f9a19b7af6">
+                <propertyInstance
+                  Id="9dd41d33-afbb-4252-9859-76b6e4f11c56"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4fe5821b-7c65-47cf-a2c6-651a1d5220cd">
+                <propertyInstance
+                  Id="ebf6e03b-54b6-4106-83ff-e7e82c5358bf"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

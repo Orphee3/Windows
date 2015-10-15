@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="2ab83ec1-083a-4b21-aa85-611933971a12"
+  name="Getters"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="7492236b-3cc5-43c5-b0c3-858d2b3c990c"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.RestApiManagement.Getters"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="7a67b667-f67e-4014-9608-e83cda2dac43"
+        LastKnownName="Interfaces"
+        LastKnownLocation="Package10_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9dd362d4-f195-45b5-9ca6-daa328a0fdc3"
+        name="Getter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="3ea25764-e8f9-4ec2-9b16-b1201e24568e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Getters Type%3DGetter"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="1bf23aef-dc12-44ef-825b-b4dd04dc45fe"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a259d0bb-a721-4162-a661-b0330f5bfe72">
+                <propertyInstance
+                  Id="ea90a907-db7c-4d9d-9712-761793f62661"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="34b4ba4d-51c1-4c15-a706-fb32856b2b28">
+                <propertyInstance
+                  Id="a5e2ad3b-c686-4401-943b-88f815079597"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7dd1a454-138a-4ff0-960b-84a252ce934a">
+                <propertyInstance
+                  Id="ea5189a7-2385-4ec0-a31a-051d09902490"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="be97eec3-bce4-42bf-9c61-563d159bc140">
+                <propertyInstance
+                  Id="7fcdccb9-6502-4b78-a233-3bec58054a74"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8bfa32e7-5384-4fcb-9abe-0da652e2a7f6">
+                <propertyInstance
+                  Id="3a214128-cf4b-49fd-b497-baf3f4157465"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="7d4d65b1-63e8-4269-bd29-872e5c820a1c">
+            <interfaceMoniker
+              Id="93560cbf-12d6-40d4-a2f5-993157193fc5"
+              LastKnownName="IGetter"
+              LastKnownLocation="Package10_1147.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="5bf6005d-e08a-4d7e-a0f8-9027b7211e98"
+            name="GetInfo‎&lt;T‎&gt;"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="274a8b61-08f7-4d65-a491-d493fb1edee6"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Getters Type%3DGetter Member%3D(Name%3DGetInfo GenericParameterCount%3D1 OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETPortable%2Fv4.6%2FProfile%2FProfile32%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7c29587d-8328-4e6b-a9d0-94f68f2f9fc4"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="90a31084-ffaa-4e65-9f40-fbe692264f4a">
+                    <propertyInstance
+                      Id="181c2376-8e57-4534-93b6-3d4bd186a36f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="213b6e49-63a5-48e4-8b12-49c37c836f47">
+                    <propertyInstance
+                      Id="fd4f1a2e-79a6-4e2e-9174-2a53ec3f1dac"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0465086d-76e9-45bf-a53d-b5dbeb741e86">
+                    <propertyInstance
+                      Id="17217026-2aae-4f7a-a77e-69a3fd719f83"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="112efb1a-0b3a-4f34-a5e0-45f6b8eada25">
+                    <propertyInstance
+                      Id="1898610e-da5b-4a1b-8834-98a2f0fa8015"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="10e8397b-d5f5-40c9-b363-da7a80aa0168">
+                    <propertyInstance
+                      Id="cd7b8421-53ae-4ce1-b3ff-5d1921c0ada1"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ac59afad-4ad5-411c-a2e3-4e536af53009">
+                    <propertyInstance
+                      Id="e26a4795-77ae-44c8-89fd-48be17154071"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c6b260a7-d671-4272-ab2f-b2f13014934c"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="f8188443-0dca-4323-b1ed-7a5094e03782"
+                      LastKnownName="Task&lt;T‎&gt;"
+                      LastKnownLocation="Package5_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1ed07f83-56f0-4220-b70a-ce0a0bd7d4c0"
+                  name="request"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="52214760-2dcc-4810-b4f1-5300346b4620"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Getters Type%3DGetter Member%3D(Name%3DGetInfo GenericParameterCount%3D1 OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETPortable%2Fv4.6%2FProfile%2FProfile32%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Drequest"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="fbda7b6a-cc5e-4c8c-900a-48166da17fe6"
+                      LastKnownName="String"
+                      LastKnownLocation="Package3_1142.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0d99c161-d9d2-4365-a6aa-cad4dfc4fdc3"
+            name="Getter"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="b1f8b436-06cd-4fd5-af17-998109420870"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Getters Type%3DGetter Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ccc064c5-a65e-41d6-83f5-561f0d34f0c0"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9da2cd50-21f6-4dbb-b26a-d417ef422743">
+                    <propertyInstance
+                      Id="495d9560-74ab-4bcf-85ff-f23fd017ac4d"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="977cb5a4-08be-4631-af2b-77d962aede90">
+                    <propertyInstance
+                      Id="6c0dde31-84ee-4a9b-b24b-2c8772764d72"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bd237488-45c2-44a4-85c0-d7b20f7ebdbd">
+                    <propertyInstance
+                      Id="bfdf633e-c5d5-4315-ae0f-45a0d8c71c4c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8fbd6e4a-7de0-42d3-b216-39dd8d4f65b4">
+                    <propertyInstance
+                      Id="6e96482b-2708-478b-a891-ffa48f999789"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="301424ab-aa8b-4238-a784-0842c8b61bf5">
+                    <propertyInstance
+                      Id="92a12c0c-6d74-4b8c-8147-fdc9ab16746b"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f1a9c1f5-ee8c-4e80-b26d-ea8d48e10283">
+                    <propertyInstance
+                      Id="1ea02fe3-e23f-4b8d-9273-125244d596d6"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="f8223ff4-62c5-42cb-877c-2d49ea94909b"
+        name="T">
+        <referencesInternal>
+          <reference
+            Id="06774e98-989d-4045-b7cb-172f17054c66"
+            handle="viewcode://./CodeSchema_GenericParameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2FOrphee.RestApiManagement%2Fbin%2FDebug%2FOrphee.RestApiManagement.dll&quot; Namespace%3DOrphee.RestApiManagement.Getters Type%3DGetter Member%3D(Name%3DGetInfo GenericParameterCount%3D1 OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETPortable%2Fv4.6%2FProfile%2FProfile32%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3D0"
+            tag="ViewCode" />
+        </referencesInternal>
+      </undefinedType>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

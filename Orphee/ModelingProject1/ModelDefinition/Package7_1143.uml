@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="383bc8fa-6fdf-4ce4-864c-1c2a321992c6"
+  name="Unity"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="5bc83ec6-d278-4aeb-8796-fd2c27cdc177"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.Practices.Unity"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="5c5abed2-5509-4552-a504-8ce8f83d29cc">
+      <profileInstance
+        Id="7b8f031a-65b2-490e-b0d3-0e33587a0708"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="d6bfd925-d934-4be2-9573-4873a78afab4"
+        name="IUnityContainer"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="b4385a54-02f4-45a5-8181-dcd1c4247c14"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2Fpackages%2FUnity.3.5.1404.0%2Flib%2Fwin8%2FMicrosoft.Practices.Unity.dll&quot; Namespace%3DMicrosoft.Practices.Unity Type%3DIUnityContainer"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="691bdf6f-2da7-407e-b79b-d039980e1c2e"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="43f7198a-1667-49a9-af58-ea543476a20b">
+                <propertyInstance
+                  Id="533b6efb-8d2a-4a2c-ba7e-2d5f68f52380"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4562bb52-9a66-498e-8c4e-436b8d289cf9">
+                <propertyInstance
+                  Id="d986634d-9689-42bc-b6b2-44c2b944d7cd"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ba21ef2f-b540-40dc-a117-593d55b02ce4">
+                <propertyInstance
+                  Id="f508970d-d388-4136-bf0f-088c749a25c7"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="da2337d5-4ab8-43ae-b6a4-12d8b49e3b1f">
+                <propertyInstance
+                  Id="5598e749-7195-4966-805e-ed708e796467"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

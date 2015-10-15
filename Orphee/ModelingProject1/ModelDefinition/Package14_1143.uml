@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="64079e3c-489c-4b40-9d43-5dd94f1422d4"
+  name="Mvvm"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="ef1c645e-cf5a-4ccb-bf69-6b0c4f5b2cc8"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.Practices.Prism.Mvvm"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="b59ab3ae-3fd0-44e5-a5d2-41d467c0f725">
+      <profileInstance
+        Id="4b72071a-9901-44c8-bd4f-5fdcf81d3f87"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="eae587b5-9dd5-4394-bfcd-913bb1a5da7e"
+        name="MvvmAppBase"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="25771341-7755-4f76-8ae0-6b16c0e9ad7f"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2Fpackages%2FPrism.StoreApps.2.0.0%2Flib%2Fwindows8%2FMicrosoft.Practices.Prism.StoreApps.Windows.dll&quot; Namespace%3DMicrosoft.Practices.Prism.Mvvm Type%3DMvvmAppBase"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="1bd0a3f7-a21b-4555-a17b-747300b1dc60"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="35579741-9850-4e3d-ac1a-903c23772a4d">
+                <propertyInstance
+                  Id="ed17a4ad-d26c-4c1f-bb27-11b6c1554dee"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="96251c7f-8008-4246-912d-7cf79a684ceb">
+                <propertyInstance
+                  Id="6bf8e715-f9b3-4aa5-9676-5be04c799fb9"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c274f722-8eca-4bd9-ae11-9f9b21e326b8">
+                <propertyInstance
+                  Id="d0f0d8ea-35c9-4746-81ce-4c187e1e7c33"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b0919de9-250a-43f9-9fd6-b9447169febd">
+                <propertyInstance
+                  Id="d61e73aa-fb33-4ff7-8020-e7272894118c"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="55bc1d43-a73a-40b3-9e0e-161dfa76a44f">
+                <propertyInstance
+                  Id="423f4acc-d704-4b9e-975e-8ba8f5808e41"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="02f31b39-cb3b-4f89-bfd1-a1e5282b3256"
+        name="ViewModel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="451399b7-4e81-4e80-ba41-af5f0cc7b086"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2Fmicka%2FDocuments%2FVisual Studio 2015%2FProjects%2FWindows%2FOrphee%2Fpackages%2FPrism.StoreApps.2.0.0%2Flib%2Fwpa81%2FMicrosoft.Practices.Prism.StoreApps.dll&quot; Namespace%3DMicrosoft.Practices.Prism.Mvvm Type%3DViewModel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="dbd9216e-157c-409f-84ca-1935af9a3c97"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="83c299db-b8b3-45da-8f94-ec1a9a2103e7">
+                <propertyInstance
+                  Id="62fea893-8e9d-4a83-a501-1790c9d9d3fe"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8d0cec32-8997-4d0f-a8a6-c7d0bc5286be">
+                <propertyInstance
+                  Id="0efae8d4-6f62-4512-8d81-6508b76f9e4f"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d20c4e40-8453-4144-9312-34a7523e6a42">
+                <propertyInstance
+                  Id="a54cc437-bc04-4e88-bb70-64676518179b"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7eadbe64-fdf1-4bda-a485-155de680abc7">
+                <propertyInstance
+                  Id="4cd64164-1cdf-4265-8d44-fa265f31d1af"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f1a216d9-ec82-445e-ba52-efb132a87471">
+                <propertyInstance
+                  Id="d535ce05-dbb6-4910-b8d3-e6ce1b515e38"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

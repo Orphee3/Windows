@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="754bf1a0-f649-4690-a613-fd55a131d814"
+  name="RestApiManagement"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="a023ba93-87be-4679-b877-3daa363acaaa"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DOrphee.RestApiManagement"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="a13c8da1-74aa-488b-a387-02b97b4af98c"
+        LastKnownName="Models"
+        LastKnownLocation="Package5_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="2ab83ec1-083a-4b21-aa85-611933971a12"
+        LastKnownName="Getters"
+        LastKnownLocation="Package9_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="9bdd63ea-0ad5-42e8-866e-c3dc609d89ba"
+        LastKnownName="Senders"
+        LastKnownLocation="Package11_1147.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="2269c01a-60fb-43c6-83ea-4fd748b1c460"
+        LastKnownName="Posters"
+        LastKnownLocation="Package20_1147.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

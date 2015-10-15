@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="588263aa-cba5-442b-a711-c77106591832"
+  name="Animation"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="2b1ce7b3-581c-4787-82c7-2cbd9adf2cfd"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWindows.UI.Xaml.Media.Animation"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="a104322d-5dfd-4a2d-861a-74d0703289f1">
+      <profileInstance
+        Id="ab1b291a-27c9-4d2f-8de0-eef4d2ad44cb"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="d6422651-134c-428b-8f3d-391d155a40a4"
+        name="TransitionCollection"
+        visibility="Private"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="7d725586-0917-4d96-87e6-df18ee21769f"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FWindows Phone Kits%2F8.1%2FReferences%2FCommonConfiguration%2FNeutral%2FWindows.winmd&quot; Namespace%3DWindows.UI.Xaml.Media.Animation Type%3DTransitionCollection"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="13cf14ac-f08b-413b-bd9c-72040174331e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3b37af00-3f16-490e-8878-732b330b875c">
+                <propertyInstance
+                  Id="cc13495b-4dcb-49bf-94fb-e5ff98e46463"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2eef0d20-e185-4014-b987-335d99e9952c">
+                <propertyInstance
+                  Id="4b5ad552-5abc-40ea-8cef-04a035847c00"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d09f99dc-f6be-459e-a4e3-c138952b41d0">
+                <propertyInstance
+                  Id="4df8e305-32c9-4703-8cd3-0ae6cd67d05d"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="227e25b0-edc6-4207-a7ed-0defefdc3b69">
+                <propertyInstance
+                  Id="0558cd28-191f-451d-b2c9-4be610d31756"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dc97cf94-07a8-45e9-b855-0f3366bd3229">
+                <propertyInstance
+                  Id="b9909ecb-5f63-40f0-9674-9336c5063f94"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
