@@ -5,8 +5,18 @@ using Orphee.RestApiManagement.Senders.Interfaces;
 
 namespace Orphee.RestApiManagement.Senders
 {
+    /// <summary>
+    /// Class managing the sending of notifications to the
+    /// remote server
+    /// </summary>
     public class NotificationSender : INotificationSender
     {
+        /// <summary>
+        /// Sends a notification to the remote server
+        /// </summary>
+        /// <param name="notificationType">Represents the type of the notification</param>
+        /// <param name="creationId">Target creation id</param>
+        /// <returns>Returns true if the request was sent and the response received correctly. Returns false otherwise</returns>
         public async Task<bool> SendNotification(string notificationType, string creationId)
         {
             using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })

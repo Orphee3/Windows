@@ -5,8 +5,13 @@ using Orphee.RestApiManagement.Socket_Management;
 
 namespace Orphee.RestApiManagement.Models
 {
+    /// <summary>
+    /// Singleton class managing all the API routes and the
+    /// currently logged user
+    /// </summary>
     public class RestApiManagerBase : IRestApiManagerBase
     {
+        /// <summary>RestApiManagerBase instance</summary>
         public static RestApiManagerBase Instance
         {
             get
@@ -17,13 +22,20 @@ namespace Orphee.RestApiManagement.Models
             }
         }
         private static RestApiManagerBase _instance;
+        /// <summary>Server's url </summary>
         public Uri RestApiUrl { get; private set; }
+        /// <summary>NotificationReceiver</summary>
         public NotificationRecieiver NotificationRecieiver {get; private set; }
+        /// <summary>Contains all the routes </summary>
         public Dictionary<string, string> RestApiPath { get; private set; }
+        /// <summary>Current logged user </summary>
         public IUserData UserData { get; set; }
-
+        /// <summary>True if the user is logged. False otherwise </summary>
         public bool IsConnected { get; set; }
-
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public RestApiManagerBase()
         {
             this.IsConnected = false;
@@ -50,11 +62,9 @@ namespace Orphee.RestApiManagement.Models
             };
         }
 
-        private void RetrieveUserNamesFromCacheMemory()
-        {
-
-        }
-
+        /// <summary>
+        /// Logs out the current user
+        /// </summary>
         public void Logout()
         {
             this.UserData = null;

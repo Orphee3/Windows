@@ -9,8 +9,19 @@ using Orphee.RestApiManagement.Posters.Interfaces;
 
 namespace Orphee.RestApiManagement.Posters
 {
+    /// <summary>
+    /// Class managing the login
+    /// of the user to its account
+    /// </summary>
     public class ConnectionManager : IConnectionManager
     {
+        /// <summary>
+        /// Sends the user's login data in order
+        /// log to it's account
+        /// </summary>
+        /// <param name="userName">Username of the user</param>
+        /// <param name="password">Password of the accout</param>
+        /// <returns>Return true if the user was logged successfully. Return false otherwise</returns>
         public async Task<bool> ConnectUser(string userName, string password)
         {
             using (var httpClient = new HttpClient {BaseAddress = RestApiManagerBase.Instance.RestApiUrl})

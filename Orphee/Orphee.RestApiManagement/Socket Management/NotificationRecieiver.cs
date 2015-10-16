@@ -7,16 +7,26 @@ using Quobject.SocketIoClientDotNet.Client;
 
 namespace Orphee.RestApiManagement.Socket_Management
 {
+    /// <summary>
+    /// Class managing the IOSocket
+    /// </summary>
     public class NotificationRecieiver
     {
         private Socket _socket;
+        /// <summary>True if the socket is connected and false if it's not</summary>
         public bool IsSocketConnected { get; private set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public NotificationRecieiver()
         {
             NetworkInformation.NetworkStatusChanged += OnNetworkStatusChanged;
         }
 
+        /// <summary>
+        /// Initialize the socket
+        /// </summary>
         public void InitSocket()
         {
             if (!this.IsSocketConnected && RestApiManagerBase.Instance.UserData != null)
@@ -32,6 +42,10 @@ namespace Orphee.RestApiManagement.Socket_Management
                 Run();
             }
         }
+
+        /// <summary>
+        /// Creates the listeners
+        /// </summary>
         public void Run()
         {
             this._socket.On("connect", () =>
@@ -43,18 +57,18 @@ namespace Orphee.RestApiManagement.Socket_Management
                     this.IsSocketConnected = true;
                 }
             });
-            this._socket.On("friend", (data) =>
+            this._socket.On("friend", data =>
             {
                 var userJson = JObject.FromObject(data);
                 var userAskingForFriendShip = JsonConvert.DeserializeObject<User>(userJson["userSource"].ToString());
                 RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification = true;
                 RestApiManagerBase.Instance.UserData.User.PendingFriendList.Add(userAskingForFriendShip);
             });
-            this._socket.On("newFriend", (data) =>
+            this._socket.On("newFriend", data =>
             {
                 RestApiManagerBase.Instance.UserData.User.HasReceivedFriendConfirmationNotification = true;
             });
-            this._socket.On("comments", (data) =>
+            this._socket.On("comments", data =>
             {
                 var userJson = JObject.FromObject(data);
                 var media = JsonConvert.DeserializeObject<Creation>(userJson["media"].ToString());
@@ -65,34 +79,34 @@ namespace Orphee.RestApiManagement.Socket_Management
                 RestApiManagerBase.Instance.UserData.User.PendingCommentList.Add(comment);
                 RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification = true;
             });
-            this._socket.On("likes", (data) =>
+            this._socket.On("likes", data =>
             {
 
             });
-            this._socket.On("creations", (data) =>
+            this._socket.On("creations", data =>
             {
 
             });
-            this._socket.On(Socket.EVENT_CONNECT_ERROR, (data) =>
+            this._socket.On(Socket.EVENT_CONNECT_ERROR, data =>
             {
                 CloseSocket();
                 if (IsInternet())
                     this._socket.Connect();
             });
-            this._socket.On(Socket.EVENT_CONNECT_TIMEOUT, (data) =>
+            this._socket.On(Socket.EVENT_CONNECT_TIMEOUT, data =>
             {
                 CloseSocket();
                 if (IsInternet())
                     this._socket.Connect();
             });
 
-            this._socket.On("error", (data) =>
+            this._socket.On("error", data =>
             {
                 CloseSocket();
                 if (IsInternet())
                     this._socket.Connect();
             });
-            this._socket.On("private message", (data) =>
+            this._socket.On("private message", data =>
             {
                 var userJson = JObject.FromObject(data);
                 var creator = JsonConvert.DeserializeObject<User>(userJson["source"].ToString());
@@ -113,12 +127,21 @@ namespace Orphee.RestApiManagement.Socket_Management
             });
         }
 
+        /// <summary>
+        /// Sends a message through IOSocket
+        /// </summary>
+        /// <param name="messageToSend">Message to send</param>
+        /// <param name="userList">Target users of the message</param>
         public void SendMessage(string messageToSend, List<User> userList)
         {
             foreach (var user in userList)
                 this._socket.Emit("private message", JObject.FromObject(new { to = user.Id, message = messageToSend }));
         }
 
+
+        /// <summary>
+        /// Close the socket
+        /// </summary>
         public void CloseSocket()
         {
             if (this._socket != null)
@@ -129,6 +152,10 @@ namespace Orphee.RestApiManagement.Socket_Management
             }
         }
 
+        /// <summary>
+        /// Checks if the internet connexion is available
+        /// </summary>
+        /// <returns></returns>
         public bool IsInternet()
         {
             var connections = NetworkInformation.GetInternetConnectionProfile();

@@ -11,14 +11,30 @@ using Orphee.RestApiManagement.Senders.Interfaces;
 
 namespace Orphee.RestApiManagement.Senders
 {
+    /// <summary>
+    /// Class managing the upload
+    /// of files (images and MIDI files) to AWS S3
+    /// </summary>
     public class FileUploader : IFileUploader
     {
         private string _newCreationId;
         private readonly INotificationSender _notifyer;
+
+        /// <summary>
+        /// Constructor initializing notifyer through
+        /// dependency injection
+        /// </summary>
+        /// <param name="notifyer">Instance of the NotificationSender class used to send notifications to the remote server</param>
         public FileUploader(INotificationSender notifyer)
         {
             this._notifyer = notifyer;
         }
+
+        /// <summary>
+        /// Sends an MIDI file to AWS S3 service
+        /// </summary>
+        /// <param name="fileToUpload"></param>
+        /// <returns>Returns true if the request was sent and the response received correctly. Returns false otherwise</returns>
         public async Task<bool> UploadFile(StorageFile fileToUpload)
         {
             var createNewCreationEntryResult = await CreateNewCreationEntry(fileToUpload.Name);
@@ -106,6 +122,11 @@ namespace Orphee.RestApiManagement.Senders
             return true;
         }
 
+        /// <summary>
+        /// Sends an image to AWS S3 service
+        /// </summary>
+        /// <param name="fileToUpload"></param>
+        /// <returns>Returns true if the request was sent and the response received correctly. Returns false otherwise</returns>
         public async Task<bool> UploadImage(StorageFile fileToUpload)
         {
             using (var httpClient = new HttpClient { BaseAddress = RestApiManagerBase.Instance.RestApiUrl })
