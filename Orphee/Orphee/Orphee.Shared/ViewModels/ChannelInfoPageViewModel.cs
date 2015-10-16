@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -10,13 +9,18 @@ using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// ChannelInfoPage view model
+    /// </summary>
     public class ChannelInfoPageViewModel : ViewModel, IChannelInfoPageViewModel
     {
+        /// <summary>List of the user's creation </summary>
         public ObservableCollection<Creation> CreationList { get; private set; }
+        /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
         private int _creationNumber;
         private string _userName;
-
+        /// <summary>Name of the user </summary>
         public string UserName
         {
             get { return this._userName; }
@@ -26,6 +30,7 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._userName, value);
             }
         }
+        /// <summary>Number of creations </summary>
         public int CreationNumber
         {
             get { return this._creationNumber; }
@@ -36,6 +41,7 @@ namespace Orphee.ViewModels
             }
         }
         private int _likeNumber;
+        /// /// <summary>Number of like </summary>
         public int LikeNumber
         {
             get { return this._likeNumber; }
@@ -45,8 +51,8 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._likeNumber, value);
             }
         }
-
         private string _userPictureSource;
+        /// <summary>User picture source </summary>
         public string UserPictureSource
         {
             get { return this._userPictureSource; }
@@ -59,6 +65,11 @@ namespace Orphee.ViewModels
 
         private readonly IGetter _getter;
 
+        /// <summary>
+        /// Constructor initializing getter
+        /// through dependency injection
+        /// </summary>
+        /// <param name="getter">Manages the sending of the "Get" requests</param>
         public ChannelInfoPageViewModel(IGetter getter)
         {
             this._getter = getter;

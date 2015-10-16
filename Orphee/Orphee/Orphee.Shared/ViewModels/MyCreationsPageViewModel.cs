@@ -8,12 +8,22 @@ using System.Collections.Generic;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// MyCreationsPage view model
+    /// </summary>
     public class MyCreationsPageViewModel : ViewModel, IMyCreationsPageViewModel
     {
+        /// <summary>List of the user's creation </summary>
         public ObservableCollection<Creation> CreationList { get; set; }
+        /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
         private readonly IGetter _getter;
 
+        /// <summary>
+        /// Constructor initializing getter
+        /// through dependency injection
+        /// </summary>
+        /// <param name="getter">Manages the sending of the "Get" requests</param>
         public MyCreationsPageViewModel(IGetter getter)
         {
             this._getter = getter;

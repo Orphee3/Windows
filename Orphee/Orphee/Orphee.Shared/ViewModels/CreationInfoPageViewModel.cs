@@ -11,13 +11,19 @@ using Orphee.RestApiManagement.Senders.Interfaces;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// CreationInfoPage view model
+    /// </summary>
     public class CreationInfoPageViewModel : ViewModel, ICreationInfoPageViewModel
     {
+        /// <summary>Redirects to the previous page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
+        /// <summary>List of comments related to the creation </summary>
         public ObservableCollection<Comment> CommentList { get; private set; }
         private string _creationName;
         private Creation _creation;
         private int _commentNumber;
+        /// <summary>Number of comments related to the creation </summary>
         public int CommentNumber
         {
             get { return this._commentNumber; }
@@ -27,6 +33,7 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._commentNumber, value);
             }
         }
+        /// <summary>Name of the creation </summary>
         public string CreationName
         {
             get { return this._creationName; }
@@ -37,6 +44,7 @@ namespace Orphee.ViewModels
             }
         }
         private int _likeNumber;
+        /// <summary>Number of like related to the creation</summary>
         public int LikeNumber
         {
             get { return this._likeNumber; }
@@ -46,10 +54,17 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._likeNumber, value);
             }
         }
+        /// <summary>User picture source </summary>
         public string UserPictureSource { get; private set; }
         private readonly IGetter _getter;
         private readonly ICommentSender _commentSender;
 
+        /// <summary>
+        /// Constructor initializing getter and commentSender
+        /// through dependency injection
+        /// </summary>
+        /// <param name="getter">Manages the sending of the "Get" requests</param>
+        /// <param name="commentSender">Manages the comment sending to the remote server</param>
         public CreationInfoPageViewModel(IGetter getter, ICommentSender commentSender)
         {
             this._getter = getter;
@@ -59,6 +74,10 @@ namespace Orphee.ViewModels
             this.CommentList = new ObservableCollection<Comment>();
         }
 
+        /// <summary>
+        /// Sends a comment to the remote server
+        /// </summary>
+        /// <param name="newComment"></param>
         public async void SendComment(string newComment)
         {
             if (newComment.Any())
@@ -92,6 +111,10 @@ namespace Orphee.ViewModels
             }
         }
 
+        /// <summary>
+        /// Updates the comment list
+        /// </summary>
+        /// <param name="pendingCommentList"></param>
         public async void UpdateCommentList(List<Comment> pendingCommentList)
         {
             if (pendingCommentList.Any(c => c.CreationId == this._creation.Id))

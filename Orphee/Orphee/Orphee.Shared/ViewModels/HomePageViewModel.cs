@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
@@ -10,87 +7,38 @@ using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// HomePage view model
+    /// </summary>
     public class HomePageViewModel : ViewModel, IHomePageViewModel
     {
-        public ObservableCollection<Creation> FlowList { get; set; }
-        private List<News> _friendNewsList;
-        private readonly List<Creation> _popularCreationList;
-        private IGetter _getter;
-        public SolidColorBrush PopularCreationsTitleTextBoxForegroundColor { get; set; }
-        public SolidColorBrush NewFriendsCreationsTitleTextBoxForegroundColor { get; set; }
-        private Visibility _searchBoxVisibility;
-        public Visibility SearchBoxVisibility
-        {
-            get { return this._searchBoxVisibility; }
-            set
-            {
-                if (this._searchBoxVisibility != value)
-                {
-                    this._searchBoxVisibility = value;
-                    OnPropertyChanged(nameof(this.SearchBoxVisibility));
-                }
-            }
-        }
+        /// <summary>List of popular creations</summary>
+        public ObservableCollection<Creation> PopularCreations { get; set; }
+        private readonly IGetter _getter;
 
+        /// <summary>
+        /// Constructor initializing getter through
+        /// dependency injection
+        /// </summary>
+        /// <param name="getter">Manages the sending of the "Get" requests</param>
         public HomePageViewModel(IGetter getter)
         {
             this._getter = getter;
-            this.FlowList = new ObservableCollection<Creation>();
-            this._popularCreationList = new List<Creation>();
-            this._friendNewsList = new List<News>();
-            this.NewFriendsCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Colors.White);
-            this.PopularCreationsTitleTextBoxForegroundColor = new SolidColorBrush(Color.FromArgb(100, 13, 71, 161));
-            this.SearchBoxVisibility = Visibility.Collapsed;
-            FillFlowListWithPopularCreations();
+            this.PopularCreations = new ObservableCollection<Creation>();
+            FillPopularCreations();
         }
 
-        public async void FillFlowListWithNewFriendCreations()
+        private async void FillPopularCreations()
         {
-            if (RestApiManagerBase.Instance.IsConnected)
+            if (this.PopularCreations.Count == 0)
             {
-                this.FlowList.Clear();
-                this._friendNewsList = await this._getter.GetInfo<List<News>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/news");
-                foreach (var news in this._friendNewsList)
-                {
-                    var creation = new Creation();
-                    creation.CreatorList.Add(news.Creator);
-                    if (news.Creation != null)
-                        creation.Id = news.Creation.Id;
-                    this.FlowList.Add(creation);
-                }
-                SetTitleTexBoxForegroundColor(false);
-            }
-        }
-
-        public async void FillFlowListWithPopularCreations()
-        {
-            if (this._popularCreationList.Count == 0)
-            {
-                this.FlowList.Clear();
                 var popularCreation = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"]);
                 foreach (var creation in popularCreation)
                 {
                     creation.Name = creation.Name.Split('.')[0];
                     creation.CreatorList.Add((creation.Creator[0].ToObject<User>()));
-                    this.FlowList.Add(creation);
+                    this.PopularCreations.Add(creation);
                 }
-                SetTitleTexBoxForegroundColor(true);
-            }
-        }
-
-        private void SetTitleTexBoxForegroundColor(bool option)
-        {
-            if (option)
-            {
-                this.PopularCreationsTitleTextBoxForegroundColor.Color = Color.FromArgb(100, 13, 71, 161);
-                this.NewFriendsCreationsTitleTextBoxForegroundColor.Color = Colors.White;
-                this.SearchBoxVisibility = Visibility.Collapsed;
-            }
-            else
-            {
-                this.PopularCreationsTitleTextBoxForegroundColor.Color = Colors.White;
-                this.NewFriendsCreationsTitleTextBoxForegroundColor.Color = Color.FromArgb(100, 13, 71, 161);
-                this.SearchBoxVisibility = Visibility.Visible;
             }
         }
     }

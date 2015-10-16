@@ -5,20 +5,25 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Newtonsoft.Json;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// ConversationPage view model
+    /// </summary>
     public class ConversationPageViewModel : ViewModel, IConversationPageViewModel
     {
+        /// <summary>List of conversation that the user has </summary>
         public ObservableCollection<Conversation> ConversationList { get; set; }
+        /// <summary>Redirects to the FriendPage so the user can select which friend to include in the new conversation </summary>
         public DelegateCommand CreateNewConversationCommand { get; private set; }
+        /// <summary>Redirect to the LoginPage </summary>
         public DelegateCommand LoginButton { get; private set; }
         private Visibility _buttonsVisibility;
+        /// <summary>Visible if the user is disconnected. Hidden otherwise </summary>
         public Visibility ButtonsVisibility
         {
             get { return this._buttonsVisibility; }
@@ -29,6 +34,7 @@ namespace Orphee.ViewModels
             }
         }
         private Visibility _listViewVisibility;
+        /// <summary>Visible if the user is connected. Hidder otherwise </summary>
         public Visibility ListViewVisibility
         {
             get { return this._listViewVisibility; }
@@ -40,6 +46,11 @@ namespace Orphee.ViewModels
         }
         private readonly IGetter _getter;
 
+        /// <summary>
+        /// Constructor initializing getter
+        /// through dependency injection
+        /// </summary>
+        /// <param name="getter">Manages the sending of the "Get" requests</param>
         public ConversationPageViewModel(IGetter getter)
         {
             this._getter = getter;
@@ -94,11 +105,15 @@ namespace Orphee.ViewModels
                 CreateNewConversation(navigationParameter as Conversation);
         }
 
+        /// <summary>
+        /// Creates a new conversation
+        /// </summary>
+        /// <param name="conversation">Contains the data related to the conversation to be created</param>
         public void CreateNewConversation(Conversation conversation)
         {
             if (conversation.UserList.Count == 0)
                 return;
-            string channelName = "";
+            string channelName;
             if (string.IsNullOrEmpty(conversation.Name))
             {
                 channelName = conversation.UserList.Aggregate("", (current, user) => current + user.Name);
@@ -108,11 +123,6 @@ namespace Orphee.ViewModels
             else
                 channelName = conversation.Name;
             this.ConversationList.Add(new Conversation() {Name = channelName, UserList = conversation.UserList, ConversationPictureSource = conversation.UserList.Count > 1 ? "/Assets/defaultUser.png" : conversation.UserList[0].Picture });
-        }
-
-        public void CreateNewConversationOnMessageReceived(Message message)
-        {
-            
         }
     }
 }

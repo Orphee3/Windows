@@ -11,7 +11,6 @@ namespace Orphee.Views
 {
     public sealed partial class HomePage : IView
     {
-        private int _x1, _x2;
         public HomePage()
         {
             this.InitializeComponent();
@@ -22,24 +21,6 @@ namespace Orphee.Views
             //throw new NotImplementedException();
         }
 
-        private void UIElement_OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
-        {
-            this._x2 = (int) e.Position.X;
-            if (this._x1 > this._x2 && (this.PopularTextBox.Foreground as SolidColorBrush).Color == Color.FromArgb(100, 13, 71, 161))
-            {
-                if (RestApiManagerBase.Instance.IsConnected)
-                    ((HomePageViewModel) this.DataContext).FillFlowListWithNewFriendCreations();
-                else
-                    App.MyNavigationService.Navigate("Login", null);
-            }
-            else if (this._x1 < this._x2 && (this.FriendNewsTextBox.Foreground as SolidColorBrush).Color == Color.FromArgb(100, 13, 71, 161))
-                ((HomePageViewModel) this.DataContext).FillFlowListWithPopularCreations();
-        }
-
-        private void UIElement_OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
-        {
-            this._x1 = (int)e.Position.X;
-        }
 
         private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {

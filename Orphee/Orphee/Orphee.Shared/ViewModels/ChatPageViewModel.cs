@@ -6,18 +6,22 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.Models;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// ChatPage view model
+    /// </summary>
     public class ChatPageViewModel : ViewModel, IChatPageViewModel
     {
+        /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
+        /// <summary>Sends a message to the other users participating at the conversation </summary>
         public DelegateCommand SendCommand { get; private set; }
         private string _message;
+        /// <summary>Message to be sent </summary>
         public string Message
         {
             get { return this._message; }
@@ -27,9 +31,10 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._message, value);
             }
         }
+        /// <summary>List of messages </summary>
         public ObservableCollection<Message> Conversation { get; private set; }
         private string _conversationName;
-
+        /// <summary>Name of the conversation </summary>
         public string ConversationName
         {
             get { return this._conversationName; }
@@ -41,6 +46,9 @@ namespace Orphee.ViewModels
         }
         private Conversation _actualConversation;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ChatPageViewModel()
         {
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Conversation", null));
@@ -49,6 +57,11 @@ namespace Orphee.ViewModels
            
         }
 
+        /// <summary>
+        /// Initialize the conversation with the given
+        /// message list
+        /// </summary>
+        /// <param name="messages">Messages used to initialize the conversation</param>
         public void InitConversation(List<Message> messages)
         {
             foreach (var message in messages)

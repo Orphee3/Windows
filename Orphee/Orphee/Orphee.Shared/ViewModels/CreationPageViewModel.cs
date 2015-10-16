@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using MidiDotNet.ExportModule.Interfaces;
@@ -8,19 +7,22 @@ using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.ViewModels.Interfaces;
 using System.Linq;
-using Windows.UI;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 using Midi;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// CreationPage view model
+    /// </summary>
     public class CreationPageViewModel : ViewModel, ICreationPageViewModel
     {
         private readonly ISoundPlayer _soundPlayer;
         private readonly IOrpheeFileExporter _orpheeFileExporter;
         private readonly IOrpheeFileImporter _orpheeFileImporter;
+        /// <summary>Instrument manager </summary>
         public IInstrumentManager InstrumentManager { get; private set; }
+        /// <summary>Index of the current instrument </summary>
         public int CurrentInstrumentIndex
         {
             get { return this._currentInstrumentIndex; }
@@ -32,8 +34,10 @@ namespace Orphee.ViewModels
         }
         private int _currentInstrumentIndex;
         private Channel _currentChannel;
+        /// <summary>List of int containing tempo values from 40 to 400 </summary>
         public List<uint> TempoValues { get; private set; }
         private int _currentTempoIndex;
+        /// <summary>Index of the current tempo </summary>
         public int CurrentTempoIndex
         { 
             get { return this._currentTempoIndex; }
@@ -46,19 +50,39 @@ namespace Orphee.ViewModels
                 }
             }
         }
+        /// <summary>OrpheeFile displayed at the screen </summary>
         public IOrpheeFile OrpheeFile { get; private set; }
+        /// <summary>Adds columns to the current track's note map </summary>
         public DelegateCommand AddColumnsCommand { get; private set; }
+        /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackButtonCommand { get; private set; }
+        /// <summary>Removes columns from the current track's note map </summary>
         public DelegateCommand RemoveAColumnCommand { get; private set; }
+        /// <summary>Calls the ToggleButtonNoteCommandExec </summary>
         public DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; private set; }
+        /// <summary>Saves the current OrpheeFile in a MIDI file </summary>
         public DelegateCommand SaveButtonCommand { get; private set; }
+        /// <summary>Loads a MIDI file</summary>
         public DelegateCommand LoadButtonCommand { get; private set; }
+        /// <summary>Play the notes contained in each track of the OrpheeFile </summary>
         public DelegateCommand PlayCommand { get; private set; }
+        /// <summary>Changes the track displayed </summary>
         public DelegateCommand<OrpheeTrack> SelectedTrackCommand { get; private set; }
+        /// <summary>Add one higher octave to the actual track's note map </summary>
         public DelegateCommand AddOneHigherOctaveCommand { get; private set; }
+        /// <summary>Adds one lower octave to the current track's note map </summary>
         public DelegateCommand AddOneLowerOctaveCommand { get; private set; }
+        /// <summary>Add a new track to the OrpheeFile </summary>
         public DelegateCommand AddNewTrackCommand { get; private set; }
 
+        /// <summary>
+        /// Constructor initializing soundPlayer, instrumentManager, orpheeFileExporter
+        /// and orpheeFileImporter through dependency injection
+        /// </summary>
+        /// <param name="soundPlayer">Interface between the program and the MidiLibRepository class</param>
+        /// <param name="instrumentManager">Instrument manager</param>
+        /// <param name="orpheeFileExporter">Saves the OrpheeFile to a MIDI file</param>
+        /// <param name="orpheeFileImporter">Imports a MIDI file and converts it to an OrpheeFile</param>
         public CreationPageViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager, IOrpheeFileExporter orpheeFileExporter, IOrpheeFileImporter orpheeFileImporter)
         {
             this.OrpheeFile = new OrpheeFile();
@@ -95,6 +119,10 @@ namespace Orphee.ViewModels
             });
         }
 
+        /// <summary>
+        /// Emits the sound associated with the given toggleButtonNote
+        /// </summary>
+        /// <param name="toggleButtonNote"></param>
         public void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote)
         {
             if (toggleButtonNote.IsChecked)

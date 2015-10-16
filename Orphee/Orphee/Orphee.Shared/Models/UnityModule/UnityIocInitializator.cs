@@ -18,8 +18,14 @@ using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.UnityModule
 {
+    /// <summary>
+    /// Initialize the UnityContainer
+    /// </summary>
     public class UnityIocInitializator
     {
+        /// <summary>
+        /// Initialize the UnityContainer
+        /// </summary>
         public UnityIocInitializator(IUnityContainer container)
         {
             container.RegisterType<IGetter, Getter>(new ContainerControlledLifetimeManager());

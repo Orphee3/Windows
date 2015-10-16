@@ -10,21 +10,28 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// ProfilePage view model
+    /// </summary>
     public class ProfilePageViewModel : ViewModel, IProfilePageViewModel
     {
+        /// <summary>Logged user name</summary>
         public string UserName { get; private set; }
+        /// <summary>Number of creation of the logged user </summary>
         public int NumberOfCreations { get; private set; }
+        /// <summary>Number of comments of the logged user </summary>
         public int NumberOfComments { get; private set; }
+        /// <summary>Number of follows of the logged user </summary>
         public int NumberOfFollows { get; private set; }
+        /// <summary>Number of followers of the logged user</summary>
         public int NumberOfFollowers { get; private set; }
         private string _userProfilePicture;
+        /// <summary>User picture source</summary>
         public string UserPictureSource
         {
             get { return this._userProfilePicture; }
@@ -35,6 +42,7 @@ namespace Orphee.ViewModels
             }
         }
         private SolidColorBrush _backgroundColorBrush;
+        /// <summary>Background color of the profile page </summary>
         public SolidColorBrush BackgroundPictureColor
         {
             get { return this._backgroundColorBrush; }
@@ -45,6 +53,7 @@ namespace Orphee.ViewModels
             }
         }
         private Visibility _disconnectedStackPanelVisibility;
+        /// <summary>Visible if the user is disconnected. Hidden otherwise </summary>
         public Visibility DisconnectedStackPanelVisibility
         {
             get { return this._disconnectedStackPanelVisibility; }
@@ -55,6 +64,7 @@ namespace Orphee.ViewModels
             }
         }
         private Visibility _connectedStackPanelVisibility;
+        /// <summary>Visible if the user is connected. Hidden otherwise </summary>
         public Visibility ConnectedStackPanelVisibility
         {
             get { return this._connectedStackPanelVisibility; }
@@ -64,11 +74,20 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._connectedStackPanelVisibility, value);
             }
         }
+        /// <summary>Redirects to MyCreationPage</summary>
         public DelegateCommand MyCreationsCommand { get; private set; }
+        /// <summary>Logs the user out</summary>
         public DelegateCommand LogoutCommand { get; private set; }
+        /// <summary>Redirects to LoginPage</summary>
         public DelegateCommand FriendPageCommand { get; private set; }
+        /// <summary>Redirects to FriendPage</summary>
         public DelegateCommand LoginCommand { get; private set; }
+        /// <summary>Redirects to EditProfilePage</summary>
         public DelegateCommand EditProfileCommand { get; private set; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ProfilePageViewModel()
         {
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
@@ -78,6 +97,12 @@ namespace Orphee.ViewModels
             this.EditProfileCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("ProfileEdition", null));
         }
 
+        /// <summary>
+        /// Called when navigated to this page
+        /// </summary>
+        /// <param name="navigationParameter"></param>
+        /// <param name="navigationMode"></param>
+        /// <param name="viewModelState"></param>
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             App.MyNavigationService.CurrentPageName = "Profile";
@@ -105,6 +130,9 @@ namespace Orphee.ViewModels
             }
         }
 
+        /// <summary>
+        /// Updates the picture source
+        /// </summary>
         public void UpdatePictureSource()
         {
             this.UserPictureSource = RestApiManagerBase.Instance.UserData.User.Picture;

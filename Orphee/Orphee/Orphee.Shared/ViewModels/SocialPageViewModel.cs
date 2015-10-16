@@ -13,13 +13,24 @@ using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
+    /// <summary>
+    /// ViewModel of the SocialPage
+    /// </summary>
     public class SocialPageViewModel : ViewModel, ISocialPageViewModel
     {
+        /// <summary>List of the searched users </summary>
         public ObservableCollection<User> UserList { get; set; }
+        /// <summary>Login command</summary>
         public DelegateCommand LoginCommand { get; private set; }
+        /// <summary>Add new friend command</summary>
         public DelegateCommand<User> AddFriendCommand { get; private set; }
-        private IGetter _getter;
+        private readonly IGetter _getter;
 
+        /// <summary>
+        /// Constructor initializing getter through 
+        /// dependency injection
+        /// </summary>
+        /// <param name="getter"></param>
         public SocialPageViewModel(IGetter getter)
         {
             this._getter = getter;
@@ -28,6 +39,12 @@ namespace Orphee.ViewModels
             this.AddFriendCommand = new DelegateCommand<User>(NewFriendCommandExec);
         }
 
+        /// <summary>
+        /// Called when we navigate to this page
+        /// </summary>
+        /// <param name="navigationParameter"></param>
+        /// <param name="navigationMode"></param>
+        /// <param name="viewModelState"></param>
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
