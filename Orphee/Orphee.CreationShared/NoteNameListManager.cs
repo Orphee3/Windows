@@ -4,10 +4,17 @@ using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
 {
+    /// <summary>
+    /// Class containing all the octave information
+    /// </summary>
     public class NoteNameListManager : INoteNameListManager
     {
+        /// <summary>Dictionary containing the notes from the octave 1 to 8 </summary>
         public Dictionary<string, Note> NoteNameList { get; private set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public NoteNameListManager()
         {
             this.NoteNameList = new Dictionary<string, Note>()
@@ -123,12 +130,23 @@ namespace Orphee.CreationShared
             };
         }
 
+        /// <summary>
+        /// Determines if the creation of a higher octave is possible
+        /// </summary>
+        /// <param name="note">Lower note of the actual octave</param>
+        /// <returns>Returns -1 if it can't be done or the value of the octave to be created</returns>
         public int CanAddHigherOctave(Note note)
         {
             if ((int) note >= 108)
                 return -1;
-            return (int) note/12;
+            return (int) note / 12;
         }
+
+        /// <summary>
+        /// Determines if the creation of a lower octave is possible
+        /// </summary>
+        /// <param name="note">Lower note of the actual octave</param>
+        /// <returns>Returns -1 if it can't be done or the value of the octave to be created</returns>
         public int CanAddLowerOctave(Note note)
         {
             if ((int)note <= 12)
@@ -136,6 +154,12 @@ namespace Orphee.CreationShared
             return ((int)note / 12) - 2;
         }
 
+        /// <summary>
+        /// Gets the line index of the given note
+        /// </summary>
+        /// <param name="note">Note used to determine its line</param>
+        /// <param name="lowerOctave">Lower octave index</param>
+        /// <returns>Returns the line index of the given note</returns>
         public int GetNoteLineIndex(Note note, int lowerOctave)
         {
             var lowerNote = this.NoteNameList["C" + lowerOctave];

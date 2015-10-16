@@ -5,13 +5,20 @@ using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
 {
+    /// <summary>
+    /// Class that manages the sound emission
+    /// </summary>
     public class MidiLibRepository : IMidiLibRepository
     {
+        /// <summary>Represents the parameters on the player </summary>
         public IPlayerParameters PlayerParameters { get; set; }
         private Clock _clock;
         private OutputDevice _outputDevice;
         private readonly int _velocity;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MidiLibRepository()
         {
             this.PlayerParameters = new PlayerParameters()
@@ -37,6 +44,11 @@ namespace Orphee.CreationShared
             this._clock.Start();
         }
 
+        /// <summary>
+        /// Function playing the given note
+        /// </summary>
+        /// <param name="note">Value representing the note to play</param>
+        /// <param name="channel">Value representing the channel in which the note will be played</param>
         public void PlayNote(Note note, Channel channel)
         {
             var noteOn = new NoteOnMessage(this._outputDevice, channel, note, this._velocity, this._clock.BeatTime);
@@ -46,11 +58,20 @@ namespace Orphee.CreationShared
             this._clock.Schedule(noteOff);
         }
 
+        /// <summary>
+        /// Function updating the current instrument
+        /// </summary>
+        /// <param name="newPlayingInstrument">Instrument replacing the current instrument</param>
+        /// <param name="channel">Channel for which the instrument is going to be changed</param>
         public void UpdatePlayingInstrument(Channel channel, Instrument newPlayingInstrument)
         {
             this._outputDevice.SendProgramChange(channel, newPlayingInstrument);
         }
 
+        /// <summary>
+        /// Function changing the tempo value
+        /// </summary>
+        /// <param name="tempo">New tempo value</param>
         public void UpdateTempo(uint tempo)
         {
             this.PlayerParameters.Tempo = tempo;
@@ -61,11 +82,21 @@ namespace Orphee.CreationShared
             this._clock.Start();
         }
 
+        /// <summary>
+        /// Function setting the PlayerParameter
+        /// </summary>
+        /// <param name="playerParameters">PlayerParameter used to set the current PlayerParameter</param>
         public void SetPlayerParameters(IPlayerParameters playerParameters)
         {
             this.PlayerParameters = playerParameters;
         }
 
+        /// <summary>
+        /// Function playing the notes contained in a track
+        /// </summary>
+        /// <param name="noteMessageList">Contains all the track's note to be played</param>
+        /// <param name="instrument">Represents the instrument that's going to play the notes</param>
+        /// <param name="channel">Channel in which the notes are going to be played</param>
         public void PlayTrack(IList<IOrpheeNoteMessage> noteMessageList, Instrument instrument, Channel channel)
         {
             UpdatePlayingInstrument(channel, instrument);

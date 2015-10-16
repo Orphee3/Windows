@@ -7,8 +7,6 @@ using MidiDotNet.Shared;
 using MidiDotNet.Shared.Interfaces;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
-using Orphee.FileManagement;
-using Orphee.FileManagement.Interfaces;
 using Orphee.RestApiManagement.Getters;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Posters;
@@ -55,7 +53,6 @@ namespace Orphee.UnityModule
             container.RegisterType<IEndOfTrackMessageReader, EndOfTrackMessageReader>(new ContainerControlledLifetimeManager());
             container.RegisterType<IConnectionManager, ConnectionManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRegistrationManager, RegistrationManager>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IOrpheeFilesGetter, OrpheeFilesGetter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFileUploader, FileUploader>(new ContainerControlledLifetimeManager());
         }
     }

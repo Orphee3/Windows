@@ -6,12 +6,17 @@ using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
 {
+    /// <summary>
+    /// Class representing the data needed to create a MIDI file
+    /// </summary>
     public class OrpheeFile : IOrpheeFile
     {
+        /// <summary>PropertyChanged event handler </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>Parameters of the orphee file </summary>
         public IOrpheeFileParameters OrpheeFileParameters { get; set; }
         private ObservableCollection<IOrpheeTrack> _orpheeTrackList;
-
+        /// <summary>List of track contained in the current file </summary>
         public ObservableCollection<IOrpheeTrack> OrpheeTrackList
         {
             get {return _orpheeTrackList;}
@@ -24,8 +29,12 @@ namespace Orphee.CreationShared
                 }
             }
         }
+        /// <summary>Name of the current file </summary>
         public string FileName { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public OrpheeFile()
         {
             this.OrpheeTrackList = new ObservableCollection<IOrpheeTrack> {new OrpheeTrack(0, 0, true) {IsChecked = true, TrackVisibility = Visibility.Visible} };
@@ -33,6 +42,10 @@ namespace Orphee.CreationShared
             this.FileName = "Test.mid";
         }
 
+        /// <summary>
+        /// Adds a new track to the OrpheeTrackList
+        /// </summary>
+        /// <param name="orpheeTrack">OrpheeTrack to add</param>
         public void AddNewTrack(IOrpheeTrack orpheeTrack)
         {
             var howMany = OrpheeTrackList.Count(t => t.TrackName == orpheeTrack.TrackName);
@@ -40,6 +53,11 @@ namespace Orphee.CreationShared
                 orpheeTrack.TrackName += howMany;
             this.OrpheeTrackList.Add(orpheeTrack);
         }
+
+        /// <summary>
+        /// Handler of the OnPropertyChanged event
+        /// </summary>
+        /// <param name="propertyName">Name of the property that triggered the event</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;

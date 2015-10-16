@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Midi;
 using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
 {
+    /// <summary>
+    /// Singleton class managing the OrpheeTrack NoteMap
+    /// </summary>
     public class NoteMapManager
     {
         private static NoteMapManager _instance;
         private int _columnNumberToAdd;
         private int _lineNumberToAdd;
+        /// <summary>Instance of the actual NoteMapManager </summary>
         public static NoteMapManager Instance 
         {
             get
@@ -20,6 +23,7 @@ namespace Orphee.CreationShared
                 return _instance;
             }
         }
+        /// <summary>Instance of the NoteNameListManager class</summary>
         public NoteNameListManager NoteNameListManager { get; private set; }
 
         private NoteMapManager()
@@ -29,6 +33,11 @@ namespace Orphee.CreationShared
             this._lineNumberToAdd = 12;
         }
 
+        /// <summary>
+        /// Generates a new note map for the calling orpheeTrack
+        /// </summary>
+        /// <param name="startingOctave">Starting octave of the generated note map</param>
+        /// <returns></returns>
         public ObservableCollection<ObservableCollection<IToggleButtonNote>> GenerateNoteMap(int startingOctave)
         {
             var noteMap = new ObservableCollection<ObservableCollection<IToggleButtonNote>>();
@@ -48,6 +57,10 @@ namespace Orphee.CreationShared
             return newLine;
         }
 
+        /// <summary>
+        /// Adds a higher octave to the given note map
+        /// </summary>
+        /// <param name="noteMap">note map in which the octave is to be added</param>
         public void AddOneHigherOctaveToThisNoteMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
         {
             int octaveNumber;
@@ -58,6 +71,10 @@ namespace Orphee.CreationShared
                 noteMap.Add(NoteMapLineGenerator(lineIndex, octaveNumber));
         }
 
+        /// <summary>
+        /// Adds a lower octave to the given note map
+        /// </summary>
+        /// <param name="noteMap">note map in which the octave is to be added</param>
         public void AddOneLowerOctaveToThisNoteMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
         {
             int octaveNumber;
@@ -68,6 +85,10 @@ namespace Orphee.CreationShared
                 noteMap.Insert(lineIndex, NoteMapLineGenerator(lineIndex, octaveNumber));
         }
 
+        /// <summary>
+        /// Add columns to the given note map
+        /// </summary>
+        /// <param name="noteMap">note map in which the columns are to be added</param>
         public void AddColumnsToThisNoteMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
         {
             if (noteMap == null || noteMap[0].Count >= 200)
@@ -77,6 +98,10 @@ namespace Orphee.CreationShared
                     noteMap[lineIndex].Add(new ToggleButtonNote() { LineIndex = lineIndex, ColumnIndex = columnIndex, Note = noteMap[lineIndex][0].Note });
         }
 
+        /// <summary>
+        /// Removes columns to the given note map
+        /// </summary>
+        /// <param name="noteMap">note map in which the columns are to be removed</param>
         public void RemoveAColumnFromThisNoteMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
         {
             if (noteMap == null || noteMap[0].Count <= 1)
@@ -121,6 +146,13 @@ namespace Orphee.CreationShared
             }
         }
 
+        /// <summary>
+        /// Converts the OrpheeTrack's NoteMap to a list of OrpheeNoteMessage
+        /// </summary>
+        /// <param name="noteMap">Note map to be converted</param>
+        /// <param name="channel">Channel related to the note map</param>
+        /// <param name="trackLength">Length of the OrpheeTrack containing the given note map</param>
+        /// <returns>Returns a list of OrpheeNoteMessage</returns>
         public IList<IOrpheeNoteMessage> ConvertNoteMapToOrpheeNoteMessageList(IList<ObservableCollection<IToggleButtonNote>> noteMap, int channel, ref uint trackLength)
         {
             var orpheeNoteMessageList = new List<IOrpheeNoteMessage>();
@@ -137,6 +169,11 @@ namespace Orphee.CreationShared
             return orpheeNoteMessageList;
         }
 
+        /// <summary>
+        /// Converts the given orpheeNoteMessage list to a note map
+        /// </summary>
+        /// <param name="orpheeNoteMessageLists">List of OrpheeNoteMessage contained in the calling OrpheeTrack</param>
+        /// <returns>Return a note map</returns>
         public ObservableCollection<ObservableCollection<IToggleButtonNote>> ConvertOrpheeMessageListToNoteMap(IList<IOrpheeNoteMessage> orpheeNoteMessageLists)
         {
             this._columnNumberToAdd = orpheeNoteMessageLists.Sum(message => message.DeltaTime / 48);

@@ -8,10 +8,15 @@ using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
 {
+    /// <summary>
+    /// Representation of a MIDI track
+    /// </summary>
     public class OrpheeTrack : IOrpheeTrack, INotifyPropertyChanged
     {
+        /// <summary>PropertyChanged event handler </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<ObservableCollection<IToggleButtonNote>> _noteMap;
+        /// <summary>Rectangle map represented on the CreationPage screen </summary>
         public ObservableCollection<ObservableCollection<IToggleButtonNote>> NoteMap
         {
             get { return this._noteMap; }
@@ -24,11 +29,16 @@ namespace Orphee.CreationShared
                 }
             }
         }
+        /// <summary>Player parameters </summary>
         public IPlayerParameters PlayerParameters { get; set; }
-        public IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; } 
+        /// <summary>List of noteMessage representation of the NoteMap </summary>
+        public IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; }
+        /// <summary>Current instrument </summary> 
         public Instrument CurrentInstrument { get; set; }
+        /// <summary>Channel assigned to the track </summary>
         public Channel Channel { get; set; }
         public List<SolidColorBrush> ColorBrushList { get; private set; }
+        /// <summary>Value representing the actual color associated to the track </summary>
         public SolidColorBrush TrackColor
         {
             get { return this._trackColor; }
@@ -42,7 +52,8 @@ namespace Orphee.CreationShared
             }
               
         }
-        private SolidColorBrush _trackColor; 
+        private SolidColorBrush _trackColor;
+        /// <summary>Represents the Visibility of the track on the CreationPage screen </summary>
         public Visibility TrackVisibility
         {
             get { return this._trackVisibility; }
@@ -57,6 +68,7 @@ namespace Orphee.CreationShared
         }
         private Visibility _trackVisibility;
         private int _trackColorIndex;
+        /// <summary>Value representing the color index of the track </summary>
         public int TrackColorIndex
         {
             get { return this._trackColorIndex; }
@@ -70,10 +82,25 @@ namespace Orphee.CreationShared
                 }
             }
         }
+        /// <summary>Graphical position of the track </summary>
         public int TrackPos { get; set; }
+        /// <summary>Length of the track </summary>
         public uint TrackLength { get; set; }
         private string _trackName;
-
+        /// <summary>Name of the track </summary>
+        public string TrackName
+        {
+            get { return this._trackName; }
+            set
+            {
+                if (this._trackName != value)
+                {
+                    this._trackName = value;
+                    OnPropertyChanged("TrackName");
+                }
+            }
+        }
+        /// <summary>Represents the isCheck event of the rectangle associated to the toggleButtonNote</summary>
         public bool IsChecked
         {
             get { return this._isChecked; }
@@ -88,19 +115,12 @@ namespace Orphee.CreationShared
         }
         private bool _isChecked;
 
-        public string TrackName
-        {
-            get { return this._trackName; }
-            set
-            {
-                if (this._trackName != value)
-                {
-                    this._trackName = value;
-                    OnPropertyChanged("TrackName");
-                }
-            }
-        }
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="trackPos">Track position of the actual track</param>
+        /// <param name="channel">Channel related to the actual track</param>
+        /// <param name="isNewTrack">Defines if the actual track is a new one or not</param>
         public OrpheeTrack(int trackPos, Channel channel, bool isNewTrack)
         {
             this.TrackColorIndex = 0;
@@ -117,12 +137,20 @@ namespace Orphee.CreationShared
             this.TrackLength = (uint) (this.TrackPos == 0 ?  22 : 7);
         }
 
+        /// <summary>
+        /// Sets the current instrument value
+        /// </summary>
+        /// <param name="instrument">Instrument value to set to the current instrument</param>
         public void UpdateCurrentInstrument(Instrument instrument)
         {
             this.CurrentInstrument = instrument;
             this.TrackName = this.CurrentInstrument.Name();
         }
 
+        /// <summary>
+        /// Copies the given track info to the current track
+        /// </summary>
+        /// <param name="orpheeTrack">OrpheeTrack to be copied</param>
         public void UpdateOrpheeTrack(IOrpheeTrack orpheeTrack)
         {
             this.NoteMap = NoteMapManager.Instance.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList);
@@ -136,12 +164,19 @@ namespace Orphee.CreationShared
             this.TrackVisibility = this.TrackPos == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Converts the NoteMap variable to a list of NoteMessage
+        /// </summary>
         public void ConvertNoteMapToOrpheeMessage()
         {
             var trackLength = this.TrackLength;
             this.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(this.NoteMap, (int)this.Channel, ref trackLength);
         }
 
+        /// <summary>
+        /// Handles the OnPropertyChanged event
+        /// </summary>
+        /// <param name="propertyName">Property name that triggered the event</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;
