@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\MidiDotNet.Shared.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\ISwapManager.cs" />
-    <Compile Include="MyMidiPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SwapManager.cs" />
   </ItemGroup>

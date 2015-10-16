@@ -21,7 +21,7 @@ namespace MidiDotNet.ExportModule
         /// Conctructor initializing the variables timeSignatureMessageWriter,
         /// tempoMessageWritern and swapManager through dependency injection 
         /// </summary>
-        /// <param name="timeSignatureMessageWriter">Instance of the timeSignatureMessag class used to write the timeSignatureMessage in the MIDI file</param>
+        /// <param name="timeSignatureMessageWriter">Instance of the TimeSignatureMessagWriter class used to write the timeSignatureMessage in the MIDI file</param>
         /// <param name="tempoMessageWriter">Instance of the TempoMessageWriter class used to write the tempoMessages in the MIDI file</param>
         /// <param name="swapManager">Instance of the SwapManager class used to swap the position of the bytes contained in the value it's given</param>
         public TrackHeaderWriter(ITimeSignatureMessageWriter timeSignatureMessageWriter, ITempoMessageWriter tempoMessageWriter, ISwapManager swapManager)
@@ -37,6 +37,7 @@ namespace MidiDotNet.ExportModule
         /// <param name="writer">Instance of the BinaryWriter class writting the noteMessages in the MIDI file</param>
         /// <param name="playerParameters">Instance of the PlayerParameters containing all the data needed to create the timeSignatureMessage to be written</param>
         /// <param name="trackLength">Value representing the length of the processed track</param>
+        /// <returns>Returns true if the message has been written and false if it hasn't</returns>
         public bool WriteTrackHeader(BinaryWriter writer, IPlayerParameters playerParameters, uint trackLength)
         {
             if (writer == null)

@@ -22,6 +22,7 @@ namespace MidiDotNet.ExportModule.Interfaces
         /// Function saving the actual piece to the MIDI file
         /// </summary>
         /// <param name="orpheeFile">Instance of the OrpheeFile class containing all the data needed to create the MIDI file</param>
+        /// <returns>Retuns a task containing a bool that is true if the file has been saved and false if it hasn't</returns>
         Task<bool> SaveOrpheeFile(IOrpheeFile orpheeFile);
     }
 }

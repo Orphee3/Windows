@@ -4,8 +4,34 @@ using MidiDotNet.ImportModule.Interfaces;
 
 namespace MidiDotNet.ImportModule
 {
+    /// <summary>
+    /// Class containing all the needed functions in order to
+    /// read and to convert the delta time from a byte array
+    /// to an int
+    /// </summary>
     public class DeltaTimeReader : IDeltaTimeReader
     {
+        /// <summary>
+        /// Function reading and converting the deltaTime from a byte array
+        /// to an int.
+        /// </summary>
+        /// <param name="reader">Instance of the BinaryReader class read the noteMessage in the MIDI file</param>
+        /// <returns>Returns the converted int value of the delta time</returns>
+        public int GetIntDeltaTime(BinaryReader reader)
+        {
+            var byteArray = new byte[4];
+            var arrayTrueLength = 0;
+            byteArray[0] = reader.ReadByte();
+
+            while ((byteArray[arrayTrueLength] & 0x80) == 0x80)
+                byteArray[++arrayTrueLength] = reader.ReadByte();
+            var definitiveByteArray = new byte[arrayTrueLength + 1];
+
+            for (var pos = 0; pos <= arrayTrueLength; pos++)
+                definitiveByteArray[pos] = byteArray[arrayTrueLength - pos];
+            return (RetreiveDeltaTime(definitiveByteArray));
+        }
+
         private int RetreiveDeltaTime(byte[] deltaTime)
         {
             var retreivedDeltaTime = 0;
@@ -24,21 +50,6 @@ namespace MidiDotNet.ImportModule
                 }
             }
             return retreivedDeltaTime;
-        }
-        
-        public int GetIntDeltaTime(BinaryReader reader)
-        {
-            var byteArray = new byte[4];
-            var arrayTrueLength = 0;
-            byteArray[0] = reader.ReadByte();
-
-            while ((byteArray[arrayTrueLength] & 0x80) == 0x80)
-                byteArray[++arrayTrueLength] = reader.ReadByte();
-            var definitiveByteArray = new byte[arrayTrueLength + 1];
-
-            for (var pos = 0; pos <= arrayTrueLength; pos++)
-                definitiveByteArray[pos] = byteArray[arrayTrueLength - pos];
-            return (RetreiveDeltaTime(definitiveByteArray));
         }
     }
 }

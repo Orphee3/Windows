@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
@@ -12,21 +11,48 @@ using Orphee.CreationShared.Interfaces;
 
 namespace MidiDotNet.ImportModule
 {
+    /// <summary>
+    /// Class containing all the needed functions in order
+    /// to import a MIDI file and converting its content 
+    /// so that it can be used by the program
+    /// </summary>
     public class OrpheeFileImporter : IOrpheeFileImporter
     {
         private readonly IFileHeaderReader _fileHeaderReader;
         private readonly ITrackHeaderReader _trackHeaderReader;
         private readonly INoteMessageReader _noteMessageReader;
         private BinaryReader _reader;
+        /// <summary>File representing the actual MIDI file in the program </summary>
         public IOrpheeFile OrpheeFile { get; private set; }
+        /// <summary>File representing the actual MIDI file in the device </summary>
         public IStorageFile StorageFile { get; set; }
+        /// <summary>String representing the name of the actual MIDI file</summary>
         public string FileName { get; set; }
 
+        /// <summary>
+        /// Constructor initializing fileHeaderReader, trackHeaderReader
+        /// and noteMessageReader through dependency injection.
+        /// </summary>
+        /// <param name="fileHeaderReader">Instance of the FileHeaderReader class used to read the MIDI file header</param>
+        /// <param name="trackHeaderReader">Instance of the TrackHeaderReader class used to read the track header of each track</param>
+        /// <param name="noteMessageReader">Instance of the NoteMessageReader class used to read the noteMessages in the MIDI file</param>
         public OrpheeFileImporter(IFileHeaderReader fileHeaderReader, ITrackHeaderReader trackHeaderReader, INoteMessageReader noteMessageReader)
         {
             this._fileHeaderReader = fileHeaderReader;
             this._trackHeaderReader = trackHeaderReader;
             this._noteMessageReader = noteMessageReader;
+        }
+
+        /// <summary>
+        /// Function importing the MIDI file and converting
+        /// it so it can be used in the program
+        /// </summary>
+        /// <param name="fileType">Value representing the actual MIDI file type</param>
+        /// <returns>Returns the imported MIDI file or null if a problem occured</returns>
+        public async Task<IOrpheeFile> ImportFile(string fileType)
+        {
+            var result = await GetTheOpenFilePicker(fileType);
+            return result ? this.OrpheeFile : null;
         }
 
         private async Task<bool> GetTheOpenFilePicker(string fileType)
@@ -41,12 +67,6 @@ namespace MidiDotNet.ImportModule
             if (this.StorageFile != null)
                 return ReadFileMessages();
             return false;
-        }
-
-        public async Task<IOrpheeFile> ImportFile(string fileType)
-        {
-            var result = await GetTheOpenFilePicker(fileType);
-            return result ? this.OrpheeFile : null;
         }
 
         private bool ReadFileMessages()
