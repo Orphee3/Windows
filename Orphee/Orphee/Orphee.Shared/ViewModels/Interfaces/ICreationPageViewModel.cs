@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Commands;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
@@ -52,5 +53,7 @@ namespace Orphee.ViewModels.Interfaces
         DelegateCommand AddNewTrackCommand { get; }
         /// <summary>Play the notes contained in each track of the OrpheeFile </summary>
         DelegateCommand PlayCommand { get; }
+        DelegateCommand ItemSelectedCommand { get; }
+        DelegateCommand<OrpheeTrack> TrackParametersCommand { get; }
     }
 }

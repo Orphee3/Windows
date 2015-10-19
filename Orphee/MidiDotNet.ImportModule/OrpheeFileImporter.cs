@@ -59,7 +59,7 @@ namespace MidiDotNet.ImportModule
         {
             var openPicker = new FileOpenPicker()
             {
-                ViewMode = PickerViewMode.Thumbnail,
+                ViewMode = PickerViewMode.List,
                 SuggestedStartLocation = PickerLocationId.MusicLibrary,
             };
             openPicker.FileTypeFilter.Add(fileType);

@@ -83,9 +83,9 @@ namespace Orphee.ViewModels
 
             var user = navigationParameter as User;
             this._userName = user.Name;
-            this.LikeNumber = user.Likes?.Count ?? 0;
+            //this.LikeNumber = user.Likes?.Count ?? 0;
             var creations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + user.Id + "/creation");
-            this.CreationNumber = creations?.Count ?? 0;
+           // this.CreationNumber = creations?.Count ?? 0;
             SetUserPicture(user.Picture);
             if (creations == null)
                 return;

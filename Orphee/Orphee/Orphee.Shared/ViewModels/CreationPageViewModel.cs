@@ -7,8 +7,11 @@ using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.ViewModels.Interfaces;
 using System.Linq;
+using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Midi;
+using Orphee.UI;
 
 namespace Orphee.ViewModels
 {
@@ -62,6 +65,7 @@ namespace Orphee.ViewModels
         public DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; private set; }
         /// <summary>Saves the current OrpheeFile in a MIDI file </summary>
         public DelegateCommand SaveButtonCommand { get; private set; }
+        public DelegateCommand ItemSelectedCommand { get; private set; }
         /// <summary>Loads a MIDI file</summary>
         public DelegateCommand LoadButtonCommand { get; private set; }
         /// <summary>Play the notes contained in each track of the OrpheeFile </summary>
@@ -74,6 +78,7 @@ namespace Orphee.ViewModels
         public DelegateCommand AddOneLowerOctaveCommand { get; private set; }
         /// <summary>Add a new track to the OrpheeFile </summary>
         public DelegateCommand AddNewTrackCommand { get; private set; }
+        public DelegateCommand<OrpheeTrack> TrackParametersCommand { get; private set; }
 
         /// <summary>
         /// Constructor initializing soundPlayer, instrumentManager, orpheeFileExporter
@@ -95,6 +100,7 @@ namespace Orphee.ViewModels
             this.CurrentTempoIndex = 80;
             this._orpheeFileExporter = orpheeFileExporter;
             this._orpheeFileImporter = orpheeFileImporter;
+            this.TrackParametersCommand = new DelegateCommand<OrpheeTrack>(TrackParametersCommandExec);
             this.AddOneHigherOctaveCommand = new DelegateCommand(() => NoteMapManager.Instance.AddOneHigherOctaveToThisNoteMap(this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).NoteMap));
             this.AddOneLowerOctaveCommand = new DelegateCommand(() => NoteMapManager.Instance.AddOneLowerOctaveToThisNoteMap(this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).NoteMap));
             this.AddNewTrackCommand = new DelegateCommand(AddNewTrackCommandExec);
@@ -126,7 +132,13 @@ namespace Orphee.ViewModels
         public void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote)
         {
             if (toggleButtonNote.IsChecked)
+            {
                 this._soundPlayer.PlayNote(toggleButtonNote.Note, this._currentChannel);
+                if (this.OrpheeFile.OrpheeTrackList[(int) this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].RectangleBackgroundColor.Color == Colors.Gray)
+                    this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].RectangleBackgroundColor = this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].TrackColor;
+            }
+            else if (NoteMapManager.Instance.IsColumnEmpty(toggleButtonNote.ColumnIndex, this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].NoteMap))
+                this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].RectangleBackgroundColor =  new SolidColorBrush(Colors.Gray);
         }
 
         private void UpdateCurrentInstrument()
@@ -168,12 +180,7 @@ namespace Orphee.ViewModels
             if (importedOrpheeFile == null)
                 return;
             for (var trackIndex = 0; trackIndex < importedOrpheeFile.OrpheeTrackList.Count; trackIndex++)
-            {
-                if (trackIndex >= this.OrpheeFile.OrpheeTrackList.Count)
-                    this.OrpheeFile.AddNewTrack(new OrpheeTrack(trackIndex, (Channel) trackIndex + 1, false));
-                this.OrpheeFile.OrpheeTrackList[trackIndex].UpdateOrpheeTrack(
-                    importedOrpheeFile.OrpheeTrackList[trackIndex]);
-            }
+                 this.OrpheeFile.AddNewTrack(new OrpheeTrack(trackIndex, (Channel) trackIndex + 1, false));
             var firstTrack = this.OrpheeFile.OrpheeTrackList[0];
             this.CurrentTempoIndex = (int)firstTrack.PlayerParameters.Tempo - 40;
             this._currentChannel = firstTrack.Channel;
@@ -185,7 +192,7 @@ namespace Orphee.ViewModels
             if (this._currentChannel != selectedTrack.Channel)
             {
                 this._currentChannel = selectedTrack.Channel;
-                this.CurrentInstrumentIndex = (int) selectedTrack.CurrentInstrument;
+                this.CurrentInstrumentIndex = (int)selectedTrack.CurrentInstrument;
                 foreach (var track in this.OrpheeFile.OrpheeTrackList.Where(t => t != selectedTrack))
                 {
                     track.IsChecked = false;
@@ -197,10 +204,27 @@ namespace Orphee.ViewModels
         private void AddNewTrackCommandExec()
         {
             if (this.OrpheeFile.OrpheeTrackList.Count < 16)
-            { 
+            {
                 this.OrpheeFile.AddNewTrack(new OrpheeTrack(this.OrpheeFile.OrpheeTrackList.Count, (Channel) this.OrpheeFile.OrpheeTrackList.Count, true) {TrackVisibility = Visibility.Collapsed});
                 this.OrpheeFile.OrpheeFileParameters.NumberOfTracks++;
+                if (this.OrpheeFile.OrpheeTrackList.Count == 2)
+                //To remove
+                this.OrpheeFile.OrpheeTrackList[1].UpdateCurrentInstrument(Instrument.ChoirAahs);
+                if (this.OrpheeFile.OrpheeTrackList.Count == 3)
+                    //To remove
+                    this.OrpheeFile.OrpheeTrackList[2].UpdateCurrentInstrument(Instrument.OverdrivenGuitar);
+                if (this.OrpheeFile.OrpheeTrackList.Count == 4)
+                    //To remove
+                    this.OrpheeFile.OrpheeTrackList[3].UpdateCurrentInstrument(Instrument.OrchestralHarp);
             }
+        }
+
+        private async void TrackParametersCommandExec(OrpheeTrack selectedTrack)
+        {
+            var message = new TrackOptionsMessageDialog();
+            await message.ShowAsync();
+            // var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
+            // await dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => await message.ShowAsync());
         }
     }
 }

@@ -29,6 +29,7 @@ namespace Orphee.CreationShared.Interfaces
         Channel Channel { get; set; }
         /// <summary>Represents the Visibility of the track on the CreationPage screen </summary>
         Visibility TrackVisibility { get; set; }
+        SolidColorBrush TrackColor { get; set; }
         /// <summary>Graphical position of the track </summary>
         int TrackPos { get; set; }
         /// <summary>Length of the track </summary>
@@ -37,6 +38,8 @@ namespace Orphee.CreationShared.Interfaces
         string TrackName { get; set; }
         /// <summary>Represents the isCheck event of the rectangle associated to the toggleButtonNote</summary>
         bool IsChecked { get; set; }
+        ObservableCollection<MyRectangle> ColumnMap { get; set; } 
+
 
         // Methods
 
@@ -44,7 +47,7 @@ namespace Orphee.CreationShared.Interfaces
         /// Copies the given track info to the current track
         /// </summary>
         /// <param name="orpheeTrack">OrpheeTrack to be copied</param>
-        void UpdateOrpheeTrack(IOrpheeTrack orpheeTrack);
+        //void UpdateOrpheeTrack(IOrpheeTrack orpheeTrack);
 
         /// <summary>
         /// Sets the current instrument value

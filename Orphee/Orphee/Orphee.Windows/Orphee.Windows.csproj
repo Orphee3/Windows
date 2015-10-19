@@ -29,7 +29,8 @@
     <DefineConstants>DEBUG;NETFX_CORE;WINDOWS_APP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Orphee.Windows.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -112,6 +113,9 @@
       <DependentUpon>MyBottomAppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\MyAppBarButton.cs" />
+    <Compile Include="UI\TrackOptionsMessageDialog.xaml.cs">
+      <DependentUpon>TrackOptionsMessageDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChannelInfoPage.xaml.cs">
       <DependentUpon>ChannelInfoPage.xaml</DependentUpon>
     </Compile>
@@ -261,6 +265,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-80.png" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Callisto, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Callisto.1.4.0\lib\netcore451\Callisto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Prism.Mvvm.1.1.1\lib\windows8\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
       <Private>True</Private>
@@ -311,6 +319,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MyBottomAppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\TrackOptionsMessageDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

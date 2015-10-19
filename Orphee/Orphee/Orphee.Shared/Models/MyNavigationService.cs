@@ -17,7 +17,7 @@ namespace Orphee.Models
         /// <summary>Name of the curent page </summary>
         public string CurrentPageName { get; set; }
         /// <summary>Foreground color of the BottomAppBar buttons </summary>
-        public Dictionary<string, SolidColorBrush> ButtonForegroundColorList { get; }
+        public Dictionary<string, SolidColorBrush> ButtonForegroundColorList { get; private set; }
 
         public MyNavigationService(INavigationService navigationService)
         {

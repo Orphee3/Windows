@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
@@ -29,8 +32,32 @@ namespace Orphee.CreationShared
         private NoteMapManager()
         {
             this.NoteNameListManager = new NoteNameListManager();
-            this._columnNumberToAdd = 10;
-            this._lineNumberToAdd = 12;
+            this._columnNumberToAdd = 500;
+            this._lineNumberToAdd = 60;
+        }
+
+        public ObservableCollection<MyRectangle> GenerateColumnMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
+        {
+            var columnMap = new ObservableCollection<MyRectangle>();
+            for (var columnIndex = 0; columnIndex < noteMap[0].Count; columnIndex++)
+            {
+                for (var lineIndex = 0; lineIndex < noteMap.Count; lineIndex++)
+                {
+                    if (noteMap[lineIndex][columnIndex].IsChecked)
+                    {
+                        columnMap.Add(new MyRectangle() {RectangleBackgroundColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x78, 0xC7, 0xF9)), IsSelectionRectangleVisible = Visibility.Collapsed});
+                        break;
+                    }
+                    else if (lineIndex == noteMap.Count -1)
+                        columnMap.Add(new MyRectangle() { RectangleBackgroundColor = new SolidColorBrush(Colors.Gray), IsSelectionRectangleVisible = Visibility.Collapsed });
+                }
+            }
+            return columnMap;
+        }
+
+        public bool IsColumnEmpty(int columnIndex, ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
+        {
+            return noteMap.All(line => !line[columnIndex].IsChecked);
         }
 
         /// <summary>
@@ -43,7 +70,7 @@ namespace Orphee.CreationShared
             var noteMap = new ObservableCollection<ObservableCollection<IToggleButtonNote>>();
             for (var lineIndex = 0; lineIndex < this._lineNumberToAdd; lineIndex++)
                 noteMap.Add(NoteMapLineGenerator(lineIndex, startingOctave));
-            this._lineNumberToAdd = 12;
+            this._lineNumberToAdd = 60;
             return noteMap;
         }
 
@@ -193,7 +220,7 @@ namespace Orphee.CreationShared
                     noteMap[lineIndex][columnIndex].Note = noteMessage.Note;
                 }
             }
-            this._columnNumberToAdd = 10;
+            this._columnNumberToAdd = 50;
             return noteMap;
         }
 

@@ -42,6 +42,7 @@
     <Compile Include="InstrumentManager.cs" />
     <Compile Include="Interfaces\IInstrumentManager.cs" />
     <Compile Include="Interfaces\IMidiLibRepository.cs" />
+    <Compile Include="Interfaces\IMyRectangle.cs" />
     <Compile Include="Interfaces\INoteNameListManager.cs" />
     <Compile Include="Interfaces\IOrpheeFile.cs" />
     <Compile Include="Interfaces\IOrpheeFileParameters.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Interfaces\ISoundPlayer.cs" />
     <Compile Include="Interfaces\IToggleButtonNote.cs" />
     <Compile Include="MidiLibRepository.cs" />
+    <Compile Include="MyRectangle.cs" />
     <Compile Include="NoteMapManager.cs" />
     <Compile Include="NoteNameListManager.cs" />
     <Compile Include="OrpheeFile.cs" />
@@ -81,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orphee.RestApiManagement\Orphee.RestApiManagement.csproj">
+      <Project>{2623F847-A3A6-4884-9FE3-E31742F3C745}</Project>
+      <Name>Orphee.RestApiManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

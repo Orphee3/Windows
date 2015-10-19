@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
@@ -15,6 +16,7 @@ namespace Orphee.Views
         public ChatPage()
         {
             this.InitializeComponent();
+            this.Loaded += (sender, args) => ScrollToBottom();
             RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
         }
 
@@ -27,6 +29,18 @@ namespace Orphee.Views
                 RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
                 RestApiManagerBase.Instance.UserData.User.PendingMessageList.Clear();
             }));
+        }
+
+        private void ScrollToBottom()
+        {
+            var selectedIndex = ConversationListView.Items.Count - 1;
+            if (selectedIndex < 0)
+                return;
+
+            ConversationListView.SelectedIndex = selectedIndex;
+            ConversationListView.UpdateLayout();
+
+            ConversationListView.ScrollIntoView(ConversationListView.SelectedItem);
         }
 
         private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)

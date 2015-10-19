@@ -19,7 +19,7 @@ namespace Orphee.ViewModels
         /// <summary>Redirects to the precious page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
         /// <summary>Deletes the selected friend </summary>
-        public DelegateCommand<User> DeleteFriendCommand { get; }
+        public DelegateCommand<User> DeleteFriendCommand { get; private set; }
         /// <summary>List of the user's friends </summary>
         public ObservableCollection<User> FriendList { get; private set; }
         /// <summary>Validates the creation of the new conversation </summary>

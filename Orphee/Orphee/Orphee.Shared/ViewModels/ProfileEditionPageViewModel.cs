@@ -15,9 +15,9 @@ namespace Orphee.ViewModels
     public class ProfileEditionPageViewModel : ViewModel, IProfileEditionPageViewModel
     {
         /// <summary>Redirects to the previous page </summary>
-        public DelegateCommand GoBackCommand { get; }
+        public DelegateCommand GoBackCommand { get; private set; }
         /// <summary>Enables the posibility to change the user's picture </summary>
-        public DelegateCommand ChangePictureCommand { get; }
+        public DelegateCommand ChangePictureCommand { get; private set; }
         private readonly IFileUploader _fileUploader;
 
         /// <summary>
