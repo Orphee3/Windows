@@ -68,7 +68,7 @@ namespace Orphee.ViewModels
             string result;
             if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && (result = await this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["askfriend"] + "/" + friend.Id)) != null)
             {
-                var messageDialog = result == null ? new MessageDialog("Friendship already asked") : new MessageDialog("Friendship request sent to " + friend.UserName);
+                var messageDialog = result == "already send" ? new MessageDialog("Friendship already asked") : new MessageDialog("Friendship request sent to " + friend.UserName);
 
                 await messageDialog.ShowAsync();
             }
