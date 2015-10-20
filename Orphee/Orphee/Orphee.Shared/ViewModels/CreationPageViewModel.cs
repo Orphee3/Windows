@@ -109,7 +109,10 @@ namespace Orphee.ViewModels
             this.AddColumnsCommand = new DelegateCommand(() =>
             {
                 foreach (var track in this.OrpheeFile.OrpheeTrackList)
+                {
                     NoteMapManager.Instance.AddColumnsToThisNoteMap(track.NoteMap);
+                    NoteMapManager.Instance.AddColumnsToThisColumnMap(track.ColumnMap);
+                }
             });
             this.RemoveAColumnCommand = new DelegateCommand(() => NoteMapManager.Instance.RemoveAColumnFromThisNoteMap(this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).NoteMap));
             this.SaveButtonCommand = new DelegateCommand(SaveButtonCommandExec);
@@ -119,8 +122,11 @@ namespace Orphee.ViewModels
             {
                 foreach (var track in this.OrpheeFile.OrpheeTrackList)
                 {
-                    track.ConvertNoteMapToOrpheeMessage();
-                    this._soundPlayer.PlayTrack(track.OrpheeNoteMessageList, track.CurrentInstrument, track.Channel);
+                    if (track != null && track.ColumnMap != null && track.ColumnMap.Any(rect => rect.RectangleBackgroundColor.Color != Colors.Gray))
+                    {
+                        track.ConvertNoteMapToOrpheeMessage();
+                        this._soundPlayer.PlayTrack(track.OrpheeNoteMessageList, track.CurrentInstrument, track.Channel);
+                    }
                 }
             });
         }
@@ -179,8 +185,10 @@ namespace Orphee.ViewModels
 
             if (importedOrpheeFile == null)
                 return;
-            for (var trackIndex = 0; trackIndex < importedOrpheeFile.OrpheeTrackList.Count; trackIndex++)
-                 this.OrpheeFile.AddNewTrack(new OrpheeTrack(trackIndex, (Channel) trackIndex + 1, false));
+            this.OrpheeFile.OrpheeTrackList.Clear();
+            foreach (var track in importedOrpheeFile.OrpheeTrackList)
+                 this.OrpheeFile.AddNewTrack(new OrpheeTrack(track));
+            this.OrpheeFile.FileName = importedOrpheeFile.FileName;
             var firstTrack = this.OrpheeFile.OrpheeTrackList[0];
             this.CurrentTempoIndex = (int)firstTrack.PlayerParameters.Tempo - 40;
             this._currentChannel = firstTrack.Channel;
@@ -207,15 +215,6 @@ namespace Orphee.ViewModels
             {
                 this.OrpheeFile.AddNewTrack(new OrpheeTrack(this.OrpheeFile.OrpheeTrackList.Count, (Channel) this.OrpheeFile.OrpheeTrackList.Count, true) {TrackVisibility = Visibility.Collapsed});
                 this.OrpheeFile.OrpheeFileParameters.NumberOfTracks++;
-                if (this.OrpheeFile.OrpheeTrackList.Count == 2)
-                //To remove
-                this.OrpheeFile.OrpheeTrackList[1].UpdateCurrentInstrument(Instrument.ChoirAahs);
-                if (this.OrpheeFile.OrpheeTrackList.Count == 3)
-                    //To remove
-                    this.OrpheeFile.OrpheeTrackList[2].UpdateCurrentInstrument(Instrument.OverdrivenGuitar);
-                if (this.OrpheeFile.OrpheeTrackList.Count == 4)
-                    //To remove
-                    this.OrpheeFile.OrpheeTrackList[3].UpdateCurrentInstrument(Instrument.OrchestralHarp);
             }
         }
 

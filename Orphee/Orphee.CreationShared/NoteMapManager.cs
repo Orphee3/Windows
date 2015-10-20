@@ -112,13 +112,21 @@ namespace Orphee.CreationShared
                 noteMap.Insert(lineIndex, NoteMapLineGenerator(lineIndex, octaveNumber));
         }
 
+        public void AddColumnsToThisColumnMap(ObservableCollection<MyRectangle> columnMap)
+        {
+            if (columnMap == null || columnMap.Count >= 20000)
+                return;
+            for (var columnIndex = 0; columnIndex < this._columnNumberToAdd; columnIndex++)
+                columnMap.Add(new MyRectangle());
+        }
+
         /// <summary>
         /// Add columns to the given note map
         /// </summary>
         /// <param name="noteMap">note map in which the columns are to be added</param>
         public void AddColumnsToThisNoteMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
         {
-            if (noteMap == null || noteMap[0].Count >= 200)
+            if (noteMap == null || noteMap[0].Count >= 20000)
                 return;
             for (var lineIndex = 0; lineIndex < noteMap.Count; lineIndex++)
                 for (var columnIndex = 0; columnIndex < this._columnNumberToAdd; columnIndex++)

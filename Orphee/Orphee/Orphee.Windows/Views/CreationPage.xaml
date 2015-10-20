@@ -724,13 +724,22 @@
         </Grid.RowDefinitions>
         <ProgressRing Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Height="45" Width="45"/>
         <Grid Grid.Row="0" Background="#78C7F9">
-            <TextBlock Text="{Binding DisplayedTrack.TrackName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
-                <AppBarButton Icon="Save" Command="{Binding SaveButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
-                <AppBarButton Icon="Folder" Command="{Binding LoadButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
-                <AppBarButton Icon="Clear" Command="{Binding ClearButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
-            </StackPanel>
+            <TextBlock Text="{Binding OrpheeFile.FileName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
+                    <AppBarButton Icon="Save" Command="{Binding SaveButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
+                    <AppBarButton Icon="Folder" Command="{Binding LoadButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
+                    <AppBarButton Icon="Clear" Command="{Binding ClearButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
+                </StackPanel>
+                <Grid Grid.Column="1" HorizontalAlignment="Right">
+                    <AppBarButton Icon="Add" Command="{Binding AddColumnsCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
+                </Grid>
+            </Grid>
             <Line VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
         <Grid Grid.Row="1">
@@ -743,14 +752,14 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer Name="ScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  Grid.Row="0" HorizontalAlignment="Stretch" Margin="25, 5, 5, 5">
-                    <ItemsControl Name="Map" ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  Grid.Row="0" HorizontalAlignment="Stretch" Margin="25, 5, 5, 5">
+                    <ItemsControl ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <ItemsControl Name="TrackItemsControl" ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding TrackVisibility}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <VirtualizingStackPanel Orientation="Vertical"/>
+                                            <ItemsStackPanel Orientation="Vertical"/>
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
@@ -758,7 +767,7 @@
                                             <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
-                                                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                                                        <ItemsStackPanel Orientation="Horizontal"/>
                                                     </ItemsPanelTemplate>
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>

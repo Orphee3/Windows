@@ -29,8 +29,22 @@ namespace Orphee.CreationShared
                 }
             }
         }
+
+        private string _fileName;
+
         /// <summary>Name of the current file </summary>
-        public string FileName { get; set; }
+        public string FileName
+        {
+            get { return this._fileName; }
+            set
+            {
+                if (this._fileName != value)
+                {
+                    this._fileName = value;
+                    OnPropertyChanged("FileName");
+                }
+            }
+        }
 
         /// <summary>
         /// Constructor
@@ -39,7 +53,7 @@ namespace Orphee.CreationShared
         {
             this.OrpheeTrackList = new ObservableCollection<IOrpheeTrack> {new OrpheeTrack(0, 0, true) {IsChecked = true, TrackVisibility = Visibility.Visible} };
             this.OrpheeFileParameters = new OrpheeFileParameters();
-            this.FileName = "Test.mid";
+            this.FileName = "New Piece";
         }
 
         /// <summary>
