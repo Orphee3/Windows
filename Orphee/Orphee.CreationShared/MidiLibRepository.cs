@@ -40,7 +40,7 @@ namespace Orphee.CreationShared
             }
             this._velocity = 75;
 
-            this._outputDevice.Open();
+            //this._outputDevice.Open();
             this._clock.Start();
         }
 
@@ -75,10 +75,10 @@ namespace Orphee.CreationShared
         public void UpdateTempo(uint tempo)
         {
             this.PlayerParameters.Tempo = tempo;
-            this._outputDevice.Close();
+            //this._outputDevice.Close();
             this._clock = new Clock(tempo);
             this._outputDevice = OutputDevice.InstalledDevices[0];
-            this._outputDevice.Open();
+            //this._outputDevice.Open();
             this._clock.Start();
         }
 

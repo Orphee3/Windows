@@ -18,8 +18,6 @@
             <Setter Property="BorderThickness" Value="{ThemeResource ToggleButtonBorderThemeThickness}"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="75"/>
-            <Setter Property="Height" Value="40"/>
             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
@@ -724,7 +722,7 @@
             <RowDefinition Height="0.1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ItemsControl/>
+        <ProgressRing Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Height="45" Width="45"/>
         <Grid Grid.Row="0" Background="#78C7F9">
             <TextBlock Text="{Binding DisplayedTrack.TrackName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -745,27 +743,27 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer Name="ScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  Grid.Row="0" HorizontalAlignment="Left" Margin="25, 5, 5, 5">
+                <ScrollViewer Name="ScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  Grid.Row="0" HorizontalAlignment="Stretch" Margin="25, 5, 5, 5">
                     <ItemsControl Name="Map" ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <ItemsControl Name="TrackItemsControl" ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding TrackVisibility}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <ItemsStackPanel Orientation="Vertical"/>
+                                            <VirtualizingStackPanel Orientation="Vertical"/>
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
-                                                        <ItemsStackPanel Orientation="Horizontal"/>
+                                                        <VirtualizingStackPanel Orientation="Horizontal"/>
                                                     </ItemsPanelTemplate>
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
-                                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>

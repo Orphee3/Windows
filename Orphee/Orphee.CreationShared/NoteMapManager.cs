@@ -17,7 +17,7 @@ namespace Orphee.CreationShared
         private int _columnNumberToAdd;
         private int _lineNumberToAdd;
         /// <summary>Instance of the actual NoteMapManager </summary>
-        public static NoteMapManager Instance 
+        public static NoteMapManager Instance
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Orphee.CreationShared
         private NoteMapManager()
         {
             this.NoteNameListManager = new NoteNameListManager();
-            this._columnNumberToAdd = 500;
+            this._columnNumberToAdd = 50;
             this._lineNumberToAdd = 60;
         }
 
@@ -45,10 +45,10 @@ namespace Orphee.CreationShared
                 {
                     if (noteMap[lineIndex][columnIndex].IsChecked)
                     {
-                        columnMap.Add(new MyRectangle() {RectangleBackgroundColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x78, 0xC7, 0xF9)), IsSelectionRectangleVisible = Visibility.Collapsed});
+                        columnMap.Add(new MyRectangle() { RectangleBackgroundColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x78, 0xC7, 0xF9)), IsSelectionRectangleVisible = Visibility.Collapsed });
                         break;
                     }
-                    else if (lineIndex == noteMap.Count -1)
+                    else if (lineIndex == noteMap.Count - 1)
                         columnMap.Add(new MyRectangle() { RectangleBackgroundColor = new SolidColorBrush(Colors.Gray), IsSelectionRectangleVisible = Visibility.Collapsed });
                 }
             }
@@ -143,7 +143,7 @@ namespace Orphee.CreationShared
             bytesToAdd += (deltaTime > 127 ? (deltaTime > 2097151 ? 2 : 1) : 0);
             bytesToAdd += extractedToggleButtonNotes.Count * 8;
             for (var iterator = 0; iterator < extractedToggleButtonNotes.Count; iterator++)
-                orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? deltaTime : 0, MessageCode = 0x90, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 76} );
+                orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? deltaTime : 0, MessageCode = 0x90, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 76 });
             for (var iterator = 0; iterator < extractedToggleButtonNotes.Count; iterator++)
                 orpheeNoteMessageList.Add(new OrpheeNoteMessage() { Channel = channel, DeltaTime = (iterator == 0) ? 48 : 0, MessageCode = 0x80, Note = extractedToggleButtonNotes[iterator].Note, Velocity = 0 });
             return (uint)bytesToAdd;
@@ -189,7 +189,7 @@ namespace Orphee.CreationShared
             {
                 var extractedToggleButtonNotes = ExtractToggleButtonNotesFromNoteMapColumn(columnIndex, noteMap);
                 if (extractedToggleButtonNotes != null)
-                   trackLength += UpdateOrpheeNoteMesageList(orpheeNoteMessageList, extractedToggleButtonNotes, channel, deltaTime);
+                    trackLength += UpdateOrpheeNoteMesageList(orpheeNoteMessageList, extractedToggleButtonNotes, channel, deltaTime);
                 deltaTime = (extractedToggleButtonNotes == null) ? (deltaTime + 48) : 0;
             }
             MakeTheLastNoteLonger(orpheeNoteMessageList);
@@ -204,8 +204,8 @@ namespace Orphee.CreationShared
         public ObservableCollection<ObservableCollection<IToggleButtonNote>> ConvertOrpheeMessageListToNoteMap(IList<IOrpheeNoteMessage> orpheeNoteMessageLists)
         {
             this._columnNumberToAdd = orpheeNoteMessageLists.Sum(message => message.DeltaTime / 48);
-            var lowerOctave = ((int) orpheeNoteMessageLists.Min(message => message.Note) / 12) - 1;
-            var higherOctave = ((int) orpheeNoteMessageLists.Max(message => message.Note) / 12) - 1;
+            var lowerOctave = ((int)orpheeNoteMessageLists.Min(message => message.Note) / 12) - 1;
+            var higherOctave = ((int)orpheeNoteMessageLists.Max(message => message.Note) / 12) - 1;
             this._lineNumberToAdd = ((higherOctave - lowerOctave) + 1) * 12;
             var noteMap = GenerateNoteMap(lowerOctave);
             var columnIndex = 0;

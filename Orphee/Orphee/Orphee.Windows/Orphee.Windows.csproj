@@ -181,6 +181,8 @@
     <Content Include="Assets\friend-icon.png" />
     <Content Include="Assets\heart-icon-white.png" />
     <Content Include="Assets\loginScreen.jpg" />
+    <Content Include="Assets\Orphee icons.png" />
+    <Content Include="Assets\Orphee icons2.png" />
     <Content Include="Assets\Profile-photo.jpg" />
     <Content Include="Assets\commentary-icon.png" />
     <Content Include="Assets\defaultUser.png" />
@@ -263,6 +265,8 @@
     <Content Include="Assets\Wide310x150Logo.scale-140.png" />
     <Content Include="Assets\Wide310x150Logo.scale-180.png" />
     <Content Include="Assets\Wide310x150Logo.scale-80.png" />
+    <Content Include="Assets\Windows phone logo.png" />
+    <Content Include="Assets\Windows phone logo2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Callisto, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
