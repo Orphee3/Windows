@@ -159,7 +159,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="1" Visibility="{Binding ButtonsVisibility}" Background="#78C7F9">
+        <Grid Grid.Row="1" Visibility="{Binding ButtonsVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="10"/>
