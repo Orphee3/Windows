@@ -99,7 +99,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    
+
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="110"/>
@@ -159,11 +159,29 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="1" VerticalAlignment="Center" Visibility="{Binding ButtonsVisibility}">
-            <Image Stretch="Fill" Source="/Assets/login_windows.png"/>
-            <Grid Margin="0, 0, 0, 40" VerticalAlignment="Bottom">
-                <Image Height="34" Margin="0, 0, 0, 21" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
-                <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginButton}"/>
+        <Grid Grid.Row="1" Visibility="{Binding ButtonsVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#79C7F8"/>
+            <Grid Grid.Row="1" Background="#67B5E6"/>
+            <Grid Grid.Row="2" Background="#67B5E6"/>
+            <Image Grid.Row="0" Stretch="None" VerticalAlignment="Bottom" HorizontalAlignment="Center" Source="/Assets/Windows phone logo2.png"/>
+            <Grid Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Image Stretch="None" Source="/Assets/Orphee icons2.png"/>
+                    <TextBlock Text="Log in for more content and join your friends !" HorizontalAlignment="Center" FontSize="35" VerticalAlignment="Center" TextWrapping="WrapWholeWords" Width="600" TextAlignment="Center"/>
+                </StackPanel>
+                <Grid Grid.Row="1" VerticalAlignment="Center">
+                    <Image Height="34" Margin="0, 0, 0, 21" Source="/Assets/logo transparent.png"  HorizontalAlignment="Center"/>
+                    <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginButton}"/>
+                </Grid>
             </Grid>
         </Grid>
         <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="2"/>

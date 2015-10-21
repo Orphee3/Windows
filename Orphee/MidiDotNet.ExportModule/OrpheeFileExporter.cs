@@ -59,7 +59,7 @@ namespace MidiDotNet.ExportModule
         /// </summary>
         /// <param name="orpheeFile">Instance of the OrpheeFile class containing all the data needed to create the MIDI file</param>
         /// <returns>Retuns a task containing a bool that is true if the file has been saved and false if it hasn't</returns>
-        public async Task<bool> SaveOrpheeFile(IOrpheeFile orpheeFile)
+        public async Task<bool?> SaveOrpheeFile(IOrpheeFile orpheeFile)
         {
             foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
             {
@@ -74,7 +74,7 @@ namespace MidiDotNet.ExportModule
         }
 
 
-        private async Task<bool> GetTheSaveFilePicker(IOrpheeFile orpheeFile)
+        private async Task<bool?> GetTheSaveFilePicker(IOrpheeFile orpheeFile)
         {
             var savePicker = new FileSavePicker()
             {
@@ -87,7 +87,9 @@ namespace MidiDotNet.ExportModule
             {
                 CachedFileManager.DeferUpdates(this._storageFile);
                 WriteEventsInFile(orpheeFile);
-                //var result = await this._fileUploader.UploadFile(this._storageFile);
+                var result = await this._fileUploader.UploadFile(this._storageFile);
+                if (!result)
+                    return null;
                 return true;
             }
             return false;

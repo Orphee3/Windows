@@ -30,7 +30,7 @@ namespace Orphee.CreationShared.Interfaces
         /// Function changing the tempo value
         /// </summary>
         /// <param name="tempo">New tempo value</param>
-        void UpdateTempo(uint tempo);
+        void UpdateTempo(uint tempo, Instrument instrument, Channel channel);
 
         /// <summary>
         /// Function returning the sound player playerParameter

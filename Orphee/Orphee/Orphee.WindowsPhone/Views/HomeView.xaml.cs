@@ -1,11 +1,8 @@
-﻿using Windows.UI;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Models;
-using Orphee.ViewModels;
 
 namespace Orphee.Views
 {
@@ -20,7 +17,6 @@ namespace Orphee.Views
         {
             //throw new NotImplementedException();
         }
-
 
         private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
@@ -66,13 +68,29 @@ namespace Orphee.ViewModels
             this.LoginButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
         }
 
-        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode,
+            Dictionary<string, object> viewModelState)
         {
             App.MyNavigationService.CurrentPageName = "Messages";
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayMessage("Connexion unavailable");
+                return;
+            }
             if (RestApiManagerBase.Instance.IsConnected)
             {
-                var conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
-                var userFriends = await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends");
+                List<Conversation> conversationList;
+                List<User> userFriends;
+                try
+                {
+                    conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
+                    userFriends = await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends");
+                }
+                catch (Exception)
+                {
+                    DisplayMessage("Request failed");
+                    return;
+                }
                 foreach (var conversation in conversationList)
                     if (this.ConversationList.Count(c => c.Id == conversation.Id) == 0)
                     {
@@ -123,6 +141,13 @@ namespace Orphee.ViewModels
             else
                 channelName = conversation.Name;
             this.ConversationList.Add(new Conversation() {Name = channelName, UserList = conversation.UserList, ConversationPictureSource = conversation.UserList.Count > 1 ? "/Assets/defaultUser.png" : conversation.UserList[0].Picture });
+        }
+
+        private async void DisplayMessage(string message)
+        {
+            var messageDialog = new MessageDialog(message);
+
+            await messageDialog.ShowAsync();
         }
     }
 }

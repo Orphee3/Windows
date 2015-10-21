@@ -40,19 +40,33 @@ namespace Orphee.ViewModels
 
         private async void RegisterCommandExec()
         {
-            bool isInternetConnected;
-            if ((isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet()) && await this._registrationManager.RegisterUser(this.UserName, this.MailAdress, this.Password))
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayErrorMessage("Connexion unavailable");
+                return;
+            }
+            bool requestResult;
+            try
+            {
+                requestResult = await this._registrationManager.RegisterUser(this.UserName, this.MailAdress, this.Password);
+            }
+            catch (Exception)
+            {
+                DisplayErrorMessage("Request failed");
+                return;
+            }
+            if (!requestResult)
+                DisplayErrorMessage("Mail address/user name already used");
+            else
             {
                 App.MyNavigationService.GoBack();
                 App.MyNavigationService.GoBack();
             }
-            else
-                DisplayErrorMessage(isInternetConnected);
         }
 
-        private async void DisplayErrorMessage(bool result)
+        private async void DisplayErrorMessage(string message)
         {
-            var messageDialog = (result == false) ? new MessageDialog("Internet connexion unavailable") : new MessageDialog("User name/mail adress already used");
+            var messageDialog = new MessageDialog(message);
 
             await messageDialog.ShowAsync();
         } 

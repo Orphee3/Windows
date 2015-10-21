@@ -45,7 +45,7 @@ namespace MidiDotNet.ExportModuleUnitTests.ExportModuleTests.NoteMessageWriterTe
             {
                 CurrentInstrument = Instrument.AcousticGuitarSteel,
             };
-            this.OrpheeTrack.NoteMap[0][0].IsChecked = true;
+            this.OrpheeTrack.NoteMap[0][0].IsChecked = 100;
             this.OrpheeTrack.NoteMap[0][0].ColumnIndex = 0;
             this.OrpheeTrack.NoteMap[0][0].LineIndex = 0;
             this.OrpheeTrack.NoteMap[0][0].Note = Note.C4;

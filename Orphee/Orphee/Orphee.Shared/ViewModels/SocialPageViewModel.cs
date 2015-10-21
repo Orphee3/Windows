@@ -45,33 +45,58 @@ namespace Orphee.ViewModels
         /// <param name="navigationParameter"></param>
         /// <param name="navigationMode"></param>
         /// <param name="viewModelState"></param>
-        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-            if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
-                var temporaryList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + 0 + "&size=" + 20)).OrderBy(u => u.UserName).ToList();
-                if (RestApiManagerBase.Instance.IsConnected)
-                    temporaryList.Remove(temporaryList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
-                foreach (var user in temporaryList)
-                {
-                    if (string.IsNullOrEmpty(user.Picture))
-                        user.Picture = "/Assets/defaultUser.png";
-                    if (!RestApiManagerBase.Instance.IsConnected)
-                        user.AddButtonVisibility = Visibility.Collapsed;
-                    this.UserList.Add(user);
-                }
+                DisplayMessage("Connexion unavailable");
+                return;
+            }
+            List<User> temporaryList;
+            try
+            {
+                temporaryList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + 0 + "&size=" + 20)).OrderBy(u => u.UserName).ToList();
+            }
+            catch (Exception)
+            {
+                DisplayMessage("Request failed");
+                return;
+            }
+
+            if (RestApiManagerBase.Instance.IsConnected)
+                temporaryList.Remove(temporaryList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
+            foreach (var user in temporaryList)
+            {
+                if (string.IsNullOrEmpty(user.Picture))
+                    user.Picture = "/Assets/defaultUser.png";
+                if (!RestApiManagerBase.Instance.IsConnected)
+                    user.AddButtonVisibility = Visibility.Collapsed;
+                this.UserList.Add(user);
             }
         }
 
         private async void NewFriendCommandExec(User friend)
         {
-            string result;
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet() && (result = await this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["askfriend"] + "/" + friend.Id)) != null)
+            string result = "";
+            try
             {
-                var messageDialog = result == "already send" ? new MessageDialog("Friendship already asked") : new MessageDialog("Friendship request sent to " + friend.UserName);
-
-                await messageDialog.ShowAsync();
+                if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+                    result = await this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["askfriend"] + "/" + friend.Id);
             }
+            catch (Exception)
+            {
+                DisplayMessage("Request failed");
+                return;
+            }
+            var stringToDisplay = result == "already send" ? "Friendship already asked" : "Friendship request sent to " + friend.UserName;
+            DisplayMessage(stringToDisplay);
+        }
+
+        private async void DisplayMessage(string message)
+        {
+            var messageDialog = new MessageDialog(message);
+
+            await messageDialog.ShowAsync();
         }
     }
 }

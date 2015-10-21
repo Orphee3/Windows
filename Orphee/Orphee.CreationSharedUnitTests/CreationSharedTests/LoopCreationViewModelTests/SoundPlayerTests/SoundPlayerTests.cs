@@ -15,7 +15,6 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
     {
         protected ICreationPageViewModel LoopCreationViewModel;
         protected Mock<IMidiLibRepository> MidiLibRepositoryMock;
-        protected Mock<IInstrumentManager> InstrumentManagerMock;
         protected Mock<IOrpheeFileExporter> OrpheeFileExporterMock;
         protected Mock<IOrpheeFileImporter> OrpheeFileImporterMock;
         protected IToggleButtonNote ToggleButtonNote;
@@ -25,10 +24,9 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
         {
             this.OrpheeFileImporterMock = new Mock<IOrpheeFileImporter>();
             this.OrpheeFileExporterMock = new Mock<IOrpheeFileExporter>();
-            this.InstrumentManagerMock = new Mock<IInstrumentManager>();
             this.MidiLibRepositoryMock = new Mock<IMidiLibRepository>();
             this.SoundPlayer = new SoundPlayer(this.MidiLibRepositoryMock.Object);
-            this.LoopCreationViewModel = new CreationPageViewModel(this.SoundPlayer, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
+            this.LoopCreationViewModel = new CreationPageViewModel(this.SoundPlayer,  this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
         }
     }
 

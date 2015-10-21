@@ -7,50 +7,11 @@
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:ui="using:Orphee.UI"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <Page.Resources>
-        <Style x:Key="RectangleToggleButtonStyle" TargetType="ToggleButton">
-            <Setter Property="Background" Value="{ThemeResource ToggleButtonBackgroundThemeBrush}"/>
-            <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForegroundThemeBrush}"/>
-            <Setter Property="BorderBrush" Value="#BDBEC0"/>
-            <Setter Property="BorderThickness" Value="{ThemeResource ToggleButtonBorderThemeThickness}"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToggleButton">
-                        <Grid>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="Checked">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding DataContext.TrackColor, ElementName=TrackItemsControl}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#BDBEC0"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleButtonCheckedForegroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="3">
-                                <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <Style x:Key="StackPanel1" TargetType="StackPanel">
             <Setter Property="Transitions">
                 <Setter.Value>
@@ -717,178 +678,56 @@
         </Style>
     </Page.Resources>
 
+
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <ProgressRing Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Height="45" Width="45"/>
-        <Grid Grid.Row="0" Background="#78C7F9">
-            <TextBlock Text="{Binding OrpheeFile.FileName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
-                    <AppBarButton Icon="Save" Command="{Binding SaveButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
-                    <AppBarButton Icon="Folder" Command="{Binding LoadButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
-                    <AppBarButton Icon="Clear" Command="{Binding ClearButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
-                </StackPanel>
-                <Grid Grid.Column="1" HorizontalAlignment="Right">
-                    <AppBarButton Icon="Add" Command="{Binding AddColumnsCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
-                </Grid>
-            </Grid>
-            <Line VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="15*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="15*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="5*"/>
-                </Grid.RowDefinitions>
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  Grid.Row="0" HorizontalAlignment="Stretch" Margin="25, 5, 5, 5">
-                    <ItemsControl ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ItemsControl Name="TrackItemsControl" ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding TrackVisibility}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <ItemsStackPanel Orientation="Vertical"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <ItemsStackPanel Orientation="Horizontal"/>
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <ToggleButton Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" CommandParameter="{Binding}" Style="{StaticResource RectangleToggleButtonStyle}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-                <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="1" Y2="0" Stretch="Fill" Stroke="DimGray"/>
-                <Grid Grid.Row="1" Background="#BDBEC0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ProgressRing Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Height="45" Width="45"/>
+            <Grid Grid.Row="0" Background="#78C7F9">
+                <TextBlock Text="{Binding OrpheeFile.FileName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Viewbox Grid.Column="0"  HorizontalAlignment="Right" Margin="5">
-                        <AppBarButton Icon="Stop" Style="{StaticResource MyPlayButton}"/>
-                    </Viewbox>
-                    <Viewbox Grid.Column="1" HorizontalAlignment="Left" Margin="5">
-                        <AppBarButton Icon="Play" Command="{Binding DataContext.PlayCommand, ElementName=Page}" Style="{StaticResource MyPlayButton}"/>
-                    </Viewbox>
-                    <Viewbox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Margin="0, 0, 25, 0">
-                        <ComboBox  HorizontalContentAlignment="Center" Height="Auto"  Foreground="Black" Width="Auto" ItemsSource="{Binding TempoValues}" SelectedIndex="{Binding CurrentTempoIndex, Mode=TwoWay}"/>
-                    </Viewbox>
-                </Grid>
-                <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="DimGray" Stretch="Fill"/>
-                <Grid Grid.Row="2" Background="DimGray">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="5.5*"/>
-                    </Grid.RowDefinitions>
-
-                    <Grid Margin="20, 0, 0, 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.5*" MinWidth="85"/>
-                            <ColumnDefinition Width="0.5*" MinWidth="85"/>
-                            <ColumnDefinition Width="0.2*" MinWidth="20"/>
-                            <ColumnDefinition Width="0.2*" MinWidth="20"/>
-                            <ColumnDefinition MinWidth="100"/>
-                            <ColumnDefinition Width="5*"/>
-                        </Grid.ColumnDefinitions>
-                        <Viewbox Grid.Column="0" HorizontalAlignment="Right" Height="20">
-                            <AppBarButton Icon="Add" Command="{Binding AddNewTrackCommand}" Style="{StaticResource MyPlayButton}"/>
-                        </Viewbox>
-                        <Viewbox  Grid.Column="1" HorizontalAlignment="Left" Height="20">
-                            <AppBarButton Icon="Clear" Style="{StaticResource MyPlayButton}"/>
-                        </Viewbox>
-                        <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" Text="S" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" Text="M" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="4" FontSize="16" FontWeight="Bold" Text="Vol" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
+                        <AppBarButton Icon="Save" Command="{Binding SaveButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
+                        <AppBarButton Icon="Folder" Command="{Binding LoadButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
+                        <AppBarButton Icon="Clear" Command="{Binding ClearButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
+                    </StackPanel>
+                    <Grid Grid.Column="1" HorizontalAlignment="Right">
+                        <AppBarButton Icon="Add" Command="{Binding AddColumnsCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
                     </Grid>
-                    <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="1" Y2="0" Stretch="Fill" Stroke="#BDBEC0"/>
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <ListView Grid.Column="0" ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}" HorizontalAlignment="Left">
-                                <Style TargetType="ListView">
-                                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
-                                </Style>
-                                <ListView.ItemContainerStyle>
-                                    <Style x:Key="OrangeListViewItemStyle" TargetType="ListViewItem" BasedOn="{StaticResource TagListViewItemStyle}">
-                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                        <Setter Property="Tag">
-                                            <Setter.Value>
-                                                <SolidColorBrush Color="Gray"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel Orientation="Vertical"/>
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Background="{Binding TrackBackgroundColor}">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="1.1*" MinWidth="200"/>
-                                                <ColumnDefinition Width="0.2*"/>
-                                                <ColumnDefinition Width="0.2*"/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.Column="0" FontSize="16" FontWeight="Bold"  Text="{Binding TrackName}" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                                <interactivity:Interaction.Behaviors>
-                                                    <core:EventTriggerBehavior EventName="Tapped">
-                                                        <core:InvokeCommandAction Command="{Binding DataContext.SelectedTrackCommand, ElementName=Page}" CommandParameter="{Binding}"/>
-                                                    </core:EventTriggerBehavior>
-                                                    <core:EventTriggerBehavior EventName="Holding">
-                                                        <core:InvokeCommandAction Command="{Binding DataContext.SelectedTrackCommand, ElementName=Page}" CommandParameter="{Binding}"/>
-                                                    </core:EventTriggerBehavior>
-                                                </interactivity:Interaction.Behaviors>
-                                            </TextBlock>
-                                            <Viewbox Grid.Column="1" Height="15" VerticalAlignment="Top" Margin="0, 3, 0, 0">
-                                                <RadioButton/>
-                                            </Viewbox>
-                                            <Viewbox Grid.Column="2" Height="15"  VerticalAlignment="Top" Margin="0, 3, 0, 0">
-                                                <RadioButton/>
-                                            </Viewbox>
-                                            <Slider Width="100" Grid.Column="3" VerticalAlignment="Top" Style="{StaticResource SliderStyle1}" HorizontalAlignment="Center"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ScrollViewer  Grid.Column="1" HorizontalScrollBarVisibility="Auto">
-                                <ItemsControl VerticalAlignment="Top" ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <ItemsControl ItemsSource="{Binding ColumnMap, Mode=TwoWay}">
+                </Grid>
+                <Line VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled" Grid.Row="0" Width="1366" HorizontalAlignment="Stretch" Margin="15, 5, 5, 5">
+                        <ItemsControl ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}" Margin="0, 0, 150, 0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl Name="TrackItemsControl" ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding TrackVisibility}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <ItemsStackPanel Orientation="Vertical"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                     <ItemsControl.ItemsPanel>
                                                         <ItemsPanelTemplate>
                                                             <ItemsStackPanel Orientation="Horizontal"/>
@@ -896,22 +735,149 @@
                                                     </ItemsControl.ItemsPanel>
                                                     <ItemsControl.ItemTemplate>
                                                         <DataTemplate>
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <Line X1="0" Y1="0" X2="0" Y2="1" Stretch="Fill"  Stroke="#BDBEC0"/>
-                                                                <Rectangle Fill="{Binding Path=RectangleBackgroundColor, Mode=TwoWay}" Height="35" Width="35"/>
-                                                                <Line X1="0" Y1="0" X2="0" Y2="1" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 0, -1, 0"/>
-                                                            </StackPanel>
+                                                            <ui:MyRectangleButton x:Name="ToogleButton" Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" ButtonBackgroundColor="{Binding DataContext.TrackColor, ElementName=TrackItemsControl}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" RectangleVisibility="{Binding IsChecked}"/>
                                                         </DataTemplate>
                                                     </ItemsControl.ItemTemplate>
                                                 </ItemsControl>
-                                                <Line VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </ScrollViewer>
-                        </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
+                    <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="1" Y2="0" Stretch="Fill" Stroke="DimGray"/>
+                    <Grid Grid.Row="1" Background="#BDBEC0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="0"  HorizontalAlignment="Right" Margin="5">
+                            <AppBarButton Icon="Stop" Style="{StaticResource MyPlayButton}"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="1" HorizontalAlignment="Left" Margin="5">
+                            <AppBarButton Icon="Play" Command="{Binding DataContext.PlayCommand, ElementName=Page}" Style="{StaticResource MyPlayButton}"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Margin="0, 0, 25, 0">
+                            <ComboBox  HorizontalContentAlignment="Center" Height="Auto"  Foreground="Black" Width="Auto" ItemsSource="{Binding TempoValues}" SelectedIndex="{Binding CurrentTempoIndex, Mode=TwoWay}"/>
+                        </Viewbox>
+                    </Grid>
+                    <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="DimGray" Stretch="Fill"/>
+                    <Grid Grid.Row="2" Background="DimGray">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="5.5*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Margin="20, 0, 0, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*" MinWidth="85"/>
+                                <ColumnDefinition Width="0.5*" MinWidth="85"/>
+                                <ColumnDefinition Width="0.2*" MinWidth="20"/>
+                                <ColumnDefinition Width="0.2*" MinWidth="20"/>
+                                <ColumnDefinition MinWidth="100"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Right" Height="20">
+                                <AppBarButton Icon="Add" Command="{Binding AddNewTrackCommand}" Style="{StaticResource MyPlayButton}"/>
+                            </Viewbox>
+                            <Viewbox  Grid.Column="1" HorizontalAlignment="Left" Height="20">
+                                <AppBarButton Icon="Clear" Style="{StaticResource MyPlayButton}"/>
+                            </Viewbox>
+                            <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" Text="S" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" Text="M" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="4" FontSize="16" FontWeight="Bold" Text="Vol" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="1" Y2="0" Stretch="Fill" Stroke="#BDBEC0"/>
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ListView Grid.Column="0" ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}" HorizontalAlignment="Left" SelectedIndex="{Binding CurrentTrackPos}">
+                                    <interactivity:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                                            <core:InvokeCommandAction Command="{Binding DataContext.SelectedTrackCommand, ElementName=Page}" CommandParameter="{Binding SelectedIndex}"/>
+                                        </core:EventTriggerBehavior>
+                                    </interactivity:Interaction.Behaviors>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+                                    </Style>
+                                    <ListView.ItemContainerStyle>
+                                        <Style x:Key="OrangeListViewItemStyle" TargetType="ListViewItem" BasedOn="{StaticResource TagListViewItemStyle}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                            <Setter Property="Tag">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="Gray"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <ItemsStackPanel Orientation="Vertical"/>
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1.1*" MinWidth="200"/>
+                                                    <ColumnDefinition Width="0.2*"/>
+                                                    <ColumnDefinition Width="0.2*"/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Name="HoldedTrack" Grid.Column="0" FontSize="16" FontWeight="Bold"  Text="{Binding TrackName}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                 <interactivity:Interaction.Behaviors>
+                                                    <core:EventTriggerBehavior EventName="RightTapped">
+                                                        <core:InvokeCommandAction Command="{Binding DataContext.HoldTrackCommand, ElementName=Page}" CommandParameter="{Binding}"/>
+                                                    </core:EventTriggerBehavior>
+                                                </interactivity:Interaction.Behaviors>
+                                                    </TextBlock>
+                                                <Viewbox Grid.Column="1" Height="15" VerticalAlignment="Top" Margin="0, 3, 0, 0">
+                                                    <RadioButton IsChecked="{Binding IsSolo, Mode=TwoWay}"/>
+                                                </Viewbox>
+                                                <Viewbox Grid.Column="2" Height="15"  VerticalAlignment="Top" Margin="0, 3, 0, 0">
+                                                    <RadioButton IsChecked="{Binding IsMuted, Mode=TwoWay}"/>
+                                                </Viewbox>
+                                                <Slider Width="100" Grid.Column="3" VerticalAlignment="Top" Style="{StaticResource SliderStyle1}" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <ScrollViewer  Grid.Column="1" HorizontalScrollBarVisibility="Auto">
+                                    <ItemsControl  VerticalAlignment="Top" ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <ItemsControl Name="ColumnMapItemsControl" ItemsSource="{Binding ColumnMap}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <ItemsStackPanel Orientation="Horizontal" Background="DimGray"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <Line X1="0" Y1="0" X2="0" Y2="1" Stretch="Fill"  Stroke="#BDBEC0"/>
+                                                                        <Rectangle Fill="{Binding DataContext.TrackColor, ElementName=ColumnMapItemsControl}" Opacity="{Binding IsRectangleVisible}" Height="35" Width="35"/>
+                                                                    <Line X1="0" Y1="0" X2="0" Y2="1" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 0, -1, 0"/>
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <Line VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

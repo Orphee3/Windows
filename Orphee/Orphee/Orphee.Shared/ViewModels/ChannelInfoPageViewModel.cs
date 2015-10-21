@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -79,13 +81,26 @@ namespace Orphee.ViewModels
 
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayMessage("Connexion unavailable");
+                return;
+            }
             this.CreationList.Clear();
-
             var user = navigationParameter as User;
             this._userName = user.Name;
             //this.LikeNumber = user.Likes?.Count ?? 0;
-            var creations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + user.Id + "/creation");
-           // this.CreationNumber = creations?.Count ?? 0;
+            List<Creation> creations;
+            try
+            {
+                creations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + user.Id + "/creation");
+            }
+            catch (Exception)
+            {
+               DisplayMessage("Request failed");
+                return;
+            }
+            // this.CreationNumber = creations?.Count ?? 0;
             SetUserPicture(user.Picture);
             if (creations == null)
                 return;
@@ -99,6 +114,13 @@ namespace Orphee.ViewModels
         private void SetUserPicture(string pictureUri)
         {
             this.UserPictureSource = string.IsNullOrEmpty(pictureUri) ? "/Assets/defaultUser.png" : pictureUri;
+        }
+
+        private async void DisplayMessage(string message)
+        {
+            var messageDialog = new MessageDialog(message);
+
+            await messageDialog.ShowAsync();
         }
     }
 }

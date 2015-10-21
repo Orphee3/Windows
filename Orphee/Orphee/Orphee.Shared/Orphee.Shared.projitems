@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\INewConversationConfigPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IProfileEditionPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\InvitationPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MyMessageDialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewConversationConfigPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProfileEditionPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SocialPageViewModel.cs" />

@@ -29,7 +29,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.OrpheeFileImporterMock = new Mock<IOrpheeFileImporter>();
             this.SoundPlayerMock = new Mock<ISoundPlayer>();
             this.InstrumentManagerMock = new Mock<IInstrumentManager>();
-            this.LoopCreationViewModel =new CreationPageViewModel(this.SoundPlayerMock.Object, this.InstrumentManagerMock.Object, this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
+            this.LoopCreationViewModel =new CreationPageViewModel(this.SoundPlayerMock.Object,  this.OrpheeFileExporterMock.Object, this.OrpheeFileImporterMock.Object);
         }
     }
     public class WhenYouCreateLoopCreationViewModel : NoteMapTestsBase
@@ -201,7 +201,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.NoteMap[0][0].Note = Note.C4;
             this.NoteMap[0][0].ColumnIndex = 0;
             this.NoteMap[0][0].LineIndex = 0;
-            this.NoteMap[0][0].IsChecked = true;
+            this.NoteMap[0][0].IsChecked = 100;
         }
     }
 
@@ -364,7 +364,7 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.NoteMap[0][9].Note = Note.C4;
             this.NoteMap[0][9].ColumnIndex = 9;
             this.NoteMap[0][9].LineIndex = 0;
-            this.NoteMap[0][9].IsChecked = true;
+            this.NoteMap[0][9].IsChecked = 100;
             this._expectedNoteOnMessage = new OrpheeNoteMessage()
             {
                 Channel = 4,
@@ -496,12 +496,12 @@ namespace Orphee.CreationSharedUnitTests.CreationSharedTests.LoopCreationViewMod
             this.NoteMap[0][2].Note = Note.C4;
             this.NoteMap[0][2].ColumnIndex = 2;
             this.NoteMap[0][2].LineIndex = 0;
-            this.NoteMap[0][2].IsChecked = true;
+            this.NoteMap[0][2].IsChecked = 100;
 
             this.NoteMap[1][2].Note = Note.C4;
             this.NoteMap[1][2].ColumnIndex = 2;
             this.NoteMap[1][2].LineIndex = 1;
-            this.NoteMap[1][2].IsChecked = true;
+            this.NoteMap[1][2].IsChecked = 100;
         }
 
         private void InitExptectedMessages()

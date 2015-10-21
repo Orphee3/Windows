@@ -5,6 +5,7 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
@@ -106,13 +107,18 @@ namespace Orphee.ViewModels
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             App.MyNavigationService.CurrentPageName = "Profile";
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayErrorMessage("Connexion unavailable");
+                return;
+            }
             SetPropertiesDependingOnConnectionState();
         }
 
         private void SetPropertiesDependingOnConnectionState()
         {
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
+            if (RestApiManagerBase.Instance.IsConnected)
+            { 
                 this.UserPictureSource = RestApiManagerBase.Instance.UserData.User.Picture ?? "/Assets/defaultUser.png";
                 InitBackgroundPictureColor();
                 this.DisconnectedStackPanelVisibility = Visibility.Collapsed;
@@ -153,16 +159,23 @@ namespace Orphee.ViewModels
         private async Task<Color> SearchDominantPictureColor()
         {
             IRandomAccessStream stream;
-            if (RestApiManagerBase.Instance.UserData.User.Picture != null)
+            try
             {
-                var streamReference = RandomAccessStreamReference.CreateFromUri(new Uri(this.UserPictureSource)).OpenReadAsync();
-                stream = await streamReference;
+                if (RestApiManagerBase.Instance.UserData.User.Picture != null)
+                {
+                    var streamReference = RandomAccessStreamReference.CreateFromUri(new Uri(this.UserPictureSource)).OpenReadAsync();
+                    stream = await streamReference;
+                }
+                else
+                {
+                    var storageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx://" + this.UserPictureSource));
+                    stream = await storageFile.OpenAsync(FileAccessMode.Read);
+                }
             }
-            else
-            { 
-                var storageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx://" + this.UserPictureSource));
-                stream = await storageFile.OpenAsync(FileAccessMode.Read);
-            } 
+            catch
+            {
+                return (Color.FromArgb(0xFF, 0x78, 0xC7, 0xF9));
+            }
             //Create a decoder for the image
             var decoder = await BitmapDecoder.CreateAsync(stream);
             //Create a transform to get a 1x1 image
@@ -188,6 +201,13 @@ namespace Orphee.ViewModels
             var bytegreen = (byte) (green/(bytes.Length/4));
             var byteblue = (byte) (blue/(bytes.Length/4));
             return (Color.FromArgb(alphaByte, bytered, bytegreen, byteblue));
+        }
+
+        private async void DisplayErrorMessage(string message)
+        {
+            var messageDialog = new MessageDialog(message);
+
+            await messageDialog.ShowAsync();
         }
     }
 }

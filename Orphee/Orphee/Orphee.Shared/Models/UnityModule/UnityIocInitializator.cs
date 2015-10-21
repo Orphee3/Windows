@@ -60,6 +60,7 @@ namespace Orphee.UnityModule
             container.RegisterType<IConnectionManager, ConnectionManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRegistrationManager, RegistrationManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFileUploader, FileUploader>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IColorManager, ColorManager>(new ContainerControlledLifetimeManager());
         }
     }
 }

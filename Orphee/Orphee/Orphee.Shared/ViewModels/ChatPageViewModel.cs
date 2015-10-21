@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Windows.UI.Xaml;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -73,6 +73,11 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayMessage("Connexion unavailable");
+                return;
+            }
             this._actualConversation = navigationParameter as Conversation;
             this.ConversationName = this._actualConversation.Name;
             var conversationMessages = this._actualConversation.Messages;
@@ -86,9 +91,17 @@ namespace Orphee.ViewModels
                 var newMessage = new Message { User = RestApiManagerBase.Instance.UserData.User, Date = DateTime.Now, ReceivedMessage = this.Message};
                 newMessage.SetProperties();
                 this.Conversation.Add(newMessage);
-                RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList);
+                if (!RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList))
+                    DisplayMessage("This message wasn't sent");
                 this.Message = string.Empty;
             }
+        }
+
+        private async void DisplayMessage(string message)
+        {
+            var messageDialog = new MessageDialog(message);
+
+            await messageDialog.ShowAsync();
         }
     }
 }

@@ -72,7 +72,7 @@ namespace Orphee.CreationShared
         /// Function changing the tempo value
         /// </summary>
         /// <param name="tempo">New tempo value</param>
-        public void UpdateTempo(uint tempo)
+        public void UpdateTempo(uint tempo, Instrument instrument, Channel channel)
         {
             this.PlayerParameters.Tempo = tempo;
             this._outputDevice.Close();
@@ -80,6 +80,7 @@ namespace Orphee.CreationShared
             this._outputDevice = OutputDevice.InstalledDevices[0];
             this._outputDevice.Open();
             this._clock.Start();
+            UpdatePlayingInstrument(channel, instrument);
         }
 
         /// <summary>

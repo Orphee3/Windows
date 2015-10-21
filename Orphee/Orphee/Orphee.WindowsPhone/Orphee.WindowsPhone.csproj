@@ -87,6 +87,10 @@
     <Compile Include="UI\MyBottomAppBar.xaml.cs">
       <DependentUpon>MyBottomAppBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\MyMessageDialog.xaml.cs">
+      <DependentUpon>MyMessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MyRectangleButton.cs" />
     <Compile Include="Views\ChannelInfoPage.xaml.cs">
       <DependentUpon>ChannelInfoPage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +220,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MyBottomAppBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\MyMessageDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

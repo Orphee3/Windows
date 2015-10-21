@@ -132,10 +132,13 @@ namespace Orphee.RestApiManagement.Socket_Management
         /// </summary>
         /// <param name="messageToSend">Message to send</param>
         /// <param name="userList">Target users of the message</param>
-        public void SendMessage(string messageToSend, List<User> userList)
+        public bool SendMessage(string messageToSend, List<User> userList)
         {
+            if (!IsInternet())
+                return false;
             foreach (var user in userList)
                 this._socket.Emit("private message", JObject.FromObject(new { to = user.Id, message = messageToSend }));
+            return true;
         }
 
 

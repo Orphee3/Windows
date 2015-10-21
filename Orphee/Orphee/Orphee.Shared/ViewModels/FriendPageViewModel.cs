@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
@@ -78,15 +80,35 @@ namespace Orphee.ViewModels
         /// <param name="viewModelState"></param>
         public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-            this.FriendList.Clear();
             this.CheckBoxVisibility = navigationParameter != null ? Visibility.Visible : Visibility.Collapsed;
             this.InvitationStackPanelVisibility = navigationParameter != null ? Visibility.Collapsed : Visibility.Visible;
-            var friendList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends")).OrderBy(f => f.Name);
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayMessage("Connexion unavailable");
+                return;
+            }
+            this.FriendList.Clear();
+            IOrderedEnumerable<User> friendList;
+            try
+            {
+                friendList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends")).OrderBy(f => f.Name);
+            }
+            catch (Exception)
+            {
+                DisplayMessage("Request failed");
+                return;
+            }
             foreach (var friend in friendList)
             {
                 friend.Picture = friend.Picture ?? "/Assets/defaultUser.png";
                 this.FriendList.Add(friend);
             }
+        }
+        private async void DisplayMessage(string message)
+        {
+            var messageDialog = new MessageDialog(message);
+
+            await messageDialog.ShowAsync();
         }
     }
 }

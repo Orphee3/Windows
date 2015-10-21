@@ -22,6 +22,6 @@ namespace Orphee.CreationShared.Interfaces
         /// <summary>Value representing the note related to the toggleButtonNote </summary>
         Note Note { get; set; }
         /// <summary>Value bound to the toggleButtonNote's isCheck trigger</summary>
-        bool IsChecked { get; set; }
+        double IsChecked { get; set; }
     }
 }

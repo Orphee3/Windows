@@ -38,7 +38,6 @@ namespace Orphee.CreationShared
         public Instrument CurrentInstrument { get; set; }
         /// <summary>Channel assigned to the track </summary>
         public Channel Channel { get; set; }
-        public List<SolidColorBrush> ColorBrushList { get; private set; }
         /// <summary>Value representing the actual color associated to the track </summary>
         public SolidColorBrush TrackColor
         {
@@ -68,21 +67,6 @@ namespace Orphee.CreationShared
             }
         }
         private Visibility _trackVisibility;
-        private int _trackColorIndex;
-        /// <summary>Value representing the color index of the track </summary>
-        public int TrackColorIndex
-        {
-            get { return this._trackColorIndex; }
-            set
-            {
-                if (this._trackColorIndex != value)
-                {
-                    this._trackColorIndex = value;
-                    OnPropertyChanged("TrackColorIndex");
-                    this.TrackColor = this.ColorBrushList[this.TrackColorIndex];
-                }
-            }
-        }
         /// <summary>Graphical position of the track </summary>
         public int TrackPos { get; set; }
         /// <summary>Length of the track </summary>
@@ -116,6 +100,40 @@ namespace Orphee.CreationShared
         }
         private bool _isChecked;
 
+        private bool _isMuted;
+
+        public bool IsMuted
+        {
+            get { return this._isMuted; }
+            set
+            {
+                if (this._isMuted != value)
+                {
+                    this._isMuted = value;
+                    OnPropertyChanged("IsMuted");
+                    if (value)
+                        this.IsSolo = false;
+                }
+            }
+        }
+        private bool _isSolo;
+
+        public bool IsSolo
+        {
+            get { return this._isSolo; }
+            set
+            {
+                if (this._isSolo != value)
+                {
+                    this._isSolo = value;
+                    OnPropertyChanged("IsSolo");
+                    if (value)
+                        this.IsMuted = false;
+                }
+            }
+        }
+        private IColorManager _colorManager;
+
         public ObservableCollection<MyRectangle> ColumnMap { get; set; }
 
         /// <summary>
@@ -126,40 +144,24 @@ namespace Orphee.CreationShared
         /// <param name="isNewTrack">Defines if the actual track is a new one or not</param>
         public OrpheeTrack(int trackPos, Channel channel, bool isNewTrack)
         {
-            this.TrackColorIndex = 0;
-            this.ColorBrushList = new List<SolidColorBrush>();
+            this.IsSolo = true;
             this.TrackPos = trackPos;
+            this._colorManager = new ColorManager();
             this.PlayerParameters = this.TrackPos == 0 ? new PlayerParameters() : null;
             this.TrackLength = (uint)(this.TrackPos == 0 ? 22 : 7);
-            if (this.TrackPos == 0)
-                this.TrackColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x78, 0xC7, 0xF9));
-            else if (this.TrackPos == 1)
-                this.TrackColor = new SolidColorBrush(Colors.Red);
-            else if (this.TrackPos == 2)
-                this.TrackColor = new SolidColorBrush(Colors.Yellow);
-            else if (this.TrackPos == 3)
-                this.TrackColor = new SolidColorBrush(Colors.Orange);
-            //var colorList = typeof (Colors).GetTypeInfo().DeclaredProperties.OfType<Color>();
-            //this.ColorBrushList.Add(new SolidColorBrush(Color.FromArgb(0, 120, 199, 249)));
-            //foreach (var color in colorList)
-            //    this.ColorBrushList.Add(new SolidColorBrush(color));
+            this.TrackColor = this._colorManager.ColorList[this.TrackPos];
             this.TrackName = (trackPos + 1) + ". " + this.CurrentInstrument.Name();
-            this.NoteMap = isNewTrack ? NoteMapManager.Instance.GenerateNoteMap(2) : null;
+            this.NoteMap = isNewTrack ? NoteMapManager.Instance.GenerateNoteMap(3) : null;
             this.ColumnMap = isNewTrack ? NoteMapManager.Instance.GenerateColumnMap(this.NoteMap) : null;
             this.Channel = channel;
         }
 
         public OrpheeTrack(IOrpheeTrack orpheeTrack)
         {
+            this.IsSolo = true;
             this.TrackPos = orpheeTrack.TrackPos;
-            if (this.TrackPos == 0)
-                this.TrackColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x78, 0xC7, 0xF9));
-            else if (this.TrackPos == 1)
-                this.TrackColor = new SolidColorBrush(Colors.Red);
-            else if (this.TrackPos == 2)
-                this.TrackColor = new SolidColorBrush(Colors.Yellow);
-            else if (this.TrackPos == 3)
-                this.TrackColor = new SolidColorBrush(Colors.Orange);
+            this._colorManager = new ColorManager();
+            this.TrackColor = this._colorManager.ColorList[this.TrackPos];
             this.NoteMap = NoteMapManager.Instance.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList);
             this.ColumnMap = NoteMapManager.Instance.GenerateColumnMap(this.NoteMap);
             this.Channel = orpheeTrack.Channel;

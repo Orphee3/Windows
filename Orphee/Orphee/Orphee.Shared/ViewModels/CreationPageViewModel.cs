@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using MidiDotNet.ExportModule.Interfaces;
@@ -7,10 +8,12 @@ using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.ViewModels.Interfaces;
 using System.Linq;
-using Windows.UI;
+using Windows.Graphics.Display;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Controls;
 using Midi;
+using Orphee.RestApiManagement.Models;
 using Orphee.UI;
 
 namespace Orphee.ViewModels
@@ -24,18 +27,7 @@ namespace Orphee.ViewModels
         private readonly IOrpheeFileExporter _orpheeFileExporter;
         private readonly IOrpheeFileImporter _orpheeFileImporter;
         /// <summary>Instrument manager </summary>
-        public IInstrumentManager InstrumentManager { get; private set; }
         /// <summary>Index of the current instrument </summary>
-        public int CurrentInstrumentIndex
-        {
-            get { return this._currentInstrumentIndex; }
-            set
-            {
-                SetProperty(ref this._currentInstrumentIndex, value);
-                UpdateCurrentInstrument();
-            }
-        }
-        private int _currentInstrumentIndex;
         private Channel _currentChannel;
         /// <summary>List of int containing tempo values from 40 to 400 </summary>
         public List<uint> TempoValues { get; private set; }
@@ -53,16 +45,28 @@ namespace Orphee.ViewModels
                 }
             }
         }
+
+        private bool _isMessageDialogOpen;
+        private int _currentTrackPos;
+        public int CurrentTrackPos
+        {
+            get { return this._currentTrackPos; }
+            set
+            {
+                if (this._currentTrackPos != value)
+                    SetProperty(ref this._currentTrackPos, value);
+            }
+        }
         /// <summary>OrpheeFile displayed at the screen </summary>
         public IOrpheeFile OrpheeFile { get; private set; }
         /// <summary>Adds columns to the current track's note map </summary>
         public DelegateCommand AddColumnsCommand { get; private set; }
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackButtonCommand { get; private set; }
+        public DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; private set; }
         /// <summary>Removes columns from the current track's note map </summary>
         public DelegateCommand RemoveAColumnCommand { get; private set; }
-        /// <summary>Calls the ToggleButtonNoteCommandExec </summary>
-        public DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; private set; }
+        public DelegateCommand<OrpheeTrack> HoldTrackCommand { get; set; }
         /// <summary>Saves the current OrpheeFile in a MIDI file </summary>
         public DelegateCommand SaveButtonCommand { get; private set; }
         public DelegateCommand ItemSelectedCommand { get; private set; }
@@ -71,14 +75,13 @@ namespace Orphee.ViewModels
         /// <summary>Play the notes contained in each track of the OrpheeFile </summary>
         public DelegateCommand PlayCommand { get; private set; }
         /// <summary>Changes the track displayed </summary>
-        public DelegateCommand<OrpheeTrack> SelectedTrackCommand { get; private set; }
+        public DelegateCommand<SelectionChangedEventArgs> SelectedTrackCommand { get; private set; }
         /// <summary>Add one higher octave to the actual track's note map </summary>
         public DelegateCommand AddOneHigherOctaveCommand { get; private set; }
         /// <summary>Adds one lower octave to the current track's note map </summary>
         public DelegateCommand AddOneLowerOctaveCommand { get; private set; }
         /// <summary>Add a new track to the OrpheeFile </summary>
         public DelegateCommand AddNewTrackCommand { get; private set; }
-        public DelegateCommand<OrpheeTrack> TrackParametersCommand { get; private set; }
 
         /// <summary>
         /// Constructor initializing soundPlayer, instrumentManager, orpheeFileExporter
@@ -88,24 +91,24 @@ namespace Orphee.ViewModels
         /// <param name="instrumentManager">Instrument manager</param>
         /// <param name="orpheeFileExporter">Saves the OrpheeFile to a MIDI file</param>
         /// <param name="orpheeFileImporter">Imports a MIDI file and converts it to an OrpheeFile</param>
-        public CreationPageViewModel(ISoundPlayer soundPlayer, IInstrumentManager instrumentManager, IOrpheeFileExporter orpheeFileExporter, IOrpheeFileImporter orpheeFileImporter)
+        public CreationPageViewModel(ISoundPlayer soundPlayer, IOrpheeFileExporter orpheeFileExporter, IOrpheeFileImporter orpheeFileImporter)
         {
             this.OrpheeFile = new OrpheeFile();
             this._currentChannel = Channel.Channel1;
             this._soundPlayer = soundPlayer;
-            this.InstrumentManager = instrumentManager;
+            this.CurrentTrackPos = 0;
             this.TempoValues = new List<uint>();
             for (var repeat = 0; repeat < 360; repeat++)
                 this.TempoValues.Add((uint)(40 + repeat));
             this.CurrentTempoIndex = 80;
             this._orpheeFileExporter = orpheeFileExporter;
             this._orpheeFileImporter = orpheeFileImporter;
-            this.TrackParametersCommand = new DelegateCommand<OrpheeTrack>(TrackParametersCommandExec);
+            this.HoldTrackCommand = new DelegateCommand<OrpheeTrack>(HoldTrackCommandExec);
+            this.ToggleButtonNoteCommand =  new DelegateCommand<IToggleButtonNote>(ToggleButtonNoteExec);
             this.AddOneHigherOctaveCommand = new DelegateCommand(() => NoteMapManager.Instance.AddOneHigherOctaveToThisNoteMap(this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).NoteMap));
             this.AddOneLowerOctaveCommand = new DelegateCommand(() => NoteMapManager.Instance.AddOneLowerOctaveToThisNoteMap(this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).NoteMap));
             this.AddNewTrackCommand = new DelegateCommand(AddNewTrackCommandExec);
-            this.SelectedTrackCommand = new DelegateCommand<OrpheeTrack>(SelectedTrackCommandExec);
-            this.ToggleButtonNoteCommand = new DelegateCommand<IToggleButtonNote>(ToggleButtonNoteExec);
+            this.SelectedTrackCommand = new DelegateCommand<SelectionChangedEventArgs>(SelectedTrackCommandExec);
             this.AddColumnsCommand = new DelegateCommand(() =>
             {
                 foreach (var track in this.OrpheeFile.OrpheeTrackList)
@@ -120,15 +123,16 @@ namespace Orphee.ViewModels
             this.BackButtonCommand = new DelegateCommand(() => {App.MyNavigationService.GoBack();});
             this.PlayCommand = new DelegateCommand(() =>
             {
-                foreach (var track in this.OrpheeFile.OrpheeTrackList)
+                foreach (var track in this.OrpheeFile.OrpheeTrackList.Where(t => t.IsSolo))
                 {
-                    if (track != null && track.ColumnMap != null && track.ColumnMap.Any(rect => rect.RectangleBackgroundColor.Color != Colors.Gray))
+                    if (track != null && track.ColumnMap != null && track.ColumnMap.Any(rect => rect.IsRectangleVisible != 0))
                     {
                         track.ConvertNoteMapToOrpheeMessage();
                         this._soundPlayer.PlayTrack(track.OrpheeNoteMessageList, track.CurrentInstrument, track.Channel);
                     }
                 }
             });
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
         }
 
         /// <summary>
@@ -137,22 +141,19 @@ namespace Orphee.ViewModels
         /// <param name="toggleButtonNote"></param>
         public void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote)
         {
-            if (toggleButtonNote.IsChecked)
+            toggleButtonNote.IsChecked = toggleButtonNote.IsChecked > 0 ? 0 : 100;
+            if (toggleButtonNote.IsChecked > 0)
             {
                 this._soundPlayer.PlayNote(toggleButtonNote.Note, this._currentChannel);
-                if (this.OrpheeFile.OrpheeTrackList[(int) this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].RectangleBackgroundColor.Color == Colors.Gray)
-                    this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].RectangleBackgroundColor = this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].TrackColor;
+                if (this.OrpheeFile.OrpheeTrackList[(int) this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].IsRectangleVisible == 0)
+                    this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].IsRectangleVisible = 100;
             }
             else if (NoteMapManager.Instance.IsColumnEmpty(toggleButtonNote.ColumnIndex, this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].NoteMap))
-                this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].RectangleBackgroundColor =  new SolidColorBrush(Colors.Gray);
+                this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].IsRectangleVisible = 0;
         }
 
-        private void UpdateCurrentInstrument()
+        private void UpdateCurrentInstrument(Instrument newCurrentInstrument)
         {
-            var newCurrentInstrument = this.InstrumentManager.InstrumentList[this.CurrentInstrumentIndex];
-            this.InstrumentManager.CurrentInstrument = newCurrentInstrument;
-            this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).UpdateCurrentInstrument(newCurrentInstrument);
-            this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).TrackVisibility = Visibility.Visible;
             this._soundPlayer.UpdateCurrentInstrument(newCurrentInstrument, this._currentChannel);
         }
 
@@ -160,52 +161,58 @@ namespace Orphee.ViewModels
         {
             var newTempo = this.TempoValues[this.CurrentTempoIndex];
             this.OrpheeFile.OrpheeTrackList[0].PlayerParameters.Tempo = newTempo;
-            this._soundPlayer.UpdateTempo(newTempo);
+            var actualTrack = this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel);
+            this._soundPlayer.UpdateTempo(newTempo, actualTrack.CurrentInstrument, actualTrack.Channel);
         }
 
         private async void SaveButtonCommandExec()
         {
-            //if (!RestApiManagerBase.Instance.IsConnected)
-            //{
-            //    App.MyNavigationService.Navigate("Login", null);
-            //        return;
-            //}
+            if (!RestApiManagerBase.Instance.IsConnected)
+            {
+                App.MyNavigationService.Navigate("Login", null);
+                return;
+            }
             this.OrpheeFile.OrpheeTrackList[0].PlayerParameters = this._soundPlayer.GetPlayerParameters();
             var result = await this._orpheeFileExporter.SaveOrpheeFile(this.OrpheeFile);
+            if (result != false)
+                DisplayMessage(result == true ? "The file was sent successfuly" : "An error has occured during the sending");
         }
 
         private async void LoadButtonCommandExec()
         {
-            //if (!RestApiManagerBase.Instance.IsConnected)
-            //{
-            //    App.MyNavigationService.Navigate("Login", null);
-            //    return;
-            //}
             var importedOrpheeFile = await this._orpheeFileImporter.ImportFile(".mid");
 
             if (importedOrpheeFile == null)
                 return;
             this.OrpheeFile.OrpheeTrackList.Clear();
+            this.OrpheeFile.OrpheeFileParameters = importedOrpheeFile.OrpheeFileParameters;
             foreach (var track in importedOrpheeFile.OrpheeTrackList)
                  this.OrpheeFile.AddNewTrack(new OrpheeTrack(track));
             this.OrpheeFile.FileName = importedOrpheeFile.FileName;
             var firstTrack = this.OrpheeFile.OrpheeTrackList[0];
+            UpdateCurrentInstrument(firstTrack.CurrentInstrument);
             this.CurrentTempoIndex = (int)firstTrack.PlayerParameters.Tempo - 40;
             this._currentChannel = firstTrack.Channel;
-            this.CurrentInstrumentIndex = (int)firstTrack.CurrentInstrument;
+            this.CurrentTrackPos = 0;
         }
 
-        private void SelectedTrackCommandExec(OrpheeTrack selectedTrack)
+        private void SelectedTrackCommandExec(SelectionChangedEventArgs viewData)
         {
+            if (viewData.AddedItems?.Count == 0)
+                return;
+            var selectedTrack = viewData.AddedItems[0] as OrpheeTrack;
             if (this._currentChannel != selectedTrack.Channel)
             {
+                this.CurrentTrackPos = selectedTrack.TrackPos;
                 this._currentChannel = selectedTrack.Channel;
-                this.CurrentInstrumentIndex = (int)selectedTrack.CurrentInstrument;
+                UpdateCurrentInstrument(selectedTrack.CurrentInstrument);
                 foreach (var track in this.OrpheeFile.OrpheeTrackList.Where(t => t != selectedTrack))
                 {
                     track.IsChecked = false;
                     track.TrackVisibility = Visibility.Collapsed;
                 }
+                this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).TrackVisibility = Visibility.Visible;
+                
             }
         }
 
@@ -218,12 +225,20 @@ namespace Orphee.ViewModels
             }
         }
 
-        private async void TrackParametersCommandExec(OrpheeTrack selectedTrack)
+        private async void HoldTrackCommandExec(OrpheeTrack selectedTrack)
         {
-            var message = new TrackOptionsMessageDialog();
-            await message.ShowAsync();
-            // var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
-            // await dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => await message.ShowAsync());
+            var messageDialog = new MyMessageDialog();
+
+            messageDialog.SetSource(selectedTrack);
+            await messageDialog.ShowAsync();
+            UpdateCurrentInstrument(selectedTrack.CurrentInstrument);
+        }
+
+        private async void DisplayMessage(string message)
+        {
+            var messageDialog = new MessageDialog(message);
+
+            await messageDialog.ShowAsync();
         }
     }
 }

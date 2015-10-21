@@ -39,7 +39,9 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorManager.cs" />
     <Compile Include="InstrumentManager.cs" />
+    <Compile Include="Interfaces\IColorManager.cs" />
     <Compile Include="Interfaces\IInstrumentManager.cs" />
     <Compile Include="Interfaces\IMidiLibRepository.cs" />
     <Compile Include="Interfaces\IMyRectangle.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="Interfaces\ISoundPlayer.cs" />
     <Compile Include="Interfaces\IToggleButtonNote.cs" />
     <Compile Include="MidiLibRepository.cs" />
+    <Compile Include="MyInstrument.cs" />
     <Compile Include="MyRectangle.cs" />
     <Compile Include="NoteMapManager.cs" />
     <Compile Include="NoteNameListManager.cs" />

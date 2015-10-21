@@ -10,10 +10,11 @@ namespace Orphee.CreationShared.Interfaces
     {
         // Properties
         /// <summary>List of all the instrument available </summary>
-        List<Instrument> InstrumentList { get; }
+        List<MyInstrument> InstrumentList { get; }
+
         /// <summary>Current instrument </summary>
-        Instrument CurrentInstrument { get; set; }
 
         // Methods
+        int GetInstrumentIndex(Instrument instrument);
     }
 }

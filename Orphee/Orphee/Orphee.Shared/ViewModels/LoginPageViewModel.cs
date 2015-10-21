@@ -36,17 +36,31 @@ namespace Orphee.ViewModels
         }
 
         private async void LoginCommandExec()
-        {
-            var isInternetConnected = RestApiManagerBase.Instance.NotificationRecieiver.IsInternet();
-            if (await this._connectionManager.ConnectUser(this.UserName, this.Password))
-                App.MyNavigationService.GoBack();
+        { 
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayErrorMessage("Connexion unavailable");
+                return;
+            }
+            bool requestResult;
+            try
+            {
+                requestResult = await this._connectionManager.ConnectUser(this.UserName, this.Password);
+            }
+            catch
+            {
+                DisplayErrorMessage("Request failed");
+                return;
+            }
+            if (!requestResult)
+                DisplayErrorMessage("Wrong user name/password");
             else
-                DisplayErrorMessage(isInternetConnected);
+                App.MyNavigationService.GoBack();
         }
 
-        private async void DisplayErrorMessage(bool result)
+        private async void DisplayErrorMessage(string message)
         {
-            var messageDialog = (result == false) ? new MessageDialog("Internet connexion unavailable") : new MessageDialog("Wrong password/user name"); 
+            var messageDialog = new MessageDialog(message); 
 
             await messageDialog.ShowAsync();
         }

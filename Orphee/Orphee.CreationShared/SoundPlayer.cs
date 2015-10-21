@@ -56,9 +56,9 @@ namespace Orphee.CreationShared
         /// Function changing the tempo value
         /// </summary>
         /// <param name="tempo">New tempo value</param>
-        public void UpdateTempo(uint tempo)
+        public void UpdateTempo(uint tempo, Instrument instrument, Channel channel)
         {
-            this._midiLibRepository.UpdateTempo(tempo);
+            this._midiLibRepository.UpdateTempo(tempo, instrument, channel);
         }
 
         /// <summary>

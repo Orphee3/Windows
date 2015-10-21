@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
@@ -25,21 +28,40 @@ namespace Orphee.ViewModels
         {
             this._getter = getter;
             this.PopularCreations = new ObservableCollection<Creation>();
-            FillPopularCreations();
+            if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+                FillPopularCreations();
+            else
+                DisplayMessage("Connexion unavailable");
         }
 
         private async void FillPopularCreations()
         {
             if (this.PopularCreations.Count == 0)
             {
-                var popularCreation = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"]);
-                foreach (var creation in popularCreation)
+                List<Creation> popularCreations;
+                try
+                {
+                    popularCreations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"]);
+                }
+                catch (Exception)
+                {
+                    DisplayMessage("Request failed");
+                    return;
+                }
+                foreach (var creation in popularCreations)
                 {
                     creation.Name = creation.Name.Split('.')[0];
                     creation.CreatorList.Add((creation.Creator[0].ToObject<User>()));
                     this.PopularCreations.Add(creation);
                 }
             }
+        }
+
+        private async void DisplayMessage(string message)
+        {
+            var messageDialog = new MessageDialog(message);
+
+            await messageDialog.ShowAsync();
         }
     }
 }

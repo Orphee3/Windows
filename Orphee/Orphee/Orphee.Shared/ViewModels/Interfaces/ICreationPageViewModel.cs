@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.Prism.Commands;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
@@ -21,22 +21,17 @@ namespace Orphee.ViewModels.Interfaces
 
         // Properties
 
-        /// <summary>Instrument manager </summary>
-        IInstrumentManager InstrumentManager { get; }
-        /// <summary>Index of the current instrument </summary>
-        int CurrentInstrumentIndex { get; set; }
         /// <summary>Index of the current tempo </summary>
         int CurrentTempoIndex { get; set; }
         /// <summary>List of int containing tempo values from 40 to 400 </summary>
         List<uint> TempoValues { get; }
+        int CurrentTrackPos { get; set; }
         /// <summary>OrpheeFile displayed at the screen </summary>
         IOrpheeFile OrpheeFile { get; }
         /// <summary>Adds columns to the current track's note map </summary>
         DelegateCommand AddColumnsCommand { get; }
         /// <summary>Removes columns from the current track's note map </summary>
         DelegateCommand RemoveAColumnCommand { get; }
-        /// <summary>Calls the ToggleButtonNoteCommandExec </summary>
-        DelegateCommand<IToggleButtonNote> ToggleButtonNoteCommand { get; }
         /// <summary>Saves the current OrpheeFile in a MIDI file </summary>
         DelegateCommand SaveButtonCommand { get; }
         /// <summary>Loads a MIDI file</summary>
@@ -44,7 +39,7 @@ namespace Orphee.ViewModels.Interfaces
         /// <summary>Redirects to the previous page </summary>
         DelegateCommand BackButtonCommand { get; }
         /// <summary>Changes the track displayed </summary>
-        DelegateCommand<OrpheeTrack> SelectedTrackCommand { get; }
+        DelegateCommand<SelectionChangedEventArgs> SelectedTrackCommand { get; }
         /// <summary>Add one higher octave to the actual track's note map </summary>
         DelegateCommand AddOneHigherOctaveCommand { get; }
         /// <summary>Adds one lower octave to the current track's note map </summary>
@@ -54,6 +49,6 @@ namespace Orphee.ViewModels.Interfaces
         /// <summary>Play the notes contained in each track of the OrpheeFile </summary>
         DelegateCommand PlayCommand { get; }
         DelegateCommand ItemSelectedCommand { get; }
-        DelegateCommand<OrpheeTrack> TrackParametersCommand { get; }
+        DelegateCommand<OrpheeTrack> HoldTrackCommand { get; }
     }
 }
