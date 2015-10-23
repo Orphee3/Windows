@@ -108,10 +108,7 @@ namespace Orphee.ViewModels
         {
             App.MyNavigationService.CurrentPageName = "Profile";
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
                 DisplayErrorMessage("Connexion unavailable");
-                return;
-            }
             SetPropertiesDependingOnConnectionState();
         }
 
@@ -120,7 +117,8 @@ namespace Orphee.ViewModels
             if (RestApiManagerBase.Instance.IsConnected)
             { 
                 this.UserPictureSource = RestApiManagerBase.Instance.UserData.User.Picture ?? "/Assets/defaultUser.png";
-                InitBackgroundPictureColor();
+                if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+                    InitBackgroundPictureColor();
                 this.DisconnectedStackPanelVisibility = Visibility.Collapsed;
                 this.ConnectedStackPanelVisibility = Visibility.Visible;
                 this.UserName = RestApiManagerBase.Instance.UserData.User.UserName;

@@ -127,20 +127,21 @@
                     <StackPanel Orientation="Vertical">
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition/>
+                                <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
 
-                            <Ellipse Width="50" Height="50" Grid.Column="1" HorizontalAlignment="Center">
+                            <Ellipse Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Center">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="{Binding Path=Picture}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <AppBarButton Grid.Column="0" Foreground="#BDBEC0" Command="{Binding DataContext.AddFriendCommand, ElementName=Page}" CommandParameter="{Binding}" Icon="Add" BorderThickness="0" Style="{StaticResource MyBackButton}" Visibility="{Binding Path=AddButtonVisibility}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                            <Button Grid.Column="2" Foreground="#BDBEC0"  Height="70" Width="70" Command="{Binding DataContext.AddFriendCommand, ElementName=Page}" CommandParameter="{Binding}" BorderThickness="0" HorizontalAlignment="Stretch" Visibility="{Binding Path=AddButtonVisibility}" Margin="0, 0, 15, 0">
+                                <Image Source="/Assets/addfriend-icon.png" Stretch="Uniform"/>
+                            </Button>
                         </Grid>
-                        <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

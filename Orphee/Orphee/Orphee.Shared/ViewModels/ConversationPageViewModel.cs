@@ -129,6 +129,7 @@ namespace Orphee.ViewModels
         /// <param name="conversation">Contains the data related to the conversation to be created</param>
         public void CreateNewConversation(Conversation conversation)
         {
+  
             if (conversation.UserList.Count == 0)
                 return;
             string channelName;
@@ -141,6 +142,14 @@ namespace Orphee.ViewModels
             else
                 channelName = conversation.Name;
             this.ConversationList.Add(new Conversation() {Name = channelName, UserList = conversation.UserList, ConversationPictureSource = conversation.UserList.Count > 1 ? "/Assets/defaultUser.png" : conversation.UserList[0].Picture });
+        }
+
+        public void InitConversation(List<Message> messageList)
+        {
+        //    foreach (var message in messageList)
+        //    {
+        //        if (message.)
+        //    }
         }
 
         private async void DisplayMessage(string message)

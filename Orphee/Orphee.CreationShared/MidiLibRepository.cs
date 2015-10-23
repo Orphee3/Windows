@@ -65,7 +65,7 @@ namespace Orphee.CreationShared
         /// <param name="channel">Channel for which the instrument is going to be changed</param>
         public void UpdatePlayingInstrument(Channel channel, Instrument newPlayingInstrument)
         {
-            this._outputDevice.SendProgramChange(channel, newPlayingInstrument);
+           this._outputDevice.SendProgramChange(channel, newPlayingInstrument);
         }
 
         /// <summary>

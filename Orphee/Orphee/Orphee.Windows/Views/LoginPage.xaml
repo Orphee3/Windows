@@ -21,7 +21,7 @@
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                 <Image Source="/Assets/defaultUser.png" Height="256"/>
                 <TextBox Header="UserName" Text="{Binding UserName, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your username"/>
-                <PasswordBox Header="Password" Password="{Binding Password, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your password"/>
+                <PasswordBox Header="Password" Password="{Binding Password, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your password" IsPasswordRevealButtonEnabled="True"/>
                 <Button Content="Login" HorizontalAlignment="Stretch" Margin="0, 20, 0, 0" Command="{Binding LoginCommand}"/>
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="4, 15, 4, 0">
