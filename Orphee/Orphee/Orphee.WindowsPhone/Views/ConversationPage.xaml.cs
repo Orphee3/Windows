@@ -20,13 +20,13 @@ namespace Orphee.Views
 
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (e.PropertyName == "_hasReceivedMessageNotification")
-                    ((ConversationPageViewModel)this.DataContext).InitNewConversation(RestApiManagerBase.Instance.UserData.User.PendingMessageList);
-                RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
-                RestApiManagerBase.Instance.UserData.User.PendingMessageList.Clear();
-            }));
+        //    await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        //    {
+        //        if (e.PropertyName == "_hasReceivedMessageNotification")
+        //            ((ConversationPageViewModel)this.DataContext).InitNewConversation(RestApiManagerBase.Instance.UserData.User.PendingMessageList);
+        //        RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
+        //        RestApiManagerBase.Instance.UserData.User.PendingMessageList.Clear();
+        //    }));
         }
 
         private void Creation_OnTapped(object sender, TappedRoutedEventArgs e)

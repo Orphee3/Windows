@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorManager.cs" />
+    <Compile Include="CropBitmap.cs" />
     <Compile Include="InstrumentManager.cs" />
     <Compile Include="Interfaces\IColorManager.cs" />
     <Compile Include="Interfaces\IInstrumentManager.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="OrpheeTrack.cs" />
     <Compile Include="PlayerParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectedRegion.cs" />
     <Compile Include="SoundPlayer.cs" />
     <Compile Include="ToggleButtonNote.cs" />
   </ItemGroup>

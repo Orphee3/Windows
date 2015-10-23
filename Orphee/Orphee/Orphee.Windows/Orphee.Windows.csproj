@@ -138,6 +138,9 @@
     <Compile Include="Views\ProfileEditionPage.xaml.cs">
       <DependentUpon>ProfileEditionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProfilePictureEditionPage.xaml.cs">
+      <DependentUpon>ProfilePictureEditionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SocialPage.xaml.cs">
       <DependentUpon>SocialPage.xaml</DependentUpon>
     </Compile>
@@ -356,6 +359,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProfileEditionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfilePictureEditionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

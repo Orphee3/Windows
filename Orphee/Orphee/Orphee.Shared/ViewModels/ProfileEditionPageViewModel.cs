@@ -35,17 +35,19 @@ namespace Orphee.ViewModels
         private async void ChangePictureCommandExec()
         {
             var result = await OpenFilePicker();
+            App.MyNavigationService.Navigate("ProfilePictureEdition", result);
         }
 
-        private async Task<string> OpenFilePicker()
+        private async Task<StorageFile> OpenFilePicker()
         {
-            var openPicker = new FileOpenPicker()
+            var openPicker = new FileOpenPicker
             {
                 ViewMode = PickerViewMode.Thumbnail,
-                SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                SuggestedStartLocation = PickerLocationId.PicturesLibrary
             };
-            openPicker.FileTypeFilter.Add(".jpeg");
             openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".bmp");
             openPicker.FileTypeFilter.Add(".png");
 
 #if WINDOWS_PHONE_APP
@@ -55,9 +57,10 @@ namespace Orphee.ViewModels
             var pictureFile = await openPicker.PickSingleFileAsync();
 #endif
             if (pictureFile != null)
-                if (await this._fileUploader.UploadImage(pictureFile))
-                    return pictureFile.Path;
-            return "";
+                return pictureFile;
+            //    if (await this._fileUploader.UploadImage(pictureFile))
+
+            return null;
         }
     }
 }

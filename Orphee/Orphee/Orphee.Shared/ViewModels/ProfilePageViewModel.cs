@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Models;
+using Orphee.RestApiManagement.Senders;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -85,7 +86,6 @@ namespace Orphee.ViewModels
         public DelegateCommand LoginCommand { get; private set; }
         /// <summary>Redirects to EditProfilePage</summary>
         public DelegateCommand EditProfileCommand { get; private set; }
-
         /// <summary>
         /// Constructor
         /// </summary>
