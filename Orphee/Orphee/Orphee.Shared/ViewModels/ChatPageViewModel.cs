@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
@@ -28,7 +27,10 @@ namespace Orphee.ViewModels
             set
             {
                 if (this._message != value)
+                {
                     SetProperty(ref this._message, value);
+                    this.IsEnabled = !string.IsNullOrEmpty(this._message);
+                }
             }
         }
         /// <summary>List of messages </summary>
@@ -45,6 +47,17 @@ namespace Orphee.ViewModels
             }
         }
         private Conversation _actualConversation;
+        private bool _isEnabled;
+
+        public bool IsEnabled
+        {
+            get { return this._isEnabled; }
+            set
+            {
+                if (this._isEnabled != value)
+                    SetProperty(ref this._isEnabled, value);
+            }
+        }
 
         /// <summary>
         /// Constructor
@@ -86,15 +99,17 @@ namespace Orphee.ViewModels
 
         private void SendCommandExec()
         {
-            if (this.Message.Any())
+            var newMessage = new Message
             {
-                var newMessage = new Message { User = RestApiManagerBase.Instance.UserData.User, Date = DateTime.Now, ReceivedMessage = this.Message};
-                newMessage.SetProperties();
-                this.Conversation.Add(newMessage);
-                if (!RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList))
-                    DisplayMessage("This message wasn't sent");
-                this.Message = string.Empty;
-            }
+                User = RestApiManagerBase.Instance.UserData.User,
+                Date = DateTime.Now,
+                ReceivedMessage = this.Message
+            };
+            newMessage.SetProperties();
+            this.Conversation.Add(newMessage);
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList))
+                DisplayMessage("This message wasn't sent");
+            this.Message = string.Empty;
         }
 
         private async void DisplayMessage(string message)

@@ -162,7 +162,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Text="{Binding Message, Mode=TwoWay}" Grid.Column="0" HorizontalAlignment="Stretch" Margin="7" PlaceholderText="Write your message here..."/>
-                <Button Grid.Column="1" Content="Send" HorizontalAlignment="Stretch" Command="{Binding SendCommand}"/>
+                <Button Grid.Column="1" Content="Send" HorizontalAlignment="Stretch" Command="{Binding SendCommand}" IsEnabled="{Binding IsEnabled}"/>
             </Grid>
         </Grid>
     </Grid>

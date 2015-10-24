@@ -20,6 +20,7 @@ namespace Orphee.ViewModels.Interfaces
         string ConversationName { get; set; }
         /// <summary>List of messages </summary>
         ObservableCollection<Message> Conversation { get; }
+        bool IsEnabled { get; set; }
 
         /// <summary>
         /// Initialize the conversation with the given

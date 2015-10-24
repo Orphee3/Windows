@@ -15,7 +15,7 @@ namespace Orphee.Views
 
         private void Creation_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            var conversation = ((StackPanel)sender).DataContext as Conversation;
+            var conversation = ((Grid)sender).DataContext as Conversation;
             App.MyNavigationService.Navigate("Chat", conversation);
         }
     }

@@ -270,8 +270,7 @@ namespace Orphee.Views
             double widthScale = imageCanvas.Width / this.sourceImagePixelWidth;
             double heightScale = imageCanvas.Height / this.sourceImagePixelHeight;
 
-            FileSavePicker savePicker = new FileSavePicker();
-            savePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            FileSavePicker savePicker = new FileSavePicker {SuggestedStartLocation = PickerLocationId.PicturesLibrary};
 
             savePicker.FileTypeChoices.Add("JPG file", new List<string>() { ".jpg" });
             savePicker.FileTypeChoices.Add("JPEG file", new List<string>() { ".jpeg" });
@@ -279,11 +278,7 @@ namespace Orphee.Views
             savePicker.FileTypeChoices.Add("BMP file", new List<string>() { ".bmp" });
 
 
-            savePicker.SuggestedFileName = string.Format("{0}_{1}x{2}{3}",
-                sourceImageFile.DisplayName,
-                (int)Math.Floor(this.selectedRegion.SelectedRect.Width / widthScale),
-                (int)Math.Floor(this.selectedRegion.SelectedRect.Height / heightScale),
-                sourceImageFile.FileType);
+            savePicker.SuggestedFileName = string.Format("{0}_{1}x{2}{3}", sourceImageFile.DisplayName, (int)Math.Floor(this.selectedRegion.SelectedRect.Width / widthScale), (int)Math.Floor(this.selectedRegion.SelectedRect.Height / heightScale), sourceImageFile.FileType);
             StorageFile croppedImageFile = await savePicker.PickSaveFileAsync();
 
             if (croppedImageFile != null)
