@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Getters.Interfaces;
@@ -11,12 +12,34 @@ using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
-    public class NotificationPageViewModel : ViewModel, INotificationPageViewModel
+    public class NotificationPageViewModel : ViewModel, INotificationPageViewModel, ILoadingScreenComponents
     {
         public DelegateCommand<INews> ChannelInfoCommand { get; private set; }
         public DelegateCommand<INews> CreationInfoCommand { get; private set; }
         public DelegateCommand BackButtonCommand { get; private set; }
         public ObservableCollection<News> NewsList { get; private set; }
+        private bool _isProgressRingActive;
+
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility; }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
         private readonly IGetter _getter;
 
         public NotificationPageViewModel(IGetter getter)
@@ -29,7 +52,11 @@ namespace Orphee.ViewModels
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
                 DisplayMessage("Connexion unavailable");
             else
+            {
+                this.ProgressRingVisibility = Visibility.Visible;
+                this.IsProgressRingActive = true;
                 InitNewsList();
+            }
         }
 
         private async void InitNewsList()
@@ -42,9 +69,13 @@ namespace Orphee.ViewModels
             catch (Exception)
             {
                 DisplayMessage("Request failed");
+                this.IsProgressRingActive = false;
+                this.ProgressRingVisibility = Visibility.Collapsed;
                 return;
             }
             ParseData(newsTmpList);
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
 
         private void ParseData(List<News> newsTmpList)
