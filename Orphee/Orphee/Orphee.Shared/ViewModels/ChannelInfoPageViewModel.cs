@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -14,7 +15,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// ChannelInfoPage view model
     /// </summary>
-    public class ChannelInfoPageViewModel : ViewModel, IChannelInfoPageViewModel
+    public class ChannelInfoPageViewModel : ViewModel, IChannelInfoPageViewModel, ILoadingScreenComponents
     {
         /// <summary>List of the user's creation </summary>
         public ObservableCollection<Creation> CreationList { get; private set; }
@@ -64,6 +65,27 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._userPictureSource, value);
             }
         }
+        private bool _isProgressRingActive;
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility; }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
 
         private readonly IGetter _getter;
 
@@ -76,6 +98,8 @@ namespace Orphee.ViewModels
         {
             this._getter = getter;
             this.CreationList = new ObservableCollection<Creation>();
+            this.ProgressRingVisibility = Visibility.Visible;
+            this.IsProgressRingActive = true;
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
         }
 
@@ -109,6 +133,8 @@ namespace Orphee.ViewModels
                 creation.Name = creation.Name.Split('.')[0];
                 this.CreationList.Add(creation);
             }
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
 
         private void SetUserPicture(string pictureUri)

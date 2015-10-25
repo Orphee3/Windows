@@ -117,6 +117,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
+            </StackPanel>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>

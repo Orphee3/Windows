@@ -15,10 +15,33 @@ namespace Orphee.ViewModels
     /// <summary>
     /// HomePage view model
     /// </summary>
-    public class HomePageViewModel : ViewModel, IHomePageViewModel
+    public class HomePageViewModel : ViewModel, IHomePageViewModel, ILoadingScreenComponents
     {
         public DelegateCommand<Creation> CreationInfoCommand { get; private set; }
         public DelegateCommand<Creation> ChannelInfoCommand { get; private set; }
+        private bool _isProgressRingActive;
+
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility;  }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
+
         /// <summary>List of popular creations</summary>
         public ObservableCollection<Creation> PopularCreations { get; set; }
         private readonly IGetter _getter;
@@ -34,6 +57,8 @@ namespace Orphee.ViewModels
             this.CreationInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("CreationInfo", creation));
             this.ChannelInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("ChannelInfo", creation.CreatorList[0]));
             this.PopularCreations = new ObservableCollection<Creation>();
+            this.ProgressRingVisibility = Visibility.Visible;
+            this.IsProgressRingActive = true;
             if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
                 FillPopularCreations();
             else
@@ -69,6 +94,8 @@ namespace Orphee.ViewModels
                     preivousCreationName = creation.CreatorList[0].Name;
                 }
             }
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
 
         private async void DisplayMessage(string message)

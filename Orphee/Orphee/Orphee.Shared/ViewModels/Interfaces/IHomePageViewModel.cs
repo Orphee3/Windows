@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 using Microsoft.Practices.Prism.Commands;
 using Orphee.RestApiManagement.Models;
 
