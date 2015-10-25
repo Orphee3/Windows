@@ -135,6 +135,9 @@
     <Compile Include="Views\NewConversationConfigPage.xaml.cs">
       <DependentUpon>NewConversationConfigPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProfileEditionPage.xaml.cs">
       <DependentUpon>ProfileEditionPage.xaml</DependentUpon>
     </Compile>
@@ -185,9 +188,9 @@
     <Content Include="Assets\friend-icon.png" />
     <Content Include="Assets\heart-icon-white.png" />
     <Content Include="Assets\loginScreen.jpg" />
+    <Content Include="Assets\Notification icon.png" />
     <Content Include="Assets\Orphee icons.png" />
     <Content Include="Assets\Orphee icons2.png" />
-    <Content Include="Assets\Profile-photo.jpg" />
     <Content Include="Assets\commentary-icon.png" />
     <Content Include="Assets\defaultUser.png" />
     <Content Include="Assets\fb-login-btn.png" />
@@ -355,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewConversationConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,12 +19,13 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         Creation Creation { get; set; }
         /// <summary>Type of the news</summary>
         [JsonProperty(PropertyName = "type")]
-        string NewsType { get; set; }
+        string Type { get; set; }
         /// <summary>Creation date of the news</summary>
         [JsonProperty(PropertyName = "dateCreation")]
         DateTime DateCreation { get; set; }
         /// <summary>True if the news was viewed. False otherwise</summary>
         [JsonProperty(PropertyName = "viewed")]
         bool HasBeenViewed { get; set; }
+        string Message { get; set; }
     }
 }

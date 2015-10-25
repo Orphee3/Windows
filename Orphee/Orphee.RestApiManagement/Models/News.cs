@@ -16,10 +16,11 @@ namespace Orphee.RestApiManagement.Models
         /// <summary>Creation which the news comes from</summary>
         public Creation Creation { get; set; }
         /// <summary>Type of the news</summary>
-        public string NewsType { get; set; }
+        public string Type { get; set; }
         /// <summary>Creation date of the news</summary>
         public DateTime DateCreation { get; set; }
         /// <summary>True if the news was viewed. False otherwise</summary>
         public bool HasBeenViewed { get; set; }
+        public string Message { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace Orphee.ViewModels.Interfaces
         DelegateCommand MyCreationsCommand { get; }
 
         /// <summary>Logs the user out</summary>
-        DelegateCommand LogoutCommand { get; }
+        DelegateCommand NotificationsCommand { get; }
 
         /// <summary>Redirects to LoginPage</summary>
         DelegateCommand LoginCommand { get; }

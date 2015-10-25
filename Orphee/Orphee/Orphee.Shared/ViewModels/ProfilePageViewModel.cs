@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Models;
-using Orphee.RestApiManagement.Senders;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -79,7 +78,7 @@ namespace Orphee.ViewModels
         /// <summary>Redirects to MyCreationPage</summary>
         public DelegateCommand MyCreationsCommand { get; private set; }
         /// <summary>Logs the user out</summary>
-        public DelegateCommand LogoutCommand { get; private set; }
+        public DelegateCommand NotificationsCommand { get; private set; }
         /// <summary>Redirects to LoginPage</summary>
         public DelegateCommand FriendPageCommand { get; private set; }
         /// <summary>Redirects to FriendPage</summary>
@@ -93,7 +92,7 @@ namespace Orphee.ViewModels
         {
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
             this.MyCreationsCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("MyCreations", null));
-            this.LogoutCommand = new DelegateCommand(LogoutCommandExec);
+            this.NotificationsCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Notification", null));
             this.FriendPageCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", null));
             this.EditProfileCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("ProfileEdition", null));
         }
@@ -141,12 +140,6 @@ namespace Orphee.ViewModels
         {
             this.UserPictureSource = RestApiManagerBase.Instance.UserData.User.Picture;
             InitBackgroundPictureColor();
-        }
-
-        private void LogoutCommandExec()
-        {
-            RestApiManagerBase.Instance.Logout();
-            SetPropertiesDependingOnConnectionState();
         }
 
         private async void InitBackgroundPictureColor()

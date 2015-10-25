@@ -4,6 +4,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Senders.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
@@ -18,16 +19,14 @@ namespace Orphee.ViewModels
         public DelegateCommand GoBackCommand { get; private set; }
         /// <summary>Enables the posibility to change the user's picture </summary>
         public DelegateCommand ChangePictureCommand { get; private set; }
-        private readonly IFileUploader _fileUploader;
 
         /// <summary>
         /// Constructor initializing fileUploader
         /// through dependency injection
         /// </summary>
         /// <param name="fileUploader"></param>
-        public ProfileEditionPageViewModel(IFileUploader fileUploader)
+        public ProfileEditionPageViewModel()
         {
-            this._fileUploader = fileUploader;
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.ChangePictureCommand = new DelegateCommand(ChangePictureCommandExec);
         }
@@ -58,8 +57,6 @@ namespace Orphee.ViewModels
 #endif
             if (pictureFile != null)
                 return pictureFile;
-            //    if (await this._fileUploader.UploadImage(pictureFile))
-
             return null;
         }
     }

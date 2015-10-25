@@ -6,6 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -53,6 +55,11 @@
             </Grid.RowDefinitions>
             <Grid Background="{Binding BackgroundPictureColor}">
                 <Ellipse  Height="250" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction Command="{Binding DataContext.ChangePictureCommand, ElementName=Page}"/>
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding UserPictureSource}"/>
                     </Ellipse.Fill>
@@ -81,19 +88,19 @@
                 </StackPanel>
             </Grid>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <Button Content="My Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding FriendPageCommand}" Margin="0, 7, 0, 7"/>
+                <Button Content="Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding FriendPageCommand}" Margin="0, 7, 0, 7"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="20" Foreground="#BDBEC0" Margin="0, 7, 0 , 7" Command="{Binding MyCreationsCommand}"/>
+                <Button Content="Creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="20" Foreground="#BDBEC0" Margin="0, 7, 0 , 7" Command="{Binding MyCreationsCommand}"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <Button Content="Edit profile" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding EditProfileCommand}" Margin="0, 5, 0, 5"/>
+                <Button Content="Notifications" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding NotificationsCommand}" Margin="0, 5, 0, 5"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
                 </Grid>
-                <Button Content="Logout" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding LogoutCommand}" Margin="0, 7, 0, 7"/>
+                <Button Content="Parameters" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding ParametersCommand}" Margin="0, 7, 0, 7"/>
             </StackPanel>
         </Grid>
         <ui:MyBottomAppBar Grid.Row="2" x:Name="MyBottomAppBar"/>
