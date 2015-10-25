@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using Microsoft.Practices.Prism.Commands;
 using Orphee.RestApiManagement.Models;
 
 namespace Orphee.ViewModels.Interfaces
@@ -10,5 +12,7 @@ namespace Orphee.ViewModels.Interfaces
     {
         /// <summary>List of popular creations</summary>
         ObservableCollection<Creation> PopularCreations { get; set; }
+        DelegateCommand<Creation> CreationInfoCommand { get; }
+        DelegateCommand<Creation> ChannelInfoCommand { get; }
     }
 }

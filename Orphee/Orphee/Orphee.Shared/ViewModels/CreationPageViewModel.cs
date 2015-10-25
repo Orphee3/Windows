@@ -183,7 +183,10 @@ namespace Orphee.ViewModels
             var importedOrpheeFile = await this._orpheeFileImporter.ImportFile(".mid");
 
             if (importedOrpheeFile == null)
+            {
+                DisplayMessage("An error has occured during import");
                 return;
+            }
             this.OrpheeFile.OrpheeTrackList.Clear();
             this.OrpheeFile.OrpheeFileParameters = importedOrpheeFile.OrpheeFileParameters;
             foreach (var track in importedOrpheeFile.OrpheeTrackList)

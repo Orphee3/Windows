@@ -128,34 +128,26 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     </Style>
                 </ListView.ItemContainerStyle>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <Grid HorizontalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay}" Visibility="{Binding DataContext.CheckBoxVisibility, ElementName=Page}" Foreground="#78C7F9" BorderBrush="#BDBEC0" BorderThickness="2" Margin="0, 0, 10 , 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <Ellipse Width="50" Height="50" HorizontalAlignment="Center">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{Binding Path=Picture}"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                </StackPanel>
-                                <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
-                                <AppBarButton Grid.Column="2" Foreground="#BDBEC0" Command="{Binding DataContext.DeleteFriendCommand, ElementName=Page}"  CommandParameter="{Binding}"  Visibility="{Binding DataContext.InvitationStackPanelVisibility, ElementName=Page}" Icon="Delete" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
-                            </Grid>
-                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 5, 0, 10" VerticalAlignment="Bottom"/>
-                        </StackPanel>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay}" Visibility="{Binding DataContext.CheckBoxVisibility, ElementName=Page}" Foreground="#78C7F9" BorderBrush="#BDBEC0" BorderThickness="2" Margin="0, 0, 10 , 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <Ellipse Width="100" Height="100" HorizontalAlignment="Center">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Path=Picture}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </StackPanel>
+                            <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                            <AppBarButton Grid.Column="2" Foreground="#BDBEC0" Command="{Binding DataContext.DeleteFriendCommand, ElementName=Page}" VerticalAlignment="Center"  CommandParameter="{Binding}"  Visibility="{Binding DataContext.InvitationStackPanelVisibility, ElementName=Page}" Icon="Delete" BorderThickness="0" Style="{StaticResource MyBackButton}"/>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

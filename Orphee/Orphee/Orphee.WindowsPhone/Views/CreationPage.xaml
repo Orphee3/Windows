@@ -823,7 +823,7 @@
                                     </ListView.ItemsPanel>
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid Background="{Binding TrackBackgroundColor}">
+                                            <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="1.1*" MinWidth="200"/>
                                                     <ColumnDefinition Width="0.2*"/>
@@ -838,10 +838,10 @@
                                                 </interactivity:Interaction.Behaviors>
                                                     </TextBlock>
                                                 <Viewbox Grid.Column="1" Height="15" VerticalAlignment="Top" Margin="0, 3, 0, 0">
-                                                    <RadioButton/>
+                                                    <RadioButton IsChecked="{Binding IsSolo, Mode=TwoWay}"/>
                                                 </Viewbox>
                                                 <Viewbox Grid.Column="2" Height="15"  VerticalAlignment="Top" Margin="0, 3, 0, 0">
-                                                    <RadioButton/>
+                                                    <RadioButton IsChecked="{Binding IsMuted, Mode=TwoWay}"/>
                                                 </Viewbox>
                                                 <Slider Width="100" Grid.Column="3" VerticalAlignment="Top" Style="{StaticResource SliderStyle1}" HorizontalAlignment="Center"/>
                                             </Grid>

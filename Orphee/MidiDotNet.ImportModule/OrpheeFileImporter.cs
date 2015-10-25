@@ -2,8 +2,10 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Midi;
 using MidiDotNet.ImportModule.Interfaces;
 using Orphee.CreationShared;
@@ -53,6 +55,28 @@ namespace MidiDotNet.ImportModule
         {
             var result = await GetTheOpenFilePicker(fileType);
             return result ? this.OrpheeFile : null;
+        }
+
+        public async Task<IOrpheeFile> ImportFileFromNet(string filePath, string fileName)
+        {
+            var file = await KnownFolders.MusicLibrary.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+            var downloader = new BackgroundDownloader();
+            var download = downloader.CreateDownload(new Uri(filePath), file);
+            DownloadOperation result;
+            try
+            {
+                result = await download.StartAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            if (result.ResultFile == null)
+                return null;
+            this.StorageFile = result.ResultFile;
+            var result2 = ReadFileMessages();
+            return result2 ? this.OrpheeFile : null;
         }
 
         private async Task<bool> GetTheOpenFilePicker(string fileType)

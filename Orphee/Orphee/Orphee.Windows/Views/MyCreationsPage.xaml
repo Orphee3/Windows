@@ -114,16 +114,10 @@
             <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding CreationList}" Height="Auto"  ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Center" Tapped="Creation_OnTapped">
-                        <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                            <StackPanel Orientation="Horizontal">
+                    <Grid HorizontalAlignment="Center" Tapped="Creation_OnTapped" Margin="0, 0, 0, 20">
+                        <StackPanel Orientation="Horizontal">
                                 <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
                                     <Image Source="/Assets/creation-background.png" VerticalAlignment="Top" Stretch="Fill"/>
                                     <Image Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
@@ -149,8 +143,6 @@
                                     </Grid>
                                 </StackPanel>
                             </StackPanel>
-                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 20, 0, 10" VerticalAlignment="Bottom"/>
-                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

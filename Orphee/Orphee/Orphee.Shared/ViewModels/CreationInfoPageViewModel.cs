@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using MidiDotNet.ImportModule.Interfaces;
+using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
@@ -20,6 +23,7 @@ namespace Orphee.ViewModels
     {
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
+        public DelegateCommand PlayCommand { get; private set; }
         /// <summary>List of comments related to the creation </summary>
         public ObservableCollection<Comment> CommentList { get; private set; }
         private string _creationName;
@@ -60,6 +64,8 @@ namespace Orphee.ViewModels
         public string UserPictureSource { get; private set; }
         private readonly IGetter _getter;
         private readonly ICommentSender _commentSender;
+        private readonly IOrpheeFileImporter _importer;
+        private readonly ISoundPlayer _player;
 
         /// <summary>
         /// Constructor initializing getter and commentSender
@@ -67,11 +73,14 @@ namespace Orphee.ViewModels
         /// </summary>
         /// <param name="getter">Manages the sending of the "Get" requests</param>
         /// <param name="commentSender">Manages the comment sending to the remote server</param>
-        public CreationInfoPageViewModel(IGetter getter, ICommentSender commentSender)
+        public CreationInfoPageViewModel(IGetter getter, ICommentSender commentSender, IOrpheeFileImporter fileImporter, ISoundPlayer player)
         {
             this._getter = getter;
+            this._importer = fileImporter;
             this._commentSender = commentSender;
+            this._player = player;
             this.UserPictureSource = RestApiManagerBase.Instance.IsConnected ? RestApiManagerBase.Instance.UserData.User.Picture : "/Assets/defaultUser.png";
+            this.PlayCommand = new DelegateCommand(PlayCommandExec);
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.CommentList = new ObservableCollection<Comment>();
         }
@@ -152,6 +161,34 @@ namespace Orphee.ViewModels
                         this.CommentNumber++;
                     }
             }
+        }
+
+        private async void PlayCommandExec()
+        {
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayMessage("Connexion unavailable");
+                return;
+            }
+            IOrpheeFile orpheeFile;
+            try
+            {
+                orpheeFile = await this._importer.ImportFileFromNet(this._creation.GetUrl, this._creation.Name);
+            }
+            catch (Exception)
+            {
+                DisplayMessage("Unable to play the piece");
+                return;
+            }
+
+            if (orpheeFile != null)
+            {
+                this._player.SetPlayerParameters(orpheeFile.OrpheeTrackList[0].PlayerParameters);
+                foreach (var track in orpheeFile.OrpheeTrackList)
+                    this._player.PlayTrack(track.OrpheeNoteMessageList, track.CurrentInstrument, track.Channel);
+            }
+            else
+                DisplayMessage("Unable to play the piece");
         }
 
         private async void DisplayMessage(string message)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Windows.UI.Xaml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -35,6 +36,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         int NumberOfLike { get; set; }
         /// <summary>List of the creators of the creation</summary>
         List<User> CreatorList { get; set; }
+        Visibility ChannelStackPanelVisibility { get; set; }
 
         /// <summary> 
         /// Updates the number of likes and comments of the creation

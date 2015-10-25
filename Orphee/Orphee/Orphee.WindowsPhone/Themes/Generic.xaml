@@ -89,4 +89,22 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style TargetType="ui:MyRectangleButton">
+        <Setter Property="Background" Value="{ThemeResource ToggleButtonBackgroundThemeBrush}"/>
+        <Setter Property="BorderBrush" Value="#BDBEC0"/>
+        <Setter Property="BorderThickness" Value="{ThemeResource ToggleButtonBorderThemeThickness}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ui:MyRectangleButton">
+                    <Grid>
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="3">
+                             <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="{Binding Height}" Width="{Binding Width}" Fill="{TemplateBinding ButtonBackgroundColor}" Opacity="{TemplateBinding RectangleVisibility}"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

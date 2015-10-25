@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Windows.Networking.Connectivity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -161,7 +162,15 @@ namespace Orphee.RestApiManagement.Socket_Management
         /// <returns></returns>
         public bool IsInternet()
         {
-            var connections = NetworkInformation.GetInternetConnectionProfile();
+            ConnectionProfile connections;
+            try
+            {
+                connections = NetworkInformation.GetInternetConnectionProfile();
+            }
+            catch (Exception)
+            {
+                return IsInternet();
+            }
             var internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
             return internet;
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Models.Interfaces;
 
@@ -28,13 +29,14 @@ namespace Orphee.RestApiManagement.Models
         public int NumberOfLike { get; set; }
         /// <summary>List of the creators of the creation</summary>
         public List<User> CreatorList { get; set; }
-
+        public Visibility ChannelStackPanelVisibility { get; set; }
         /// <summary>
         /// Constructor
         /// </summary>
         public Creation()
         {
             this.CreatorList = new List<User>();
+            this.ChannelStackPanelVisibility = Visibility.Collapsed;
         }
 
         /// <summary>

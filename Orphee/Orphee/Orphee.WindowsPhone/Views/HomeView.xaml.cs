@@ -12,28 +12,6 @@ namespace Orphee.Views
         {
             this.InitializeComponent();
         }
-
-        private void Play(object sender, TappedRoutedEventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
-        private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            var channel = ((Creation)((Ellipse) sender).DataContext).CreatorList[0];
-            App.MyNavigationService.Navigate("ChannelInfo", channel);
-        }
-
-        private void InfoStackPannel_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            var creation = ((Button)sender).DataContext as Creation;
-            App.MyNavigationService.Navigate("CreationInfo", creation);
-        }
-
-        private void LikeButton_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            
-        }
     }
 }
  

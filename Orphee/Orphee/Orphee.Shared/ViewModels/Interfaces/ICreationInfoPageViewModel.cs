@@ -12,6 +12,7 @@ namespace Orphee.ViewModels.Interfaces
     {
         /// <summary>Redirects to the previous page </summary>
         DelegateCommand GoBackCommand { get; }
+        DelegateCommand PlayCommand { get; }
         /// <summary>List of comments related to the creation </summary>
         ObservableCollection<Comment> CommentList { get; }
         /// <summary>Name of the creation </summary>

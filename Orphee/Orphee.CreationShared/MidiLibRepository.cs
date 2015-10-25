@@ -26,7 +26,7 @@ namespace Orphee.CreationShared
                 TimeSignatureNominator = 4,
                 TimeSignatureDenominator = 4,
                 TimeSignatureClocksPerBeat = 24,
-                TimeSignatureNumberOf32ThNotePerBeat = 4,
+                TimeSignatureNumberOf32ThNotePerBeat = 2,
                 Tempo = 120,
             };
             this._clock = new Clock(this.PlayerParameters.Tempo);
@@ -90,6 +90,14 @@ namespace Orphee.CreationShared
         public void SetPlayerParameters(IPlayerParameters playerParameters)
         {
             this.PlayerParameters = playerParameters;
+            ReinitClock();
+        }
+
+        private void ReinitClock()
+        {
+            this._clock.Stop();
+            this._clock = new Clock(this.PlayerParameters.Tempo);
+            this._clock.Start();
         }
 
         /// <summary>
@@ -104,7 +112,7 @@ namespace Orphee.CreationShared
             var beatTime = 0;
             foreach (var note in noteMessageList)
             {
-                beatTime += note.DeltaTime / 48;
+                beatTime += note.DeltaTime / 46;
                 if ((note.MessageCode & 0x90) == 0x90)
                     this._clock.Schedule(new NoteOnMessage(this._outputDevice, (Channel)note.Channel, note.Note, note.Velocity, this._clock.BeatTime + beatTime));
                 else

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using System.Linq;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
@@ -15,6 +17,8 @@ namespace Orphee.ViewModels
     /// </summary>
     public class HomePageViewModel : ViewModel, IHomePageViewModel
     {
+        public DelegateCommand<Creation> CreationInfoCommand { get; private set; }
+        public DelegateCommand<Creation> ChannelInfoCommand { get; private set; }
         /// <summary>List of popular creations</summary>
         public ObservableCollection<Creation> PopularCreations { get; set; }
         private readonly IGetter _getter;
@@ -27,6 +31,8 @@ namespace Orphee.ViewModels
         public HomePageViewModel(IGetter getter)
         {
             this._getter = getter;
+            this.CreationInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("CreationInfo", creation));
+            this.ChannelInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("ChannelInfo", creation.CreatorList[0]));
             this.PopularCreations = new ObservableCollection<Creation>();
             if (RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
                 FillPopularCreations();
@@ -52,7 +58,15 @@ namespace Orphee.ViewModels
                 {
                     creation.Name = creation.Name.Split('.')[0];
                     creation.CreatorList.Add((creation.Creator[0].ToObject<User>()));
+                }
+                var orderedPopularCreations = popularCreations.OrderBy(t => t.CreatorList[0].Name);
+                string preivousCreationName = "";
+                foreach (var creation in orderedPopularCreations)
+                {
+                    if (preivousCreationName == "" || preivousCreationName != creation.CreatorList[0].Name)
+                        creation.ChannelStackPanelVisibility = Visibility.Visible;
                     this.PopularCreations.Add(creation);
+                    preivousCreationName = creation.CreatorList[0].Name;
                 }
             }
         }
