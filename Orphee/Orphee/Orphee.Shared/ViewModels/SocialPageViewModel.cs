@@ -16,7 +16,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// ViewModel of the SocialPage
     /// </summary>
-    public class SocialPageViewModel : ViewModel, ISocialPageViewModel
+    public class SocialPageViewModel : ViewModel, ISocialPageViewModel, ILoadingScreenComponents
     {
         /// <summary>List of the searched users </summary>
         public ObservableCollection<User> UserList { get; set; }
@@ -24,6 +24,28 @@ namespace Orphee.ViewModels
         public DelegateCommand LoginCommand { get; private set; }
         /// <summary>Add new friend command</summary>
         public DelegateCommand<User> AddFriendCommand { get; private set; }
+        private bool _isProgressRingActive;
+
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility; }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
         private readonly IGetter _getter;
 
         /// <summary>
@@ -34,6 +56,8 @@ namespace Orphee.ViewModels
         public SocialPageViewModel(IGetter getter)
         {
             this._getter = getter;
+            this.ProgressRingVisibility = Visibility.Visible;
+            this.IsProgressRingActive = true;
             this.UserList = new ObservableCollection<User>();
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
             this.AddFriendCommand = new DelegateCommand<User>(NewFriendCommandExec);
@@ -50,6 +74,8 @@ namespace Orphee.ViewModels
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
                 DisplayMessage("Connexion unavailable");
+                this.IsProgressRingActive = false;
+                this.ProgressRingVisibility = Visibility.Collapsed;
                 return;
             }
             List<User> temporaryList;
@@ -60,6 +86,8 @@ namespace Orphee.ViewModels
             catch (Exception)
             {
                 DisplayMessage("Request failed");
+                this.IsProgressRingActive = false;
+                this.ProgressRingVisibility = Visibility.Collapsed;
                 return;
             }
 
@@ -73,6 +101,8 @@ namespace Orphee.ViewModels
                     user.AddButtonVisibility = Visibility.Collapsed;
                 this.UserList.Add(user);
             }
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
 
         private async void NewFriendCommandExec(User friend)
