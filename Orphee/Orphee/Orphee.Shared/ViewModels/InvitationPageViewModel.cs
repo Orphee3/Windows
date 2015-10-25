@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -12,7 +13,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// InvitationPage view model
     /// </summary>
-    public class InvitationPageViewModel : ViewModel, IInvitationPageViewModel
+    public class InvitationPageViewModel : ViewModel, IInvitationPageViewModel, ILoadingScreenComponents
     {
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
@@ -22,6 +23,28 @@ namespace Orphee.ViewModels
         public DelegateCommand<User> CancelCommand { get; private set; }
         /// <summary>List of the pending invitations</summary>
         public ObservableCollection<User> InvitationList { get; private set; }
+        private bool _isProgressRingActive;
+
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility; }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
         private readonly IGetter _getter;
 
         /// <summary>
@@ -32,6 +55,8 @@ namespace Orphee.ViewModels
         public InvitationPageViewModel(IGetter getter)
         {
             this._getter = getter;
+            this.ProgressRingVisibility = Visibility.Visible;
+            this.IsProgressRingActive = true;
             this.AcceptCommand = new DelegateCommand<User>(AcceptCommandExec);
             this.CancelCommand = new DelegateCommand<User>(CancelCommandExec);
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
@@ -48,6 +73,8 @@ namespace Orphee.ViewModels
         {
             foreach (var pendingInvitation in RestApiManagerBase.Instance.UserData.User.PendingFriendList)
                 this.InvitationList.Add(pendingInvitation);
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
 
         private void AcceptCommandExec(User user)
