@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Storage;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -19,7 +20,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// CreationInfoPage view model
     /// </summary>
-    public class CreationInfoPageViewModel : ViewModel, ICreationInfoPageViewModel
+    public class CreationInfoPageViewModel : ViewModel, ICreationInfoPageViewModel, ILoadingScreenComponents
     {
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
@@ -60,6 +61,28 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._likeNumber, value);
             }
         }
+        private bool _isProgressRingActive;
+
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility; }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
         /// <summary>User picture source </summary>
         public string UserPictureSource { get; private set; }
         private readonly IGetter _getter;
@@ -79,6 +102,8 @@ namespace Orphee.ViewModels
             this._importer = fileImporter;
             this._commentSender = commentSender;
             this._player = player;
+            this.ProgressRingVisibility = Visibility.Visible;
+            this.IsProgressRingActive = true;
             this.UserPictureSource = RestApiManagerBase.Instance.IsConnected ? RestApiManagerBase.Instance.UserData.User.Picture : "/Assets/defaultUser.png";
             this.PlayCommand = new DelegateCommand(PlayCommandExec);
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
@@ -122,6 +147,8 @@ namespace Orphee.ViewModels
             catch (Exception)
             {
                 DisplayMessage("Request failed");
+                this.IsProgressRingActive = false;
+                this.ProgressRingVisibility = Visibility.Collapsed;
                 return;
             }
             if (commentList == null)
@@ -134,6 +161,8 @@ namespace Orphee.ViewModels
                     this.CommentList.Insert(0, comment);
                 }
             }
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
 
         /// <summary>

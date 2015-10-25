@@ -121,7 +121,9 @@ namespace Orphee.ViewModels
             }
             catch (Exception)
             {
-               DisplayMessage("Request failed");
+                DisplayMessage("Request failed");
+                this.IsProgressRingActive = false;
+                this.ProgressRingVisibility = Visibility.Collapsed;
                 return;
             }
             // this.CreationNumber = creations?.Count ?? 0;

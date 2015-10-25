@@ -171,6 +171,9 @@
                 </StackPanel>
             </Grid>
             <Line Grid.Row="0" X1="0" Y1="0" X2="140" Y2="0" Stretch="Fill" Stroke="#BDBEC0" Margin="20, 10, 20, 10" VerticalAlignment="Bottom"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
+            </StackPanel>
             <ListView Grid.Row="2" ItemsSource="{Binding CommentList}" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>

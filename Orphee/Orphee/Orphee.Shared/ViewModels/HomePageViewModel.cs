@@ -77,6 +77,8 @@ namespace Orphee.ViewModels
                 catch (Exception)
                 {
                     DisplayMessage("Request failed");
+                    this.IsProgressRingActive = false;
+                    this.ProgressRingVisibility = Visibility.Collapsed;
                     return;
                 }
                 foreach (var creation in popularCreations)
