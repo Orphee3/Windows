@@ -16,7 +16,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// ConversationPage view model
     /// </summary>
-    public class ConversationPageViewModel : ViewModel, IConversationPageViewModel
+    public class ConversationPageViewModel : ViewModel, IConversationPageViewModel, ILoadingScreenComponents
     {
         /// <summary>List of conversation that the user has </summary>
         public ObservableCollection<Conversation> ConversationList { get; set; }
@@ -46,6 +46,28 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._listViewVisibility, value);
             }
         }
+        private bool _isProgressRingActive;
+
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility; }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
         private readonly IGetter _getter;
 
         /// <summary>
@@ -63,13 +85,14 @@ namespace Orphee.ViewModels
             {
                 this.ButtonsVisibility = Visibility.Collapsed;
                 this.ListViewVisibility = Visibility.Visible;
+                this.ProgressRingVisibility = Visibility.Visible;
+                this.IsProgressRingActive = true;
             }
             this.CreateNewConversationCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", ""));
             this.LoginButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
         }
 
-        public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode,
-            Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             App.MyNavigationService.CurrentPageName = "Messages";
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
@@ -113,6 +136,8 @@ namespace Orphee.ViewModels
                     }
                 this.ButtonsVisibility = Visibility.Collapsed;
                 this.ListViewVisibility = Visibility.Visible;
+                this.IsProgressRingActive = false;
+                this.ProgressRingVisibility = Visibility.Collapsed;
             }
             else
             {
@@ -142,6 +167,8 @@ namespace Orphee.ViewModels
             else
                 channelName = conversation.Name;
             this.ConversationList.Add(new Conversation() {Name = channelName, UserList = conversation.UserList, ConversationPictureSource = conversation.UserList.Count > 1 ? "/Assets/defaultUser.png" : conversation.UserList[0].Picture });
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
 
         public void InitConversation(List<Message> messageList)
