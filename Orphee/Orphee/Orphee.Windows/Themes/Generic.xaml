@@ -8,7 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ui:MyAppBarButton">
-                    <Grid x:Name="RootGrid" Background="Transparent" Width="100">
+                    <Grid x:Name="RootGrid" Background="Transparent" Width="88">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ApplicationViewStates">
                                 <VisualState x:Name="FullSize"/>
@@ -73,23 +73,20 @@
                                 <VisualState x:Name="PointerFocused"/>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <StackPanel Margin="0,14,0,13" VerticalAlignment="Top">
-                            <Grid HorizontalAlignment="Center" Height="40" Margin="0,0,0,5" Width="51">
-                                <Ellipse Name="NotificationDot" Fill="#600D47A1" Height="10" Width="10" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{TemplateBinding NotificationDotVisibility}"/>
+                        <StackPanel Margin="0,5,0,0" VerticalAlignment="Top">
+                            <Grid HorizontalAlignment="Center" Width="40">
                                 <Ellipse x:Name="BackgroundEllipse" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}" Height="40" UseLayoutRounding="False" Width="40"/>
                                 <Ellipse x:Name="OutlineEllipse" Height="40" Stroke="{ThemeResource AppBarItemForegroundThemeBrush}" StrokeThickness="2" UseLayoutRounding="False" Width="40"/>
                                 <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                <Ellipse Name="NotificationDot" Fill="Red" Height="10" Width="10" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{TemplateBinding NotificationDotVisibility}"/>
                             </Grid>
-                            <TextBlock x:Name="TextLabel" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="12" FontFamily="{TemplateBinding FontFamily}" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" Width="88"/>
+                            <TextBlock x:Name="TextLabel" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="13" FontFamily="{TemplateBinding FontFamily}" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" Width="88"/>
                         </StackPanel>
-                        <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
-                        <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
     <Style TargetType="ui:MyRectangleButton">
         <Setter Property="Background" Value="{ThemeResource ToggleButtonBackgroundThemeBrush}"/>
         <Setter Property="BorderBrush" Value="#BDBEC0"/>
