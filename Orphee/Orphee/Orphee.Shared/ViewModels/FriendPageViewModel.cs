@@ -16,7 +16,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// FriendPage view model
     /// </summary>
-    public class FriendPageViewModel : ViewModel, IFriendPageViewModel
+    public class FriendPageViewModel : ViewModel, IFriendPageViewModel, ILoadingScreenComponents
     {
         /// <summary>Redirects to the precious page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
@@ -26,6 +26,28 @@ namespace Orphee.ViewModels
         public ObservableCollection<User> FriendList { get; private set; }
         /// <summary>Validates the creation of the new conversation </summary>
         public DelegateCommand ValidateConversationCreationCommand { get; private set; }
+        private bool _isProgressRingActive;
+
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility; }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
         private Visibility _checkBoxVisibility;
         /// <summary>Visible if the box is visible. Hidden otherwise </summary>
         public Visibility CheckBoxVisibility
@@ -69,6 +91,8 @@ namespace Orphee.ViewModels
                 var conversation  = new Conversation { UserList = this.FriendList.Where(f => f.IsChecked).ToList(), Name = ConversationName };
                 App.MyNavigationService.Navigate("Conversation", conversation);
             });
+            this.ProgressRingVisibility = Visibility.Visible;
+            this.IsProgressRingActive = true;
             this.FriendList = new ObservableCollection<User>();
         }
 
@@ -85,6 +109,8 @@ namespace Orphee.ViewModels
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
                 DisplayMessage("Connexion unavailable");
+                this.IsProgressRingActive = false;
+                this.ProgressRingVisibility = Visibility.Collapsed;
                 return;
             }
             this.FriendList.Clear();
@@ -96,6 +122,8 @@ namespace Orphee.ViewModels
             catch (Exception)
             {
                 DisplayMessage("Request failed");
+                this.IsProgressRingActive = false;
+                this.ProgressRingVisibility = Visibility.Collapsed;
                 return;
             }
             foreach (var friend in friendList)
@@ -103,6 +131,8 @@ namespace Orphee.ViewModels
                 friend.Picture = friend.Picture ?? "/Assets/defaultUser.png";
                 this.FriendList.Add(friend);
             }
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
         private async void DisplayMessage(string message)
         {

@@ -108,6 +108,9 @@
         <Grid Grid.Row="1" VerticalAlignment="Top">
             <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
+        </StackPanel>
         <StackPanel Grid.Row="1">
             <Grid VerticalAlignment="Top" Margin="5, 5, 0, 0" Tapped="ForwardSign_OnTapped" Visibility="{Binding InvitationStackPanelVisibility}">
                 <StackPanel>
