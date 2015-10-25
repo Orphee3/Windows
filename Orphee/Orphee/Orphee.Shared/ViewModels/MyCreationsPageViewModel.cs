@@ -5,18 +5,41 @@ using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using System.Collections.Generic;
+using Windows.UI.Xaml;
 
 namespace Orphee.ViewModels
 {
     /// <summary>
     /// MyCreationsPage view model
     /// </summary>
-    public class MyCreationsPageViewModel : ViewModel, IMyCreationsPageViewModel
+    public class MyCreationsPageViewModel : ViewModel, IMyCreationsPageViewModel, ILoadingScreenComponents
     {
         /// <summary>List of the user's creation </summary>
         public ObservableCollection<Creation> CreationList { get; set; }
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
+        private bool _isProgressRingActive;
+
+        public bool IsProgressRingActive
+        {
+            get { return this._isProgressRingActive; }
+            set
+            {
+                if (this._isProgressRingActive != value)
+                    SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        private Visibility _progressRingVisibility;
+
+        public Visibility ProgressRingVisibility
+        {
+            get { return this._progressRingVisibility; }
+            set
+            {
+                if (this._progressRingVisibility != value)
+                    SetProperty(ref this._progressRingVisibility, value);
+            }
+        }
         private readonly IGetter _getter;
 
         /// <summary>
@@ -27,6 +50,8 @@ namespace Orphee.ViewModels
         public MyCreationsPageViewModel(IGetter getter)
         {
             this._getter = getter;
+            this.ProgressRingVisibility = Visibility.Visible;
+            this.IsProgressRingActive = true;
             InitCreationList();
             this.CreationList = new ObservableCollection<Creation>();
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
@@ -34,8 +59,7 @@ namespace Orphee.ViewModels
 
         private async void InitCreationList()
         {
-            if (RestApiManagerBase.Instance.IsConnected &&
-                RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
                 var result = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/creation");
                 foreach (var creation in result)
@@ -44,6 +68,8 @@ namespace Orphee.ViewModels
                     this.CreationList.Add(creation);
                 }
             }
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
         }
     }
 }
