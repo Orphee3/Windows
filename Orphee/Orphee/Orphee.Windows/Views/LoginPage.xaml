@@ -45,6 +45,9 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
+                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 50, 0, 0">
+                    <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
+                </Grid>
             </StackPanel>
         </Grid>
     </Grid>

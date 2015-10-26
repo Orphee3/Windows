@@ -64,6 +64,7 @@ namespace Orphee.UnityModule
             container.RegisterType<IFileUploader, FileUploader>(new ContainerControlledLifetimeManager());
             container.RegisterType<IColorManager, ColorManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<INewsParser, NewsParser>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IConversationParser, ConversationParser>(new ContainerControlledLifetimeManager());
         }
     }
 }

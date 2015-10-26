@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
@@ -9,6 +10,7 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
+using Orphee.RestApiManagement.Models.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
@@ -100,52 +102,61 @@ namespace Orphee.ViewModels
                 DisplayMessage("Connexion unavailable");
                 return;
             }
-            if (RestApiManagerBase.Instance.IsConnected)
+            if (navigationParameter != null)
             {
-                List<Conversation> conversationList;
-                List<User> userFriends;
-                try
-                {
-                    conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
-                    userFriends = await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends");
-                }
-                catch (Exception)
-                {
-                    DisplayMessage("Request failed");
-                    return;
-                }
-                foreach (var conversation in conversationList)
-                    if (this.ConversationList.Count(c => c.Id == conversation.Id) == 0)
-                    {
-                        foreach (var user in conversation.Users)
-                        {
-                            if (user.ToString() != RestApiManagerBase.Instance.UserData.User.Id)
-                            {
-                                conversation.ConversationPictureSource = userFriends.FirstOrDefault(uf => uf.Id == user.ToString()).Picture ?? "/Assets/defaultUser.png";
-                                conversation.UserList.Add(userFriends.FirstOrDefault(uf => uf.Id == user.ToString()));
-                            }
-                        }
-                        if (conversation.UserList.Count == 1)
-                            conversation.Name = conversation.UserList[0].Name;
-                        conversation.Messages = await this._getter.GetInfo<List<Message>>(RestApiManagerBase.Instance.RestApiPath["roomMessages"] + "/" + conversation.UserList[0].Id);
-                        foreach (var message in conversation.Messages)
-                            message.SetProperties();
-                        conversation.Messages.Reverse();
-                        conversation.LastMessagePreview = conversation.Messages.Last().ReceivedMessage;
-                        this.ConversationList.Add(conversation);
-                    }
+                CreateNewConversation(navigationParameter as Conversation);
+                return;
+            }
+            if (RestApiManagerBase.Instance.IsConnected)
+                InitConversationList();
+            else
+                ResetVisibility(false);
+        }
+
+        private void ResetVisibility(bool isConnected)
+        {
+            if (isConnected)
+            {
                 this.ButtonsVisibility = Visibility.Collapsed;
                 this.ListViewVisibility = Visibility.Visible;
-                this.IsProgressRingActive = false;
-                this.ProgressRingVisibility = Visibility.Collapsed;
             }
             else
             {
                 this.ButtonsVisibility = Visibility.Visible;
                 this.ListViewVisibility = Visibility.Collapsed;
             }
-            if (navigationParameter != null)
-                CreateNewConversation(navigationParameter as Conversation);
+        }
+
+        private async void InitConversationList()
+        {
+            ResetVisibility(true);
+            foreach (var conversation in RestApiManagerBase.Instance.UserData.User.ConversationList)
+            {
+                Conversation conversationWithMessages;
+                if ((conversationWithMessages = await RetrieveConversationMessages(conversation)) == null)
+                    return;
+                this.ConversationList.Add(conversationWithMessages);
+            }
+            this.IsProgressRingActive = false;
+            this.ProgressRingVisibility = Visibility.Collapsed;
+        }
+
+        private async Task<Conversation> RetrieveConversationMessages(Conversation conversation)
+        {
+            try
+            {
+                conversation.Messages = await this._getter.GetInfo<List<Message>>(RestApiManagerBase.Instance.RestApiPath["roomMessages"] + "/" + conversation.UserList[0].Id);
+            }
+            catch (Exception)
+            {
+                DisplayMessage("Request failed");
+                return null;
+            }
+            foreach (var message in conversation.Messages)
+                message.SetProperties();
+            conversation.Messages.Reverse();
+            conversation.LastMessagePreview = conversation.Messages.Last().ReceivedMessage;
+            return conversation;
         }
 
         /// <summary>

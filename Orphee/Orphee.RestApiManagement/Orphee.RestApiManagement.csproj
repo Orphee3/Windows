@@ -38,6 +38,8 @@
     <Compile Include="Getters\Getter.cs" />
     <Compile Include="Getters\Interfaces\IGetter.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\ConversationParser.cs" />
+    <Compile Include="Models\Interfaces\IConversationParser.cs" />
     <Compile Include="Models\Interfaces\INews.cs" />
     <Compile Include="Models\Interfaces\INewsParser.cs" />
     <Compile Include="Models\News.cs" />

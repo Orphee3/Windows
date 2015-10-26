@@ -60,5 +60,6 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         bool PictureHasBeenUplaodedWithSuccess { get; set; }
         List<User> FriendList { get; set; }
         List<News> NotificationList { get; set; }  
+        List<Conversation> ConversationList { get; set; } 
     }
 }

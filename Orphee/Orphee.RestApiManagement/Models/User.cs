@@ -118,6 +118,8 @@ namespace Orphee.RestApiManagement.Models
         public List<User> FriendList { get; set; }
         public List<News> NotificationList { get; set; }
 
+        public List<Conversation> ConversationList { get; set; } 
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -127,6 +129,7 @@ namespace Orphee.RestApiManagement.Models
             this.PendingFriendList = new List<User>();
             this.PendingCommentList = new List<Comment>();
             this.FriendList = new List<User>();
+            this.ConversationList = new List<Conversation>();
             this.NotificationList = new List<News>();
             if (string.IsNullOrEmpty(this.Picture))
                 this.Picture = "/Assets/defaultUser.png";
