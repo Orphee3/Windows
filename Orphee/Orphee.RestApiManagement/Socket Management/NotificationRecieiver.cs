@@ -116,6 +116,7 @@ namespace Orphee.RestApiManagement.Socket_Management
                     var message = new Message
                     {
                         User = creator,
+                        Type = userJson["type"].ToString(),
                         ReceivedMessage = userJson["message"]["message"].ToString()
                     };
                     RestApiManagerBase.Instance.UserData.User.PendingMessageList.Add(message);

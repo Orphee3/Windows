@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Windows.UI.Popups;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
+using Orphee.RestApiManagement.Models.Interfaces;
 using Orphee.RestApiManagement.Posters.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
@@ -22,26 +26,27 @@ namespace Orphee.ViewModels
         /// <summary>User's password </summary>
         public string Password { get; set; }
         private readonly IConnectionManager _connectionManager;
+        private readonly INewsParser _newsParser;
+        private readonly IGetter _getter;
 
         /// <summary>
         /// Constructor initializing connectionManager
         /// through dependency injection
         /// </summary>
         /// <param name="connectionmanager">Manages the connetion of the user so it gets logged in</param>
-        public LoginPageViewModel(IConnectionManager connectionmanager)
+        public LoginPageViewModel(IConnectionManager connectionmanager, INewsParser newsParser, IGetter getter)
         {
             this._connectionManager = connectionmanager;
+            this._newsParser = newsParser;
+            this._getter = getter;
             this.LoginCommand = new DelegateCommand(LoginCommandExec);
             this.BackCommand = new DelegateCommand(App.MyNavigationService.GoBack);
         }
 
         private async void LoginCommandExec()
-        { 
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
-                DisplayErrorMessage("Connexion unavailable");
+        {
+            if (!CheckInternetConnexion())
                 return;
-            }
             bool requestResult;
             try
             {
@@ -55,7 +60,62 @@ namespace Orphee.ViewModels
             if (!requestResult)
                 DisplayErrorMessage("Wrong user name/password");
             else
+            {
                 App.MyNavigationService.GoBack();
+                GetUserFriends();
+                GetUserNotifications();
+            }
+        }
+
+        private async void GetUserFriends()
+        {
+            if (!CheckInternetConnexion())
+                return;
+            try
+            {
+               RestApiManagerBase.Instance.UserData.User.FriendList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends")).OrderBy(f => f.Name).ToList();
+            }
+            catch (Exception)
+            { 
+               DisplayErrorMessage("Request failed : Unable to retreive user's friends");
+            }
+            if (RestApiManagerBase.Instance.UserData.User.FriendList == null)
+            {
+                RestApiManagerBase.Instance.UserData.User.FriendList = new List<User>();
+                DisplayErrorMessage("Request failed : Unable to access the remote server");
+            }
+        }
+
+        private async void GetUserNotifications()
+        {
+            if (!CheckInternetConnexion())
+                return;
+            try
+            {
+                RestApiManagerBase.Instance.UserData.User.NotificationList = (await this._getter.GetInfo<List<News>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/news")).Where(t => t.Creator.Id != RestApiManagerBase.Instance.UserData.User.Id).ToList();
+            }
+            catch (Exception)
+            {
+                DisplayErrorMessage("Request failed : Unable to retreive user's notifications");
+                return;
+            }
+            if (RestApiManagerBase.Instance.UserData.User.NotificationList == null)
+            {
+                RestApiManagerBase.Instance.UserData.User.NotificationList = new List<News>();
+                DisplayErrorMessage("Request failed : Unable to access the remote server");
+                return;
+            }
+            this._newsParser.ParseNewsList();
+        }
+
+        private bool CheckInternetConnexion()
+        {
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            {
+                DisplayErrorMessage("Connexion unavailable");
+                return false;
+            }
+            return true;
         }
 
         private async void DisplayErrorMessage(string message)

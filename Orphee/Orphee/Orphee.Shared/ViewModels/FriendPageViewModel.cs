@@ -60,6 +60,7 @@ namespace Orphee.ViewModels
             }
         }
         private Visibility _invitationStackPanelVisibility;
+
         /// <summary>Visible if the stackPanel is visible. Hidden otherwise </summary>
         public Visibility InvitationStackPanelVisibility
         {
@@ -70,7 +71,6 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._invitationStackPanelVisibility, value);
             }
         }
-        private readonly IGetter _getter;
         /// <summary>Name of the conversation to be created </summary>
         public string ConversationName { get; set; }
         /// <summary>User picture source </summary>
@@ -80,10 +80,8 @@ namespace Orphee.ViewModels
         /// Constructor initializing getter
         /// through dependency injection
         /// </summary>
-        /// <param name="getter">Manages the sending of the "Get" requests</param>
-        public FriendPageViewModel(IGetter getter)
+        public FriendPageViewModel()
         {
-            this._getter = getter;
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.DeleteFriendCommand = new DelegateCommand<User>(user => this.FriendList.Remove(user));
             this.ValidateConversationCreationCommand = new DelegateCommand(() =>
@@ -102,43 +100,15 @@ namespace Orphee.ViewModels
         /// <param name="navigationParameter"></param>
         /// <param name="navigationMode"></param>
         /// <param name="viewModelState"></param>
-        public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this.CheckBoxVisibility = navigationParameter != null ? Visibility.Visible : Visibility.Collapsed;
             this.InvitationStackPanelVisibility = navigationParameter != null ? Visibility.Collapsed : Visibility.Visible;
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
-                DisplayMessage("Connexion unavailable");
-                this.IsProgressRingActive = false;
-                this.ProgressRingVisibility = Visibility.Collapsed;
-                return;
-            }
             this.FriendList.Clear();
-            IOrderedEnumerable<User> friendList;
-            try
-            {
-                friendList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends")).OrderBy(f => f.Name);
-            }
-            catch (Exception)
-            {
-                DisplayMessage("Request failed");
-                this.IsProgressRingActive = false;
-                this.ProgressRingVisibility = Visibility.Collapsed;
-                return;
-            }
-            foreach (var friend in friendList)
-            {
-                friend.Picture = friend.Picture ?? "/Assets/defaultUser.png";
+            foreach (var friend in RestApiManagerBase.Instance.UserData.User.FriendList)
                 this.FriendList.Add(friend);
-            }
             this.IsProgressRingActive = false;
             this.ProgressRingVisibility = Visibility.Collapsed;
-        }
-        private async void DisplayMessage(string message)
-        {
-            var messageDialog = new MessageDialog(message);
-
-            await messageDialog.ShowAsync();
         }
     }
 }

@@ -115,6 +115,9 @@ namespace Orphee.RestApiManagement.Models
             }
         }
 
+        public List<User> FriendList { get; set; }
+        public List<News> NotificationList { get; set; }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -123,6 +126,8 @@ namespace Orphee.RestApiManagement.Models
             this.PendingMessageList = new List<Message>();
             this.PendingFriendList = new List<User>();
             this.PendingCommentList = new List<Comment>();
+            this.FriendList = new List<User>();
+            this.NotificationList = new List<News>();
             if (string.IsNullOrEmpty(this.Picture))
                 this.Picture = "/Assets/defaultUser.png";
             this.AddButtonVisibility = Visibility.Visible;

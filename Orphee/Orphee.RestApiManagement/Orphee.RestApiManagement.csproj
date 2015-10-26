@@ -39,7 +39,9 @@
     <Compile Include="Getters\Interfaces\IGetter.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Interfaces\INews.cs" />
+    <Compile Include="Models\Interfaces\INewsParser.cs" />
     <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewsParser.cs" />
     <Compile Include="Senders\CommentSender.cs" />
     <Compile Include="Posters\ConnectionManager.cs" />
     <Compile Include="Models\Conversation.cs" />

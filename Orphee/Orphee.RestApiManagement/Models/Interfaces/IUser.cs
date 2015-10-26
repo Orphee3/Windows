@@ -58,5 +58,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         bool HasReceivedFriendConfirmationNotification { get; set; }
         /// <summary>True if a picture was uploaded with success. False otherwise </summary>
         bool PictureHasBeenUplaodedWithSuccess { get; set; }
+        List<User> FriendList { get; set; }
+        List<News> NotificationList { get; set; }  
     }
 }

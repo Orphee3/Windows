@@ -19,6 +19,8 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         /// <summary>Message creation date </summary>
         [JsonProperty(PropertyName = "dateCreation")]
         DateTime Date { get; set; }
+        [JsonProperty(PropertyName = "type")]
+        string Type { get; set; }
 
         /// <summary>Background color of the message bubble</summary>
         SolidColorBrush BackgroundMessageColor { get; }

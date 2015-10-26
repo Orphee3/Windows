@@ -154,7 +154,6 @@ namespace Orphee.ViewModels
         /// <param name="conversation">Contains the data related to the conversation to be created</param>
         public void CreateNewConversation(Conversation conversation)
         {
-  
             if (conversation.UserList.Count == 0)
                 return;
             string channelName;
@@ -171,12 +170,13 @@ namespace Orphee.ViewModels
             this.ProgressRingVisibility = Visibility.Collapsed;
         }
 
-        public void InitConversation(List<Message> messageList)
+        public void InitConversation()
         {
-        //    foreach (var message in messageList)
-        //    {
-        //        if (message.)
-        //    }
+            foreach (var message in RestApiManagerBase.Instance.UserData.User.PendingMessageList)
+            {
+                if (message.Type == "private message" && this.ConversationList.All(t => t.UserList[0].Id != message.User.Id))
+                    this.ConversationList.Add(new Conversation() {Name = message.User.Name, UserList = new List<User>() {message.User}, ConversationPictureSource = message.UserPictureSource});
+            }
         }
 
         private async void DisplayMessage(string message)

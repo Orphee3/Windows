@@ -17,6 +17,7 @@ namespace Orphee.RestApiManagement.Models
         public string ReceivedMessage { get; set; }
         /// <summary>User that created the message </summary>
         public User User { get; set; }
+        public string Type { get; set; }
         /// <summary>Message creation date </summary>
         public DateTime Date { get; set; }
         /// <summary>Background color of the message bubble</summary>

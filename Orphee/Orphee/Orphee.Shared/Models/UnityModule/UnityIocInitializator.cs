@@ -9,6 +9,8 @@ using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement.Getters;
 using Orphee.RestApiManagement.Getters.Interfaces;
+using Orphee.RestApiManagement.Models;
+using Orphee.RestApiManagement.Models.Interfaces;
 using Orphee.RestApiManagement.Posters;
 using Orphee.RestApiManagement.Posters.Interfaces;
 using Orphee.RestApiManagement.Senders;
@@ -61,6 +63,7 @@ namespace Orphee.UnityModule
             container.RegisterType<IRegistrationManager, RegistrationManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFileUploader, FileUploader>(new ContainerControlledLifetimeManager());
             container.RegisterType<IColorManager, ColorManager>(new ContainerControlledLifetimeManager());
+            container.RegisterType<INewsParser, NewsParser>(new ContainerControlledLifetimeManager());
         }
     }
 }
