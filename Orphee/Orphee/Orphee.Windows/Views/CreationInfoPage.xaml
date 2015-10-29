@@ -136,7 +136,7 @@
                 <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="10, 50, 10, 50" HorizontalAlignment="Left"/>
                 <Grid Grid.Column="1" Margin="50, 50, 0, 10">
                     <StackPanel>
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding CreationName}" FontSize="45" Foreground="#BDBEC0" Margin="0, 0, 0, 30"/>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Creation.Name}" FontSize="45" Foreground="#BDBEC0" Margin="0, 0, 0, 30"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -145,7 +145,7 @@
 
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
                                 <Image Source="/Assets/commentary-icon.png" Height="30" Width="30"/>
-                                <TextBlock Text="{Binding CommentNumber}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Creation.NumberOfComment}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
                             </StackPanel>
                             <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 10, 0, 10" HorizontalAlignment="Right"/>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
@@ -156,7 +156,7 @@
                                         </core:EventTriggerBehavior>
                                     </interactivity:Interaction.Behaviors>
                                 </Image>
-                                <TextBlock Text="{Binding LikeNumber}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Creation.NumberOfLike}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Grid>
                     </StackPanel>

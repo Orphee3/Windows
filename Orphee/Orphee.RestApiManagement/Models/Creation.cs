@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
+using Orphee.RestApiManagement.Annotations;
 using Orphee.RestApiManagement.Models.Interfaces;
 
 namespace Orphee.RestApiManagement.Models
@@ -9,7 +12,7 @@ namespace Orphee.RestApiManagement.Models
     /// Class containing all the creation
     /// related data
     /// </summary>
-    public class Creation : ICreation
+    public class Creation : ICreation, INotifyPropertyChanged
     {
         /// <summary>Creation id </summary>
         public string Id { get; set; }
@@ -23,10 +26,38 @@ namespace Orphee.RestApiManagement.Models
         public JArray Creator { get; set; }
         /// <summary>AWS S3 creation get url</summary>
         public string GetUrl { get; set; }
+
+        private int _numberOfComment;
+
         /// <summary>Number of comments related to the creation</summary>
-        public int NumberOfComment { get; set; }
+        public int NumberOfComment
+        {
+            get { return this._numberOfComment; }
+            set
+            {
+                if (this._numberOfComment != value)
+                {
+                    this._numberOfComment = value;
+                    OnPropertyChanged(nameof(NumberOfComment));
+                }
+            }
+        }
+
+        private int _numberOfLike;
+
         /// <summary>Number of likes related to the creation </summary>
-        public int NumberOfLike { get; set; }
+        public int NumberOfLike
+        {
+            get { return this._numberOfLike; }
+            set
+            {
+                if (this._numberOfLike != value)
+                {
+                    this._numberOfLike = value;
+                    OnPropertyChanged(nameof(NumberOfLike));
+                }
+            }
+        }
         /// <summary>List of the creators of the creation</summary>
         public List<User> CreatorList { get; set; }
         public Visibility ChannelStackPanelVisibility { get; set; }
@@ -47,6 +78,14 @@ namespace Orphee.RestApiManagement.Models
             if (this.Comments != null)
                 this.NumberOfComment = Comments.Count;
             this.NumberOfLike = 0;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

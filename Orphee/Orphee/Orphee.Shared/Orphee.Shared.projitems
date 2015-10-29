@@ -21,7 +21,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChannelInfoPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChatPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreationInfoPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ForgotPasswordPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FriendPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IForgotPasswordPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IInvitationPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\ILoadingScreenComponents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\INewConversationConfigPageViewModel.cs" />
@@ -29,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IProfileEditionPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\InvitationPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MyMessageDialogViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MyResetPasswordMessageDialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewConversationConfigPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NotificationPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProfileEditionPageViewModel.cs" />

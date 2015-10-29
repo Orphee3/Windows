@@ -35,6 +35,7 @@ namespace Orphee.UnityModule
             container.RegisterType<ICommentSender, CommentSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<IInvitationPageViewModel, InvitationPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeTrack, OrpheeTrack>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IForgotPasswordReseter, ForgotPasswordReseter>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeFile, OrpheeFile>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMidiLibRepository, MidiLibRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<ISoundPlayer, SoundPlayer>(new ContainerControlledLifetimeManager());

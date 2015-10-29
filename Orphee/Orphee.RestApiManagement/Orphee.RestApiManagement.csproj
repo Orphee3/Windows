@@ -44,6 +44,10 @@
     <Compile Include="Models\Interfaces\INewsParser.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsParser.cs" />
+    <Compile Include="Posters\ForgotPasswordReseter.cs" />
+    <Compile Include="Posters\Interfaces\IForgotPasswordReseter.cs" />
+    <Compile Include="Posters\Interfaces\IPasswordReseter.cs" />
+    <Compile Include="Posters\PasswordReseter.cs" />
     <Compile Include="Senders\CommentSender.cs" />
     <Compile Include="Posters\ConnectionManager.cs" />
     <Compile Include="Models\Conversation.cs" />

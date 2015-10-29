@@ -28,40 +28,8 @@ namespace Orphee.ViewModels
         public DelegateCommand LikeCommand { get; private set; }
         /// <summary>List of comments related to the creation </summary>
         public ObservableCollection<Comment> CommentList { get; private set; }
-        private string _creationName;
-        private Creation _creation;
-        private int _commentNumber;
-        /// <summary>Number of comments related to the creation </summary>
-        public int CommentNumber
-        {
-            get { return this._commentNumber; }
-            set
-            {
-                if (this._commentNumber != value)
-                    SetProperty(ref this._commentNumber, value);
-            }
-        }
-        /// <summary>Name of the creation </summary>
-        public string CreationName
-        {
-            get { return this._creationName; }
-            set
-            {
-                if (this._creationName != value)
-                    SetProperty(ref this._creationName, value);
-            }
-        }
-        private int _likeNumber;
-        /// <summary>Number of like related to the creation</summary>
-        public int LikeNumber
-        {
-            get { return this._likeNumber; }
-            set
-            {
-                if (this._likeNumber != value)
-                    SetProperty(ref this._likeNumber, value);
-            }
-        }
+
+        public Creation Creation { get; private set; }
         private bool _isProgressRingActive;
         private string _likeImagePath;
         public string LikeImagePath
@@ -83,7 +51,6 @@ namespace Orphee.ViewModels
             }
         }
         private Visibility _progressRingVisibility;
-
         public Visibility ProgressRingVisibility
         {
             get { return this._progressRingVisibility; }
@@ -134,19 +101,17 @@ namespace Orphee.ViewModels
                     App.MyNavigationService.Navigate("Login", null);
                     return;
                 }
-                var result = await this._commentSender.SendComment(newComment, this._creation.Id);
+                var result = await this._commentSender.SendComment(newComment, this.Creation.Id);
             }
         }
 
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this.CommentList.Clear();
-            this.CommentNumber = 0;
-            this.LikeNumber = 0;
-            this._creation = navigationParameter as Creation;
-            this.CreationName = this._creation.Name.Split('.')[0];
+            this.Creation = navigationParameter as Creation;
+            this.Creation.Name = this.Creation.Name.Split('.')[0];
             if (RestApiManagerBase.Instance.IsConnected)
-                this.LikeImagePath = RestApiManagerBase.Instance.UserData.User.Likes.Any(l => l.ToString() == this._creation.Id) ? "/Assets/blueheart-icon.png" : "/Assets/heart-icon.png";
+                this.LikeImagePath = RestApiManagerBase.Instance.UserData.User.Likes.Any(l => l.ToString() == this.Creation.Id) ? "/Assets/blueheart-icon.png" : "/Assets/heart-icon.png";
             else
                 this.LikeImagePath = "/Assets/heart-icon.png";
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
@@ -157,7 +122,7 @@ namespace Orphee.ViewModels
             List<Comment> commentList;
             try
             {
-                commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this._creation.Id);
+                commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this.Creation.Id);
             }
             catch (Exception)
             {
@@ -172,7 +137,7 @@ namespace Orphee.ViewModels
             {
                 if (this.CommentList.Count(c => c.Id == comment.Id) == 0)
                 {
-                    this.CommentNumber++;
+                    this.Creation.NumberOfComment++;
                     this.CommentList.Insert(0, comment);
                 }
             }
@@ -186,12 +151,12 @@ namespace Orphee.ViewModels
         /// <param name="pendingCommentList"></param>
         public async void UpdateCommentList(List<Comment> pendingCommentList)
         {
-            if (pendingCommentList.Any(c => c.CreationId == this._creation.Id))
+            if (pendingCommentList.Any(c => c.CreationId == this.Creation.Id))
             {
                 List<Comment> commentList;
                 try
                 {
-                    commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this._creation.Id);
+                    commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this.Creation.Id);
                 }
                 catch (Exception)
                 {
@@ -202,7 +167,7 @@ namespace Orphee.ViewModels
                     if (!this.CommentList.Any(c => c.Id == comment.Id))
                     {
                         this.CommentList.Insert(0, comment);
-                        this.CommentNumber++;
+                        this.Creation.NumberOfComment++;
                     }
             }
         }
@@ -217,7 +182,7 @@ namespace Orphee.ViewModels
             IOrpheeFile orpheeFile;
             try
             {
-                orpheeFile = await this._importer.ImportFileFromNet(this._creation.GetUrl, this._creation.Name);
+                orpheeFile = await this._importer.ImportFileFromNet(this.Creation.GetUrl, this.Creation.Name);
             }
             catch (Exception)
             {
@@ -238,7 +203,7 @@ namespace Orphee.ViewModels
         private async void LikeCommandExec()
         {
             User creator = null;
-            var request = this.LikeImagePath == "/Assets/heart-icon.png" ? RestApiManagerBase.Instance.RestApiPath["like"] + this._creation.Id : RestApiManagerBase.Instance.RestApiPath["dislike"] + this._creation.Id;
+            var request = this.LikeImagePath == "/Assets/heart-icon.png" ? RestApiManagerBase.Instance.RestApiPath["like"] + this.Creation.Id : RestApiManagerBase.Instance.RestApiPath["dislike"] + this.Creation.Id;
             try
             {
                 creator = await this._getter.GetInfo<User>(request);
@@ -248,7 +213,10 @@ namespace Orphee.ViewModels
                 DisplayMessage("Like wasn't sent");
             }
             if (creator != null)
+            { 
                 this.LikeImagePath = this.LikeImagePath == "/Assets/blueheart-icon.png" ? "/Assets/heart-icon.png" : "/Assets/blueheart-icon.png";
+                this.Creation.NumberOfLike += this.LikeImagePath == "/Assets/blueheart-icon.png" ? 1 : -1;
+            }
         }
 
         private async void DisplayMessage(string message)

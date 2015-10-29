@@ -23,6 +23,8 @@ namespace Orphee.ViewModels
         public DelegateCommand LoginCommand { get; private set; }
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
+        public DelegateCommand ForgotPasswordCommand { get; private set; }
+        public DelegateCommand CreateAccountCommand { get; private set; }
         /// <summary>User name of the user </summary>
         public string UserName { get; set; }
         /// <summary>User's password </summary>
@@ -66,6 +68,8 @@ namespace Orphee.ViewModels
             this._connectionManager = connectionmanager;
             this._newsParser = newsParser;
             this._getter = getter;
+            this.ForgotPasswordCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("ForgotPassword", null));
+            this.CreateAccountCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Register", null));
             this.LoginCommand = new DelegateCommand(LoginCommandExec);
             this.BackCommand = new DelegateCommand(App.MyNavigationService.GoBack);
         }

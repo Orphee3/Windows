@@ -10,10 +10,5 @@ namespace Orphee.Views
         {
             this.InitializeComponent();
         }
-
-        private void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            App.MyNavigationService.Navigate("Register", null);
-        }
     }
 }

@@ -60,7 +60,8 @@ namespace Orphee.RestApiManagement.Models
                 {"notify", "api/notify/"},
                 {"popular", "api/creationPopular"},
                 {"private room", "api/room/privateMessage/" },
-                {"group room", "api/room/" }
+                {"group room", "api/room/" },
+                {"forgot", "api/forgot" }
             };
         }
 
