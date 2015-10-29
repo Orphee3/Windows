@@ -142,6 +142,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ui:MyBottomAppBar Grid.Row="2"/>
+        <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="2"/>
     </Grid>
 </Page>

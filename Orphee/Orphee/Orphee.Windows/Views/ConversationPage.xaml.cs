@@ -24,7 +24,10 @@ namespace Orphee.Views
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            { 
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged -= UserOnPropertyChanged;
+                this.MyBottomAppBar.Unload();
+            }
         }
 
         private async void UserOnPropertyChanged(object sender, PropertyChangedEventArgs e)

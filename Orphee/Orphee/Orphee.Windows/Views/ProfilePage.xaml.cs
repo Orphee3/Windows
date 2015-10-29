@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
@@ -14,6 +15,15 @@ namespace Orphee.Views
             this.InitializeComponent();
             if (RestApiManagerBase.Instance.IsConnected)
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (RestApiManagerBase.Instance.IsConnected)
+            {
+                RestApiManagerBase.Instance.UserData.User.PropertyChanged -= OnNotificationReceiverPropertyChanged;
+                this.MyBottomAppBar.Unload();
+            }
         }
 
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)

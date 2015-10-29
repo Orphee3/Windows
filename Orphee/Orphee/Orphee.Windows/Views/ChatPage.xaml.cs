@@ -18,7 +18,14 @@ namespace Orphee.Views
         {
             this.InitializeComponent();
             this.Loaded += (sender, args) => ScrollToBottom();
-            RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
+            if (RestApiManagerBase.Instance.IsConnected)
+                RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (RestApiManagerBase.Instance.IsConnected)
+                RestApiManagerBase.Instance.UserData.User.PropertyChanged -= OnNotificationReceiverPropertyChanged;
         }
 
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -30,11 +37,6 @@ namespace Orphee.Views
                 RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
                 RestApiManagerBase.Instance.UserData.User.PendingMessageList.Clear();
             }));
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            RestApiManagerBase.Instance.UserData.User.PropertyChanged -= OnNotificationReceiverPropertyChanged;
         }
 
         private void ScrollToBottom()
