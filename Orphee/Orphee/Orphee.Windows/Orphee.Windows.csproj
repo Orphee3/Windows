@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\addfriend-icon.png" />
+    <Content Include="Assets\blueheart-icon.png" />
     <Content Include="Assets\commentary-icon-white.png" />
     <Content Include="Assets\creation-background.png" />
     <Content Include="Assets\creation-icon.png" />

@@ -120,18 +120,19 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="Tapped">
-                        <core:InvokeCommandAction Command="{Binding PlayCommand}"/>
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Column="0" Source="/Assets/creation-background.png" Stretch="Fill" Height="200"/>
-                <Image Grid.Column="0" Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Image Grid.Column="0" Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction Command="{Binding PlayCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Image>
                 <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="10, 50, 10, 50" HorizontalAlignment="Left"/>
                 <Grid Grid.Column="1" Margin="50, 50, 0, 10">
                     <StackPanel>
@@ -148,7 +149,13 @@
                             </StackPanel>
                             <Line Grid.Column="0" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 10, 0, 10" HorizontalAlignment="Right"/>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <Image Source="/Assets/heart-icon.png" Height="30" Width="30"/>
+                                <Image Source="{Binding LikeImagePath}" Height="30" Width="30">
+                                    <interactivity:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="Tapped">
+                                            <core:InvokeCommandAction Command="{Binding LikeCommand}"/>
+                                        </core:EventTriggerBehavior>
+                                    </interactivity:Interaction.Behaviors>
+                                </Image>
                                 <TextBlock Text="{Binding LikeNumber}" Foreground="#BDBEC0" FontSize="30" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Grid>

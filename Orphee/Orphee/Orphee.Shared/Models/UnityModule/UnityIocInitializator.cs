@@ -32,7 +32,6 @@ namespace Orphee.UnityModule
         {
             container.RegisterType<IGetter, Getter>(new ContainerControlledLifetimeManager());
             container.RegisterType<INotificationSender, NotificationSender>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ILikeSender, LikeSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICommentSender, CommentSender>(new ContainerControlledLifetimeManager());
             container.RegisterType<IInvitationPageViewModel, InvitationPageViewModel>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeTrack, OrpheeTrack>(new ContainerControlledLifetimeManager());

@@ -60,8 +60,6 @@
     <Compile Include="Models\Interfaces\ICreation.cs" />
     <Compile Include="Models\Interfaces\ICreationUrls.cs" />
     <Compile Include="Senders\Interfaces\IFileUploader.cs" />
-    <Compile Include="Senders\Interfaces\ILikeSender.cs" />
-    <Compile Include="Senders\LikeSender.cs" />
     <Compile Include="Socket Management\NotificationRecieiver.cs" />
     <Compile Include="Posters\Interfaces\IConnectionManager.cs" />
     <Compile Include="Posters\Interfaces\IRegistrationManager.cs" />

@@ -25,6 +25,7 @@ namespace Orphee.ViewModels
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
         public DelegateCommand PlayCommand { get; private set; }
+        public DelegateCommand LikeCommand { get; private set; }
         /// <summary>List of comments related to the creation </summary>
         public ObservableCollection<Comment> CommentList { get; private set; }
         private string _creationName;
@@ -62,7 +63,16 @@ namespace Orphee.ViewModels
             }
         }
         private bool _isProgressRingActive;
-
+        private string _likeImagePath;
+        public string LikeImagePath
+        {
+            get { return this._likeImagePath; }
+            set
+            {
+                if (this.LikeImagePath != value)
+                    SetProperty(ref this._likeImagePath, value);
+            }
+        }
         public bool IsProgressRingActive
         {
             get { return this._isProgressRingActive; }
@@ -108,6 +118,7 @@ namespace Orphee.ViewModels
             this.PlayCommand = new DelegateCommand(PlayCommandExec);
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.CommentList = new ObservableCollection<Comment>();
+            this.LikeCommand = RestApiManagerBase.Instance.IsConnected ? new DelegateCommand(LikeCommandExec) : new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null)); 
         }
 
         /// <summary>
@@ -134,6 +145,10 @@ namespace Orphee.ViewModels
             this.LikeNumber = 0;
             this._creation = navigationParameter as Creation;
             this.CreationName = this._creation.Name.Split('.')[0];
+            if (RestApiManagerBase.Instance.IsConnected)
+                this.LikeImagePath = RestApiManagerBase.Instance.UserData.User.Likes.Any(l => l.ToString() == this._creation.Id) ? "/Assets/blueheart-icon.png" : "/Assets/heart-icon.png";
+            else
+                this.LikeImagePath = "/Assets/heart-icon.png";
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
             {
                 DisplayMessage("Connexion unavailable");
@@ -218,6 +233,22 @@ namespace Orphee.ViewModels
             }
             else
                 DisplayMessage("Unable to play the piece");
+        }
+
+        private async void LikeCommandExec()
+        {
+            User creator = null;
+            var request = this.LikeImagePath == "/Assets/heart-icon.png" ? RestApiManagerBase.Instance.RestApiPath["like"] + this._creation.Id : RestApiManagerBase.Instance.RestApiPath["dislike"] + this._creation.Id;
+            try
+            {
+                creator = await this._getter.GetInfo<User>(request);
+            }
+            catch (Exception)
+            {
+                DisplayMessage("Like wasn't sent");
+            }
+            if (creator != null)
+                this.LikeImagePath = this.LikeImagePath == "/Assets/blueheart-icon.png" ? "/Assets/heart-icon.png" : "/Assets/blueheart-icon.png";
         }
 
         private async void DisplayMessage(string message)
