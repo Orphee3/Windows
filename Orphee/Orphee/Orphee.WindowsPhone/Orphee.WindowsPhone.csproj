@@ -87,6 +87,9 @@
     <Compile Include="UI\MyBottomAppBar.xaml.cs">
       <DependentUpon>MyBottomAppBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\MyDeleteAccountMessageDialog.xaml.cs">
+      <DependentUpon>MyDeleteAccountMessageDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\MyMessageDialog.xaml.cs">
       <DependentUpon>MyMessageDialog.xaml</DependentUpon>
     </Compile>
@@ -327,6 +330,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MyBottomAppBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\MyDeleteAccountMessageDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

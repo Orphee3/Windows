@@ -19,9 +19,11 @@ namespace Orphee.ViewModels
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
         }
 
-        private void DeleteAccountCommandExec()
+        private async void DeleteAccountCommandExec()
         {
-            
+            var deleteAccountMessageDialog = new MyDeleteAccountMessageDialog();
+
+            await deleteAccountMessageDialog.ShowAsync();
         }
 
         private void LogoutCommandExec()

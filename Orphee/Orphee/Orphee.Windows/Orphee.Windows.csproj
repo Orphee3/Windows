@@ -109,6 +109,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\MyDeleteAccountMessageDialog.xaml.cs">
+      <DependentUpon>MyDeleteAccountMessageDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\MyRectangleButton.cs" />
     <Compile Include="UI\MyBottomAppBar.xaml.cs">
       <DependentUpon>MyBottomAppBar.xaml</DependentUpon>
@@ -337,6 +340,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MyBottomAppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\MyDeleteAccountMessageDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
