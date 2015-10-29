@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm.Interfaces;
@@ -26,7 +25,7 @@ namespace Orphee.Models
             {
                 { "Home", new SolidColorBrush(Color.FromArgb(100, 13, 71, 161))},
                 { "Social", new SolidColorBrush(Colors.White)},
-                { "Messages", new SolidColorBrush(Colors.White)},
+                { "Conversation", new SolidColorBrush(Colors.White)},
                 { "Profile", new SolidColorBrush(Colors.White)},
             };
         }
@@ -43,12 +42,10 @@ namespace Orphee.Models
 
         public void ClearHistory()
         {
-            throw new NotImplementedException();
         }
 
         public void RestoreSavedNavigation()
         {
-            throw new NotImplementedException();
         }
 
         public bool Navigate(string destination, object parameter)

@@ -2,38 +2,63 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models.Interfaces;
 
 namespace Orphee.RestApiManagement.Models
 {
     public class ConversationParser : IConversationParser
     {
-        public void ParseConversationList(List<Conversation> conversationList)
+        private IGetter _getter;
+        public ConversationParser(IGetter getter)
+        {
+            this._getter = getter;
+        }
+
+        public async void ParseConversationList(List<Conversation> conversationList)
         {
             foreach (var conversation in conversationList)
             {
                 if (RestApiManagerBase.Instance.UserData.User.ConversationList.Count(c => c.Id == conversation.Id) == 0)
-                    FillConversationUserList(conversation);
+                {
+                    var result = await FillConversationUserList(conversation);
+                }
             }
             RestApiManagerBase.Instance.UserData.User.ConversationList.Reverse();
         }
 
-        private void FillConversationUserList(Conversation conversation)
+        private async Task<bool> FillConversationUserList(Conversation conversation)
         {
-            foreach (var user in conversation.Users)
-                if (user.ToString() != RestApiManagerBase.Instance.UserData.User.Id)
+            if (conversation.Users != null && conversation.Users.Count != 0)
+            {
+                var users = conversation.Users.Concat(conversation.TemporaryUsers).ToList();
+                foreach (var user in users)
                 {
-                    conversation.ConversationPictureSource = RestApiManagerBase.Instance.UserData.User.FriendList.FirstOrDefault(uf => uf.Id == user.ToString()).Picture;
-                    conversation.UserList.Add(RestApiManagerBase.Instance.UserData.User.FriendList.FirstOrDefault(uf => uf.Id == user.ToString()));
+                    var conversationUser = JsonConvert.DeserializeObject<User>(user.ToString());
+                    if (conversationUser.Id != RestApiManagerBase.Instance.UserData.User.Id)
+                        conversation.UserList.Add(conversationUser);
                 }
-            InitConversationName(conversation);
+                conversation.ConversationPictureSource = conversation.UserList.First().Picture;
+                InitConversationName(conversation);
+            }
             RestApiManagerBase.Instance.UserData.User.ConversationList.Add(conversation);
+            return true;
         }
 
         private void InitConversationName(Conversation conversation)
         {
             if (conversation.UserList.Count == 1)
                 conversation.Name = conversation.UserList[0].Name;
+            else
+            {
+                foreach (var user in conversation.UserList)
+                {
+                    conversation.Name += user.Name;
+                    if (user != conversation.UserList.Last())
+                        conversation.Name += ", ";
+                }
+            }
         }
     }
 }

@@ -109,21 +109,7 @@
 
         <Grid Background="#78C7F9" Grid.Row="0">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Messages" FontSize="25"/>
-            <AppBarButton HorizontalAlignment="Right" VerticalAlignment="Center" Icon="Add" Style="{StaticResource MyBackButton}" Visibility="{Binding ListViewVisibility}">
-                <AppBarButton.Flyout>
-                    <Flyout>
-                        <Grid>
-                            <TextBlock Text="Create a new conversation" Foreground="Black" FontSize="15">
-                                <interactivity:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="Tapped">
-                                        <core:InvokeCommandAction Command="{Binding CreateNewConversationCommand}"/>
-                                    </core:EventTriggerBehavior>
-                                </interactivity:Interaction.Behaviors>
-                            </TextBlock>
-                        </Grid>
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
+            <AppBarButton HorizontalAlignment="Right" VerticalAlignment="Center" Icon="Add" Command="{Binding CreateNewConversationCommand}" Style="{StaticResource MyBackButton}" Visibility="{Binding ListViewVisibility}"/>
         </Grid>
         <Grid Grid.Row="1" VerticalAlignment="Top">
             <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
@@ -153,9 +139,9 @@
                         </Ellipse>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
-                            <TextBlock Text="{Binding Path=LastMessagePreview}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="15" TextWrapping="WrapWholeWords"/>
+                            <TextBlock Text="{Binding Path=LastMessagePreview, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="15" TextWrapping="WrapWholeWords"/>
                         </StackPanel>
-                        <TextBlock Grid.Column="2" Text="19:46" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#BDBEC0" FontSize="10"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Path=LastMessageDateString, Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#BDBEC0" FontSize="10"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

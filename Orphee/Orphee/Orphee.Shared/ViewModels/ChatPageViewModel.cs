@@ -99,6 +99,8 @@ namespace Orphee.ViewModels
 
         private void SendCommandExec()
         {
+            if (string.IsNullOrEmpty(this.Message))
+                return;
             var newMessage = new Message
             {
                 User = RestApiManagerBase.Instance.UserData.User,
@@ -107,9 +109,20 @@ namespace Orphee.ViewModels
             };
             newMessage.SetProperties();
             this.Conversation.Add(newMessage);
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.SendMessage(this.Message, this._actualConversation.UserList))
-                DisplayMessage("This message wasn't sent");
+            SendMessage();
             this.Message = string.Empty;
+        }
+
+        private void SendMessage()
+        {
+            if (this._actualConversation.UserList.Count == 1)
+            {
+                if (!RestApiManagerBase.Instance.NotificationRecieiver.SendPrivateMessage(this.Message, this._actualConversation.UserList[0]))
+                    DisplayMessage("This message wasn't sent");
+            }
+            else
+                if (!RestApiManagerBase.Instance.NotificationRecieiver.SendGroupMessage(this.Message, this._actualConversation.Id))
+                    DisplayMessage("This message wasn't sent");
         }
 
         private async void DisplayMessage(string message)

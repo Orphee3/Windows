@@ -21,6 +21,8 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         /// <summary>Conversation participants </summary>
         [JsonProperty(PropertyName = "people")]
         JArray Users { get; set; }
+        [JsonProperty(PropertyName = "peopleTmp")]
+        JArray TemporaryUsers { get; set; }
         /// <summary>Messages contained in the conversation </summary>
         [JsonProperty(PropertyName = "messages")]
         JArray MessageList { get; set; }

@@ -84,11 +84,7 @@ namespace Orphee.ViewModels
         {
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.DeleteFriendCommand = new DelegateCommand<User>(user => this.FriendList.Remove(user));
-            this.ValidateConversationCreationCommand = new DelegateCommand(() =>
-            {
-                var conversation  = new Conversation { UserList = this.FriendList.Where(f => f.IsChecked).ToList(), Name = ConversationName };
-                App.MyNavigationService.Navigate("Conversation", conversation);
-            });
+            this.ValidateConversationCreationCommand = new DelegateCommand(ValidateConversationCommandExec);
             this.ProgressRingVisibility = Visibility.Visible;
             this.IsProgressRingActive = true;
             this.FriendList = new ObservableCollection<User>();
@@ -109,6 +105,52 @@ namespace Orphee.ViewModels
                 this.FriendList.Add(friend);
             this.IsProgressRingActive = false;
             this.ProgressRingVisibility = Visibility.Collapsed;
+        }
+
+        private void ValidateConversationCommandExec()
+        {
+            if (CheckForExistingConversation())
+                return;
+            var friendList = this.FriendList.Where(f => f.IsChecked).ToList();
+            var conversation = new Conversation { UserList = friendList, Name = GetChannelName(friendList) };
+            if (friendList.Count > 1)
+            {
+                RestApiManagerBase.Instance.NotificationRecieiver.CreateGroupChat(friendList.Select(u => u.Id).ToList());
+                RestApiManagerBase.Instance.UserData.User.ConversationList.Add(conversation);
+            }
+            App.MyNavigationService.Navigate("Chat", conversation);
+        }
+
+        private string GetChannelName(List<User> userList)
+        {
+            var channelName = "";
+            foreach (var user in userList)
+            {
+                channelName += user.Name;
+                if (user != userList.Last())
+                    channelName += ", ";
+            }
+            return channelName;
+        }
+
+        private bool CheckForExistingConversation()
+        {
+            var friendList = this.FriendList.Where(f => f.IsChecked).ToList();
+            foreach (var conversation in RestApiManagerBase.Instance.UserData.User.ConversationList)
+            {
+                var matchedUser = 0;
+                foreach (var user in conversation.UserList)
+                {
+                    if (friendList.Any(u => u.Id == user.Id))
+                        matchedUser++;
+                }
+                if (matchedUser == friendList.Count)
+                {
+                    App.MyNavigationService.Navigate("Chat", conversation);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

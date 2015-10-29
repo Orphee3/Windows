@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement;
@@ -29,6 +30,11 @@ namespace Orphee.Views
                 RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
                 RestApiManagerBase.Instance.UserData.User.PendingMessageList.Clear();
             }));
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            RestApiManagerBase.Instance.UserData.User.PropertyChanged -= OnNotificationReceiverPropertyChanged;
         }
 
         private void ScrollToBottom()

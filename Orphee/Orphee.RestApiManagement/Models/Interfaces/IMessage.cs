@@ -40,6 +40,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         int MessageColumnNumber { get; }
         /// <summary>Points needed to create le triangle for each message bubble </summary>
         PointCollection PolygonPoints { get; }
+        string TargetRoom { get; set; }
 
         /// <summary>
         /// Sets the class properties accordingly to the received message creator

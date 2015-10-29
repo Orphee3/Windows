@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using Windows.Data.Json;
 using Windows.Networking.Connectivity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -109,19 +112,29 @@ namespace Orphee.RestApiManagement.Socket_Management
             });
             this._socket.On("private message", data =>
             {
-                var userJson = JObject.FromObject(data);
-                var creator = JsonConvert.DeserializeObject<User>(userJson["source"].ToString());
-                if (RestApiManagerBase.Instance.UserData.User.Id != creator.Id)
-                {
-                    var message = new Message
-                    {
-                        User = creator,
-                        Type = userJson["type"].ToString(),
-                        ReceivedMessage = userJson["message"]["message"].ToString()
-                    };
-                    RestApiManagerBase.Instance.UserData.User.PendingMessageList.Add(message);
-                    RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = true;
-                }
+                var dataString = JObject.FromObject(data);
+                var message = JsonConvert.DeserializeObject<Message>(dataString["message"].ToString());
+                message.Type = dataString["type"].ToString();
+                message.User = JsonConvert.DeserializeObject<User>(dataString["source"].ToString());
+                RestApiManagerBase.Instance.UserData.User.PendingMessageList.Add(message);
+                RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = true;
+            });
+            this._socket.On("group message", data =>
+            {
+                var dataString = JObject.FromObject(data);
+                var test = data.ToString();
+                var message = JsonConvert.DeserializeObject<Message>(dataString["message"].ToString());
+                message.TargetRoom = dataString["target"].ToString();
+                message.Type = dataString["type"].ToString();
+                message.User = JsonConvert.DeserializeObject<User>(dataString["source"].ToString());
+                RestApiManagerBase.Instance.UserData.User.PendingMessageList.Add(message);
+                RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = true;
+            });
+            this._socket.On("create chat group", data =>
+            {
+                var convertedData = JObject.FromObject(data);
+                var test = data.ToString();
+                RestApiManagerBase.Instance.UserData.User.ConversationList.Last().Id = convertedData["room"]["_id"].ToString();
             });
             this._socket.On(Socket.EVENT_DISCONNECT, () =>
             {
@@ -134,15 +147,50 @@ namespace Orphee.RestApiManagement.Socket_Management
         /// </summary>
         /// <param name="messageToSend">Message to send</param>
         /// <param name="userList">Target users of the message</param>
-        public bool SendMessage(string messageToSend, List<User> userList)
+        public bool SendPrivateMessage(string messageToSend, User user)
         {
             if (!IsInternet())
                 return false;
-            foreach (var user in userList)
+            try
+            {
                 this._socket.Emit("private message", JObject.FromObject(new { to = user.Id, message = messageToSend }));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return true;
         }
 
+        public bool SendGroupMessage(string messageToSend, string roomId)
+        {
+            if (!IsInternet())
+                return false;
+            try
+            {
+                this._socket.Emit("group message", JObject.FromObject(new {to = roomId, message = messageToSend}));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool CreateGroupChat(List<string> userList)
+        {
+            if (!IsInternet())
+                return false;
+            try
+            {
+                this._socket.Emit("create chat group", JObject.FromObject(new {people = userList}));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
 
         /// <summary>
         /// Close the socket
