@@ -91,6 +91,9 @@
       <DependentUpon>MyMessageDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\MyRectangleButton.cs" />
+    <Compile Include="UI\MyResetPasswordMessageDialog.xaml.cs">
+      <DependentUpon>MyResetPasswordMessageDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChannelInfoPage.xaml.cs">
       <DependentUpon>ChannelInfoPage.xaml</DependentUpon>
     </Compile>
@@ -328,6 +331,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MyMessageDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\MyResetPasswordMessageDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

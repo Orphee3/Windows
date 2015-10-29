@@ -28,13 +28,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\ILoadingScreenComponents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\INewConversationConfigPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\INotificationPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IProfileEditionPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IChangePicturePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IParametersPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\InvitationPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MyMessageDialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MyResetPasswordMessageDialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewConversationConfigPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NotificationPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProfileEditionPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChangePicturePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ParametersPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SocialPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IChannelInfoPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IChatPageViewModel.cs" />

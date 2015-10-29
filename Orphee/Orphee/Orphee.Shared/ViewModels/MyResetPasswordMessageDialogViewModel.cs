@@ -14,8 +14,29 @@ namespace Orphee.ViewModels
         public string NewPasswordConfirmation { get; set; }
         public DelegateCommand ValidateCommand { get; private set; }
         public DelegateCommand CancelCommand { get; private set; }
-        public Visibility ErrorBoxVisibility { get; private set; }
-        public string ErrorBoxText { get; private set; }
+        private Visibility _errorBoxVisibility;
+
+        public Visibility ErrorBoxVisibility
+        {
+            get { return this._errorBoxVisibility; }
+            set
+            {
+                if (this._errorBoxVisibility != value)
+                    SetProperty(ref this._errorBoxVisibility, value);
+            }
+        }
+
+        public string _errorBoxText;
+
+        public string ErrorBoxText
+        {
+            get { return this._errorBoxText; }
+            set
+            {
+                if (this._errorBoxText != value)
+                    SetProperty(ref this._errorBoxText, value);
+            }
+        }
         private bool _isOpen;
         public bool IsOpen
         {
@@ -27,7 +48,7 @@ namespace Orphee.ViewModels
             }
         }
 
-        private IPasswordReseter _passwordReseter;
+        private readonly IPasswordReseter _passwordReseter;
 
         public MyResetPasswordMessageDialogViewModel(IPasswordReseter passwordReseter)
         {
@@ -56,8 +77,11 @@ namespace Orphee.ViewModels
                 this.ErrorBoxText = "Password must be composed of 6 to 20 characters";
                 this.ErrorBoxVisibility = Visibility.Visible;
             }
-            //else
-            //    this._passwordReseter.ResetPassword(this.ActualPassword, this.NewPassword);
+            else
+            {
+                this._passwordReseter.ResetPassword(this.ActualPassword, this.NewPassword);
+                Close();
+            }
         }
 
         private void CancelCommandExec()

@@ -2,8 +2,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Windows.Data.Json;
-using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Posters.Interfaces;
 

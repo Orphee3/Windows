@@ -51,7 +51,7 @@ namespace Orphee.ViewModels.Interfaces
         DelegateCommand FriendPageCommand { get; }
 
         /// <summary>Redirects to EditProfilePage</summary>
-        DelegateCommand EditProfileCommand { get; }
+        DelegateCommand ParametersCommand { get; }
 
         /// <summary>
         /// Updates the picture source

@@ -13,7 +13,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// ProfileEditionPage view model
     /// </summary>
-    public class ProfileEditionPageViewModel : ViewModel, IProfileEditionPageViewModel
+    public class ChangePicturePageViewModel : ViewModel, IChangePicturePageViewModel
     {
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
@@ -25,7 +25,7 @@ namespace Orphee.ViewModels
         /// through dependency injection
         /// </summary>
         /// <param name="fileUploader"></param>
-        public ProfileEditionPageViewModel()
+        public ChangePicturePageViewModel()
         {
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             this.ChangePictureCommand = new DelegateCommand(ChangePictureCommandExec);

@@ -32,7 +32,7 @@ namespace Orphee.Views
     ///  SelectedRegion selectedRegion;
 
     // The current image file to be cropped.
-    public sealed partial class ProfilePictureEditionPage : Page
+    public sealed partial class ChangePictureEditionPage : Page
     {
         SelectedRegion selectedRegion;
 
@@ -66,7 +66,7 @@ namespace Orphee.Views
         Dictionary<uint, Point?> pointerPositionHistory = new Dictionary<uint, Point?>();
 
         private FileUploader _fileUploader;
-        public ProfilePictureEditionPage()
+        public ChangePictureEditionPage()
         {
             this.InitializeComponent();
             selectRegion.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;

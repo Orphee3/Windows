@@ -84,7 +84,7 @@ namespace Orphee.ViewModels
         /// <summary>Redirects to FriendPage</summary>
         public DelegateCommand LoginCommand { get; private set; }
         /// <summary>Redirects to EditProfilePage</summary>
-        public DelegateCommand EditProfileCommand { get; private set; }
+        public DelegateCommand ParametersCommand { get; private set; }
         /// <summary>
         /// Constructor
         /// </summary>
@@ -94,7 +94,7 @@ namespace Orphee.ViewModels
             this.MyCreationsCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("MyCreations", null));
             this.NotificationsCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Notification", null));
             this.FriendPageCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", null));
-            this.EditProfileCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("ProfileEdition", null));
+            this.ParametersCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Parameters", null));
         }
 
         /// <summary>

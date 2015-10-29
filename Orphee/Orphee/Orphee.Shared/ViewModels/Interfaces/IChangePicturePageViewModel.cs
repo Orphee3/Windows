@@ -5,7 +5,7 @@ namespace Orphee.ViewModels.Interfaces
     /// <summary>
     /// ProfileEditionPageViewModel interface
     /// </summary>
-    public interface IProfileEditionPageViewModel
+    public interface IChangePicturePageViewModel
     {
         /// <summary>Redirects to the previous page </summary>
         DelegateCommand GoBackCommand { get; }
