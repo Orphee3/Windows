@@ -53,5 +53,14 @@ namespace Orphee.Views
                 textbox.Text = string.Empty;
             }
         }
+
+        private void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var result = ((CreationInfoPageViewModel) this.DataContext).IsLiked;
+            if (result == true)
+                FlipOpen.Begin();
+            else if (result == false)
+                FlipClose.Begin();              
+        }
     }
 }
