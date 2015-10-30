@@ -16,8 +16,11 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         /// <summary>Name of the conversation </summary>
         [JsonProperty(PropertyName = "name")]
         string Name { get; set; }
+        [JsonProperty(PropertyName = "private")]
+        bool IsPrivate { get; set; }
         /// <summary>Preview of the last message reveived </summary>
-        string LastMessagePreview { get; set; }
+        [JsonProperty(PropertyName = "lastMessage")]
+        Message LastMessagePreview { get; set; }
         /// <summary>Conversation participants </summary>
         [JsonProperty(PropertyName = "people")]
         JArray Users { get; set; }
@@ -26,9 +29,6 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         /// <summary>Messages contained in the conversation </summary>
         [JsonProperty(PropertyName = "messages")]
         JArray MessageList { get; set; }
-        /// <summary>Date of the last message </summary>
-        [JsonProperty(PropertyName = "lastMessageDate")]
-        DateTime LastMessageDate { get; set; }
         /// <summary>Conversation participants </summary>
         List<User> UserList { get; set; }
         /// <summary>Messages contained in the conversation </summary>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Commands;
+using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 using Orphee.UI;
 
@@ -28,7 +29,8 @@ namespace Orphee.ViewModels
 
         private void LogoutCommandExec()
         {
-            
+            RestApiManagerBase.Instance.Logout();
+            App.MyNavigationService.GoBack();
         }
 
         private async void ResetPasswordCommandExec()

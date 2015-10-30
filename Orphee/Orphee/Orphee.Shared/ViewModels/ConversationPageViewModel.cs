@@ -105,53 +105,24 @@ namespace Orphee.ViewModels
         }
 
 
-        private async void InitConversationList()
+        private void InitConversationList()
         {
             if (this.ButtonsVisibility == Visibility.Collapsed)
                 ResetVisibility(true);
             foreach (var conversation in RestApiManagerBase.Instance.UserData.User.ConversationList)
-            {
-                if (!(await RetrieveConversationMessages(conversation)))
-                    return;
                 this.ConversationList.Add(conversation);
-            }
-        }
-
-        private async Task<bool> RetrieveConversationMessages(Conversation conversation)
-        {
-            var request = conversation.UserList.Count != 1 ? RestApiManagerBase.Instance.RestApiPath["group room"] + conversation.Id + "/groupMessage" : RestApiManagerBase.Instance.RestApiPath["private room"] + conversation.UserList[0].Id;
-            try
-            {
-                conversation.Messages = await this._getter.GetInfo<List<Message>>(request);
-            }
-            catch (Exception)
-            {
-                DisplayMessage("Request failed");
-                return false;
-            }
-            if (conversation.Messages != null && conversation.Messages.Count > 0)
-            {
-                foreach (var message in conversation.Messages)
-                    message.SetProperties();
-                conversation.Messages.Reverse();
-                conversation.LastMessagePreview = conversation.Messages.Last().ReceivedMessage;
-            }
-            return true;
         }
 
         /// <summary>
         /// Creates a new conversation
         /// </summary>
         /// <param name="conversation">Contains the data related to the conversation to be created</param>
-        public async void CreateNewConversation(Conversation conversation)
+        public void CreateNewConversation(Conversation conversation)
         {
-            if (!(await RetrieveConversationMessages(conversation)))
-                return;
             if (string.IsNullOrEmpty(conversation.Name))
                 SetConversationName(conversation);
             if (conversation.UserList.Count == 0 || conversation.UserList == null)
-                conversation.ConversationPictureSource = conversation.UserList[0].Picture;
-           
+                conversation.ConversationPictureSource = conversation.UserList[0].Picture;           
             SetProgressRingVisibility(false);
         }
 
@@ -173,7 +144,7 @@ namespace Orphee.ViewModels
         {
             foreach (var message in RestApiManagerBase.Instance.UserData.User.PendingMessageList)
             {
-                var conversationList = message.Type == "private message" ? this.ConversationList.Where(t => t.UserList.Count == 1).Where(t => t.UserList[0].Id == message.User.Id).ToList() : this.ConversationList.Where(t => t.UserList.Count > 1).Where(t => t.Id == message.TargetRoom).ToList();
+                var conversationList = message.Type == "private message" ? this.ConversationList.Where(t => t.IsPrivate).Where(t => t.UserList[0].Id == message.User.Id).ToList() : this.ConversationList.Where(t => !t.IsPrivate).Where(t => t.Id == message.TargetRoom).ToList();
                 if (conversationList.Count == 0)
                     GetNewConversation(message);
                 else
@@ -203,9 +174,7 @@ namespace Orphee.ViewModels
         private void AddMessageToConversationMessageList(Message message, Conversation conversation)
         {
             message.SetProperties();
-            message = message as Message;
             conversation.Messages.Add(message);
-            conversation.LastMessagePreview = message.ReceivedMessage.Length >= 30 ? message.ReceivedMessage.Substring(0, 30) + "..." : message.ReceivedMessage;
             conversation.LastMessageDateString = DateTime.Now.ToString("HH:mm");
         }
 

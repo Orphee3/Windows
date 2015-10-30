@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Networking.Connectivity;
 using Newtonsoft.Json;
@@ -147,13 +148,13 @@ namespace Orphee.RestApiManagement.Socket_Management
         /// </summary>
         /// <param name="messageToSend">Message to send</param>
         /// <param name="userList">Target users of the message</param>
-        public bool SendPrivateMessage(string messageToSend, User user)
+        public async Task<bool> SendPrivateMessage(string messageToSend, User user)
         {
             if (!IsInternet())
                 return false;
             try
             {
-                this._socket.Emit("private message", JObject.FromObject(new { to = user.Id, message = messageToSend }));
+                var result = await Task.FromResult(this._socket.Emit("private message", JObject.FromObject(new { to = user.Id, message = messageToSend })));
             }
             catch (Exception)
             {
@@ -162,13 +163,13 @@ namespace Orphee.RestApiManagement.Socket_Management
             return true;
         }
 
-        public bool SendGroupMessage(string messageToSend, string roomId)
+        public async Task<bool> SendGroupMessage(string messageToSend, string roomId)
         {
             if (!IsInternet())
                 return false;
             try
             {
-                this._socket.Emit("group message", JObject.FromObject(new {to = roomId, message = messageToSend}));
+                var result = await Task.FromResult(this._socket.Emit("group message", JObject.FromObject(new {to = roomId, message = messageToSend})));
             }
             catch (Exception)
             {
@@ -177,13 +178,13 @@ namespace Orphee.RestApiManagement.Socket_Management
             return true;
         }
 
-        public bool CreateGroupChat(List<string> userList)
+        public async Task<bool> CreateGroupChat(List<string> userList)
         {
             if (!IsInternet())
                 return false;
             try
             {
-                this._socket.Emit("create chat group", JObject.FromObject(new {people = userList}));
+                var result = await Task.FromResult(this._socket.Emit("create chat group", JObject.FromObject(new {people = userList})));
             }
             catch (Exception)
             {

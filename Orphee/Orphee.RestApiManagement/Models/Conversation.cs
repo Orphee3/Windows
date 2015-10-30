@@ -18,10 +18,10 @@ namespace Orphee.RestApiManagement.Models
         /// <summary>Name of the conversation </summary>
         public string Name { get; set; }
 
-        private string _lastMessagePreview;
+        private Message _lastMessagePreview;
 
         /// <summary>Preview of the last message reveived </summary>
-        public string LastMessagePreview
+        public Message LastMessagePreview
         {
             get { return this._lastMessagePreview; }
             set
@@ -40,22 +40,7 @@ namespace Orphee.RestApiManagement.Models
 
         /// <summary>Messages contained in the conversation </summary>
         public JArray MessageList { get; set; }
-
-        private DateTime _lastMessageDate;
-        /// <summary>Date of the last message </summary>
-        public DateTime LastMessageDate
-        {
-            get { return this._lastMessageDate; }
-            set
-            {
-                if (this._lastMessageDate != value)
-                {
-                    this._lastMessageDate = value;
-                    OnPropertyChanged(nameof(this.LastMessageDate));
-                    this.LastMessageDateString = this.LastMessageDate.ToString("HH:mm");
-                }
-            }
-        }
+        public bool IsPrivate { get; set; }
         /// <summary>Conversation participants </summary>
         public List<User> UserList { get; set; }
         /// <summary>Messages contained in the conversation </summary>

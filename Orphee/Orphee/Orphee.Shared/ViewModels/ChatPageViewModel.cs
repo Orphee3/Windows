@@ -5,6 +5,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
@@ -29,7 +30,6 @@ namespace Orphee.ViewModels
                 if (this._message != value)
                 {
                     SetProperty(ref this._message, value);
-                    this.IsEnabled = !string.IsNullOrEmpty(this._message);
                 }
             }
         }
@@ -47,27 +47,17 @@ namespace Orphee.ViewModels
             }
         }
         private Conversation _actualConversation;
-        private bool _isEnabled;
-
-        public bool IsEnabled
-        {
-            get { return this._isEnabled; }
-            set
-            {
-                if (this._isEnabled != value)
-                    SetProperty(ref this._isEnabled, value);
-            }
-        }
+        private readonly IGetter _getter;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ChatPageViewModel()
+        public ChatPageViewModel(IGetter getter)
         {
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Conversation", null));
             this.Conversation = new ObservableCollection<Message>();
             this.SendCommand = new DelegateCommand(SendCommandExec);
-           
+            this._getter = getter;
         }
 
         /// <summary>
@@ -92,9 +82,34 @@ namespace Orphee.ViewModels
                 return;
             }
             this._actualConversation = navigationParameter as Conversation;
+            this.Conversation.Clear();
+            this._actualConversation.Messages.Clear();
             this.ConversationName = this._actualConversation.Name;
-            var conversationMessages = this._actualConversation.Messages;
-            InitConversation(conversationMessages);
+            GetConversationMessages();
+            InitConversation(this._actualConversation.Messages);
+        }
+
+        private async void GetConversationMessages()
+        {
+            var request = !this._actualConversation.IsPrivate ? RestApiManagerBase.Instance.RestApiPath["group room"] + this._actualConversation.Id + "/groupMessage" : RestApiManagerBase.Instance.RestApiPath["private room"] + this._actualConversation.UserList[0].Id;
+            try
+            {
+                this._actualConversation.Messages = await this._getter.GetInfo<List<Message>>(request);
+            }
+            catch (Exception)
+            {
+                DisplayMessage("Request failed");
+                return;
+            }
+            if (this._actualConversation.Messages != null && this._actualConversation.Messages.Count > 0)
+            {
+                foreach (var message in this._actualConversation.Messages)
+                {
+                    message.SetProperties();
+                    this.Conversation.Insert(0, message);
+                }
+                this._actualConversation.Messages.Reverse();
+            }
         }
 
         private void SendCommandExec()
@@ -113,15 +128,15 @@ namespace Orphee.ViewModels
             this.Message = string.Empty;
         }
 
-        private void SendMessage()
+        private async void SendMessage()
         {
             if (this._actualConversation.UserList.Count == 1)
             {
-                if (!RestApiManagerBase.Instance.NotificationRecieiver.SendPrivateMessage(this.Message, this._actualConversation.UserList[0]))
+                if (!(await RestApiManagerBase.Instance.NotificationRecieiver.SendPrivateMessage(this.Message, this._actualConversation.UserList[0])))
                     DisplayMessage("This message wasn't sent");
             }
             else
-                if (!RestApiManagerBase.Instance.NotificationRecieiver.SendGroupMessage(this.Message, this._actualConversation.Id))
+                if (!(await RestApiManagerBase.Instance.NotificationRecieiver.SendGroupMessage(this.Message, this._actualConversation.Id)))
                     DisplayMessage("This message wasn't sent");
         }
 
