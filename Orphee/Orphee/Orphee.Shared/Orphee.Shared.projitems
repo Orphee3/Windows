@@ -58,5 +58,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MyCreationsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProfilePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegisterPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelExtend.cs" />
   </ItemGroup>
 </Project>

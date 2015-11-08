@@ -1,8 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.CreationShared.Interfaces;
-using Orphee.UI;
-using Orphee.ViewModels;
 
 namespace Orphee.Views
 {
@@ -11,6 +8,7 @@ namespace Orphee.Views
         public CreationPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
     }
 }

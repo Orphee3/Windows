@@ -7,6 +7,7 @@
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
     
@@ -145,8 +146,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0" Source="/Assets/creation-background.png" Stretch="Fill" Height="200"/>
-                <Image Grid.Column="0" Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Grid.Column="0" Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
                             <core:InvokeCommandAction Command="{Binding PlayCommand}"/>
@@ -195,7 +195,7 @@
                 </Grid.ColumnDefinitions>
                 <Ellipse Grid.Column="0" Width="50" Height="50" Margin="20, 0, 0, 0" HorizontalAlignment="Left">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding UserPictureSource}"/>
+                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding UserPictureSource}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -234,6 +234,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Grid>
+        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>

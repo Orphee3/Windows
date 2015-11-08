@@ -25,13 +25,13 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         JArray Comments { get; set; }
         /// <summary>User like list </summary>
         [JsonProperty(PropertyName = "likes")]
-        JArray Likes { get; set; }
+        List<string> Likes { get; set; }
         /// <summary>User creation list </summary>
         [JsonProperty(PropertyName = "creations")]
-        JArray Creations { get; set; }
+        List<string> Creations { get; set; }
         /// <summary>User friend list </summary>
         [JsonProperty(PropertyName = "friends")]
-        JArray Friends { get; set; }
+        List<string> Friends { get; set; }
         /// <summary>User picture path </summary>
         [JsonProperty(PropertyName = "picture")]
         string Picture { get; set; }

@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -105,7 +106,7 @@
         </Grid.RowDefinitions>
 
         <Grid Background="#78C7F9" Grid.Row="0" >
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding UserName}" FontSize="25" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Creator.Name}" FontSize="25" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
             <AppBarButton Icon="Back" Command="{Binding BackCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
         </Grid>
         <Grid Grid.Row="1" VerticalAlignment="Top">
@@ -128,13 +129,13 @@
 
                 <Ellipse Width="200" Height="200" Grid.Column="0">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding UserPictureSource}"/>
+                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding Creator.Picture}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="10, 50, 10, 50" HorizontalAlignment="Left"/>
                 <Grid Grid.Column="1" Margin="50, 50, 0, 10">
                     <StackPanel>
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding UserName}" FontSize="45" Foreground="#BDBEC0" Margin="0, 0, 0, 30"/>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Creator.Name}" FontSize="45" Foreground="#BDBEC0" Margin="0, 0, 0, 30"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -167,8 +168,7 @@
                             <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal">
                                     <Grid HorizontalAlignment="Left">
-                                        <Image Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
-                                        <Image Source="/Assets/play-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height='100' Width="100" Opacity="0.6" Margin="10, 0, 0, 0"/>
+                                        <Image controls:ImageExtensions.CacheUri="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                                     </Grid>
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="50, 0, 0, 0" VerticalAlignment="Center">
                                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
@@ -211,6 +211,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Grid>
+        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>

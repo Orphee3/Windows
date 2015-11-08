@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Annotations;
@@ -12,21 +13,26 @@ namespace Orphee.RestApiManagement.Models
     /// Class containing all the creation
     /// related data
     /// </summary>
+    [DataContract]
     public class Creation : ICreation, INotifyPropertyChanged
     {
         /// <summary>Creation id </summary>
+        [DataMember]
         public string Id { get; set; }
         /// <summary>Creation name</summary>
+        [DataMember]
         public string Name { get; set; }
         /// <summary>True if the creation is private. False otherwise </summary>
+        [DataMember]
         public bool IsPrivate { get; set; }
         /// <summary>Comments related to the creation </summary>
         public JArray Comments { get; set; }
         /// <summary>Creation creator </summary>
         public JArray Creator { get; set; }
         /// <summary>AWS S3 creation get url</summary>
+        [DataMember]
         public string GetUrl { get; set; }
-
+        [DataMember]
         private int _numberOfComment;
 
         /// <summary>Number of comments related to the creation</summary>
@@ -42,7 +48,7 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
-
+        [DataMember]
         private int _numberOfLike;
 
         /// <summary>Number of likes related to the creation </summary>
@@ -59,15 +65,14 @@ namespace Orphee.RestApiManagement.Models
             }
         }
         /// <summary>List of the creators of the creation</summary>
+        [DataMember]
         public List<User> CreatorList { get; set; }
-        public Visibility ChannelStackPanelVisibility { get; set; }
         /// <summary>
         /// Constructor
         /// </summary>
         public Creation()
         {
             this.CreatorList = new List<User>();
-            this.ChannelStackPanelVisibility = Visibility.Collapsed;
         }
 
         /// <summary>

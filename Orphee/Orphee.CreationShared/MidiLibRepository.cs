@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Midi;
 using Orphee.CreationShared.Interfaces;
 
@@ -14,12 +15,17 @@ namespace Orphee.CreationShared
         public IPlayerParameters PlayerParameters { get; set; }
         private Clock _clock;
         private OutputDevice _outputDevice;
-        private readonly int _velocity;
+        private int _velocity;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public MidiLibRepository()
+        {
+            Init();
+        }
+
+        private void Init()
         {
             this.PlayerParameters = new PlayerParameters()
             {

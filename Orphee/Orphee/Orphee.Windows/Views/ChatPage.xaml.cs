@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
+using Newtonsoft.Json;
 using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
@@ -17,6 +19,8 @@ namespace Orphee.Views
         public ChatPage()
         {
             this.InitializeComponent();
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+                this.TextBlock.Visibility = Visibility.Visible;
             this.Loaded += (sender, args) => ScrollToBottom();
             if (RestApiManagerBase.Instance.IsConnected)
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
@@ -54,7 +58,7 @@ namespace Orphee.Views
         private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             var channel = ((Message) ((Ellipse) sender).DataContext).User;
-            App.MyNavigationService.Navigate("ChannelInfo", channel);
+            App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(channel));
         }
     }
 }

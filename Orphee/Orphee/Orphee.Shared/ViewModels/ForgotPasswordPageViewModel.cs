@@ -3,7 +3,6 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Posters.Interfaces;
 using Orphee.ViewModels.Interfaces;
 

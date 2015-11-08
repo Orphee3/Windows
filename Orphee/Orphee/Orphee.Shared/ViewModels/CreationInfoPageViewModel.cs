@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Windows.Storage;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using MidiDotNet.ImportModule.Interfaces;
+using Newtonsoft.Json;
 using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 using Orphee.RestApiManagement.Senders.Interfaces;
+using Q42.WinRT.Data;
 
 namespace Orphee.ViewModels
 {
     /// <summary>
     /// CreationInfoPage view model
     /// </summary>
-    public class CreationInfoPageViewModel : ViewModel, ICreationInfoPageViewModel, ILoadingScreenComponents
+    public class CreationInfoPageViewModel : ViewModelExtend, ICreationInfoPageViewModel
     {
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
@@ -29,19 +28,11 @@ namespace Orphee.ViewModels
         public ObservableCollection<Comment> CommentList { get; private set; }
 
         public Creation Creation { get; private set; }
-        private bool _isProgressRingActive;
         private bool? _isLiked;
         public bool? IsLiked
         {
             get
             {
-                if (RestApiManagerBase.Instance.IsConnected)
-                    LikeCommandExec();
-                else
-                {
-                    App.MyNavigationService.Navigate("Login", null);
-                    return null;
-                }
                 return this._isLiked;
             }
             set
@@ -50,25 +41,6 @@ namespace Orphee.ViewModels
                 {
                     SetProperty(ref this._isLiked, value);
                 }
-            }
-        }
-        public bool IsProgressRingActive
-        {
-            get { return this._isProgressRingActive; }
-            set
-            {
-                if (this._isProgressRingActive != value)
-                    SetProperty(ref this._isProgressRingActive, value);
-            }
-        }
-        private Visibility _progressRingVisibility;
-        public Visibility ProgressRingVisibility
-        {
-            get { return this._progressRingVisibility; }
-            set
-            {
-                if (this._progressRingVisibility != value)
-                    SetProperty(ref this._progressRingVisibility, value);
             }
         }
         /// <summary>User picture source </summary>
@@ -90,8 +62,7 @@ namespace Orphee.ViewModels
             this._importer = fileImporter;
             this._commentSender = commentSender;
             this._player = player;
-            this.ProgressRingVisibility = Visibility.Visible;
-            this.IsProgressRingActive = true;
+            SetProgressRingVisibility(true);
             this.UserPictureSource = RestApiManagerBase.Instance.IsConnected ? RestApiManagerBase.Instance.UserData.User.Picture : "/Assets/defaultUser.png";
             this.PlayCommand = new DelegateCommand(PlayCommandExec);
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
@@ -106,73 +77,65 @@ namespace Orphee.ViewModels
         {
             if (newComment.Any())
             {
+                var result = false;
                 if (!RestApiManagerBase.Instance.IsConnected)
                 {
                     App.MyNavigationService.Navigate("Login", null);
                     return;
                 }
-                var result = await this._commentSender.SendComment(newComment, this.Creation.Id);
+                try
+                {
+                    result = await this._commentSender.SendComment(newComment, this.Creation.Id);
+                }
+                catch (Exception e)
+                {
+                   DisplayMessage("An error has occured. The comment wasn't sent");
+                }
+                if (!result)
+                    DisplayMessage("Comment was not sent");
             }
         }
 
         public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this.CommentList.Clear();
-            this.Creation = navigationParameter as Creation;
+            this.Creation = JsonConvert.DeserializeObject<Creation>(navigationParameter as string);
             this.Creation.Name = this.Creation.Name.Split('.')[0];
             if (RestApiManagerBase.Instance.IsConnected)
                 this.IsLiked = RestApiManagerBase.Instance.UserData.User.Likes.Any(l => l.ToString() == this.Creation.Id);
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
                 DisplayMessage("Connexion unavailable");
-                return;
-            }
             List<Comment> commentList;
             try
             {
-                commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this.Creation.Id);
+                commentList = await DataCache.GetAsync("CreationPage-" + this.Creation.Id, async () => await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this.Creation.Id), DateTime.Now.AddHours(1));
             }
             catch (Exception)
             {
                 DisplayMessage("Request failed");
-                this.IsProgressRingActive = false;
-                this.ProgressRingVisibility = Visibility.Collapsed;
+                SetProgressRingVisibility(false);
                 return;
             }
             if (commentList == null)
                 return;
-            foreach (var comment in commentList)
+            foreach (var comment in commentList.Where(comment => this.CommentList.Count(c => c.Id == comment.Id) == 0))
             {
-                if (this.CommentList.Count(c => c.Id == comment.Id) == 0)
-                {
-                    this.Creation.NumberOfComment++;
-                    this.CommentList.Insert(0, comment);
-                }
+                this.Creation.NumberOfComment++;
+                this.CommentList.Insert(0, comment);
             }
-            this.IsProgressRingActive = false;
-            this.ProgressRingVisibility = Visibility.Collapsed;
+            SetProgressRingVisibility(false);
         }
 
         /// <summary>
         /// Updates the comment list
         /// </summary>
         /// <param name="pendingCommentList"></param>
-        public async void UpdateCommentList(List<Comment> pendingCommentList)
+        public void UpdateCommentList(List<Comment> pendingCommentList)
         {
             if (pendingCommentList.Any(c => c.CreationId == this.Creation.Id))
             {
-                List<Comment> commentList;
-                try
-                {
-                    commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this.Creation.Id);
-                }
-                catch (Exception)
-                {
-                    DisplayMessage("This comments was not sent");
-                    return;
-                }
-                foreach (var comment in commentList)
-                    if (!this.CommentList.Any(c => c.Id == comment.Id))
+                foreach (var comment in pendingCommentList)
+                    if (this.CommentList.All(c => c.Id != comment.Id))
                     {
                         this.CommentList.Insert(0, comment);
                         this.Creation.NumberOfComment++;
@@ -208,8 +171,13 @@ namespace Orphee.ViewModels
                 DisplayMessage("Unable to play the piece");
         }
 
-        private async void LikeCommandExec()
+        public async Task<bool?> LikeCommandExec()
         {
+            if (!RestApiManagerBase.Instance.IsConnected)
+            {
+                App.MyNavigationService.Navigate("Login", null);
+                return null;
+            }
             User creator = null;
             var request = this._isLiked == false ? RestApiManagerBase.Instance.RestApiPath["like"] + this.Creation.Id : RestApiManagerBase.Instance.RestApiPath["dislike"] + this.Creation.Id;
             try
@@ -224,14 +192,9 @@ namespace Orphee.ViewModels
             {
                 this._isLiked = !this._isLiked;
                 this.Creation.NumberOfLike += this._isLiked == true ? 1 : -1;
+                return this._isLiked;
             }
-        }
-
-        private async void DisplayMessage(string message)
-        {
-            var messageDialog = new MessageDialog(message);
-
-            await messageDialog.ShowAsync();
+            return null;
         }
     }
 }

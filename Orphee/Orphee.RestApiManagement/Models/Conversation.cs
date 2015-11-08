@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Annotations;
 using Orphee.RestApiManagement.Models.Interfaces;
@@ -11,13 +11,16 @@ namespace Orphee.RestApiManagement.Models
     /// <summary>
     /// Class containing all the conversation data
     /// </summary>
+    [DataContract]
     public class Conversation : IConversation, INotifyPropertyChanged
     {
         /// <summary>Conversation id </summary>
+        [DataMember]
         public string Id { get; set; }
         /// <summary>Name of the conversation </summary>
+        [DataMember]
         public string Name { get; set; }
-
+        [DataMember]
         private Message _lastMessagePreview;
 
         /// <summary>Preview of the last message reveived </summary>
@@ -42,14 +45,16 @@ namespace Orphee.RestApiManagement.Models
         public JArray MessageList { get; set; }
         public bool IsPrivate { get; set; }
         /// <summary>Conversation participants </summary>
+        [DataMember]
         public List<User> UserList { get; set; }
         /// <summary>Messages contained in the conversation </summary>
+        [DataMember]
         public List<Message> Messages { get; set; }
         /// <summary>Conversation picture source </summary>
+        [DataMember]
         public string ConversationPictureSource { get; set; }
-
+        [DataMember]
         private string _lastMessageDateString;
-
         public string LastMessageDateString
         {
             get { return this._lastMessageDateString; }

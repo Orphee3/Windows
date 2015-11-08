@@ -136,5 +136,8 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>

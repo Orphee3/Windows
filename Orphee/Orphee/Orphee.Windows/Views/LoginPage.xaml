@@ -21,7 +21,11 @@
             </Grid.ColumnDefinitions>
             <AppBarButton Grid.Column="0" Icon="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding BackCommand}"/>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <Image Source="/Assets/defaultUser.png" Height="256"/>
+                <Ellipse Height="256" Width="256">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
                 <TextBox Header="UserName" Text="{Binding UserName, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your username"/>
                 <PasswordBox Header="Password" Password="{Binding Password, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your password" IsPasswordRevealButtonEnabled="True"/>
                 <Button Content="Login" HorizontalAlignment="Stretch" Margin="0, 20, 0, 0" Command="{Binding LoginCommand}"/>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
@@ -18,6 +19,7 @@ namespace MidiDotNet.ImportModule
     /// to import a MIDI file and converting its content 
     /// so that it can be used by the program
     /// </summary>
+    [DataContract]
     public class OrpheeFileImporter : IOrpheeFileImporter
     {
         private readonly IFileHeaderReader _fileHeaderReader;

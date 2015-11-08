@@ -167,15 +167,14 @@ namespace Orphee.ViewModels
 
         private async void SaveButtonCommandExec()
         {
-            if (!RestApiManagerBase.Instance.IsConnected)
-            {
-                App.MyNavigationService.Navigate("Login", null);
-                return;
-            }
             this.OrpheeFile.OrpheeTrackList[0].PlayerParameters = this._soundPlayer.GetPlayerParameters();
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+                return;
             var result = await this._orpheeFileExporter.SaveOrpheeFile(this.OrpheeFile);
-            if (result != false)
-                DisplayMessage(result == true ? "The file was sent successfuly" : "An error has occured during the sending");
+            if (result == false)
+                return;
+            DisplayMessage(result == true ? "The file was sent successfuly" : "An error has occured during the sending");
+            this.OrpheeFile.HasBeenSent = true;
         }
 
         private async void LoadButtonCommandExec()

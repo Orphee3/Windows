@@ -10,6 +10,8 @@ namespace Orphee.RestApiManagement.Models.Interfaces
     /// </summary>
     public interface IMessage
     {
+        [JsonProperty(PropertyName = "_id")]
+        string Id { get; set; }
         /// <summary>Message received</summary>
         [JsonProperty(PropertyName = "message")]
         string ReceivedMessage { get; set; }

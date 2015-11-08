@@ -5,9 +5,6 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Orphee.RestApiManagement.Models;
 
 namespace Orphee.UI
@@ -20,6 +17,7 @@ namespace Orphee.UI
             this.InitializeComponent();
             this.InitButtonList();
             this.InitButtonColorForeground();
+
             if (RestApiManagerBase.Instance.IsConnected)
             {
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;

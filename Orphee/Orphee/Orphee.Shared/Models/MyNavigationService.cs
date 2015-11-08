@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Media;
 using Microsoft.Practices.Prism.Mvvm.Interfaces;
 using Orphee.Models.Interfaces;
 using Orphee.RestApiManagement.Models;
+using Orphee.RestApiManagement.Models.Interfaces;
 
 namespace Orphee.Models
 {
@@ -28,6 +29,7 @@ namespace Orphee.Models
                 { "Conversation", new SolidColorBrush(Colors.White)},
                 { "Profile", new SolidColorBrush(Colors.White)},
             };
+            RestApiManagerBase.Instance.RetreiveUser();
         }
 
         public void GoBack()
@@ -58,6 +60,8 @@ namespace Orphee.Models
         {
             if (RestApiManagerBase.Instance.NotificationRecieiver.IsSocketConnected)
                 RestApiManagerBase.Instance.NotificationRecieiver.CloseSocket();
+            if (RestApiManagerBase.Instance.IsConnected)
+                RestApiManagerBase.Instance.SaveUser();
         }
 
         /// <summary>

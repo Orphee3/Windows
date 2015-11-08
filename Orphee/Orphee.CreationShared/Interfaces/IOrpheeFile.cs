@@ -15,6 +15,7 @@ namespace Orphee.CreationShared.Interfaces
         ObservableCollection<IOrpheeTrack> OrpheeTrackList { get; set; }
         /// <summary>Name of the current file </summary>
         string FileName { get; set; }
+        bool HasBeenSent { get; set; }
 
         // Methods
 

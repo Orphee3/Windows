@@ -1,12 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
+using Newtonsoft.Json;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
 
@@ -17,14 +20,22 @@ namespace Orphee.Views
         public CreationInfoPage()
         {
             this.InitializeComponent();
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+                this.TextBlock.Visibility = Visibility.Visible;
             if (RestApiManagerBase.Instance.IsConnected)
+            {
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
+                ((CreationInfoPageViewModel)this.DataContext).PropertyChanged += OnPropertyChanged;
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             if (RestApiManagerBase.Instance.IsConnected)
+            {
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged -= OnNotificationReceiverPropertyChanged;
+                ((CreationInfoPageViewModel)this.DataContext).PropertyChanged -= OnPropertyChanged;
+            }
         }
 
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -41,7 +52,7 @@ namespace Orphee.Views
         public void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             var channel = ((Comment)((Ellipse)sender).DataContext).Creator;
-            App.MyNavigationService.Navigate("ChannelInfo", channel);
+            App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(channel));
         }
 
         private void OnKeyDown(object sender, KeyRoutedEventArgs e)
@@ -54,13 +65,19 @@ namespace Orphee.Views
             }
         }
 
-        private void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
+        private async void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            var result = ((CreationInfoPageViewModel) this.DataContext).IsLiked;
+            var result = await ((CreationInfoPageViewModel) this.DataContext).LikeCommandExec();
             if (result == true)
                 FlipOpen.Begin();
             else if (result == false)
-                FlipClose.Begin();              
+                FlipClose.Begin();
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "IsLiked" && ((CreationInfoPageViewModel) this.DataContext).IsLiked == true)
+                FlipOpen.Begin();
         }
     }
 }

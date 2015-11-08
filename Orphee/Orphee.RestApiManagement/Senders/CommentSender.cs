@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Senders.Interfaces;
@@ -10,10 +11,11 @@ namespace Orphee.RestApiManagement.Senders
     /// Class sending comments to the
     /// remote server
     /// </summary>
+    [DataContract]
     public class CommentSender : ICommentSender
     {
+        [DataMember]
         private readonly INotificationSender _notifyer;
-
         /// <summary>
         /// Constructor initializing notifyer through 
         /// dependency injection

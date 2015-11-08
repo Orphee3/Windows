@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
+﻿using Windows.UI.Xaml;
+using Microsoft.Practices.Prism.Mvvm;
+using Orphee.RestApiManagement.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -12,6 +14,8 @@ namespace Orphee.Views
         public NotificationPage()
         {
             this.InitializeComponent();
+            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+                this.TextBlock.Visibility = Visibility.Visible;
         }
     }
 }

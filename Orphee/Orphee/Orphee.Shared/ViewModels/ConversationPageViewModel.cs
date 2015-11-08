@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
@@ -12,6 +11,7 @@ using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Models.Interfaces;
 using Orphee.ViewModels.Interfaces;
+using Q42.WinRT.Data;
 
 namespace Orphee.ViewModels
 {
@@ -95,8 +95,7 @@ namespace Orphee.ViewModels
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             App.MyNavigationService.CurrentPageName = "Conversation";
-            if (!CheckInternetConnection())
-                return;
+            CheckInternetConnection();
             if (RestApiManagerBase.Instance.IsConnected)
                 InitConversationList();
             else
@@ -155,7 +154,7 @@ namespace Orphee.ViewModels
 
         private async void GetNewConversation(Message message)
         {
-            List<Conversation> conversationList;
+            List<Conversation> conversationList = RestApiManagerBase.Instance.UserData.User.ConversationList;
             try
             {
                 conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
@@ -163,7 +162,6 @@ namespace Orphee.ViewModels
             catch (Exception)
             {
                 DisplayMessage("Request failed");
-                return;
             }
             this._conversationParser.ParseConversationList(conversationList);
             this.ConversationList.Add(conversationList.First());

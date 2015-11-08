@@ -152,7 +152,7 @@ namespace Orphee.ViewModels
             IRandomAccessStream stream;
             try
             {
-                if (RestApiManagerBase.Instance.UserData.User.Picture != null)
+                if (RestApiManagerBase.Instance.UserData.User.Picture != "/Assets/defaultUser.png")
                 {
                     var streamReference = RandomAccessStreamReference.CreateFromUri(new Uri(this.UserPictureSource)).OpenReadAsync();
                     stream = await streamReference;

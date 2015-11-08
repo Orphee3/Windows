@@ -6,33 +6,24 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Newtonsoft.Json;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
+using Q42.WinRT.Data;
 
 namespace Orphee.ViewModels
 {
     /// <summary>
     /// ChannelInfoPage view model
     /// </summary>
-    public class ChannelInfoPageViewModel : ViewModel, IChannelInfoPageViewModel, ILoadingScreenComponents
+    public class ChannelInfoPageViewModel : ViewModelExtend, IChannelInfoPageViewModel
     {
         /// <summary>List of the user's creation </summary>
         public ObservableCollection<Creation> CreationList { get; private set; }
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
         private int _creationNumber;
-        private string _userName;
-        /// <summary>Name of the user </summary>
-        public string UserName
-        {
-            get { return this._userName; }
-            set
-            {
-                if (this._userName != value)
-                    SetProperty(ref this._userName, value);
-            }
-        }
         /// <summary>Number of creations </summary>
         public int CreationNumber
         {
@@ -65,28 +56,7 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._userPictureSource, value);
             }
         }
-        private bool _isProgressRingActive;
-        public bool IsProgressRingActive
-        {
-            get { return this._isProgressRingActive; }
-            set
-            {
-                if (this._isProgressRingActive != value)
-                    SetProperty(ref this._isProgressRingActive, value);
-            }
-        }
-        private Visibility _progressRingVisibility;
-
-        public Visibility ProgressRingVisibility
-        {
-            get { return this._progressRingVisibility; }
-            set
-            {
-                if (this._progressRingVisibility != value)
-                    SetProperty(ref this._progressRingVisibility, value);
-            }
-        }
-
+        public User Creator { get; private set; }
         private readonly IGetter _getter;
 
         /// <summary>
@@ -98,36 +68,28 @@ namespace Orphee.ViewModels
         {
             this._getter = getter;
             this.CreationList = new ObservableCollection<Creation>();
-            this.ProgressRingVisibility = Visibility.Visible;
-            this.IsProgressRingActive = true;
+            SetProgressRingVisibility(true);
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
         }
 
-        public async override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            this.Creator = JsonConvert.DeserializeObject<User>(navigationParameter as string);
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
                 DisplayMessage("Connexion unavailable");
-                return;
-            }
             this.CreationList.Clear();
-            var user = navigationParameter as User;
-            this._userName = user.Name;
             //this.LikeNumber = user.Likes?.Count ?? 0;
-            List<Creation> creations;
+            List<Creation> creations = null;
             try
             {
-                creations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + user.Id + "/creation");
+                 creations = await DataCache.GetAsync("ChannelInfoPage-" + this.Creator.Id, async () => await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + this.Creator.Id + "/creation"));
             }
             catch (Exception)
             {
                 DisplayMessage("Request failed");
-                this.IsProgressRingActive = false;
-                this.ProgressRingVisibility = Visibility.Collapsed;
-                return;
+                SetProgressRingVisibility(false);
             }
             // this.CreationNumber = creations?.Count ?? 0;
-            SetUserPicture(user.Picture);
             if (creations == null)
                 return;
             foreach (var creation in creations)
@@ -135,20 +97,7 @@ namespace Orphee.ViewModels
                 creation.Name = creation.Name.Split('.')[0];
                 this.CreationList.Add(creation);
             }
-            this.IsProgressRingActive = false;
-            this.ProgressRingVisibility = Visibility.Collapsed;
-        }
-
-        private void SetUserPicture(string pictureUri)
-        {
-            this.UserPictureSource = string.IsNullOrEmpty(pictureUri) ? "/Assets/defaultUser.png" : pictureUri;
-        }
-
-        private async void DisplayMessage(string message)
-        {
-            var messageDialog = new MessageDialog(message);
-
-            await messageDialog.ShowAsync();
+            SetProgressRingVisibility(false);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -11,22 +12,31 @@ namespace Orphee.RestApiManagement.Models
     /// Class containing all the 
     /// message related data
     /// </summary>
+    [DataContract]
     public class Message : IMessage
     {
+        [DataMember]
+        public string Id { get; set; }
         /// <summary>Message received</summary>
+        [DataMember]
         public string ReceivedMessage { get; set; }
         /// <summary>User that created the message </summary>
+        [DataMember]
         public User User { get; set; }
+        [DataMember]
         public string Type { get; set; }
         /// <summary>Message creation date </summary>
+        [DataMember]
         public DateTime Date { get; set; }
         /// <summary>Background color of the message bubble</summary>
         public SolidColorBrush BackgroundMessageColor { get; private set;}
         /// <summary>Right if the message if from you and left otherwise </summary>
         public HorizontalAlignment MessageHorizontalAlignment { get; private set; }
         /// <summary>Message reception time </summary>
+        [DataMember]
         public string Hour { get; private set; }
         /// <summary>User picture source</summary>
+        [DataMember]
         public string UserPictureSource { get; private set; }
         /// <summary>Width of the column </summary>
         public GridLength ColumnZeroWidth { get; private set; }
@@ -38,6 +48,7 @@ namespace Orphee.RestApiManagement.Models
         public int MessageColumnNumber { get; private set; }
         /// <summary>Points needed to create le triangle for each message bubble </summary>
         public PointCollection PolygonPoints { get; private set; }
+        [DataMember]
         public string TargetRoom { get; set; }
 
         /// <summary>
@@ -53,7 +64,7 @@ namespace Orphee.RestApiManagement.Models
             this.MessageColumnNumber = this.MessageHorizontalAlignment == HorizontalAlignment.Right ? 0 : 1;
             this.PolygonPoints = this.MessageHorizontalAlignment == HorizontalAlignment.Right ? new PointCollection {new Point(0, 0), new Point(8, 5), new Point(0, 10)} : new PointCollection {new Point(8, 0), new Point(0, 5), new Point(8, 10)};
             this.Hour = this.Date.ToString("HH:mm");
-            this.UserPictureSource = this.User.Picture ?? "/Assets/defaultUser.png";
+            this.UserPictureSource = this.User.Picture;
         }
     }
 }

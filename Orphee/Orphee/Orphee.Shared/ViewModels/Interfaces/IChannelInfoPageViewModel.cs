@@ -14,7 +14,7 @@ namespace Orphee.ViewModels.Interfaces
         /// <summary>Redirects to the previous page </summary>
         DelegateCommand BackCommand { get; }
         /// <summary>Name of the user </summary>
-        string UserName { get; set; }
+        User Creator { get; }
         /// <summary>Number of like </summary>
         int LikeNumber { get; set; }
         /// <summary>Number of creations </summary>

@@ -121,10 +121,8 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Center" Tapped="Creation_OnTapped" Margin="0, 0, 0, 20">
                         <StackPanel Orientation="Horizontal">
-                                <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
-                                    <Image Source="/Assets/creation-background.png" VerticalAlignment="Top" Stretch="Fill"/>
-                                    <Image Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
-                                    <Image Source="/Assets/play-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height='100' Width="100" Opacity="0.6" Margin="10, 0, 0, 0"/>
+                            <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
+                                <Image Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                                 </Grid>
                                 <StackPanel VerticalAlignment="Center" Margin="50, 0, 0, 0">
                                     <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>
@@ -150,5 +148,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>

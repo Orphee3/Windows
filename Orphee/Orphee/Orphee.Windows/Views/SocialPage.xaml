@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True" Name="Page">
 
@@ -128,10 +129,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="70"/>
                         </Grid.ColumnDefinitions>
-
-                        <Ellipse Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Center">
+                        
+                        <Ellipse Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Center" >
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding Path=Picture}"/>
+                                <ImageBrush controls:ImageExtensions.CacheUri="{Binding Path=Picture}"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
@@ -142,6 +143,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
+        </Grid>
         <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="2"/>
     </Grid>
 </Page>

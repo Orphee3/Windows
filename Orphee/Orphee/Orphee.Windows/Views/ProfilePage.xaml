@@ -8,6 +8,7 @@
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -61,7 +62,7 @@
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding UserPictureSource}"/>
+                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding UserPictureSource}"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>
@@ -102,6 +103,9 @@
                 </Grid>
                 <Button Content="Parameters" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding ParametersCommand}" Margin="0, 7, 0, 7"/>
             </StackPanel>
+        </Grid>
+        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
         </Grid>
         <ui:MyBottomAppBar Grid.Row="2" x:Name="MyBottomAppBar"/>
     </Grid>

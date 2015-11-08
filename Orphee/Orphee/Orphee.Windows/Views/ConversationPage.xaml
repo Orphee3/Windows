@@ -8,6 +8,7 @@
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True" Name="Page">
 
@@ -134,7 +135,7 @@
 
                         <Ellipse Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Center">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding Path=ConversationPictureSource}"/>
+                                <ImageBrush controls:ImageExtensions.CacheUri="{Binding Path=ConversationPictureSource}"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
@@ -170,6 +171,9 @@
                     <AppBarButton HorizontalAlignment="Center" Label="Connection" Command="{Binding LoginButton}"/>
                 </Grid>
             </Grid>
+        </Grid>
+        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
         </Grid>
         <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="2"/>
     </Grid>

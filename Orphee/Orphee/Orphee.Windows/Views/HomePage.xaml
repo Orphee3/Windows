@@ -21,6 +21,7 @@
 
         <Grid Background="#78C7F9" Grid.Row="0" >
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Popular" FontSize="25" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
+            <AppBarButton Command="{Binding Test}"/>
         </Grid>
         <Grid Grid.Row="1" VerticalAlignment="Top">
             <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
@@ -32,12 +33,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel x:Name="CreationInfoStackPanel" Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Tapped">
-                                <core:InvokeCommandAction Command="{Binding DataContext.CreationInfoCommand, ElementName=Page}" CommandParameter="{Binding}"/>
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0, 0, 0, 10" Visibility="{Binding Path=ChannelStackPanelVisibility}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0, 0, 0, 10" IsTapEnabled="False">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
                                     <core:InvokeCommandAction Command="{Binding DataContext.ChannelInfoCommand, ElementName=Page}" CommandParameter="{Binding}"/>
@@ -53,12 +49,11 @@
                         <StackPanel Orientation="Horizontal">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
-                                    <core:InvokeCommandAction Command="{Binding CreationInfoCommand}" CommandParameter="{Binding}"/>
+                                    <core:InvokeCommandAction Command="{Binding DataContext.CreationInfoCommand, ElementName=Page}" CommandParameter="{Binding}"/>
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                             <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
-                                <Image Source="/Assets/creation-background.png" VerticalAlignment="Top" Stretch="Fill"/>
-                                <Image Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
+                                <Image Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                             </Grid>
                             <StackPanel VerticalAlignment="Center" Margin="50, 0, 0, 0">
                                 <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>
@@ -74,6 +69,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
+        </Grid>
         <ui:MyBottomAppBar Grid.Row="2" x:Name="MyBottomAppBar" />
     </Grid>
 </Page>

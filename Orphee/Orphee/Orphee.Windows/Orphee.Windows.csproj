@@ -191,13 +191,11 @@
     <Content Include="Assets\commentary-icon-white.png" />
     <Content Include="Assets\creation-background.png" />
     <Content Include="Assets\creation-icon.png" />
-    <Content Include="Assets\flower1.jpg" />
-    <Content Include="Assets\flower2.jpg" />
-    <Content Include="Assets\flower3.jpg" />
     <Content Include="Assets\friend-icon-white.png" />
     <Content Include="Assets\friend-icon.png" />
     <Content Include="Assets\heart-icon-white.png" />
     <Content Include="Assets\loginScreen.jpg" />
+    <Content Include="Assets\logo transparent2.png" />
     <Content Include="Assets\Notification icon.png" />
     <Content Include="Assets\Orphee icons.png" />
     <Content Include="Assets\Orphee icons2.png" />
@@ -255,7 +253,6 @@
     <Content Include="Assets\Logo.scale-140.png" />
     <Content Include="Assets\Logo.scale-180.png" />
     <Content Include="Assets\Logo.scale-80.png" />
-    <Content Include="Assets\play-logo.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-140.png" />
     <Content Include="Assets\SmallLogo.scale-180.png" />
@@ -322,7 +319,8 @@
       <HintPath>..\..\packages\Unity.3.5.1404.0\lib\win8\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="midi.net4.5">
+    <Reference Include="midi.net4.5, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\midi.net4.5.dll</HintPath>
     </Reference>
     <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
@@ -331,6 +329,14 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Q42.WinRT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Q42.WinRT.1.5.0.42\lib\portable-win81+wpa81\Q42.WinRT.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Q42.WinRT.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Q42.WinRT.Portable.1.0.11.42\lib\portable-win+net45+wp80\Q42.WinRT.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

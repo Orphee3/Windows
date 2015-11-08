@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Midi;
 using Orphee.CreationShared.Interfaces;
 
@@ -8,8 +9,10 @@ namespace Orphee.CreationShared
     /// Class that plays the role of interface between the program and 
     /// the MidiLibRepository class
     /// </summary>
+    [DataContract]
     public class SoundPlayer : ISoundPlayer
     {
+        [DataMember]
         private readonly IMidiLibRepository _midiLibRepository;
 
         /// <summary>

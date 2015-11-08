@@ -11,6 +11,7 @@ using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Models.Interfaces;
 using Orphee.RestApiManagement.Posters.Interfaces;
 using Orphee.ViewModels.Interfaces;
+using Q42.WinRT.Data;
 
 namespace Orphee.ViewModels
 {
@@ -112,7 +113,7 @@ namespace Orphee.ViewModels
             List<Conversation> conversationList;
             try
             {
-                conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
+                conversationList = await DataCache.GetAsync(RestApiManagerBase.Instance.UserData.User.UserName + "-ConversationPage", async () => await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms"));
             }
             catch (Exception)
             {

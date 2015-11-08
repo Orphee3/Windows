@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Newtonsoft.Json;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
@@ -77,11 +79,8 @@ namespace Orphee.ViewModels
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
                 DisplayMessage("Connexion unavailable");
-                return;
-            }
-            this._actualConversation = navigationParameter as Conversation;
+            this._actualConversation = JsonConvert.DeserializeObject<Conversation>(navigationParameter as string);
             this.Conversation.Clear();
             this._actualConversation.Messages.Clear();
             this.ConversationName = this._actualConversation.Name;
@@ -92,6 +91,7 @@ namespace Orphee.ViewModels
         private async void GetConversationMessages()
         {
             var request = !this._actualConversation.IsPrivate ? RestApiManagerBase.Instance.RestApiPath["group room"] + this._actualConversation.Id + "/groupMessage" : RestApiManagerBase.Instance.RestApiPath["private room"] + this._actualConversation.UserList[0].Id;
+            this._actualConversation.Messages = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages;
             try
             {
                 this._actualConversation.Messages = await this._getter.GetInfo<List<Message>>(request);
@@ -99,7 +99,6 @@ namespace Orphee.ViewModels
             catch (Exception)
             {
                 DisplayMessage("Request failed");
-                return;
             }
             if (this._actualConversation.Messages != null && this._actualConversation.Messages.Count > 0)
             {
@@ -107,6 +106,8 @@ namespace Orphee.ViewModels
                 {
                     message.SetProperties();
                     this.Conversation.Insert(0, message);
+                    if (RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages.All(m => m.Id != message.Id))
+                        RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages.Add(message);
                 }
                 this._actualConversation.Messages.Reverse();
             }
