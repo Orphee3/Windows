@@ -1,10 +1,7 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Models;
 
 namespace Orphee.Views
@@ -14,8 +11,6 @@ namespace Orphee.Views
         public SocialPage()
         {
             this.InitializeComponent();
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                this.TextBlock.Visibility = Visibility.Visible;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -25,7 +20,7 @@ namespace Orphee.Views
 
         private void User_OnItemClick(object sender, ItemClickEventArgs e)
         { 
-            var user = e.ClickedItem as User;
+            var user = e.ClickedItem as UserBase;
             App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(user));
         }
     }

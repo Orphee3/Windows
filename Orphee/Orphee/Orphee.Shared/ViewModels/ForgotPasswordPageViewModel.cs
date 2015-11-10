@@ -8,31 +8,8 @@ using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
-    public class ForgotPasswordPageViewModel : ViewModel, IForgotPasswordPageViewModel, ILoadingScreenComponents
+    public class ForgotPasswordPageViewModel : ViewModelExtend, IForgotPasswordPageViewModel
     {
-        private bool _isProgressiveRingActive;
-
-        public bool IsProgressRingActive
-        {
-            get { return this._isProgressiveRingActive; }
-            set
-            {
-                if (this._isProgressiveRingActive != value)
-                    SetProperty(ref this._isProgressiveRingActive, value);
-            }
-        }
-
-        private Visibility _progressRingVisibility;
-
-        public Visibility ProgressRingVisibility
-        {
-            get { return this._progressRingVisibility; }
-            set
-            {
-                if (this._progressRingVisibility != value)
-                    SetProperty(ref this._progressRingVisibility, value);
-            }
-        }
         public DelegateCommand SendCommand { get; private set; }
         public DelegateCommand GoBackCommend { get; private set; }
         private string _userMailAdress;
@@ -50,7 +27,7 @@ namespace Orphee.ViewModels
 
         public ForgotPasswordPageViewModel(IForgotPasswordReseter forgotPasswordReseter)
         {
-            SetProgressRingProperties(true);
+            SetProgressRingVisibility(true);
             this._forgotPasswordReseter = forgotPasswordReseter;
             this.SendCommand = new DelegateCommand(SendCommandExec);
             this.GoBackCommend = new DelegateCommand(() => App.MyNavigationService.GoBack());
@@ -58,35 +35,15 @@ namespace Orphee.ViewModels
 
         private async void SendCommandExec()
         {
-            bool result = false;
             if (string.IsNullOrEmpty(this.UserMailAdress) || !this.UserMailAdress.Contains("@") || !this.UserMailAdress.Contains("."))
             {
-                DisplayMessageError("Invalid mail adress");
+                DisplayMessage("Invalid mail adress");
                 return;
             }
-            try
-            {
-                result = await this._forgotPasswordReseter.ResetForgotPassword(this.UserMailAdress);
-            }
-            catch (Exception)
-            {
-                DisplayMessageError("Request has failed");
-            }
-            DisplayMessageError(!result ? "Invalid mail adress" : "The password reset link has been sent to your mail box !");
-            SetProgressRingProperties(false);
-        }
-
-        private async void DisplayMessageError(string message)
-        {
-            var messageDialog = new MessageDialog(message);
-
-            await messageDialog.ShowAsync();
-        }
-
-        private void SetProgressRingProperties(bool isActive)
-        {
-            this.IsProgressRingActive = isActive;
-            this.ProgressRingVisibility = isActive ? Visibility.Visible : Visibility.Collapsed;
+            var result = await this._forgotPasswordReseter.ResetForgotPassword(this.UserMailAdress);
+            VerifyReturnedValue(result, "");
+            DisplayMessage(!result ? "Invalid mail adress" : "The password reset link has been sent to your mail box !");
+            SetProgressRingVisibility(false);
         }
     }
 }

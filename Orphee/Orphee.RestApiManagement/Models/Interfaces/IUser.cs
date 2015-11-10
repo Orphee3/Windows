@@ -38,28 +38,5 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         /// <summary>User creation date  </summary>
         [JsonProperty(PropertyName = "dateCreation")]
         DateTime DateCreaion { get; set; }
-        /// <summary>True if the user ahs been selected for a new conversation. False otherwise </summary>
-        bool IsChecked { get; set; }
-        /// <summary>List of pending friend asking </summary>
-        List<User> PendingFriendList { get; set; }
-        /// <summary>List of unviewed messages </summary>
-        List<Message> PendingMessageList { get; set; }
-        /// <summary>List of unviewes comments </summary>
-        List<Comment> PendingCommentList { get; set; }
-        /// <summary> If this user is a friend if the logged user, the add button is hidden. It's visible otherwise </summary>
-        Visibility AddButtonVisibility { get; set; }
-        /// <summary>True if a comment notification was received. False otherwise </summary>
-        bool HasReceivedCommentNotification { get; set; }
-        /// <summary>True if a frien notification was received. False otherwise </summary>
-        bool HasReceivedFriendNotification { get; set; }
-        /// <summary>True if a message notification was received. False otherwise </summary>
-        bool HasReceivedMessageNotification { get; set; }
-        /// <summary>True if a friend validation notification was received. False otherwise </summary>
-        bool HasReceivedFriendConfirmationNotification { get; set; }
-        /// <summary>True if a picture was uploaded with success. False otherwise </summary>
-        bool PictureHasBeenUplaodedWithSuccess { get; set; }
-        List<User> FriendList { get; set; }
-        List<News> NotificationList { get; set; }  
-        List<Conversation> ConversationList { get; set; } 
     }
 }

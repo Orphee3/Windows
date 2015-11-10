@@ -18,7 +18,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// ConversationPage view model
     /// </summary>
-    public class ConversationPageViewModel : ViewModel, IConversationPageViewModel, ILoadingScreenComponents
+    public class ConversationPageViewModel : ViewModelExtend, IConversationPageViewModel
     {
         /// <summary>List of conversation that the user has </summary>
         public ObservableCollection<Conversation> ConversationList { get; set; }
@@ -48,28 +48,6 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._listViewVisibility, value);
             }
         }
-        private bool _isProgressRingActive;
-
-        public bool IsProgressRingActive
-        {
-            get { return this._isProgressRingActive; }
-            set
-            {
-                if (this._isProgressRingActive != value)
-                    SetProperty(ref this._isProgressRingActive, value);
-            }
-        }
-        private Visibility _progressRingVisibility;
-
-        public Visibility ProgressRingVisibility
-        {
-            get { return this._progressRingVisibility; }
-            set
-            {
-                if (this._progressRingVisibility != value)
-                    SetProperty(ref this._progressRingVisibility, value);
-            }
-        }
         private readonly IGetter _getter;
         private readonly IConversationParser _conversationParser;
 
@@ -95,7 +73,6 @@ namespace Orphee.ViewModels
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             App.MyNavigationService.CurrentPageName = "Conversation";
-            CheckInternetConnection();
             if (RestApiManagerBase.Instance.IsConnected)
                 InitConversationList();
             else
@@ -154,15 +131,9 @@ namespace Orphee.ViewModels
 
         private async void GetNewConversation(Message message)
         {
-            List<Conversation> conversationList = RestApiManagerBase.Instance.UserData.User.ConversationList;
-            try
-            {
-                conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
-            }
-            catch (Exception)
-            {
-                DisplayMessage("Request failed");
-            }
+            var conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
+            if (!VerifyReturnedValue(conversationList, ""))
+                conversationList = RestApiManagerBase.Instance.UserData.User.ConversationList;
             this._conversationParser.ParseConversationList(conversationList);
             this.ConversationList.Add(conversationList.First());
             RestApiManagerBase.Instance.UserData.User.ConversationList.Add(conversationList.First());
@@ -174,31 +145,6 @@ namespace Orphee.ViewModels
             message.SetProperties();
             conversation.Messages.Add(message);
             conversation.LastMessageDateString = DateTime.Now.ToString("HH:mm");
-        }
-
-        private bool CheckInternetConnection()
-        {
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
-                DisplayMessage("Connexion unavailable");
-                SetProgressRingVisibility(false);
-                return false;
-            }
-            return true;
-        }
-
-        private void SetProgressRingVisibility(bool isVisiblle)
-        {
-            if (!isVisiblle)
-            {
-                this.IsProgressRingActive = false;
-                this.ProgressRingVisibility = Visibility.Collapsed;
-            }
-            else
-            {
-                this.IsProgressRingActive = true;
-                this.ProgressRingVisibility = Visibility.Visible;
-            }
         }
 
         private void ResetVisibility(bool isConnected)
@@ -213,13 +159,6 @@ namespace Orphee.ViewModels
                 this.ButtonsVisibility = Visibility.Visible;
                 this.ListViewVisibility = Visibility.Collapsed;
             }
-        }
-
-        private async void DisplayMessage(string message)
-        {
-            var messageDialog = new MessageDialog(message);
-
-            await messageDialog.ShowAsync();
         }
     }
 }

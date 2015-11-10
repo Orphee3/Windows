@@ -17,11 +17,11 @@ namespace Orphee.ViewModels
     public class SocialPageViewModel : ViewModelExtend, ISocialPageViewModel
     {
         /// <summary>List of the searched users </summary>
-        public ObservableCollection<User> UserList { get; set; }
+        public ObservableCollection<UserBase> UserList { get; set; }
         /// <summary>Login command</summary>
         public DelegateCommand LoginCommand { get; private set; }
         /// <summary>Add new friend command</summary>
-        public DelegateCommand<User> AddFriendCommand { get; private set; }
+        public DelegateCommand<UserBase> AddFriendCommand { get; private set; }
 
         private readonly IGetter _getter;
 
@@ -34,9 +34,9 @@ namespace Orphee.ViewModels
         {
             this._getter = getter;
             SetProgressRingVisibility(true);
-            this.UserList = new ObservableCollection<User>();
+            this.UserList = new ObservableCollection<UserBase>();
             this.LoginCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
-            this.AddFriendCommand = new DelegateCommand<User>(NewFriendCommandExec);
+            this.AddFriendCommand = new DelegateCommand<UserBase>(NewFriendCommandExec);
         }
 
         /// <summary>
@@ -47,49 +47,47 @@ namespace Orphee.ViewModels
         /// <param name="viewModelState"></param>
         public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         { 
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            if (!App.InternetAvailabilityWatcher.IsInternetUp)
             {
                 SetProgressRingVisibility(false);
                 return;
             }
-            List<User> temporaryList;
-            try
-            {
-                temporaryList = (await this._getter.GetInfo<List<User>>(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + 0 + "&size=" + 20)).OrderBy(u => u.UserName).ToList();
-            }
-            catch (Exception)
-            {
-                DisplayMessage("Request failed");
-                SetProgressRingVisibility(false);
+            var requestedUserList = (await this._getter.GetInfo<List<UserBase>>(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + 0 + "&size=" + 20)).OrderBy(u => u.UserName).ToList();
+            if (!VerifyReturnedValue(requestedUserList, "")) 
                 return;
-            }
+            RemoveUserFromList(requestedUserList);
+            AddRequestedUsersToUserList(requestedUserList);
+            SetProgressRingVisibility(false);
+        }
 
+        private void RemoveUserFromList(List<UserBase> requestedUserList)
+        {
             if (RestApiManagerBase.Instance.IsConnected)
-                temporaryList.Remove(temporaryList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
-            foreach (var user in temporaryList)
+                requestedUserList.Remove(requestedUserList.FirstOrDefault(u => u.Name == RestApiManagerBase.Instance.UserData.User.Name));
+        }
+
+        private void AddRequestedUsersToUserList(List<UserBase> requestedUserList)
+        {
+            foreach (var user in requestedUserList)
             {
                 if (!RestApiManagerBase.Instance.IsConnected)
                     user.AddButtonVisibility = Visibility.Collapsed;
                 this.UserList.Add(user);
             }
-            SetProgressRingVisibility(false);
         }
 
-        private async void NewFriendCommandExec(User friend)
+        private async void NewFriendCommandExec(UserBase friend)
         {
-            string result = "";
-            try
+            if (App.InternetAvailabilityWatcher.IsInternetUp)
             {
-                if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                    result = await this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["askfriend"] + "/" + friend.Id);
+                var requestResult = await this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["askfriend"] + "/" + friend.Id);
+                if (!VerifyReturnedValue(requestResult, "Error : Friendship request was not sent"))
+                    return;
+                var stringToDisplay = requestResult == "already send" ? "Friendship already asked" : "Friendship request sent to " + friend.UserName;
+                DisplayMessage(stringToDisplay);
             }
-            catch (Exception)
-            {
-                DisplayMessage("Request failed");
-                return;
-            }
-            var stringToDisplay = result == "already send" ? "Friendship already asked" : "Friendship request sent to " + friend.UserName;
-            DisplayMessage(stringToDisplay);
+            else
+                DisplayMessage("Internet connexion unavailable");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
@@ -13,8 +12,6 @@ namespace Orphee.Views
         public MyCreationsPage()
         {
             this.InitializeComponent();
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                this.TextBlock.Visibility = Visibility.Visible;
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 

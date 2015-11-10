@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -19,7 +20,7 @@ namespace Orphee.RestApiManagement.Getters
         /// <typeparam name="T">Type of the requested data</typeparam>
         /// <param name="request">Request that's going to be sent to the server</param>
         /// <returns>Return the type T data retreived from the server</returns>
-        public async Task<T> GetInfo<T>(string request)
+        private async Task<T> RequestServerForInfo<T>(string request)
         {
             var returnValue = default(T);
             using (var httpClient = new HttpClient {BaseAddress = RestApiManagerBase.Instance.RestApiUrl})
@@ -35,6 +36,20 @@ namespace Orphee.RestApiManagement.Getters
                 }
             }
             return returnValue;
-        } 
+        }
+
+        public async Task<T> GetInfo<T>(string request)
+        {
+            var returnInfo = default(T);
+            try
+            {
+                returnInfo = await RequestServerForInfo<T>(request);
+            }
+            catch (Exception)
+            {
+                return returnInfo;
+            }
+            return returnInfo;
+        }
     }
 }

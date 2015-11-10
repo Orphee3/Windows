@@ -13,21 +13,17 @@ namespace Orphee.ViewModels.Interfaces
     public interface IFriendPageViewModel
     {
         /// <summary>List of the user's friends </summary>
-        ObservableCollection<User> FriendList { get; }
+        ObservableCollection<UserBase> FriendList { get; }
         /// <summary>Redirects to the precious page </summary>
         DelegateCommand GoBackCommand { get; }
         /// <summary>Deletes the selected friend </summary>
-        DelegateCommand<User> DeleteFriendCommand { get; }
+        DelegateCommand<UserBase> DeleteFriendCommand { get; }
         /// <summary>Validates the creation of the new conversation </summary>
         DelegateCommand ValidateConversationCreationCommand { get; }
         /// <summary>Visible if the box is visible. Hidden otherwise </summary>
         Visibility CheckBoxVisibility { get; set; }
         /// <summary>Visible if the stackPanel is visible. Hidden otherwise </summary>
         Visibility InvitationStackPanelVisibility { get; set; }
-        /// <summary>Name of the conversation to be created </summary>
-        string ConversationName { get; set; }
-        /// <summary>User picture source </summary>
-        string UserPictureSource { get; set; }
 
         /// <summary>
         /// Called when navigated to

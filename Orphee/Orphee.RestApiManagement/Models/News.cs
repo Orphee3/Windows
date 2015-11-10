@@ -16,7 +16,7 @@ namespace Orphee.RestApiManagement.Models
         public string Id { get; set; }
         /// <summary>Creator of the news</summary>
         [DataMember]
-        public User Creator { get; set; }
+        public UserBase Creator { get; set; }
         /// <summary>Creation which the news comes from</summary>
         [DataMember]
         public Creation Creation { get; set; }

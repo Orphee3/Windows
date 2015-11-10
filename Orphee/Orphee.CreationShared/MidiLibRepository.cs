@@ -40,13 +40,21 @@ namespace Orphee.CreationShared
             {
                 this._outputDevice = OutputDevice.InstalledDevices[0];
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception("", e);
+                return;
             }
             this._velocity = 75;
 
-            this._outputDevice.Open();
+            try
+            {
+                this._outputDevice.Open();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
             this._clock.Start();
         }
 

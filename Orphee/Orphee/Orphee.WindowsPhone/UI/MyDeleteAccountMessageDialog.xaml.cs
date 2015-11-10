@@ -14,7 +14,7 @@ namespace Orphee.UI
 
         public async Task<bool> ShowAsync()
         {
-            await ((MyMessageDialogViewModel)this.DataContext).ShowAsync();
+            await ((MyDeleteAccountMessageDialogViewModel)this.DataContext).ShowAsync();
             return true;
         }
     }

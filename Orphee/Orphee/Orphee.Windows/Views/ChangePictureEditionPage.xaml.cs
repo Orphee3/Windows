@@ -46,7 +46,6 @@ namespace Orphee.Views
         /// The size of the corners. 
         /// </summary> 
         double cornerSize;
-
         double CornerSize
         {
             get
@@ -64,8 +63,6 @@ namespace Orphee.Views
         /// The previous points of all the pointers. 
         /// </summary> 
         Dictionary<uint, Point?> pointerPositionHistory = new Dictionary<uint, Point?>();
-
-        private FileUploader _fileUploader;
         public ChangePictureEditionPage()
         {
             this.InitializeComponent();
@@ -123,12 +120,12 @@ namespace Orphee.Views
         /// </summary> 
         async private void openImageButton_Click(object sender, RoutedEventArgs e)
         {
-            bool unsnapped = ((ApplicationView.Value != ApplicationViewState.Snapped) || ApplicationView.TryUnsnap());
-            if (!unsnapped)
-            {
-                NotifyUser("Cannot unsnap the sample.");
-                return;
-            }
+            //bool unsnapped = ((ApplicationView.Value != ApplicationViewState.Snapped) || ApplicationView.TryUnsnap());
+            //if (!unsnapped)
+            //{
+            //    NotifyUser("Cannot unsnap the sample.");
+            //    return;
+            //}
 
 
             FileOpenPicker openPicker = new FileOpenPicker();
@@ -260,12 +257,12 @@ namespace Orphee.Views
         /// </summary> 
         async private void saveImageButton_Click(object sender, RoutedEventArgs e)
         {
-            bool unsnapped = ((ApplicationView.Value != ApplicationViewState.Snapped) || ApplicationView.TryUnsnap());
-            if (!unsnapped)
-            {
-                NotifyUser("Cannot unsnap the sample.");
-                return;
-            }
+            //bool unsnapped = ((ApplicationView.Value != ApplicationViewState.Snapped) || ApplicationView.TryUnsnap());
+            //if (!unsnapped)
+            //{
+            //    NotifyUser("Cannot unsnap the sample.");
+            //    return;
+            //}
 
             double widthScale = imageCanvas.Width / this.sourceImagePixelWidth;
             double heightScale = imageCanvas.Height / this.sourceImagePixelHeight;

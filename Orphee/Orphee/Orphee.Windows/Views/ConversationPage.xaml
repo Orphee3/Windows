@@ -135,7 +135,7 @@
 
                         <Ellipse Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Center">
                             <Ellipse.Fill>
-                                <ImageBrush controls:ImageExtensions.CacheUri="{Binding Path=ConversationPictureSource}"/>
+                                <ImageBrush controls:ImageExtensions.CacheUri="{Binding Path=UserList[0].Picture}"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
@@ -172,7 +172,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+        <Grid Background="Black" Opacity="0.7" Grid.Row="1" Visibility="{Binding ConnexionUnavailableTextBlockVisibility}" VerticalAlignment="Bottom">
             <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
         </Grid>
         <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="2"/>

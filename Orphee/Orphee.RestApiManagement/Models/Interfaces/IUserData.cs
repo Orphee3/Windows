@@ -12,6 +12,6 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         string Token { get; set; }
         /// <summary>User's representation containing all its related data</summary>
         [JsonProperty(PropertyName = "user")]
-        User User { get; set; }
+        LoggedUser User { get; set; }
     }
 }

@@ -58,8 +58,8 @@ namespace Orphee.Models
 
         public void Suspending()
         {
-            if (RestApiManagerBase.Instance.NotificationRecieiver.IsSocketConnected)
-                RestApiManagerBase.Instance.NotificationRecieiver.CloseSocket();
+            if (App.InternetAvailabilityWatcher.SocketManager.IsSocketConnected)
+                App.InternetAvailabilityWatcher.SocketManager.CloseSocket();
             if (RestApiManagerBase.Instance.IsConnected)
                 RestApiManagerBase.Instance.SaveUser();
         }

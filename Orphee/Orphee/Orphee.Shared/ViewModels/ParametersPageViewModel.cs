@@ -1,11 +1,11 @@
 ﻿using Microsoft.Practices.Prism.Commands;
 using Orphee.RestApiManagement.Models;
-using Orphee.ViewModels.Interfaces;
 using Orphee.UI;
+using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels
 {
-    public class ParametersPageViewModel : IParametersPageViewModel
+    public class ParametersPageViewModel : ViewModelExtend, IParametersPageViewModel
     {
         public DelegateCommand DeleteAccoutCommand { get; private set; }
         public DelegateCommand LogoutCommand { get; private set; }

@@ -22,7 +22,7 @@ namespace Orphee.RestApiManagement.Models
         public string ReceivedMessage { get; set; }
         /// <summary>User that created the message </summary>
         [DataMember]
-        public User User { get; set; }
+        public UserBase User { get; set; }
         [DataMember]
         public string Type { get; set; }
         /// <summary>Message creation date </summary>

@@ -11,27 +11,6 @@ namespace Orphee.ViewModels.Interfaces
     /// </summary>
     public interface IProfilePageViewModel
     {
-        /// <summary>Logged user name</summary>
-        string UserName { get; }
-
-        /// <summary>Number of creation of the logged user </summary>
-        int NumberOfCreations { get; }
-
-        /// <summary>Number of comments of the logged user </summary>
-        int NumberOfComments { get; }
-
-        /// <summary>Number of follows of the logged user </summary>
-        int NumberOfFollows { get; }
-
-        /// <summary>Number of followers of the logged user</summary>
-        int NumberOfFollowers { get; }
-
-        /// <summary>User picture source</summary>
-        string UserPictureSource { get; }
-
-        /// <summary>Background color of the profile page </summary>
-        SolidColorBrush BackgroundPictureColor { get; }
-
         /// <summary>Visible if the user is disconnected. Hidden otherwise </summary>
         Visibility DisconnectedStackPanelVisibility { get; set; }
 
@@ -52,11 +31,6 @@ namespace Orphee.ViewModels.Interfaces
 
         /// <summary>Redirects to EditProfilePage</summary>
         DelegateCommand ParametersCommand { get; }
-
-        /// <summary>
-        /// Updates the picture source
-        /// </summary>
-        void UpdatePictureSource();
 
         /// <summary>
         /// Called when navigated to this page

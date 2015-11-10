@@ -14,11 +14,11 @@ namespace Orphee.ViewModels.Interfaces
         /// <summary>Redirects to the previous page </summary>
         DelegateCommand GoBackCommand { get; }
         /// <summary>Accept the friend invitation </summary>
-        DelegateCommand<User> AcceptCommand { get; }
+        DelegateCommand<UserBase> AcceptCommand { get; }
         /// <summary>Refuses the friend invitation</summary>
-        DelegateCommand<User> CancelCommand { get; }
+        DelegateCommand<UserBase> CancelCommand { get; }
         /// <summary>List of the pending invitations</summary>
-        ObservableCollection<User> InvitationList { get; }
+        ObservableCollection<UserBase> InvitationList { get; }
 
         /// <summary>
         /// Called when navigated to

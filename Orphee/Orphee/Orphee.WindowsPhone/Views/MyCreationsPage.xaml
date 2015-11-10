@@ -113,21 +113,16 @@
         <Grid Grid.Row="1" VerticalAlignment="Top">
             <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
+        </StackPanel>
         <ListView Grid.Row="1" ItemsSource="{Binding CreationList}" Height="Auto"  ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Center" Tapped="Creation_OnTapped">
-                        <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                            <StackPanel Orientation="Horizontal">
-                                <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
-                                    <Image Source="/Assets/creation-background.png" VerticalAlignment="Top" Stretch="Fill"/>
-                                    <Image Source="/Assets/logo transparent.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
-                                    <Image Source="/Assets/play-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height='100' Width="100" Opacity="0.6" Margin="10, 0, 0, 0"/>
+                    <Grid HorizontalAlignment="Center" Tapped="Creation_OnTapped" Margin="0, 0, 0, 20">
+                        <StackPanel Orientation="Horizontal">
+                            <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
+                                <Image Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                                 </Grid>
                                 <StackPanel VerticalAlignment="Center" Margin="50, 0, 0, 0">
                                     <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>
@@ -149,11 +144,12 @@
                                     </Grid>
                                 </StackPanel>
                             </StackPanel>
-                            <Line Stroke="#BDBEC0" X1="0" Y1="0" X2="150" Y2="0" Stretch="Fill" Margin="0, 20, 0, 10" VerticalAlignment="Bottom"/>
-                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid Background="Black" Opacity="0.7" Grid.Row="1" Visibility="{Binding ConnexionUnavailableTextBlockVisibility}" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>

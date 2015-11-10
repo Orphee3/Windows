@@ -5,7 +5,6 @@ using System.Linq;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
@@ -16,7 +15,7 @@ namespace Orphee.ViewModels
     /// <summary>
     /// ChatPage view model
     /// </summary>
-    public class ChatPageViewModel : ViewModel, IChatPageViewModel
+    public class ChatPageViewModel : ViewModelExtend, IChatPageViewModel
     {
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
@@ -78,8 +77,6 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                DisplayMessage("Connexion unavailable");
             this._actualConversation = JsonConvert.DeserializeObject<Conversation>(navigationParameter as string);
             this.Conversation.Clear();
             this._actualConversation.Messages.Clear();
@@ -91,26 +88,24 @@ namespace Orphee.ViewModels
         private async void GetConversationMessages()
         {
             var request = !this._actualConversation.IsPrivate ? RestApiManagerBase.Instance.RestApiPath["group room"] + this._actualConversation.Id + "/groupMessage" : RestApiManagerBase.Instance.RestApiPath["private room"] + this._actualConversation.UserList[0].Id;
-            this._actualConversation.Messages = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages;
-            try
+            this._actualConversation.Messages = await this._getter.GetInfo<List<Message>>(request);
+            if (!VerifyReturnedValue(this._actualConversation.Messages, ""))
+                this._actualConversation.Messages = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages;
+            if (this._actualConversation.Messages == null || this._actualConversation.Messages.Count <= 0)
+                return;
+            AddNewMessagesToMessageList();
+        }
+
+        private void AddNewMessagesToMessageList()
+        {
+            foreach (var message in this._actualConversation.Messages)
             {
-                this._actualConversation.Messages = await this._getter.GetInfo<List<Message>>(request);
+                message.SetProperties();
+                this.Conversation.Insert(0, message);
+                if (RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages.All(m => m.Id != message.Id))
+                    RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages.Add(message);
             }
-            catch (Exception)
-            {
-                DisplayMessage("Request failed");
-            }
-            if (this._actualConversation.Messages != null && this._actualConversation.Messages.Count > 0)
-            {
-                foreach (var message in this._actualConversation.Messages)
-                {
-                    message.SetProperties();
-                    this.Conversation.Insert(0, message);
-                    if (RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages.All(m => m.Id != message.Id))
-                        RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id).Messages.Add(message);
-                }
-                this._actualConversation.Messages.Reverse();
-            }
+            this._actualConversation.Messages.Reverse();
         }
 
         private void SendCommandExec()
@@ -131,21 +126,8 @@ namespace Orphee.ViewModels
 
         private async void SendMessage()
         {
-            if (this._actualConversation.UserList.Count == 1)
-            {
-                if (!(await RestApiManagerBase.Instance.NotificationRecieiver.SendPrivateMessage(this.Message, this._actualConversation.UserList[0])))
-                    DisplayMessage("This message wasn't sent");
-            }
-            else
-                if (!(await RestApiManagerBase.Instance.NotificationRecieiver.SendGroupMessage(this.Message, this._actualConversation.Id)))
-                    DisplayMessage("This message wasn't sent");
-        }
-
-        private async void DisplayMessage(string message)
-        {
-            var messageDialog = new MessageDialog(message);
-
-            await messageDialog.ShowAsync();
+            if (!(await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendMessage(this.Message, this._actualConversation.IsPrivate ? this._actualConversation.UserList[0].Id : this._actualConversation.Id, this._actualConversation.IsPrivate)))
+                DisplayMessage("This message wasn't sent");
         }
     }
 }

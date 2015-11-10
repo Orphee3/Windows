@@ -13,7 +13,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         string Id { get; set; }
         /// <summary>Creator of the news</summary>
         [JsonProperty(PropertyName = "userSource")]
-        User Creator { get; set; }
+        UserBase Creator { get; set; }
         /// <summary>Creation which the news comes from</summary>
         [JsonProperty(PropertyName = "media")]
         Creation Creation { get; set; }

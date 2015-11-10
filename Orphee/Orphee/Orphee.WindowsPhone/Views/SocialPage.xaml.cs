@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement;
+using Newtonsoft.Json;
 using Orphee.RestApiManagement.Models;
 
 namespace Orphee.Views
@@ -13,10 +13,15 @@ namespace Orphee.Views
             this.InitializeComponent();
         }
 
-        private void User_OnItemClick(object sender, ItemClickEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            var user = e.ClickedItem as User;
-            App.MyNavigationService.Navigate("ChannelInfo", user);
+            this.MyBottomAppBar.Unload();
+        }
+
+        private void User_OnItemClick(object sender, ItemClickEventArgs e)
+        { 
+            var user = e.ClickedItem as UserBase;
+            App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(user));
         }
     }
 }

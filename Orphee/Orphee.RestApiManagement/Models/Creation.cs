@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Annotations;
 using Orphee.RestApiManagement.Models.Interfaces;
@@ -19,16 +18,31 @@ namespace Orphee.RestApiManagement.Models
         /// <summary>Creation id </summary>
         [DataMember]
         public string Id { get; set; }
+
+        private string _name;
+
         /// <summary>Creation name</summary>
         [DataMember]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return this._name; }
+            set
+            {
+                if (this._name != value)
+                {
+                    this._name = value;
+                    if (!string.IsNullOrEmpty(this._name))
+                        this._name = this._name.Split('.')[0];
+                    OnPropertyChanged(nameof(this.Name));
+                }
+            }
+        }
         /// <summary>True if the creation is private. False otherwise </summary>
         [DataMember]
         public bool IsPrivate { get; set; }
         /// <summary>Comments related to the creation </summary>
         public JArray Comments { get; set; }
-        /// <summary>Creation creator </summary>
-        public JArray Creator { get; set; }
+
         /// <summary>AWS S3 creation get url</summary>
         [DataMember]
         public string GetUrl { get; set; }
@@ -66,13 +80,14 @@ namespace Orphee.RestApiManagement.Models
         }
         /// <summary>List of the creators of the creation</summary>
         [DataMember]
-        public List<User> CreatorList { get; set; }
+        public List<UserBase> CreatorList { get; set; }
+
         /// <summary>
         /// Constructor
         /// </summary>
         public Creation()
         {
-            this.CreatorList = new List<User>();
+            this.CreatorList = new List<UserBase>();
         }
 
         /// <summary>

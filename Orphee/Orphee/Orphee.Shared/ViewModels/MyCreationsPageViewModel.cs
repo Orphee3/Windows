@@ -1,45 +1,22 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using System.Collections.Generic;
-using Windows.UI.Xaml;
+using Orphee.Models.Interfaces;
 
 namespace Orphee.ViewModels
 {
     /// <summary>
     /// MyCreationsPage view model
     /// </summary>
-    public class MyCreationsPageViewModel : ViewModel, IMyCreationsPageViewModel, ILoadingScreenComponents
+    public class MyCreationsPageViewModel : ViewModelExtend, IMyCreationsPageViewModel
     {
         /// <summary>List of the user's creation </summary>
         public ObservableCollection<Creation> CreationList { get; set; }
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
-        private bool _isProgressRingActive;
-
-        public bool IsProgressRingActive
-        {
-            get { return this._isProgressRingActive; }
-            set
-            {
-                if (this._isProgressRingActive != value)
-                    SetProperty(ref this._isProgressRingActive, value);
-            }
-        }
-        private Visibility _progressRingVisibility;
-
-        public Visibility ProgressRingVisibility
-        {
-            get { return this._progressRingVisibility; }
-            set
-            {
-                if (this._progressRingVisibility != value)
-                    SetProperty(ref this._progressRingVisibility, value);
-            }
-        }
         private readonly IGetter _getter;
 
         /// <summary>
@@ -47,29 +24,31 @@ namespace Orphee.ViewModels
         /// through dependency injection
         /// </summary>
         /// <param name="getter">Manages the sending of the "Get" requests</param>
-        public MyCreationsPageViewModel(IGetter getter)
+        public MyCreationsPageViewModel(IGetter getter, IOnUserLoginNewsGetter onUserLoginNewsGetter)
         {
             this._getter = getter;
-            this.ProgressRingVisibility = Visibility.Visible;
-            this.IsProgressRingActive = true;
-            InitCreationList();
+            this._onUserLoginNewsGetter = onUserLoginNewsGetter;
+            SetProgressRingVisibility(true);
             this.CreationList = new ObservableCollection<Creation>();
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
+            InitCreationList();
         }
 
         private async void InitCreationList()
         {
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            if (App.InternetAvailabilityWatcher.IsInternetUp)
             {
                 var result = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/creation");
-                foreach (var creation in result)
-                {
-                    creation.Name = creation.Name.Split('.')[0];
-                    this.CreationList.Add(creation);
-                }
+                if (VerifyReturnedValue(result, ""))
+                    AddRequestedCreationInCreationList(result);
             }
-            this.IsProgressRingActive = false;
-            this.ProgressRingVisibility = Visibility.Collapsed;
+            SetProgressRingVisibility(false);
         }
+
+        private void AddRequestedCreationInCreationList(List<Creation> creations)
+        {
+            foreach (var creation in creations)
+                this.CreationList.Add(creation);
+        } 
     }
 }

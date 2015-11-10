@@ -15,8 +15,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IOnUserLoginNewsGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OnUserLoginNewsGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IMyNavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\InternetAvailabilityWatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MyNavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SocketEmitter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SocketListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SocketManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UnityModule\UnityIocInitializator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChannelInfoPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChatPageViewModel.cs" />
@@ -24,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ForgotPasswordPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FriendPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IForgotPasswordPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IInternetConnexionAware.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IInvitationPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\ILoadingScreenComponents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\INewConversationConfigPageViewModel.cs" />
@@ -59,5 +66,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProfilePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegisterPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelExtend.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Strings\en-US\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Strings\fr-FR\" />
   </ItemGroup>
 </Project>

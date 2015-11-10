@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True" Name="Page">
 
@@ -111,6 +112,9 @@
         <Grid Grid.Row="1" VerticalAlignment="Top">
             <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
         </Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
+        </StackPanel>
         <ListView Grid.Row="1" ItemsSource="{Binding UserList}" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center" ItemClick="User_OnItemClick" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -125,10 +129,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="70"/>
                         </Grid.ColumnDefinitions>
-
-                        <Ellipse Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Center">
+                        
+                        <Ellipse Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Center" >
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding Path=Picture}"/>
+                                <ImageBrush controls:ImageExtensions.CacheUri="{Binding Path=Picture}"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
@@ -139,6 +143,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ui:MyBottomAppBar Grid.Row="2"/>
+        <Grid Background="Black" Opacity="0.7" Grid.Row="1" Visibility="{Binding ConnexionUnavailableTextBlockVisibility}" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
+        </Grid>
+        <ui:MyBottomAppBar x:Name="MyBottomAppBar" Grid.Row="2"/>
     </Grid>
 </Page>

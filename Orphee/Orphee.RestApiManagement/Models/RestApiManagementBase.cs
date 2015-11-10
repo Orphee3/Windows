@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Json;
-using Windows.Devices.SmartCards;
 using Windows.Storage;
+using Orphee.RestApiManagement.Annotations;
 using Orphee.RestApiManagement.Models.Interfaces;
-using Orphee.RestApiManagement.Socket_Management;
 
 namespace Orphee.RestApiManagement.Models
 {
@@ -15,8 +16,9 @@ namespace Orphee.RestApiManagement.Models
     /// Singleton class managing all the API routes and the
     /// currently logged user
     /// </summary>
-    public class RestApiManagerBase : IRestApiManagerBase
+    public class RestApiManagerBase : IRestApiManagerBase, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>RestApiManagerBase instance</summary>
         public static RestApiManagerBase Instance
         {
@@ -31,22 +33,32 @@ namespace Orphee.RestApiManagement.Models
         /// <summary>Server's url </summary>
         public Uri RestApiUrl { get; private set; }
         /// <summary>NotificationReceiver</summary>
-        public NotificationRecieiver NotificationRecieiver {get; private set; }
         /// <summary>Contains all the routes </summary>
         public Dictionary<string, string> RestApiPath { get; private set; }
         /// <summary>Current logged user </summary>
         public IUserData UserData { get; set; }
+
+        private bool _isConnected;
         /// <summary>True if the user is logged. False otherwise </summary>
-        public bool IsConnected { get; set; }
+        public bool IsConnected
+        {
+            get { return this._isConnected; }
+            set
+            {
+                if (this._isConnected != value)
+                {
+                    this._isConnected = value;
+                    OnPropertyChanged(nameof(IsConnected));
+                }
+            }
+        }
         
         /// <summary>
         /// Constructor
         /// </summary>
         public RestApiManagerBase()
         {
-            this.IsConnected = false;
             this.RestApiUrl = new Uri("http://163.5.84.242:3000/");
-            this.NotificationRecieiver = new NotificationRecieiver();
             InitializeRestApiPath();
         }
 
@@ -77,9 +89,8 @@ namespace Orphee.RestApiManagement.Models
         public void Logout()
         {
             RemoveUnimportantData();
-            this.IsConnected = false;
             SaveUser();
-            this.NotificationRecieiver.CloseSocket();
+            this.IsConnected = false;
         }
 
         public async void SaveUser()
@@ -92,7 +103,7 @@ namespace Orphee.RestApiManagement.Models
                     serializer.WriteObject(stream, this.UserData);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -103,6 +114,7 @@ namespace Orphee.RestApiManagement.Models
             this.UserData.Token = null;
             this.UserData.User.NotificationList.Clear();
             this.UserData.User.ConversationList.Clear();
+            this.UserData.User.Friends = null;
         }
 
         public async void RetreiveUser()
@@ -116,6 +128,7 @@ namespace Orphee.RestApiManagement.Models
                 {
                     this.UserData = tmpUser;
                     this.IsConnected = true;
+                    this.UserData.User.GetUserPictureDominantColor();
                     return;
                 }
             }
@@ -123,6 +136,12 @@ namespace Orphee.RestApiManagement.Models
             {
 
             }
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

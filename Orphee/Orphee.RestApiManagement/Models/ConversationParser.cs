@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models.Interfaces;
 
@@ -16,30 +14,23 @@ namespace Orphee.RestApiManagement.Models
             this._getter = getter;
         }
 
-        public async void ParseConversationList(List<Conversation> conversationList)
+        public void ParseConversationList(List<Conversation> conversationlist)
         {
-            foreach (var conversation in conversationList)
+            foreach (var conversation in conversationlist)
             {
                 if (RestApiManagerBase.Instance.UserData.User.ConversationList.Count(c => c.Id == conversation.Id) == 0)
                 {
-                    var result = await FillConversationUserList(conversation);
+                    var result = FillConversationUserList(conversation);
                 }
             }
             RestApiManagerBase.Instance.UserData.User.ConversationList.Reverse();
         }
 
-        private async Task<bool> FillConversationUserList(Conversation conversation)
+        private bool FillConversationUserList(Conversation conversation)
         {
-            if (conversation.Users != null && conversation.Users.Count != 0)
+            if (conversation.UserList != null && conversation.UserList.Count > 0)
             {
-                var users = conversation.Users.Concat(conversation.TemporaryUsers).ToList();
-                foreach (var user in users)
-                {
-                    var conversationUser = JsonConvert.DeserializeObject<User>(user.ToString());
-                    if (conversationUser.Id != RestApiManagerBase.Instance.UserData.User.Id)
-                        conversation.UserList.Add(conversationUser);
-                }
-                conversation.ConversationPictureSource = conversation.UserList.First().Picture;
+                conversation.UserList.Remove(conversation.UserList.FirstOrDefault(u => u.Id == RestApiManagerBase.Instance.UserData.User.Id));
                 InitConversationName(conversation);
             }
             RestApiManagerBase.Instance.UserData.User.ConversationList.Add(conversation);
@@ -48,16 +39,12 @@ namespace Orphee.RestApiManagement.Models
 
         private void InitConversationName(Conversation conversation)
         {
-            if (conversation.UserList.Count == 1)
-                conversation.Name = conversation.UserList[0].Name;
-            else
+            conversation.Name = string.Empty;
+            foreach (var user in conversation.UserList)
             {
-                foreach (var user in conversation.UserList)
-                {
-                    conversation.Name += user.Name;
-                    if (user != conversation.UserList.Last())
-                        conversation.Name += ", ";
-                }
+                conversation.Name += user.Name;
+                if (user != conversation.UserList.Last())
+                    conversation.Name += ", ";
             }
         }
     }

@@ -19,7 +19,7 @@ namespace Orphee.RestApiManagement.Models
         public string Message { get; set; }
         /// <summary>Comment creator </summary>
         [DataMember]
-        public User Creator { get; set; }
+        public UserBase Creator { get; set; }
         /// <summary>Comment repsonses</summary>
         public JArray Child { get; set; }
         /// <summary>Creation id related to the comment </summary>

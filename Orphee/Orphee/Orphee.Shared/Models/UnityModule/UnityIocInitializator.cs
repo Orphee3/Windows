@@ -7,6 +7,8 @@ using MidiDotNet.Shared;
 using MidiDotNet.Shared.Interfaces;
 using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
+using Orphee.Models;
+using Orphee.Models.Interfaces;
 using Orphee.RestApiManagement.Getters;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
@@ -65,6 +67,7 @@ namespace Orphee.UnityModule
             container.RegisterType<IColorManager, ColorManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<INewsParser, NewsParser>(new ContainerControlledLifetimeManager());
             container.RegisterType<IConversationParser, ConversationParser>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IOnUserLoginNewsGetter, OnUserLoginNewsGetter>(new ContainerControlledLifetimeManager());
         }
     }
 }

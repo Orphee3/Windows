@@ -30,6 +30,7 @@ namespace Orphee.CreationShared
             }
         }
 
+        public bool HasBeenSent { get; set; }
         private string _fileName;
 
         /// <summary>Name of the current file </summary>

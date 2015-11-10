@@ -16,7 +16,7 @@ namespace Orphee.ViewModels.Interfaces
         /// <summary>Redirects to the FriendPage in order to select the users to include in the new conversation </summary>
         DelegateCommand CreateConversationCommand { get; }
         /// <summary>User's friend list </summary>
-        ObservableCollection<User> FriendList { get; }
+        ObservableCollection<LoggedUser> FriendList { get; }
 
         /// <summary>
         /// Called when navigated to this page

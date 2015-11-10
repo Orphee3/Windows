@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -19,14 +21,30 @@
             </Grid.ColumnDefinitions>
             <AppBarButton Grid.Column="0" Icon="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding BackCommand}"/>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <Image Source="/Assets/defaultUser.png" Height="256"/>
+                <Ellipse Height="256" Width="256">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/Assets/defaultUser.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
                 <TextBox Header="UserName" Text="{Binding UserName, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your username"/>
                 <PasswordBox Header="Password" Password="{Binding Password, Mode=TwoWay}" Margin="4, 0, 4, 0" PlaceholderText="Enter your password" IsPasswordRevealButtonEnabled="True"/>
                 <Button Content="Login" HorizontalAlignment="Stretch" Margin="0, 20, 0, 0" Command="{Binding LoginCommand}"/>
                 <StackPanel Orientation="Vertical">
                     <Grid Margin="4, 15, 4, 0">
-                        <TextBlock Text="mot de passe oublié ?" HorizontalAlignment="Left" Foreground="CadetBlue" FontSize="10"/>
-                        <TextBlock Text="Créer un compte" HorizontalAlignment="Right" Foreground="CadetBlue" FontSize="10" Tapped="UIElement_OnTapped"/>
+                        <TextBlock Text="Forgot password ?" HorizontalAlignment="Left" Foreground="CadetBlue" FontSize="10">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Tapped">
+                                    <core:InvokeCommandAction Command="{Binding ForgotPasswordCommand}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </TextBlock>
+                        <TextBlock Text="Create account" HorizontalAlignment="Right" Foreground="CadetBlue" FontSize="10">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Tapped">
+                                    <core:InvokeCommandAction Command="{Binding CreateAccountCommand}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </TextBlock>
                     </Grid>
                     <StackPanel Orientation="Vertical" Margin="3, 0, 3, 0">
                         <Grid HorizontalAlignment="Stretch">
@@ -45,6 +63,9 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
+                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 50, 0, 0">
+                    <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
+                </Grid>
             </StackPanel>
         </Grid>
     </Grid>

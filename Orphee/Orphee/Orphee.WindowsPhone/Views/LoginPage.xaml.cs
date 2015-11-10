@@ -1,6 +1,4 @@
-﻿using Windows.UI.Xaml.Input;
-using Microsoft.Practices.Prism.Mvvm;
-
+﻿using Microsoft.Practices.Prism.Mvvm;
 
 namespace Orphee.Views
 {
@@ -9,11 +7,6 @@ namespace Orphee.Views
         public LoginPage()
         {
             this.InitializeComponent();
-        }
-
-        private void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            App.MyNavigationService.Navigate("Register", null);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -29,9 +30,7 @@ using Orphee.RestApiManagement.Posters.Interfaces;
 using Orphee.RestApiManagement.Senders;
 using Orphee.RestApiManagement.Senders.Interfaces;
 using Orphee.UnityModule;
-using Orphee.ViewModels;
-using Orphee.ViewModels.Interfaces;
-using Orphee.Views;
+
 
 namespace Orphee
 {
@@ -40,6 +39,7 @@ namespace Orphee
         private IUnityContainer _container;
         private bool _isSuspending;
         public static IMyNavigationService MyNavigationService { get; private set; }
+        public static InternetAvailabilityWatcher InternetAvailabilityWatcher { get; private set; }
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
@@ -51,6 +51,7 @@ namespace Orphee
         internal void InitializeMyNavigatorService()
         {
             MyNavigationService = new MyNavigationService(NavigationService);
+            InternetAvailabilityWatcher = new InternetAvailabilityWatcher();
         }
    
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
@@ -64,8 +65,8 @@ namespace Orphee
         {
             base.OnRegisterKnownTypesForSerialization();
 
-            SessionStateService.RegisterKnownType(typeof(User));
-            SessionStateService.RegisterKnownType(typeof(List<User>));
+            SessionStateService.RegisterKnownType(typeof(LoggedUser));
+            SessionStateService.RegisterKnownType(typeof(List<LoggedUser>));
             SessionStateService.RegisterKnownType(typeof(Creation));
             SessionStateService.RegisterKnownType(typeof(List<Creation>));
             SessionStateService.RegisterKnownType(typeof(Comment));

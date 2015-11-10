@@ -1,9 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -20,8 +18,6 @@ namespace Orphee.Views
         public CreationInfoPage()
         {
             this.InitializeComponent();
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                this.TextBlock.Visibility = Visibility.Visible;
             if (RestApiManagerBase.Instance.IsConnected)
             {
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;

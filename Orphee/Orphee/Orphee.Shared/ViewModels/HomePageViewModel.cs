@@ -20,7 +20,6 @@ namespace Orphee.ViewModels
         public DelegateCommand<Creation> ChannelInfoCommand { get; private set; }
         public DelegateCommand Test { get; private set; }
         private bool _isPageCreated = false;
-
         /// <summary>List of popular creations</summary>
         public ObservableCollection<Creation> PopularCreations { get; set; }
         private readonly IGetter _getter;
@@ -34,74 +33,40 @@ namespace Orphee.ViewModels
         {
             this._isPageCreated = true;
             this._getter = getter;
-            this.Test = new DelegateCommand(LoadMore);
-            this.CreationInfoCommand = new DelegateCommand<Creation>((creation) =>
+            this.Test = new DelegateCommand(RequestPopularCreations);
+            this.CreationInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("CreationInfo", JsonConvert.SerializeObject(creation)));
+            this.ChannelInfoCommand = new DelegateCommand<Creation>((creation) =>
             {
-                App.MyNavigationService.Navigate("CreationInfo", JsonConvert.SerializeObject(creation));
+                App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(creation.CreatorList[0]));
             });
-            this.ChannelInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(creation.CreatorList[0])));
             this.PopularCreations = new ObservableCollection<Creation>();
-            SetProgressRingVisibility(true);
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            {
-                DisplayMessage("Connexion unavailable");
+            if (!App.InternetAvailabilityWatcher.IsInternetUp)
                 SetProgressRingVisibility(false);
-            }
             else
-                FillPopularCreations();
+                RequestPopularCreations();
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-            if (this.PopularCreations.Count == 0 && this._isPageCreated == false && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                FillPopularCreations();
+            if (this.PopularCreations.Count == 0 && this._isPageCreated == false && App.InternetAvailabilityWatcher.IsInternetUp)
+                RequestPopularCreations();
             else
                 this._isPageCreated = false;
         }
 
-        private async void LoadMore()
+        private async void RequestPopularCreations()
         {
-            List<Creation> popularCreations;
-            try
-            {
-                popularCreations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"] + "?offset=" + this.PopularCreations.Count + "&size=" + 5);
-            }
-            catch (Exception)
-            {
-                DisplayMessage("Request failed");
-                SetProgressRingVisibility(false);
-                return;
-            }
-            foreach (var creation in popularCreations)
-            {
-                creation.Name = creation.Name.Split('.')[0];
-                creation.CreatorList.Add((creation.Creator[0].ToObject<User>()));
-            }
-            foreach (var creation in popularCreations)
-                this.PopularCreations.Add(creation);
+            SetProgressRingVisibility(true);
+            var popularCreations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"] + "?offset=" + this.PopularCreations.Count + "&size=" + 5);
+            if (VerifyReturnedValue(popularCreations, ""))
+                AddRequestedPopularCreationsInCreationList(popularCreations);
+            SetProgressRingVisibility(false);
         }
 
-        private async void FillPopularCreations()
+        private void AddRequestedPopularCreationsInCreationList(List<Creation> popularCreations)
         {
-            List<Creation> popularCreations;
-            try
-            {
-                popularCreations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"] + "?offset=" + 0 + "&size=" + 5);
-            }
-            catch (Exception)
-            {
-                DisplayMessage("Request failed");
-                SetProgressRingVisibility(false);
-                return;
-            }
-            foreach (var creation in popularCreations)
-            {
-                creation.Name = creation.Name.Split('.')[0];
-                creation.CreatorList.Add((creation.Creator[0].ToObject<User>()));
-            }
             foreach (var creation in popularCreations)
                 this.PopularCreations.Add(creation);
-            SetProgressRingVisibility(false);
         }
     }
 }

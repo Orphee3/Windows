@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using Newtonsoft.Json.Linq;
@@ -36,8 +37,6 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
-        /// <summary>Conversation participants </summary>
-        public JArray Users { get; set; }
 
         public JArray TemporaryUsers { get; set; }
 
@@ -46,7 +45,7 @@ namespace Orphee.RestApiManagement.Models
         public bool IsPrivate { get; set; }
         /// <summary>Conversation participants </summary>
         [DataMember]
-        public List<User> UserList { get; set; }
+        public List<UserBase> UserList { get; set; }
         /// <summary>Messages contained in the conversation </summary>
         [DataMember]
         public List<Message> Messages { get; set; }
@@ -68,13 +67,12 @@ namespace Orphee.RestApiManagement.Models
             }
         }
 
-
         /// <summary>
         /// Constructor
         /// </summary>
         public Conversation()
         {
-            this.UserList = new List<User>();
+            this.UserList = new List<UserBase>();
             this.Messages = new List<Message>();
         }
 

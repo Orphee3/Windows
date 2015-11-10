@@ -23,14 +23,12 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         Message LastMessagePreview { get; set; }
         /// <summary>Conversation participants </summary>
         [JsonProperty(PropertyName = "people")]
-        JArray Users { get; set; }
+        List<UserBase> UserList { get; set; }
         [JsonProperty(PropertyName = "peopleTmp")]
         JArray TemporaryUsers { get; set; }
         /// <summary>Messages contained in the conversation </summary>
         [JsonProperty(PropertyName = "messages")]
-        JArray MessageList { get; set; }
-        /// <summary>Conversation participants </summary>
-        List<User> UserList { get; set; }
+        JArray MessageList { get; set; }     
         /// <summary>Messages contained in the conversation </summary>
         List<Message> Messages { get; set; }  
         /// <summary>Conversation picture source </summary>

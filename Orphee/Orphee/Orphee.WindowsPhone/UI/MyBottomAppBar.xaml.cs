@@ -17,6 +17,7 @@ namespace Orphee.UI
             this.InitializeComponent();
             this.InitButtonList();
             this.InitButtonColorForeground();
+
             if (RestApiManagerBase.Instance.IsConnected)
             {
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
@@ -25,10 +26,18 @@ namespace Orphee.UI
             }
         }
 
+        public void Unload()
+        {
+            if (RestApiManagerBase.Instance.IsConnected)
+                RestApiManagerBase.Instance.UserData.User.PropertyChanged -= OnNotificationReceiverPropertyChanged;
+        }
+
         private void Button_Tapped(object sender, RoutedEventArgs e)
         {
             var button = (AppBarButton) sender;
-            if (button.Name == "Profile" || button.Name == "Messages")
+            if (button.Name == App.MyNavigationService.CurrentPageName)
+                return;
+            if (button.Name == "Profile" || button.Name == "Conversation")
                 ResetNotificationDotVisibility((MyAppBarButton) button);
             App.MyNavigationService.Navigate(button.Name, null);
             App.MyNavigationService.SetNewAppBarButtonColorValue();
@@ -70,7 +79,7 @@ namespace Orphee.UI
             {
                 { "Home", this.Home },
                 { "Friends", this.Social },
-                { "Messages", this.Conversation },
+                { "Conversation", this.Conversation },
                 { "Profile", this.Profile},
             };
         }

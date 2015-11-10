@@ -1,6 +1,4 @@
-﻿using Windows.UI.Xaml;
-using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement.Models;
+﻿using Microsoft.Practices.Prism.Mvvm;
 
 namespace Orphee.Views
 {
@@ -12,8 +10,6 @@ namespace Orphee.Views
         public InvitationPage()
         {
             this.InitializeComponent();
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                this.TextBlock.Visibility = Visibility.Visible;
         }
     }
 }

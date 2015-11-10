@@ -15,6 +15,6 @@ namespace Orphee.RestApiManagement.Models
         public string Token { get; set; }
         /// <summary>User's representation containing all its related data</summary>
         [DataMember]
-        public User User { get; set; }
+        public LoggedUser User { get; set; }
     }
 }

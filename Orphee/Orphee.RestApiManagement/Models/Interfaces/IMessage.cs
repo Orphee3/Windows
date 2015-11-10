@@ -17,7 +17,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         string ReceivedMessage { get; set; }
         /// <summary>User that created the message </summary>
         [JsonProperty(PropertyName = "creator")]
-        User User { get; set; }
+        UserBase User { get; set; }
         /// <summary>Message creation date </summary>
         [JsonProperty(PropertyName = "dateCreation")]
         DateTime Date { get; set; }

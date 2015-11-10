@@ -1,5 +1,4 @@
-﻿using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.Prism.Mvvm;
+﻿using Microsoft.Practices.Prism.Mvvm;
 
 namespace Orphee.Views
 {

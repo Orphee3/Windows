@@ -97,6 +97,9 @@
     <Compile Include="UI\MyResetPasswordMessageDialog.xaml.cs">
       <DependentUpon>MyResetPasswordMessageDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChangePictureEditionPage.xaml.cs">
+      <DependentUpon>ChangePictureEditionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChannelInfoPage.xaml.cs">
       <DependentUpon>ChannelInfoPage.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,9 @@
     </Compile>
     <Compile Include="Views\CreationPage.xaml.cs">
       <DependentUpon>CreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForgotPasswordPage.xaml.cs">
+      <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FriendPage.xaml.cs">
       <DependentUpon>FriendPage.xaml</DependentUpon>
@@ -130,14 +136,14 @@
     <Compile Include="Views\NewConversationConfigPage.xaml.cs">
       <DependentUpon>NewConversationConfigPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProfileEditionPage.xaml.cs">
-      <DependentUpon>ProfileEditionPage.xaml</DependentUpon>
+    <Compile Include="Views\NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ParametersPage.xaml.cs">
+      <DependentUpon>ParametersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProfilePictureEditionPage.xaml.cs">
-      <DependentUpon>ProfilePictureEditionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
@@ -154,6 +160,10 @@
   <ItemGroup>
     <Reference Include="Callisto">
       <HintPath>..\..\packages\Callisto.1.4.0\lib\netcore451\Callisto.dll</HintPath>
+    </Reference>
+    <Reference Include="EngineIoClientDotNet, Version=0.9.21.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EngineIoClientDotNet.0.9.21\lib\portable-win81+wpa81\EngineIoClientDotNet.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Prism.Mvvm.1.1.1\lib\wpa81\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
@@ -202,6 +212,10 @@
       <HintPath>..\..\packages\Q42.WinRT.Portable.1.2.3.42\lib\portable-net45+win+wpa81+wp80\Q42.WinRT.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SocketIoClientDotNet, Version=0.9.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SocketIoClientDotNet.0.9.12\lib\portable-win81+wpa81\SocketIoClientDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -236,16 +250,108 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\MyBottomAppBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\MyDeleteAccountMessageDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\MyMessageDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\MyResetPasswordMessageDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChangePictureEditionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChannelInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChatPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ConversationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreationInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ForgotPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FriendPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\InvitationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MyCreationsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewConversationConfigPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NotificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ParametersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RegisterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SocialPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Assets\addfriend-icon.png" />
+    <Content Include="Assets\blueheart-icon.png" />
     <Content Include="Assets\commentary-icon-white.png" />
     <Content Include="Assets\commentary-icon.png" />
     <Content Include="Assets\creation-background.png" />
     <Content Include="Assets\creation-icon.png" />
     <Content Include="Assets\defaultUser.png" />
     <Content Include="Assets\fb-login-btn.png" />
-    <Content Include="Assets\flower1.jpg" />
-    <Content Include="Assets\flower2.jpg" />
-    <Content Include="Assets\flower3.jpg" />
     <Content Include="Assets\friend-icon-white.png" />
     <Content Include="Assets\friend-icon.png" />
     <Content Include="Assets\g-login-btn.png" />
@@ -294,6 +400,7 @@
     <Content Include="Assets\logo icon.png" />
     <Content Include="Assets\logo transparent.png" />
     <Content Include="Assets\logo transparent1116x540.png" />
+    <Content Include="Assets\logo transparent2.png" />
     <Content Include="Assets\logo transparent300.png" />
     <Content Include="Assets\logo transparent620x300.png" />
     <Content Include="Assets\logo transparent868x420.png" />
@@ -301,9 +408,9 @@
     <Content Include="Assets\Logo.scale-140.png" />
     <Content Include="Assets\Logo.scale-180.png" />
     <Content Include="Assets\Logo.scale-80.png" />
+    <Content Include="Assets\Notification icon.png" />
     <Content Include="Assets\Orphee icons.png" />
     <Content Include="Assets\Orphee icons2.png" />
-    <Content Include="Assets\play-logo.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-140.png" />
     <Content Include="Assets\SmallLogo.scale-180.png" />
@@ -332,92 +439,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-80.png" />
     <Content Include="Assets\Windows phone logo.png" />
     <Content Include="Assets\Windows phone logo2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\MyBottomAppBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\MyDeleteAccountMessageDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\MyMessageDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\MyResetPasswordMessageDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ChannelInfoPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ChatPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ConversationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\CreationInfoPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\CreationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\FriendPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\HomePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\InvitationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\LoginPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MyCreationsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewConversationConfigPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ProfileEditionPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ProfilePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ProfilePictureEditionPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\RegisterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\SocialPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <Import Project="..\Orphee.Shared\Orphee.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement;
+using Newtonsoft.Json;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
 
@@ -17,7 +17,14 @@ namespace Orphee.Views
         {
             this.InitializeComponent();
             this.Loaded += (sender, args) => ScrollToBottom();
-            RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
+            if (RestApiManagerBase.Instance.IsConnected)
+                RestApiManagerBase.Instance.UserData.User.PropertyChanged += OnNotificationReceiverPropertyChanged;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (RestApiManagerBase.Instance.IsConnected)
+                RestApiManagerBase.Instance.UserData.User.PropertyChanged -= OnNotificationReceiverPropertyChanged;
         }
 
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -46,7 +53,7 @@ namespace Orphee.Views
         private void UserPicture_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             var channel = ((Message) ((Ellipse) sender).DataContext).User;
-            App.MyNavigationService.Navigate("ChannelInfo", channel);
+            App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(channel));
         }
     }
 }

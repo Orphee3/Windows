@@ -40,7 +40,7 @@ namespace Orphee.ViewModels
 
         private async void RegisterCommandExec()
         {
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            if (!App.InternetAvailabilityWatcher.IsInternetUp)
             {
                 DisplayErrorMessage("Connexion unavailable");
                 return;

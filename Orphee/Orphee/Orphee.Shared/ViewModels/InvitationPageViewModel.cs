@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 using Orphee.RestApiManagement.Getters.Interfaces;
@@ -13,38 +11,17 @@ namespace Orphee.ViewModels
     /// <summary>
     /// InvitationPage view model
     /// </summary>
-    public class InvitationPageViewModel : ViewModel, IInvitationPageViewModel, ILoadingScreenComponents
+    public class InvitationPageViewModel : ViewModelExtend, IInvitationPageViewModel
     {
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand GoBackCommand { get; private set; }
         /// <summary>Accept the friend invitation </summary>
-        public DelegateCommand<User> AcceptCommand { get; private set; }
+        public DelegateCommand<UserBase> AcceptCommand { get; private set; }
         /// <summary>Refuses the friend invitation</summary>
-        public DelegateCommand<User> CancelCommand { get; private set; }
+        public DelegateCommand<UserBase> CancelCommand { get; private set; }
         /// <summary>List of the pending invitations</summary>
-        public ObservableCollection<User> InvitationList { get; private set; }
-        private bool _isProgressRingActive;
+        public ObservableCollection<UserBase> InvitationList { get; private set; }
 
-        public bool IsProgressRingActive
-        {
-            get { return this._isProgressRingActive; }
-            set
-            {
-                if (this._isProgressRingActive != value)
-                    SetProperty(ref this._isProgressRingActive, value);
-            }
-        }
-        private Visibility _progressRingVisibility;
-
-        public Visibility ProgressRingVisibility
-        {
-            get { return this._progressRingVisibility; }
-            set
-            {
-                if (this._progressRingVisibility != value)
-                    SetProperty(ref this._progressRingVisibility, value);
-            }
-        }
         private readonly IGetter _getter;
 
         /// <summary>
@@ -55,12 +32,11 @@ namespace Orphee.ViewModels
         public InvitationPageViewModel(IGetter getter)
         {
             this._getter = getter;
-            this.ProgressRingVisibility = Visibility.Visible;
-            this.IsProgressRingActive = true;
-            this.AcceptCommand = new DelegateCommand<User>(AcceptCommandExec);
-            this.CancelCommand = new DelegateCommand<User>(CancelCommandExec);
+            SetProgressRingVisibility(true);
+            this.AcceptCommand = new DelegateCommand<UserBase>(AcceptCommandExec);
+            this.CancelCommand = new DelegateCommand<UserBase>(CancelCommandExec);
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
-            this.InvitationList = new ObservableCollection<User>();
+            this.InvitationList = new ObservableCollection<UserBase>();
         }
 
         /// <summary>
@@ -73,18 +49,19 @@ namespace Orphee.ViewModels
         {
             foreach (var pendingInvitation in RestApiManagerBase.Instance.UserData.User.PendingFriendList)
                 this.InvitationList.Add(pendingInvitation);
-            this.IsProgressRingActive = false;
-            this.ProgressRingVisibility = Visibility.Collapsed;
+            SetProgressRingVisibility(false);
         }
 
-        private void AcceptCommandExec(User user)
+        private async void AcceptCommandExec(UserBase user)
         {
             this.InvitationList.Remove(user);
+            var returnValue  = await this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["acceptfriend"] + "/" + user.Id);
+            if (!VerifyReturnedValue(returnValue, ""))
+                return;
             RestApiManagerBase.Instance.UserData.User.PendingFriendList.Remove(user);
-            this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["acceptfriend"] + "/" + user.Id);
         }
 
-        private void CancelCommandExec(User user)
+        private void CancelCommandExec(UserBase user)
         {
             this.InvitationList.Remove(user);
             RestApiManagerBase.Instance.UserData.User.PendingFriendList.Remove(user);

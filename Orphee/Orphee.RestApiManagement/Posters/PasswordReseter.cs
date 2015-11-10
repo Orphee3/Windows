@@ -27,7 +27,6 @@ namespace Orphee.RestApiManagement.Posters
                         return false;
                     RestApiManagerBase.Instance.UserData = JsonConvert.DeserializeObject<UserData>(result);
                     RestApiManagerBase.Instance.IsConnected = true;
-                    RestApiManagerBase.Instance.NotificationRecieiver.InitSocket();
                 }
                 return true;
             }

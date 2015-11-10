@@ -1,12 +1,8 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Models;
-using Orphee.ViewModels;
 
 namespace Orphee.Views
 {
@@ -15,13 +11,11 @@ namespace Orphee.Views
         public FriendPage()
         {
             this.InitializeComponent();
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                this.TextBlock.Visibility = Visibility.Visible;
         }
 
         private void UserStackPanel_OnTapped(object sender, ItemClickEventArgs e)
         {
-            var user = e.ClickedItem as User;
+            var user = e.ClickedItem as UserBase;
             App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(user));
         }
 

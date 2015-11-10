@@ -6,6 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -16,7 +19,7 @@
             <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
         <Grid Background="#78C7F9" Grid.Row="0">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Profile" FontSize="25"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding LoggedInUser.Name}" FontSize="25"/>
         </Grid>
         <Grid Grid.Row="1" VerticalAlignment="Top">
             <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
@@ -51,10 +54,15 @@
                 <RowDefinition/>
                 <RowDefinition Height="220"/>
             </Grid.RowDefinitions>
-            <Grid Background="{Binding BackgroundPictureColor}">
+            <Grid Background="{Binding LoggedInUser.PictureDominantColor}">
                 <Ellipse  Height="250" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction Command="{Binding DataContext.ChangePictureCommand, ElementName=Page}"/>
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding UserPictureSource}"/>
+                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding LoggedInUser.Picture}"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>
@@ -67,34 +75,37 @@
 
                 <StackPanel Grid.Column="0"  Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
                     <Image Source="/Assets/commentary-icon.png" Height="15" Width="15"/>
-                    <TextBlock Text="1500" Foreground="{Binding BackgroundPictureColor}" FontSize="15"/>
+                    <TextBlock Text="1500" Foreground="{Binding LoggedInUser.PictureDominantColor}" FontSize="15"/>
                 </StackPanel>
-                <Line Grid.Column="0" X1="0" Y1="5" X2="0" Y2="15" Stroke="{Binding BackgroundPictureColor}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Line Grid.Column="0" X1="0" Y1="5" X2="0" Y2="15" Stroke="{Binding LoggedInUser.PictureDominantColor}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center"  Margin="0, 5, 0, 0">
                     <Image Source="/Assets/heart-icon.png" Height="15" Width="15"/>
-                    <TextBlock Text="1500" Foreground="{Binding BackgroundPictureColor}" FontSize="15"/>
+                    <TextBlock Text="1500" Foreground="{Binding LoggedInUser.PictureDominantColor}" FontSize="15"/>
                 </StackPanel>
-                <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="{Binding BackgroundPictureColor}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="{Binding LoggedInUser.PictureDominantColor}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
                     <Image Source="/Assets/friend-icon.png" Height="15" Width="15"/>
-                    <TextBlock Text="1500" Foreground="{Binding BackgroundPictureColor}" FontSize="15"/>
+                    <TextBlock Text="1500" Foreground="{Binding LoggedInUser.PictureDominantColor}" FontSize="15"/>
                 </StackPanel>
             </Grid>
             <StackPanel Orientation="Vertical" Grid.Row="1">
-                <Button Content="My Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding FriendPageCommand}" Margin="0, 7, 0, 7"/>
+                <Button Content="Friends" HorizontalAlignment="Stretch" BorderThickness="0" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding FriendPageCommand}" Margin="0, 7, 0, 7"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <Button Content="My creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="20" Foreground="#BDBEC0" Margin="0, 7, 0 , 7" Command="{Binding MyCreationsCommand}"/>
+                <Button Content="Creations" BorderThickness="0" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" FontSize="20" Foreground="#BDBEC0" Margin="0, 7, 0 , 7" Command="{Binding MyCreationsCommand}"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill" />
                 </Grid>
-                <Button Content="Edit profile" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding EditProfileCommand}" Margin="0, 5, 0, 5"/>
+                <Button Content="Notifications" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding NotificationsCommand}" Margin="0, 5, 0, 5"/>
                 <Grid>
                     <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
                 </Grid>
-                <Button Content="Logout" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding LogoutCommand}" Margin="0, 7, 0, 7"/>
+                <Button Content="Parameters" BorderThickness="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" FontSize="20" Foreground="#BDBEC0" Command="{Binding ParametersCommand}" Margin="0, 7, 0, 7"/>
             </StackPanel>
+        </Grid>
+        <Grid Background="Black" Opacity="0.7" Grid.Row="1" Visibility="{Binding ConnexionUnavailableTextBlockVisibility}" VerticalAlignment="Bottom">
+            <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
         </Grid>
         <ui:MyBottomAppBar Grid.Row="2" x:Name="MyBottomAppBar"/>
     </Grid>

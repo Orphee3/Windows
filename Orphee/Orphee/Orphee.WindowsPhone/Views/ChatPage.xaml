@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True" Name="ThisPage">
 
@@ -135,7 +136,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Ellipse Width="50" Height="50" Grid.Column="{Binding Path=ElipseColumnNumber}" HorizontalAlignment="Center" VerticalAlignment="Top" Tapped="UserPicture_OnTapped">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Path=UserPictureSource}"/>
+                                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding Path=UserPictureSource}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <Border Grid.Column="{Binding Path=MessageColumnNumber}" Background="{Binding Path=BackgroundMessageColor}" CornerRadius="10,10,10,10" Margin="8, 0, 8, 0" HorizontalAlignment="{Binding Path=MessageHorizontalAlignment}">
@@ -143,10 +144,12 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                             <RowDefinition/>
+                                            <RowDefinition/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Grid.Row="0"  Text="{Binding Path=ReceivedMessage}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding Path=Hour}" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
+                                        <TextBlock Grid.Row="0"  Text="{Binding Path=User.Name}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10" TextWrapping="WrapWholeWords"/>
+                                        <TextBlock Grid.Row="1"  Text="{Binding Path=ReceivedMessage}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" TextWrapping="WrapWholeWords"/>
+                                        <TextBlock Grid.Row="2" Text="{Binding Path=Hour}" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Foreground="#F5F5F5"/>
                                     </Grid>
                                 </Border>
                                 <Polygon Grid.Column="{Binding Path=MessageColumnNumber}" Points="{Binding Path=PolygonPoints}" Margin="0, 15, 0, 0" Fill="{Binding Path=BackgroundMessageColor}" HorizontalAlignment="{Binding Path=MessageHorizontalAlignment}"/>
@@ -155,6 +158,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Grid x:Name="TextBlock" Background="Black" Opacity="0.7" Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Bottom">
+                <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
+            </Grid>
             <Grid Grid.Row="2" Background="#78C7F9">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -162,7 +168,10 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Text="{Binding Message, Mode=TwoWay}" Grid.Column="0" HorizontalAlignment="Stretch" Margin="7" PlaceholderText="Write your message here..."/>
-                <Button Grid.Column="1" Content="Send" HorizontalAlignment="Stretch" Command="{Binding SendCommand}" IsEnabled="{Binding IsEnabled}"/>
+                <Button Grid.Column="1" Content="Send" HorizontalAlignment="Stretch" Command="{Binding SendCommand}"/>
+            </Grid>
+            <Grid Background="Black" Opacity="0.7" Grid.Row="1" Visibility="{Binding ConnexionUnavailableTextBlockVisibility}" VerticalAlignment="Bottom">
+                <TextBlock Text="Connexion unavailable" FontSize="25" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
     </Grid>

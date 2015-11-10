@@ -161,7 +161,6 @@ namespace Orphee.RestApiManagement.Senders
                         if (!response.IsSuccessStatusCode)
                             return false;
                         RestApiManagerBase.Instance.UserData.User.Picture = getFileUri;
-                        RestApiManagerBase.Instance.UserData.User.PictureHasBeenUplaodedWithSuccess = true;
                     }
                 }
             }

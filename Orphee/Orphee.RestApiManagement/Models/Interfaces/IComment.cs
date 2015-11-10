@@ -16,7 +16,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         string Message { get; set; }
         /// <summary>Comment creator </summary>
         [JsonProperty(PropertyName = "creator")]
-        User Creator { get; set; }
+        UserBase Creator { get; set; }
         /// <summary>Comment repsonses</summary>
         [JsonProperty(PropertyName = "child")]
         JArray Child { get; set; }

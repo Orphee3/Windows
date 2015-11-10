@@ -13,7 +13,6 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Midi;
-using Orphee.RestApiManagement.Models;
 using Orphee.UI;
 
 namespace Orphee.ViewModels
@@ -46,7 +45,6 @@ namespace Orphee.ViewModels
             }
         }
 
-        private bool _isMessageDialogOpen;
         private int _currentTrackPos;
         public int CurrentTrackPos
         {
@@ -168,7 +166,7 @@ namespace Orphee.ViewModels
         private async void SaveButtonCommandExec()
         {
             this.OrpheeFile.OrpheeTrackList[0].PlayerParameters = this._soundPlayer.GetPlayerParameters();
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            if (!App.InternetAvailabilityWatcher.IsInternetUp)
                 return;
             var result = await this._orpheeFileExporter.SaveOrpheeFile(this.OrpheeFile);
             if (result == false)

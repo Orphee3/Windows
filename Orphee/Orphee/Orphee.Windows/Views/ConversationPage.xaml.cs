@@ -1,14 +1,11 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
 using Newtonsoft.Json;
-using Orphee.RestApiManagement;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
 
@@ -19,19 +16,15 @@ namespace Orphee.Views
         public ConversationPage()
         {
             this.InitializeComponent();
-            if (!RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-                this.TextBlock.Visibility = Visibility.Visible;
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
+            if (App.InternetAvailabilityWatcher.IsInternetUp && RestApiManagerBase.Instance.IsConnected)
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged += UserOnPropertyChanged; 
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.NotificationRecieiver.IsInternet())
-            { 
+            if (App.InternetAvailabilityWatcher.IsInternetUp && RestApiManagerBase.Instance.IsConnected)
                 RestApiManagerBase.Instance.UserData.User.PropertyChanged -= UserOnPropertyChanged;
-                this.MyBottomAppBar.Unload();
-            }
+            this.MyBottomAppBar.Unload();
         }
 
         private async void UserOnPropertyChanged(object sender, PropertyChangedEventArgs e)

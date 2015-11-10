@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Windows.UI.Xaml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -24,7 +25,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         JArray Comments { get; set; }
         /// <summary>Creation creator </summary>
         [JsonProperty(PropertyName = "creator")]
-        JArray Creator { get; set; }
+        List<UserBase> CreatorList { get; set; }
         /// <summary>AWS S3 creation get url</summary>
         [JsonProperty(PropertyName = "url")]
         string GetUrl { get; set; }
@@ -34,9 +35,6 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         /// <summary>Number of likes related to the creation </summary>
         [JsonProperty(PropertyName = "nbLikes")]
         int NumberOfLike { get; set; }
-        /// <summary>List of the creators of the creation</summary>
-        List<User> CreatorList { get; set; }
-
         /// <summary> 
         /// Updates the number of likes and comments of the creation
         /// </summary> 

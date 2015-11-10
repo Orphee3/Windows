@@ -12,11 +12,11 @@ namespace Orphee.ViewModels.Interfaces
     public interface ISocialPageViewModel
     {
         /// <summary>List of the searched users </summary>
-        ObservableCollection<User> UserList { get; set; }
+        ObservableCollection<UserBase> UserList { get; set; }
         /// <summary>Login command</summary>
         DelegateCommand LoginCommand { get; }
         /// <summary>Add new friend command</summary>
-        DelegateCommand<User> AddFriendCommand { get; }
+        DelegateCommand<UserBase> AddFriendCommand { get; }
 
         /// <summary>
         /// Called when we navigate to this page
