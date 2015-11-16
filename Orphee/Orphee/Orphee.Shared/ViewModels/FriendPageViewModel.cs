@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Newtonsoft.Json;
+using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 
@@ -47,14 +48,17 @@ namespace Orphee.ViewModels
             }
         }
 
+        private IGetter _getter;
+
         /// <summary>
         /// Constructor initializing getter
         /// through dependency injection
         /// </summary>
-        public FriendPageViewModel()
+        public FriendPageViewModel(IGetter getter)
         {
+            this._getter = getter;
             this.GoBackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
-            this.DeleteFriendCommand = new DelegateCommand<UserBase>(user => this.FriendList.Remove(user));
+            this.DeleteFriendCommand = new DelegateCommand<UserBase>(RemoveFriendship);
             this.ValidateConversationCreationCommand = new DelegateCommand(ValidateConversationCommandExec);
             SetProgressRingVisibility(true);
             this.FriendList = new ObservableCollection<UserBase>();
@@ -89,6 +93,18 @@ namespace Orphee.ViewModels
                 // Add non sent message icon
             }
             App.MyNavigationService.Navigate("Chat", conversation);
+        }
+
+        private async void RemoveFriendship(UserBase user)
+        {
+            if (App.InternetAvailabilityWatcher.IsInternetUp && RestApiManagerBase.Instance.IsConnected)
+            {
+                var result = await this._getter.GetInfo<string>(RestApiManagerBase.Instance.RestApiPath["remove friend"] + user.Id);
+                if (string.IsNullOrEmpty(result))
+                    return;
+                this.FriendList.Remove(user);
+                RestApiManagerBase.Instance.UserData.User.FriendList.Remove(RestApiManagerBase.Instance.UserData.User.FriendList.FirstOrDefault(u => u.Id == user.Id));
+            }
         }
 
         private bool CheckForExistingConversation()

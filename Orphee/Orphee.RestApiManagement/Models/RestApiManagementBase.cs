@@ -80,7 +80,9 @@ namespace Orphee.RestApiManagement.Models
                 {"private room", "api/room/privateMessage/" },
                 {"group room", "api/room/" },
                 {"forgot", "api/forgot" },
-                {"google", "auth/google" }
+                {"google", "auth/google" },
+                {"facebook", "auth/facebook" },
+                {"remove friend", "api/removeFriend/" }
             };
         }
 

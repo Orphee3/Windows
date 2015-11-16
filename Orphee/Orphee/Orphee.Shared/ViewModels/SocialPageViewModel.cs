@@ -52,7 +52,7 @@ namespace Orphee.ViewModels
                 SetProgressRingVisibility(false);
                 return;
             }
-            var requestedUserList = (await this._getter.GetInfo<List<UserBase>>(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + 0 + "&size=" + 20)).OrderBy(u => u.UserName).ToList();
+            var requestedUserList = await this._getter.GetInfo<List<UserBase>>(RestApiManagerBase.Instance.RestApiPath["users"] + "?offset=" + 0 + "&size=" + 20);
             if (!VerifyReturnedValue(requestedUserList, "")) 
                 return;
             RemoveUserFromList(requestedUserList);
