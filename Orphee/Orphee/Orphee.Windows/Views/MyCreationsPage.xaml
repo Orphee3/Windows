@@ -123,7 +123,7 @@
                     <Grid HorizontalAlignment="Center" Tapped="Creation_OnTapped" Margin="0, 0, 0, 20">
                         <StackPanel Orientation="Horizontal">
                             <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
-                                <Image Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
+                                <Image Source="{Binding Picture}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                                 </Grid>
                                 <StackPanel VerticalAlignment="Center" Margin="50, 0, 0, 0">
                                     <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>

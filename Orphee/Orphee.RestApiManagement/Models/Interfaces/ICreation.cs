@@ -33,5 +33,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         /// <summary>Number of likes related to the creation </summary>
         [JsonProperty(PropertyName = "nbLikes")]
         int NumberOfLike { get; set; }
+        //[JsonProperty(PropertyName = "picture")]
+        string Picture { get; set; }
     }
 }

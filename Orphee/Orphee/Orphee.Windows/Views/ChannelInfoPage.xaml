@@ -169,7 +169,7 @@
                             <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal">
                                     <Grid HorizontalAlignment="Left">
-                                        <Image controls:ImageExtensions.CacheUri="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
+                                        <Image controls:ImageExtensions.CacheUri="{Binding Picture}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                                     </Grid>
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="50, 0, 0, 0" VerticalAlignment="Center">
                                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
