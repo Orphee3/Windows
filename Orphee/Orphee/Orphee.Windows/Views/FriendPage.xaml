@@ -112,6 +112,7 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
         </StackPanel>
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding EmptyMessage}" Visibility="{Binding EmptyMessageVisibility}" Foreground="#BDBEC0" FontSize="25"/>
         <StackPanel Grid.Row="1">
             <Grid VerticalAlignment="Top" Margin="5, 5, 0, 0" Tapped="ForwardSign_OnTapped" Visibility="{Binding InvitationStackPanelVisibility}">
                 <StackPanel>

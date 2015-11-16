@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Windows.UI.Xaml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -35,9 +33,5 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         /// <summary>Number of likes related to the creation </summary>
         [JsonProperty(PropertyName = "nbLikes")]
         int NumberOfLike { get; set; }
-        /// <summary> 
-        /// Updates the number of likes and comments of the creation
-        /// </summary> 
-        void UpdateNumberOfLikeAndCommentValue();
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Windows.UI.Xaml;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Models.Interfaces;
 using Orphee.ViewModels.Interfaces;
@@ -27,9 +25,10 @@ namespace Orphee.ViewModels
 
         private void InitNewsList()
         {
+            if (!VerifyReturnedValue(RestApiManagerBase.Instance.UserData.User.NotificationList, ""))
+                return;
             foreach (var news in RestApiManagerBase.Instance.UserData.User.NotificationList)
                 this.NewsList.Add(news);
-            SetProgressRingVisibility(false);
         }
 
         private void CreationInfoCommandExec(INews news)

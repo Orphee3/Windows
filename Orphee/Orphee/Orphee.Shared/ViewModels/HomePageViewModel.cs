@@ -35,10 +35,7 @@ namespace Orphee.ViewModels
             this._getter = getter;
             this.Test = new DelegateCommand(RequestPopularCreations);
             this.CreationInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("CreationInfo", JsonConvert.SerializeObject(creation)));
-            this.ChannelInfoCommand = new DelegateCommand<Creation>((creation) =>
-            {
-                App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(creation.CreatorList[0]));
-            });
+            this.ChannelInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(creation.CreatorList[0])));
             this.PopularCreations = new ObservableCollection<Creation>();
             if (!App.InternetAvailabilityWatcher.IsInternetUp)
                 SetProgressRingVisibility(false);
@@ -60,7 +57,6 @@ namespace Orphee.ViewModels
             var popularCreations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"] + "?offset=" + this.PopularCreations.Count + "&size=" + 5);
             if (VerifyReturnedValue(popularCreations, ""))
                 AddRequestedPopularCreationsInCreationList(popularCreations);
-            SetProgressRingVisibility(false);
         }
 
         private void AddRequestedPopularCreationsInCreationList(List<Creation> popularCreations)

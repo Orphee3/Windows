@@ -17,6 +17,7 @@ namespace Orphee.ViewModels
         public ObservableCollection<Creation> CreationList { get; set; }
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
+        public DelegateCommand<Creation> DeleteCreationCommand { get; private set; }
         private readonly IGetter _getter;
 
         /// <summary>
@@ -30,6 +31,7 @@ namespace Orphee.ViewModels
             this._onUserLoginNewsGetter = onUserLoginNewsGetter;
             SetProgressRingVisibility(true);
             this.CreationList = new ObservableCollection<Creation>();
+            this.DeleteCreationCommand = new DelegateCommand<Creation>(DeleteCreationCommandExec);
             this.BackCommand = new DelegateCommand(() => App.MyNavigationService.GoBack());
             InitCreationList();
         }
@@ -45,6 +47,10 @@ namespace Orphee.ViewModels
             SetProgressRingVisibility(false);
         }
 
+        private async void DeleteCreationCommandExec(Creation creation)
+        {
+            
+        }
         private void AddRequestedCreationInCreationList(List<Creation> creations)
         {
             foreach (var creation in creations)

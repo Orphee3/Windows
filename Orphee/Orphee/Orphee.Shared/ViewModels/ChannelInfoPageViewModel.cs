@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
@@ -41,10 +42,9 @@ namespace Orphee.ViewModels
             if (!App.InternetAvailabilityWatcher.IsInternetUp)
                 DisplayMessage("Connexion unavailable");
             this.CreationList.Clear();
-            var creations = await DataCache.GetAsync("ChannelInfoPage-" + this.Creator.Id, async () => await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + this.Creator.Id + "/creation"));
+            var creations = await DataCache.GetAsync("ChannelInfoPage-" + this.Creator.Id, async () => await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + this.Creator.Id + "/creation"), null, true);
             if (VerifyReturnedValue(creations, ""))
                 AddRequestedCreationsInCreationList(creations);
-            SetProgressRingVisibility(false);
         }
 
         private void AddRequestedCreationsInCreationList(List<Creation> creations)

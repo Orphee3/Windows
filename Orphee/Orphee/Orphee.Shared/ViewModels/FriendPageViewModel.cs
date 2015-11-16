@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -74,10 +73,10 @@ namespace Orphee.ViewModels
         {
             this.CheckBoxVisibility = navigationParameter != null ? Visibility.Visible : Visibility.Collapsed;
             this.InvitationStackPanelVisibility = navigationParameter != null ? Visibility.Collapsed : Visibility.Visible;
-            this.FriendList.Clear();
-            foreach (var friend in RestApiManagerBase.Instance.UserData.User.FriendList)
+            if (!VerifyReturnedValue(RestApiManagerBase.Instance.UserData.User.FriendList, ""))
+                return;
+            foreach (var friend in RestApiManagerBase.Instance.UserData.User.FriendList.Where(friend => this.FriendList.All(f => f.Id != friend.Id)))
                 this.FriendList.Add(friend);
-            SetProgressRingVisibility(false);
         }
 
         private async void ValidateConversationCommandExec()

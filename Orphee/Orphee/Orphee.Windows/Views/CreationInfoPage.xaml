@@ -207,6 +207,7 @@
             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
             </StackPanel>
+            <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding EmptyMessage}" Visibility="{Binding EmptyMessageVisibility}" Foreground="#BDBEC0" FontSize="25"/>
             <ListView Grid.Row="2" ItemsSource="{Binding CommentList}" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>

@@ -90,16 +90,6 @@ namespace Orphee.RestApiManagement.Models
             this.CreatorList = new List<UserBase>();
         }
 
-        /// <summary>
-        /// Updates the number of likes and comments of the creation
-        /// </summary>
-        public void UpdateNumberOfLikeAndCommentValue()
-        {
-            if (this.Comments != null)
-                this.NumberOfComment = Comments.Count;
-            this.NumberOfLike = 0;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

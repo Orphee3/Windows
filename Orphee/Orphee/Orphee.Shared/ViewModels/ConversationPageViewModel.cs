@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Models.Interfaces;
 using Orphee.ViewModels.Interfaces;
-using Q42.WinRT.Data;
 
 namespace Orphee.ViewModels
 {
@@ -85,6 +82,8 @@ namespace Orphee.ViewModels
         {
             if (this.ButtonsVisibility == Visibility.Collapsed)
                 ResetVisibility(true);
+            if (!VerifyReturnedValue(RestApiManagerBase.Instance.UserData.User.ConversationList, ""))
+                return;
             foreach (var conversation in RestApiManagerBase.Instance.UserData.User.ConversationList)
                 this.ConversationList.Add(conversation);
         }

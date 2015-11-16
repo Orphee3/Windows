@@ -109,10 +109,7 @@ namespace Orphee.ViewModels
         private void AddRequestedCommentsToCommentList(List<Comment> commentList)
         {
             foreach (var comment in commentList.Where(comment => this.CommentList.Count(c => c.Id == comment.Id) == 0))
-            {
-                this.Creation.NumberOfComment++;
                 this.CommentList.Insert(0, comment);
-            }
         }
 
         /// <summary>

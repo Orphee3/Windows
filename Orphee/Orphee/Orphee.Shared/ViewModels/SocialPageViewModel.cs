@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -57,7 +56,6 @@ namespace Orphee.ViewModels
                 return;
             RemoveUserFromList(requestedUserList);
             AddRequestedUsersToUserList(requestedUserList);
-            SetProgressRingVisibility(false);
         }
 
         private void RemoveUserFromList(List<UserBase> requestedUserList)

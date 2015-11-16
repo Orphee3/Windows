@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -21,6 +21,18 @@ namespace Orphee.ViewModels
             {
                 if (this._isProgressRingActive != value)
                     SetProperty(ref this._isProgressRingActive, value);
+            }
+        }
+        public string EmptyMessage { get; private set; }
+        protected Visibility _emptyMessageVisibility;
+
+        public Visibility EmptyMessageVisibility
+        {
+            get { return this._emptyMessageVisibility; }
+            set
+            {
+                if (this._emptyMessageVisibility != value)
+                    SetProperty(ref this._emptyMessageVisibility, value);
             }
         }
         protected Visibility _progressRingVisibility;
@@ -49,6 +61,8 @@ namespace Orphee.ViewModels
 
         public ViewModelExtend()
         {
+            this.EmptyMessage = "Empty";
+            this.EmptyMessageVisibility = Visibility.Collapsed;
             App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
                 this._dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
@@ -91,12 +105,20 @@ namespace Orphee.ViewModels
 
         protected bool VerifyReturnedValue<T>(T value, string message)
         {
-            if (value != null)
+            SetProgressRingVisibility(false);
+            if (CheckForNullValue(value))
                 return true;
             if (message != "")
                 DisplayMessage(message);
-            if (this._isProgressRingActive)
-                SetProgressRingVisibility(false);
+            return false;
+        }
+
+        private bool CheckForNullValue<T>(T value)
+        {
+            if (value != null)
+                if (((IList)value).Count > 0)
+                    return true;
+            this.EmptyMessageVisibility = Visibility.Visible;
             return false;
         }
     }
