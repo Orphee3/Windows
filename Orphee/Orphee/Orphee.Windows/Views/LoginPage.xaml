@@ -58,8 +58,20 @@
                             <Line  Grid.Column="2" Stroke="White" X1="0" Y1="0" X2="75" Y2="0" Stretch="Fill" VerticalAlignment="Center"/>
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
-                            <Image Source="/Assets/fb-login-btn.png" Height="50" Width="50" HorizontalAlignment="Center" Margin="0, 0, 15, 0"/>
-                            <Image Source="/Assets/g-login-btn.png" Height="52" Width="52" HorizontalAlignment="Center"/>
+                            <Image Source="/Assets/fb-login-btn.png" Height="50" Width="50" HorizontalAlignment="Center" Margin="0, 0, 15, 0">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Tapped">
+                                        <core:InvokeCommandAction Command="{Binding SDKLoginCommand}" CommandParameter="facebook"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </Image>
+                            <Image Source="/Assets/g-login-btn.png" Height="52" Width="52" HorizontalAlignment="Center">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Tapped">
+                                        <core:InvokeCommandAction Command="{Binding SDKLoginCommand}" CommandParameter="google"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </Image>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

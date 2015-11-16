@@ -16,6 +16,18 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IOnUserLoginNewsGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Cimbalino\ApplicationDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\FacebookService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\GoogleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\Interfaces\IFacebookService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\Interfaces\IGoogleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\Interfaces\ISessionProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\Interfaces\ISessionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\Models\ServiceResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\Models\Session.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\Models\UserInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Services\SessionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OnUserLoginNewsGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IMyNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\InternetAvailabilityWatcher.cs" />

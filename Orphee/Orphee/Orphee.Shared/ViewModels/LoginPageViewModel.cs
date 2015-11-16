@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
+﻿using System.Threading.Tasks;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using Orphee.Models.Interfaces;
-using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Models;
-using Orphee.RestApiManagement.Models.Interfaces;
+using Orphee.Models.OAuth2SDK;
+using Orphee.Models.OAuth2SDK.Services.Interfaces;
 using Orphee.RestApiManagement.Posters.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
@@ -26,24 +19,30 @@ namespace Orphee.ViewModels
         public DelegateCommand BackCommand { get; private set; }
         public DelegateCommand ForgotPasswordCommand { get; private set; }
         public DelegateCommand CreateAccountCommand { get; private set; }
+        public DelegateCommand<string> SDKLoginCommand { get; private set; }
         /// <summary>User name of the user </summary>
         public string UserName { get; set; }
         /// <summary>User's password </summary>
         public string Password { get; set; }
 
         private readonly IConnectionManager _connectionManager;
+        private readonly ISessionService _sessionService;
+        private readonly IAuthLogin _authLogin;
         /// <summary>
         /// Constructor initializing connectionManager
         /// through dependency injection
         /// </summary>
         /// <param name="connectionmanager">Manages the connetion of the user so it gets logged in</param>
-        public LoginPageViewModel(IConnectionManager connectionmanager, IOnUserLoginNewsGetter onUserLoginNewsGetter)
+        public LoginPageViewModel(IConnectionManager connectionmanager, IOnUserLoginNewsGetter onUserLoginNewsGetter, ISessionService sessionService, IAuthLogin authLogin)
         {
             this._connectionManager = connectionmanager;
             this._onUserLoginNewsGetter = onUserLoginNewsGetter;
+            this._sessionService = sessionService;
+            this._authLogin = authLogin;
             this.ForgotPasswordCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("ForgotPassword", null));
             this.CreateAccountCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Register", null));
             this.LoginCommand = new DelegateCommand(LoginCommandExec);
+            this.SDKLoginCommand = new DelegateCommand<string>(SDKLoginCommandExec);
             this.BackCommand = new DelegateCommand(App.MyNavigationService.GoBack);
         }
 
@@ -72,6 +71,52 @@ namespace Orphee.ViewModels
                 App.MyNavigationService.GoBack();
             }
             SetProgressRingVisibility(false);
+        }
+
+        private async void SDKLoginCommandExec(string provider)
+        {
+            var auth = await _sessionService.LoginAsync(provider);
+            if (auth == null)
+            {
+                return;
+            }
+            if (!auth.Value)
+                DisplayMessage("Authetification failed.");
+            else
+            {
+                var session = await this._sessionService.GetSession();
+                var result = await SendTokenToServer(provider, session.Code);
+                if (result)
+                    App.MyNavigationService.GoBack();
+            }
+        }
+
+        private async Task<bool> SendTokenToServer(string provider, string code)
+        {
+            if (!App.InternetAvailabilityWatcher.IsInternetUp)
+                return false;
+            SetProgressRingVisibility(true);
+            bool requestResult;
+            try
+            {
+                requestResult = await this._authLogin.ConnectThroughSDK(provider, code, Constants.GoogleClientId, Constants.GoogleCallbackUrl);
+            }
+            catch
+            {
+                SetProgressRingVisibility(false);
+                return false;
+            }
+            if (!requestResult)
+                DisplayMessage("Wrong user name/password");
+            else
+            {
+                var result = await this._onUserLoginNewsGetter.GetUserNewsInformation();
+                while (!result)
+                    result = await this._onUserLoginNewsGetter.GetUserNewsInformation();
+                App.MyNavigationService.GoBack();
+            }
+            SetProgressRingVisibility(false);
+            return true;
         }
     }
 }

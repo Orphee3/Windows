@@ -79,7 +79,8 @@ namespace Orphee.RestApiManagement.Models
                 {"popular", "api/creationPopular"},
                 {"private room", "api/room/privateMessage/" },
                 {"group room", "api/room/" },
-                {"forgot", "api/forgot" }
+                {"forgot", "api/forgot" },
+                {"google", "auth/google" }
             };
         }
 

@@ -9,6 +9,9 @@ using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.Models;
 using Orphee.Models.Interfaces;
+using Orphee.Models.OAuth2SDK.Cimbalino;
+using Orphee.Models.OAuth2SDK.Services;
+using Orphee.Models.OAuth2SDK.Services.Interfaces;
 using Orphee.RestApiManagement.Getters;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
@@ -68,6 +71,11 @@ namespace Orphee.UnityModule
             container.RegisterType<INewsParser, NewsParser>(new ContainerControlledLifetimeManager());
             container.RegisterType<IConversationParser, ConversationParser>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOnUserLoginNewsGetter, OnUserLoginNewsGetter>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ISessionService, SessionService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IApplicationDataService, ApplicationDataService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IFacebookService, FacebookService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IGoogleService, GoogleService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IAuthLogin, AuthLogin>(new ContainerControlledLifetimeManager());
         }
     }
 }

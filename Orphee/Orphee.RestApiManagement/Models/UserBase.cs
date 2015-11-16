@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using Windows.UI.Xaml;
@@ -29,6 +30,13 @@ namespace Orphee.RestApiManagement.Models
         [DataMember]
         public List<string> Friends { get; set; }
 
+        public string GoogleId { get; set; }
+        public JArray News { get; set; }
+        public JArray Groups { get; set; }
+        public JArray Flux { get; set; }
+        public JArray Rooms { get; set; }
+        public string Password { get; set; }
+        public bool IsAdmin { get; set; }
         private string _picture;
 
         [DataMember]
