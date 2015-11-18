@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Microsoft.Practices.Unity;
 using Midi;
 using Orphee.CreationShared.Interfaces;
 
@@ -38,35 +38,6 @@ namespace Orphee.CreationShared
         public Instrument CurrentInstrument { get; set; }
         /// <summary>Channel assigned to the track </summary>
         public Channel Channel { get; set; }
-        /// <summary>Value representing the actual color associated to the track </summary>
-        public SolidColorBrush TrackColor
-        {
-            get { return this._trackColor; }
-            set
-            {
-                if (this._trackColor != value)
-                {
-                    this._trackColor = value;
-                    OnPropertyChanged("TrackColor");
-                }
-            }
-              
-        }
-        private SolidColorBrush _trackColor;
-        /// <summary>Represents the Visibility of the track on the CreationPage screen </summary>
-        public Visibility TrackVisibility
-        {
-            get { return this._trackVisibility; }
-            set
-            {
-                if (this._trackVisibility != value)
-                {
-                    this._trackVisibility = value;
-                    OnPropertyChanged("TrackVisibility");
-                }
-            }
-        }
-        private Visibility _trackVisibility;
         /// <summary>Graphical position of the track </summary>
         public int TrackPos { get; set; }
         /// <summary>Length of the track </summary>
@@ -132,45 +103,58 @@ namespace Orphee.CreationShared
                 }
             }
         }
-        private IColorManager _colorManager;
 
         public ObservableCollection<MyRectangle> ColumnMap { get; set; }
+        private readonly IOrpheeTrackUI _orpheeTrackUi;
+        private readonly INoteMapGenerator _noteMapGenerator;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="trackPos">Track position of the actual track</param>
-        /// <param name="channel">Channel related to the actual track</param>
-        /// <param name="isNewTrack">Defines if the actual track is a new one or not</param>
-        public OrpheeTrack(int trackPos, Channel channel, bool isNewTrack)
+        public OrpheeTrack(IOrpheeTrackUI orpheeTrachUi, INoteMapGenerator noteMapGenerator)
+        {
+            this._orpheeTrackUi = orpheeTrachUi;
+            this._noteMapGenerator = noteMapGenerator;
+        }
+        
+        public void Init(int trackPos, Channel channel, bool isNewTrack)
+        {            
+            SetProperties(trackPos, channel);
+            this.PlayerParameters = this.TrackPos == 0 ? new PlayerParameters() : null;
+            this.NoteMap = isNewTrack ? this._noteMapGenerator.GenerateNoteMap(3) : null;
+            this.ColumnMap = isNewTrack ? this._noteMapGenerator.GenerateColumnMap(this.NoteMap) : null;
+        }
+
+        public void Init(IOrpheeTrack orpheeTrack)
+        {
+            SetProperties(orpheeTrack.TrackPos, orpheeTrack.Channel);
+            this.NoteMap = this._noteMapGenerator.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList);
+            this.ColumnMap = this._noteMapGenerator.GenerateColumnMap(this.NoteMap);
+            UpdateCurrentInstrument(orpheeTrack.CurrentInstrument);
+            this.PlayerParameters = orpheeTrack.PlayerParameters; 
+        }
+
+        private void SetProperties(int trackPos, Channel channel)
         {
             this.IsSolo = true;
             this.TrackPos = trackPos;
-            this._colorManager = new ColorManager();
-            this.PlayerParameters = this.TrackPos == 0 ? new PlayerParameters() : null;
+            this._orpheeTrackUi.InitProperties(trackPos);
             this.TrackLength = (uint)(this.TrackPos == 0 ? 22 : 7);
-            this.TrackColor = this._colorManager.ColorList[this.TrackPos];
-            this.TrackName = (trackPos + 1) + ". " + this.CurrentInstrument.Name();
-            this.NoteMap = isNewTrack ? NoteMapManager.Instance.GenerateNoteMap(3) : null;
-            this.ColumnMap = isNewTrack ? NoteMapManager.Instance.GenerateColumnMap(this.NoteMap) : null;
+            this.TrackName = (this.TrackPos + 1) + ". " + this.CurrentInstrument.Name();
             this.Channel = channel;
+            this.IsChecked = this.TrackPos == 0;
         }
 
-        public OrpheeTrack(IOrpheeTrack orpheeTrack)
+        public void SetTrackVisibility(Visibility trackVisibility)
         {
-            this.IsSolo = true;
-            this.TrackPos = orpheeTrack.TrackPos;
-            this._colorManager = new ColorManager();
-            this.TrackColor = this._colorManager.ColorList[this.TrackPos];
-            this.NoteMap = NoteMapManager.Instance.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList);
-            this.ColumnMap = NoteMapManager.Instance.GenerateColumnMap(this.NoteMap);
-            this.Channel = orpheeTrack.Channel;
-            this.TrackName = this.TrackPos + 1 + ". " + this.CurrentInstrument.Name();
-            UpdateCurrentInstrument(orpheeTrack.CurrentInstrument);
-            this.PlayerParameters = orpheeTrack.PlayerParameters;
-            this.TrackLength = (uint)(this.TrackPos == 0 ? 22 : 7);
-            this.IsChecked = this.TrackPos == 0;
-            this.TrackVisibility = this.TrackPos == 0 ? Visibility.Visible : Visibility.Collapsed;
+            this._orpheeTrackUi.TrackVisibility = trackVisibility;
+        }
+
+        public SolidColorBrush GetTrackColor()
+        {
+            return this._orpheeTrackUi.TrackColor;
+        }
+
+        public void SetTrackColor(SolidColorBrush color)
+        {
+            this._orpheeTrackUi.TrackColor = color;
         }
 
         /// <summary>
@@ -189,7 +173,7 @@ namespace Orphee.CreationShared
         public void ConvertNoteMapToOrpheeMessage()
         {
             var trackLength = this.TrackLength;
-            this.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(this.NoteMap, (int)this.Channel, ref trackLength);
+            this.OrpheeNoteMessageList = this._noteMapGenerator.ConvertNoteMapToOrpheeNoteMessageList(this.NoteMap, (int)this.Channel, ref trackLength);
         }
 
         /// <summary>

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
   
-  <Identity Name="e87dc952-e10a-4189-a6ec-1065f8d0f41e"
-            Publisher="CN=Mickael"
+  <Identity Name="ed5f0cff-d2ba-42c0-8969-6b73ad450b79"
+            Publisher="CN=micka"
             Version="1.0.0.0" />
   
   <Properties>
     <DisplayName>Orphee.CreationSharedUnitTests</DisplayName>
-    <PublisherDisplayName>Mickael</PublisherDisplayName>
+    <PublisherDisplayName>micka</PublisherDisplayName>
     <Logo>Images\UnitTestStoreLogo.png</Logo>
     <Description>Orphee.CreationSharedUnitTests</Description>
   </Properties>

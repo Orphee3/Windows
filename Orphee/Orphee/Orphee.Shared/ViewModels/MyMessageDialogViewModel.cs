@@ -55,7 +55,7 @@ namespace Orphee.ViewModels
         public void SetCurrentOrpheeTrack(IOrpheeTrack orpheeTrack)
         {
             this.CurrentOrpheeTrack = orpheeTrack;
-            this.TrackColorIndex = this.ColorManager.GetColorIndex(orpheeTrack.TrackColor);
+            this.TrackColorIndex = this.ColorManager.GetColorIndex(orpheeTrack.GetTrackColor());
             this.TrackInstrumentIndex = this.InstrumentManager.GetInstrumentIndex(orpheeTrack.CurrentInstrument);
             this.IsOpen = true;
         }
@@ -71,7 +71,7 @@ namespace Orphee.ViewModels
         public void UpdateTrackContent()
         {
             this.CurrentOrpheeTrack.UpdateCurrentInstrument(this.InstrumentManager.InstrumentList[this.TrackInstrumentIndex].Instrument);
-            this.CurrentOrpheeTrack.TrackColor = this.ColorManager.ColorList[this.TrackColorIndex];
+            this.CurrentOrpheeTrack.SetTrackColor(this.ColorManager.ColorList[this.TrackColorIndex]);
             Close();
         }
 

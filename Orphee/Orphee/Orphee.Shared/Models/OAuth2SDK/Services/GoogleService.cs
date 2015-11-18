@@ -81,22 +81,6 @@ namespace Orphee.Models.OAuth2SDK.Services
         {
         }
 
-#if WINDOWS_PHONE_APP
-        public async Task<Session> Finalize(WebAuthenticationBrokerContinuationEventArgs args)
-        {
-            Exception exception = null;
-            try
-            {
-                return await GetSession(args.WebAuthenticationResult);
-            }
-            catch (Exception e)
-            {
-                exception = e;
-            }
-
-            return null;
-        }
-#endif
         private async Task<Session> GetSession(WebAuthenticationResult result)
         {
             if (result.ResponseStatus == WebAuthenticationStatus.Success)

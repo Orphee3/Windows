@@ -42,16 +42,21 @@
   <ItemGroup>
     <Compile Include="ColorManager.cs" />
     <Compile Include="CropBitmap.cs" />
+    <Compile Include="FilePickerManager.cs" />
     <Compile Include="InstrumentManager.cs" />
     <Compile Include="Interfaces\IColorManager.cs" />
+    <Compile Include="Interfaces\IFilePickerManager.cs" />
     <Compile Include="Interfaces\IInstrumentManager.cs" />
     <Compile Include="Interfaces\IMidiLibRepository.cs" />
     <Compile Include="Interfaces\IMyRectangle.cs" />
+    <Compile Include="Interfaces\INoteMapGenerator.cs" />
+    <Compile Include="Interfaces\INoteMapManager.cs" />
     <Compile Include="Interfaces\INoteNameListManager.cs" />
     <Compile Include="Interfaces\IOrpheeFile.cs" />
     <Compile Include="Interfaces\IOrpheeFileParameters.cs" />
     <Compile Include="Interfaces\IOrpheeNoteMessage.cs" />
     <Compile Include="Interfaces\IOrpheeTrack.cs" />
+    <Compile Include="Interfaces\IOrpheeTrackUI.cs" />
     <Compile Include="Interfaces\IPlayerParameters.cs" />
     <Compile Include="Interfaces\ISoundPlayer.cs" />
     <Compile Include="Interfaces\IToggleButtonNote.cs" />
@@ -64,6 +69,8 @@
     <Compile Include="OrpheeFileParameters.cs" />
     <Compile Include="OrpheeNoteMessage.cs" />
     <Compile Include="OrpheeTrack.cs" />
+    <Compile Include="OrpheeTrackBase.cs" />
+    <Compile Include="OrpheeTrackUI.cs" />
     <Compile Include="PlayerParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectedRegion.cs" />

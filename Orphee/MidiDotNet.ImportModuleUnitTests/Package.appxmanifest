@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
   
-  <Identity Name="bc7848fd-32c3-415a-8376-3d3825a21b50"
-            Publisher="CN=Mickael"
+  <Identity Name="e4289f16-c2ac-46e4-a84a-382d8451adf0"
+            Publisher="CN=micka"
             Version="1.0.0.0" />
   
   <Properties>
     <DisplayName>MidiDotNet.ImportModuleUnitTests</DisplayName>
-    <PublisherDisplayName>Mickael</PublisherDisplayName>
+    <PublisherDisplayName>micka</PublisherDisplayName>
     <Logo>Images\UnitTestStoreLogo.png</Logo>
     <Description>MidiDotNet.ImportModuleUnitTests</Description>
   </Properties>

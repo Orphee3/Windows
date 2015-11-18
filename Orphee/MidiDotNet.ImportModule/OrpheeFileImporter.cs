@@ -114,11 +114,12 @@ namespace MidiDotNet.ImportModule
 
         private void AddNewTrackToOrpheeFile(int trackPos)
         {
-            var newOrpheeTrack = new OrpheeTrack(trackPos, (Channel)this._trackHeaderReader.ProgramChangeMessageReader.Channel, false)
+            var newOrpheeTrack = new OrpheeTrack(new OrpheeTrackUI(new ColorManager()), new NoteMapManager())
             {
                 OrpheeNoteMessageList = this._noteMessageReader.OrpheeNoteMessageList,
                 TrackLength = this._trackHeaderReader.TrackLength,
             };
+            newOrpheeTrack.Init(trackPos, (Channel)this._trackHeaderReader.ProgramChangeMessageReader.Channel, false);
             if (trackPos == 0)
                 newOrpheeTrack.PlayerParameters = this._trackHeaderReader.PlayerParameters;
             newOrpheeTrack.UpdateCurrentInstrument((Instrument)this._trackHeaderReader.ProgramChangeMessageReader.InstrumentIndex);
@@ -127,7 +128,7 @@ namespace MidiDotNet.ImportModule
 
         private void InitializeOrpheeFile()
         {
-            this.OrpheeFile = new OrpheeFile()
+            this.OrpheeFile = new OrpheeFile(new OrpheeTrack(new OrpheeTrackUI(new ColorManager()), new NoteMapManager()))
             {
                 FileName = this.StorageFile.Name,
                 OrpheeFileParameters = new OrpheeFileParameters()

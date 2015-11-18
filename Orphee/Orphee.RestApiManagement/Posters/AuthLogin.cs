@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -29,15 +28,9 @@ namespace Orphee.RestApiManagement.Posters
                     var result = await response.Content.ReadAsStringAsync();
                     if (response.StatusCode != HttpStatusCode.OK)
                         return false;
-                    try
-                    {
-                        RestApiManagerBase.Instance.UserData = JsonConvert.DeserializeObject<UserData>(result);
-                    }
-                    catch (Exception e)
-                    {
-                        
-                    }
+                    RestApiManagerBase.Instance.UserData = JsonConvert.DeserializeObject<UserData>(result);
                     RestApiManagerBase.Instance.IsConnected = true;
+                    RestApiManagerBase.Instance.UserData.User.GetUserPictureDominantColor();
                 }
                 return true;
             }

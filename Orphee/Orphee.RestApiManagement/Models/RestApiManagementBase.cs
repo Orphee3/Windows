@@ -82,7 +82,7 @@ namespace Orphee.RestApiManagement.Models
                 {"forgot", "api/forgot" },
                 {"google", "auth/google" },
                 {"facebook", "auth/facebook" },
-                {"remove friend", "api/removeFriend/" }
+                {"remove friend", "api/removeFriend/" },
             };
         }
 

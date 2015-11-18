@@ -76,6 +76,7 @@ namespace Orphee.UnityModule
             container.RegisterType<IFacebookService, FacebookService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IGoogleService, GoogleService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IAuthLogin, AuthLogin>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IChunckWriters, ChunckWriters>(new ContainerControlledLifetimeManager());
         }
     }
 }

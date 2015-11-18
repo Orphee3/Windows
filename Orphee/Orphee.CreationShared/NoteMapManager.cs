@@ -8,29 +8,20 @@ namespace Orphee.CreationShared
     /// <summary>
     /// Singleton class managing the OrpheeTrack NoteMap
     /// </summary>
-    public class NoteMapManager
+    public class NoteMapManager : INoteMapGenerator, INoteMapManager
     {
-        private static NoteMapManager _instance;
         private int _columnNumberToAdd;
         private int _lineNumberToAdd;
         /// <summary>Instance of the actual NoteMapManager </summary>
-        public static NoteMapManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new NoteMapManager();
-                return _instance;
-            }
-        }
+
         /// <summary>Instance of the NoteNameListManager class</summary>
         public NoteNameListManager NoteNameListManager { get; private set; }
 
-        private NoteMapManager()
+        public NoteMapManager()
         {
             this.NoteNameListManager = new NoteNameListManager();
             this._columnNumberToAdd = 50;
-            this._lineNumberToAdd = 36;
+            this._lineNumberToAdd = 12;
         }
 
         public ObservableCollection<MyRectangle> GenerateColumnMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)

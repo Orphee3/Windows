@@ -180,31 +180,6 @@ namespace Orphee.Models.OAuth2SDK.Services
             }
         }
 
-#if WINDOWS_PHONE_APP
-        public async Task<bool> Finalize(WebAuthenticationBrokerContinuationEventArgs args)
-        {
-            Exception exception = null;
-            try
-            {
-                Session session = null;
-                switch (Provider)
-                {
-                    case Constants.FacebookProvider:
-                        session = await _facebookService.Finalize(args);
-                        break;
-                    case Constants.GoogleProvider:
-                        session = await _googleService.Finalize(args);
-                        break;
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                exception = e;
-            }
-            return false;
-        }
-#endif
         /// <summary>
         /// Loads an encrypted setting value for a given key.
         /// </summary>

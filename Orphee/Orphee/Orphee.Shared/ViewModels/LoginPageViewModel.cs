@@ -107,7 +107,7 @@ namespace Orphee.ViewModels
                 return false;
             }
             if (!requestResult)
-                DisplayMessage("Wrong user name/password");
+                return false;
             else
             {
                 var result = await this._onUserLoginNewsGetter.GetUserNewsInformation();

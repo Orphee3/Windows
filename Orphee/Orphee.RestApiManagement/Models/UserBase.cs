@@ -84,7 +84,7 @@ namespace Orphee.RestApiManagement.Models
         public UserBase()
         {
             if (string.IsNullOrEmpty(this.Picture))
-                this.Picture = "https://s3-eu-west-1.amazonaws.com/orphee/image/defaultuser.png";
+                this.Picture = "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=200";
         }
 
         public async void GetUserPictureDominantColor()

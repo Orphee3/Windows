@@ -50,9 +50,10 @@ namespace Orphee.CreationShared
         /// <summary>
         /// Constructor
         /// </summary>
-        public OrpheeFile()
+        public OrpheeFile(IOrpheeTrack orpheeTrack)
         {
-            this.OrpheeTrackList = new ObservableCollection<IOrpheeTrack> {new OrpheeTrack(0, 0, true) {IsChecked = true, TrackVisibility = Visibility.Visible} };
+            orpheeTrack.Init(0, 0, true);
+            this.OrpheeTrackList = new ObservableCollection<IOrpheeTrack>() {orpheeTrack};
             this.OrpheeFileParameters = new OrpheeFileParameters();
             this.FileName = "New Piece";
         }

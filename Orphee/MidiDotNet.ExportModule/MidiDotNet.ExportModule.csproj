@@ -40,6 +40,7 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChunckWriters.cs" />
     <Compile Include="DeltaTimeWriter.cs" />
     <Compile Include="EndOfTrackMessageWriter.cs" />
     <Compile Include="FileHeaderWriter.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Interfaces\ITempoMessageWriter.cs" />
     <Compile Include="Interfaces\ITimeSignatureMessageWriter.cs" />
     <Compile Include="Interfaces\ITrackHeaderWriter.cs" />
+    <Compile Include="Interfaces\IChunckWriters.cs" />
     <Compile Include="NoteMessageWriter.cs" />
     <Compile Include="OrpheeFileExporter.cs" />
     <Compile Include="ProgramChangeMessageWriter.cs" />

@@ -1,8 +1,6 @@
 ﻿using MidiDotNet.ImportModule;
 using MidiDotNet.ImportModule.Interfaces;
 using MidiDotNet.Shared;
-using NUnit.Framework;
-using Orphee.CreationShared.Interfaces;
 
 namespace MidiDotNet.ImportModuleUnitTests.ImportModuleTests.OrpheeFileImporterTests
 {

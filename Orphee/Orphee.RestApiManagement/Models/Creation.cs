@@ -80,7 +80,7 @@ namespace Orphee.RestApiManagement.Models
         }
         /// <summary>List of the creators of the creation</summary>
         [DataMember]
-        public List<UserBase> CreatorList { get; set; }
+        public JArray CreatorList { get; set; }
         public string Picture { get; set; }
 
         /// <summary>
@@ -88,7 +88,6 @@ namespace Orphee.RestApiManagement.Models
         /// </summary>
         public Creation()
         {
-            this.CreatorList = new List<UserBase>();
             this.Picture = "https://s3-eu-west-1.amazonaws.com/orphee/image/logo_transparent2.png";
         }
 

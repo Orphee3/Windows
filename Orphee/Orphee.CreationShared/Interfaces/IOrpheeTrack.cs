@@ -15,7 +15,6 @@ namespace Orphee.CreationShared.Interfaces
 
         /// <summary>Rectangle map represented on the CreationPage screen </summary>
         ObservableCollection<ObservableCollection<IToggleButtonNote>> NoteMap { get; }
-        SolidColorBrush TrackColor { get; set; }
         /// <summary>List of noteMessage representation of the NoteMap </summary>
         IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; }
         /// <summary>Current instrument </summary>
@@ -24,8 +23,6 @@ namespace Orphee.CreationShared.Interfaces
         IPlayerParameters PlayerParameters { get; set; }
         /// <summary>Channel assigned to the track </summary>
         Channel Channel { get; set; }
-        /// <summary>Represents the Visibility of the track on the CreationPage screen </summary>
-        Visibility TrackVisibility { get; set; }
         /// <summary>Graphical position of the track </summary>
         int TrackPos { get; set; }
         /// <summary>Length of the track </summary>
@@ -38,15 +35,6 @@ namespace Orphee.CreationShared.Interfaces
         bool IsSolo{ get; set; }
         ObservableCollection<MyRectangle> ColumnMap { get; set; } 
 
-
-        // Methods
-
-        /// <summary>
-        /// Copies the given track info to the current track
-        /// </summary>
-        /// <param name="orpheeTrack">OrpheeTrack to be copied</param>
-        //void UpdateOrpheeTrack(IOrpheeTrack orpheeTrack);
-
         /// <summary>
         /// Sets the current instrument value
         /// </summary>
@@ -57,5 +45,11 @@ namespace Orphee.CreationShared.Interfaces
         /// Converts the NoteMap variable to a list of NoteMessage
         /// </summary>
         void ConvertNoteMapToOrpheeMessage();
+
+        void Init(int trackPos, Channel channel, bool isNewTrack);
+        void Init(IOrpheeTrack orpheeTrack);
+        void SetTrackVisibility(Visibility visibility);
+        void SetTrackColor(SolidColorBrush color);
+        SolidColorBrush GetTrackColor();
     }
 }

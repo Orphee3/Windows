@@ -19,10 +19,10 @@ namespace MidiDotNet.ExportModule
     {
         private BinaryWriter _writer;
         private StorageFile _storageFile;
-        private readonly IFileHeaderWriter _fileHeaderWriter;
-        private readonly ITrackHeaderWriter _trackHeaderWriter;
-        private readonly INoteMessageWriter _noteMessageWriter;
+        private readonly IChunckWriters _chunckWriters;
         private readonly IFileUploader _fileUploader;
+        private readonly INoteMapGenerator _noteMapGenerator;
+        private readonly IFilePickerManager _filePickerManager;
 
         /// <summary>
         /// Constructor initializing fileHeaderWriter, 
@@ -32,12 +32,12 @@ namespace MidiDotNet.ExportModule
         /// <param name="trackHeaderWriter">Instance of the TrackHeaderWriter class used to write the track header of each track in the MIDI file</param>
         /// <param name="noteMessageWriter">Instance of the NoteMessageWriter class used to write the noteMessage messages in the MIDI file</param>
         /// <param name="fileUploader">Instance of the FileUploader class used to send the saved MIDI file to the remote server</param>
-        public OrpheeFileExporter(IFileHeaderWriter fileHeaderWriter, ITrackHeaderWriter trackHeaderWriter, INoteMessageWriter noteMessageWriter, IFileUploader fileUploader)
+        public OrpheeFileExporter(IChunckWriters chunckWriters, IFileUploader fileUploader, INoteMapGenerator noteMapGenerator, IFilePickerManager filePickerManager)
         {
+            this._noteMapGenerator = noteMapGenerator;
             this._fileUploader = fileUploader;
-            this._fileHeaderWriter = fileHeaderWriter;
-            this._trackHeaderWriter = trackHeaderWriter;
-            this._noteMessageWriter = noteMessageWriter;
+            this._chunckWriters = chunckWriters;
+            this._filePickerManager = filePickerManager;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace MidiDotNet.ExportModule
             foreach (var track in orpheeFile.OrpheeTrackList)
             {
                 var trackLength = track.TrackLength;
-                track.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(track.NoteMap, (int) track.Channel, ref trackLength);
+                track.OrpheeNoteMessageList = this._noteMapGenerator.ConvertNoteMapToOrpheeNoteMessageList(track.NoteMap, (int) track.Channel, ref trackLength);
             }
         }
 
@@ -64,25 +64,10 @@ namespace MidiDotNet.ExportModule
             foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
             {
                 var trackLength = orpheeTrack.TrackLength;
-                orpheeTrack.OrpheeNoteMessageList = NoteMapManager.Instance.ConvertNoteMapToOrpheeNoteMessageList(orpheeTrack.NoteMap, (int) orpheeTrack.Channel, ref trackLength);
+                orpheeTrack.OrpheeNoteMessageList = this._noteMapGenerator.ConvertNoteMapToOrpheeNoteMessageList(orpheeTrack.NoteMap, (int) orpheeTrack.Channel, ref trackLength);
                 orpheeTrack.TrackLength = trackLength;
             }
-            var result = await GetTheSaveFilePicker(orpheeFile);
-            foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
-                orpheeTrack.TrackLength = (uint) ((orpheeTrack.TrackPos == 0) ? 22 : 7);
-            return result;
-        }
-
-
-        private async Task<bool?> GetTheSaveFilePicker(IOrpheeFile orpheeFile)
-        {
-            var savePicker = new FileSavePicker()
-            {
-                SuggestedStartLocation = PickerLocationId.MusicLibrary,
-                SuggestedFileName = orpheeFile.FileName,
-            };
-            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".mid" });
-            this._storageFile = await savePicker.PickSaveFileAsync();
+            this._storageFile = await this._filePickerManager.GetTheSaveFilePicker(orpheeFile);
             if (this._storageFile != null)
             {
                 CachedFileManager.DeferUpdates(this._storageFile);
@@ -90,20 +75,21 @@ namespace MidiDotNet.ExportModule
                 var result = await this._fileUploader.UploadFile(this._storageFile);
                 if (!result)
                     return null;
-                return true;
             }
-            return false;
+            foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
+                orpheeTrack.TrackLength = (uint) ((orpheeTrack.TrackPos == 0) ? 22 : 7);
+            return true;
         }
 
         private void WriteEventsInFile(IOrpheeFile orpheeFile)
         {
             using (this._writer = new BinaryWriter(this._storageFile.OpenStreamForWriteAsync().Result))
             {
-                this._fileHeaderWriter.WriteFileHeader(this._writer, orpheeFile.OrpheeFileParameters);
+                this._chunckWriters.FileHeaderWriter.WriteFileHeader(this._writer, orpheeFile.OrpheeFileParameters);
                 foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
                 {
-                    this._trackHeaderWriter.WriteTrackHeader(this._writer, orpheeTrack.PlayerParameters, orpheeTrack.TrackLength);
-                    this._noteMessageWriter.WriteNoteMessages(this._writer, orpheeTrack.OrpheeNoteMessageList, (int)orpheeTrack.Channel, orpheeTrack.CurrentInstrument);
+                    this._chunckWriters.TrackHeaderWriter.WriteTrackHeader(this._writer, orpheeTrack.PlayerParameters, orpheeTrack.TrackLength);
+                    this._chunckWriters.NoteMessageWriter.WriteNoteMessages(this._writer, orpheeTrack.OrpheeNoteMessageList, (int)orpheeTrack.Channel, orpheeTrack.CurrentInstrument);
                 }
             }
         }

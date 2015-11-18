@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Orphee.CreationShared.Interfaces;
@@ -10,6 +13,11 @@ namespace Orphee.CreationShared
         public ObservableCollection<SolidColorBrush> ColorList {get; private set;}
 
         public ColorManager()
+        {
+            InitColorList();
+        }
+
+        private void InitColorList()
         {
             this.ColorList = new ObservableCollection<SolidColorBrush>()
             {

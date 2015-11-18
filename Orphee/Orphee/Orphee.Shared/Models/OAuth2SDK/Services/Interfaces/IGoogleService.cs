@@ -18,8 +18,5 @@ namespace Orphee.Models.OAuth2SDK.Services.Interfaces
     /// </summary>
     public interface IGoogleService : ISessionProvider
     {
-#if WINDOWS_PHONE_APP
-        Task<Session> Finalize(Windows.ApplicationModel.Activation.WebAuthenticationBrokerContinuationEventArgs args);
-#endif
     }
 }
