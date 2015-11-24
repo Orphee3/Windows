@@ -48,7 +48,7 @@ namespace Orphee.ViewModels
             bool requestResult;
             try
             {
-                requestResult = await this._registrationManager.RegisterUser(this.UserName, this.MailAdress, this.Password);
+                requestResult = await this._registrationManager.RegisterUser(this.MailAdress, this.UserName, this.Password);
             }
             catch (Exception)
             {

@@ -47,6 +47,7 @@ namespace Orphee.ViewModels
         public DelegateCommand LoginCommand { get; private set; }
         /// <summary>Redirects to EditProfilePage</summary>
         public DelegateCommand ParametersCommand { get; private set; }
+        public DelegateCommand ChangePictureCommand { get; private set; }
 
         public LoggedUser LoggedInUser { get; private set; }
         /// <summary>
@@ -59,6 +60,7 @@ namespace Orphee.ViewModels
             this.NotificationsCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Notification", null));
             this.FriendPageCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", null));
             this.ParametersCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Parameters", null));
+            this.ChangePictureCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("ChangePicture", null));
         }
 
         /// <summary>

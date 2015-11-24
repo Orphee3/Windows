@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.Pickers;
 using MidiDotNet.ExportModule.Interfaces;
-using Orphee.CreationShared;
 using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement.Senders.Interfaces;
 
@@ -68,14 +66,13 @@ namespace MidiDotNet.ExportModule
                 orpheeTrack.TrackLength = trackLength;
             }
             this._storageFile = await this._filePickerManager.GetTheSaveFilePicker(orpheeFile);
-            if (this._storageFile != null)
-            {
-                CachedFileManager.DeferUpdates(this._storageFile);
-                WriteEventsInFile(orpheeFile);
-                var result = await this._fileUploader.UploadFile(this._storageFile);
-                if (!result)
-                    return null;
-            }
+            if (this._storageFile == null)
+                return false;
+            CachedFileManager.DeferUpdates(this._storageFile);
+            WriteEventsInFile(orpheeFile);
+            var result = await this._fileUploader.UploadFile(this._storageFile);
+            if (!result)
+                return null;
             foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
                 orpheeTrack.TrackLength = (uint) ((orpheeTrack.TrackPos == 0) ? 22 : 7);
             return true;

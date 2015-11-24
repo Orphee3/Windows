@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Orphee.RestApiManagement.Models;
 using Quobject.SocketIoClientDotNet.Client;
 
 namespace Orphee.Models
@@ -33,6 +35,8 @@ namespace Orphee.Models
             try
             {
                 var result = await Task.FromResult(this._socket.Emit("create chat group", JObject.FromObject(new { people = userList })));
+                while (RestApiManagerBase.Instance.UserData.User.ConversationList.Last().Id == null)
+                    await Task.Delay(1);
             }
             catch (Exception)
             {

@@ -77,6 +77,10 @@ namespace Orphee.UnityModule
             container.RegisterType<IGoogleService, GoogleService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IAuthLogin, AuthLogin>(new ContainerControlledLifetimeManager());
             container.RegisterType<IChunckWriters, ChunckWriters>(new ContainerControlledLifetimeManager());
+            container.RegisterType<INoteMapGenerator, NoteMapManager>(new ContainerControlledLifetimeManager());
+            container.RegisterType<INoteMapManager, NoteMapManager>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IOrpheeTrackUI, OrpheeTrackUI>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IFilePickerManager, FilePickerManager>(new ContainerControlledLifetimeManager());
         }
     }
 }

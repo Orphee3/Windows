@@ -1,20 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models.Interfaces;
 
 namespace Orphee.RestApiManagement.Models
 {
     public class ConversationParser : IConversationParser
     {
-        private IGetter _getter;
-        public ConversationParser(IGetter getter)
-        {
-            this._getter = getter;
-        }
 
-        public void ParseConversationList(List<Conversation> conversationlist)
+        public void ParseConversationList(ObservableCollection<Conversation> conversationlist)
         {
             foreach (var conversation in conversationlist)
             {
@@ -39,13 +33,32 @@ namespace Orphee.RestApiManagement.Models
 
         private void InitConversationName(Conversation conversation)
         {
-            conversation.Name = string.Empty;
+            if (conversation.UserList.Count == 0 || conversation.UserList == null)
+                return;
+            conversation.Name = String.Empty;
             foreach (var user in conversation.UserList)
             {
                 conversation.Name += user.Name;
                 if (user != conversation.UserList.Last())
-                    conversation.Name += ", ";
+                    conversation.Name += " ,";
             }
+            conversation.Name = GetSubstringIfTooLong(conversation.Name);
+            InitConversationPreviewLastMessage(conversation);
+        }
+
+        private void InitConversationPreviewLastMessage(Conversation conversation)
+        {
+            if (conversation.Messages == null || conversation.Messages.Count == 0)
+                return;
+            conversation.LastMessagePreview = conversation.Messages.Last();
+            conversation.LastMessagePreview.ReceivedMessage = GetSubstringIfTooLong(conversation.LastMessagePreview.ReceivedMessage);
+            conversation.LastMessageDateString = conversation.Messages.Last().Hour;
+            conversation.ConversationPictureSource = conversation.UserList[0].Picture;
+        }
+
+        public string GetSubstringIfTooLong(string stringToCheck)
+        {
+            return stringToCheck.Length >= 30 ? stringToCheck.Substring(0, 30) + "..." : stringToCheck;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Newtonsoft.Json;

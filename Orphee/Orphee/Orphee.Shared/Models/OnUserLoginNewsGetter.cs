@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Orphee.Models.Interfaces;
@@ -22,7 +23,7 @@ namespace Orphee.Models
         public async Task<bool> GetUserNewsInformation()
         {
             var userFriends = (await this._getter.GetInfo<List<UserBase>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/friends")).OrderBy(f => f.Name).ToList();
-            var userConversations = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
+            var userConversations = await this._getter.GetInfo<ObservableCollection<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
             var userNotifications = (await this._getter.GetInfo<List<News>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/news")).Where(t => t.Creator.Id != RestApiManagerBase.Instance.UserData.User.Id).ToList();
             if (userFriends == null || userConversations == null || userNotifications == null)
                 return false;
@@ -39,7 +40,7 @@ namespace Orphee.Models
                 RestApiManagerBase.Instance.UserData.User.FriendList.Add(user);
         }
 
-        private void GetNewConversationFromList(List<Conversation> conversationList)
+        private void GetNewConversationFromList(ObservableCollection<Conversation> conversationList)
         {
             this._conversationParser.ParseConversationList(conversationList);
         }

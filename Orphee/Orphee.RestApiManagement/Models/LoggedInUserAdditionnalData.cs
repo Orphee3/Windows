@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
@@ -16,13 +17,15 @@ namespace Orphee.RestApiManagement.Models
         [DataMember]
         public List<News> NotificationList { get; set; }
         [DataMember]
-        public List<Conversation> ConversationList { get; set; }
+        public ObservableCollection<Conversation> ConversationList { get; set; }
         [DataMember]
         public List<UserBase> PendingFriendList { get; set; }
         /// <summary>List of unviewes comments </summary>
         [DataMember]
         public List<Comment> PendingCommentList { get; set; }
-        /// <summary>List of unviewed messages </summary>
+        [DataMember]
+        public List<Creation> CreationList { get; set; }
+            /// <summary>List of unviewed messages </summary>
         [DataMember]
         public List<Message> PendingMessageList { get; set; }
         [DataMember]

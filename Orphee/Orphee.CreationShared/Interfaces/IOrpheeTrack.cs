@@ -33,6 +33,7 @@ namespace Orphee.CreationShared.Interfaces
         bool IsChecked { get; set; }
         bool IsMuted { get; set; }
         bool IsSolo{ get; set; }
+        IOrpheeTrackUI UI { get; set; } 
         ObservableCollection<MyRectangle> ColumnMap { get; set; } 
 
         /// <summary>

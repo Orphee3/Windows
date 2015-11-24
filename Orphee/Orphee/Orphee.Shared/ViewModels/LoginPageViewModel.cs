@@ -108,13 +108,9 @@ namespace Orphee.ViewModels
             }
             if (!requestResult)
                 return false;
-            else
-            {
-                var result = await this._onUserLoginNewsGetter.GetUserNewsInformation();
-                while (!result)
-                    result = await this._onUserLoginNewsGetter.GetUserNewsInformation();
-                App.MyNavigationService.GoBack();
-            }
+            var result = await this._onUserLoginNewsGetter.GetUserNewsInformation();
+            while (!result)
+                result = await this._onUserLoginNewsGetter.GetUserNewsInformation();
             SetProgressRingVisibility(false);
             return true;
         }

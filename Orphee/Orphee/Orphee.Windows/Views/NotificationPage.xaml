@@ -9,7 +9,6 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
-    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -126,7 +125,7 @@
                         </interactivity:Interaction.Behaviors>
                         <Ellipse Width="75" Height="75" HorizontalAlignment="Center">
                             <Ellipse.Fill>
-                                <ImageBrush controls:ImageExtensions.CacheUri="{Binding Creator.Picture}"/>
+                                <ImageBrush ImageSource="{Binding Creator.Picture}"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <TextBlock Text="{Binding Message}" Visibility="{Binding HasBeenViewed}" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0, 0, 0"/>

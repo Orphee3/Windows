@@ -105,12 +105,12 @@ namespace Orphee.CreationShared
         }
 
         public ObservableCollection<MyRectangle> ColumnMap { get; set; }
-        private readonly IOrpheeTrackUI _orpheeTrackUi;
+        public IOrpheeTrackUI UI { get; set; }
         private readonly INoteMapGenerator _noteMapGenerator;
 
         public OrpheeTrack(IOrpheeTrackUI orpheeTrachUi, INoteMapGenerator noteMapGenerator)
         {
-            this._orpheeTrackUi = orpheeTrachUi;
+            this.UI = orpheeTrachUi;
             this._noteMapGenerator = noteMapGenerator;
         }
         
@@ -135,7 +135,7 @@ namespace Orphee.CreationShared
         {
             this.IsSolo = true;
             this.TrackPos = trackPos;
-            this._orpheeTrackUi.InitProperties(trackPos);
+            this.UI.InitProperties(trackPos);
             this.TrackLength = (uint)(this.TrackPos == 0 ? 22 : 7);
             this.TrackName = (this.TrackPos + 1) + ". " + this.CurrentInstrument.Name();
             this.Channel = channel;
@@ -144,17 +144,17 @@ namespace Orphee.CreationShared
 
         public void SetTrackVisibility(Visibility trackVisibility)
         {
-            this._orpheeTrackUi.TrackVisibility = trackVisibility;
+            this.UI.TrackVisibility = trackVisibility;
         }
 
         public SolidColorBrush GetTrackColor()
         {
-            return this._orpheeTrackUi.TrackColor;
+            return this.UI.TrackColor;
         }
 
         public void SetTrackColor(SolidColorBrush color)
         {
-            this._orpheeTrackUi.TrackColor = color;
+            this.UI.TrackColor = color;
         }
 
         /// <summary>

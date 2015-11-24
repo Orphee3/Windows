@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using Newtonsoft.Json.Linq;
@@ -65,6 +64,24 @@ namespace Orphee.RestApiManagement.Models
                     OnPropertyChanged(nameof(this.LastMessageDateString));
                 }
             }
+        }
+        [DataMember]
+        public bool IsNew { get; set; }
+
+        private bool _hasReceivedNewMessage;
+        [DataMember]
+        public bool HasReceivedNewMessage
+        {
+            get { return this._hasReceivedNewMessage; }
+            set
+            {
+                if (this._hasReceivedNewMessage != value)
+                {
+                    this._hasReceivedNewMessage = value;
+                    OnPropertyChanged(nameof(HasReceivedNewMessage));
+                }
+            }
+            
         }
 
         /// <summary>

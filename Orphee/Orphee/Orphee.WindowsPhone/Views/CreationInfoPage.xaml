@@ -7,7 +7,6 @@
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
     
@@ -195,7 +194,7 @@
                 </Grid.ColumnDefinitions>
                 <Ellipse Grid.Column="0" Width="50" Height="50" Margin="20, 0, 0, 0" HorizontalAlignment="Left">
                     <Ellipse.Fill>
-                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding UserPictureSource}"/>
+                        <ImageBrush ImageSource="{Binding UserPictureSource}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">

@@ -23,7 +23,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         JArray Comments { get; set; }
         /// <summary>Creation creator </summary>
         [JsonProperty(PropertyName = "creator")]
-        JArray CreatorList { get; set; }
+        List<UserBase> CreatorList { get; set; }
         /// <summary>AWS S3 creation get url</summary>
         [JsonProperty(PropertyName = "url")]
         string GetUrl { get; set; }

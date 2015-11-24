@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
-using Q42.WinRT.Data;
 
 namespace Orphee.ViewModels
 {
@@ -78,9 +77,11 @@ namespace Orphee.ViewModels
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
             this._actualConversation = JsonConvert.DeserializeObject<Conversation>(navigationParameter as string);
+            this.ConversationName = this._actualConversation.Name;
+            if (this._actualConversation.IsNew)
+                return;
             this.Conversation.Clear();
             this._actualConversation.Messages.Clear();
-            this.ConversationName = this._actualConversation.Name;
             GetConversationMessages();
             InitConversation(this._actualConversation.Messages);
         }
@@ -112,14 +113,24 @@ namespace Orphee.ViewModels
         {
             if (string.IsNullOrEmpty(this.Message))
                 return;
+            var actualUser = RestApiManagerBase.Instance.UserData.User;
             var newMessage = new Message
             {
-                User = RestApiManagerBase.Instance.UserData.User,
+                User = new UserBase() {Id = actualUser.Id, Name = actualUser.Name, Picture = actualUser.Picture},
                 Date = DateTime.Now,
                 ReceivedMessage = this.Message
             };
             newMessage.SetProperties();
             this.Conversation.Add(newMessage);
+            var conversation = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id);
+            conversation.LastMessagePreview = newMessage;
+            if (this._actualConversation.IsNew)
+            {
+                this._actualConversation.IsNew = false;
+                RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id).IsNew = false;
+                if (this._actualConversation.UserList.Count == 1)
+                    RestApiManagerBase.Instance.UserData.User.ConversationList.Add(this._actualConversation);
+            }
             SendMessage();
             this.Message = string.Empty;
         }

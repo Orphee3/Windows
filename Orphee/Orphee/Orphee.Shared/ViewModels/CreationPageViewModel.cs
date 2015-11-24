@@ -208,18 +208,17 @@ namespace Orphee.ViewModels
             if (viewData.AddedItems?.Count == 0)
                 return;
             var selectedTrack = viewData.AddedItems[0] as OrpheeTrack;
-            if (this._currentChannel != selectedTrack.Channel)
+            if (this._currentChannel == selectedTrack.Channel)
+                return;
+            this.CurrentTrackPos = selectedTrack.TrackPos;
+            this._currentChannel = selectedTrack.Channel;
+            UpdateCurrentInstrument(selectedTrack.CurrentInstrument);
+            foreach (var track in this.OrpheeFile.OrpheeTrackList.Where(t => t != selectedTrack))
             {
-                this.CurrentTrackPos = selectedTrack.TrackPos;
-                this._currentChannel = selectedTrack.Channel;
-                UpdateCurrentInstrument(selectedTrack.CurrentInstrument);
-                foreach (var track in this.OrpheeFile.OrpheeTrackList.Where(t => t != selectedTrack))
-                {
-                    track.IsChecked = false;
-                }
-                this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).SetTrackVisibility(Visibility.Visible);
-                
+                track.SetTrackVisibility(Visibility.Collapsed);
+                track.IsChecked = false;
             }
+            this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).SetTrackVisibility(Visibility.Visible);
         }
 
         private void AddNewTrackCommandExec()

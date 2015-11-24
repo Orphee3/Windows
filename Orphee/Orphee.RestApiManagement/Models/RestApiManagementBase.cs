@@ -99,17 +99,17 @@ namespace Orphee.RestApiManagement.Models
         public async void SaveUser()
         {
             var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<UserData>));
-            try
-            {
-                using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync("User-" + this.UserData.User.UserName + ".json", CreationCollisionOption.ReplaceExisting))
-                {
-                    serializer.WriteObject(stream, this.UserData);
-                }
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync("User-" + this.UserData.User.UserName + ".json", CreationCollisionOption.ReplaceExisting))
+            //    {
+            //        serializer.WriteObject(stream, this.UserData);
+            //    }
+            //}
+            //catch (Exception)
+            //{
 
-            }
+            //}
         }
 
         private void RemoveUnimportantData()

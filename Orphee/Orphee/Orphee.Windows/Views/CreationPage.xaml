@@ -416,42 +416,11 @@
                                     <VisualState x:Name="PointerOver">
                                         <Storyboard>
                                             <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PointerOverBorder"/>
-                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectionBackground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>-->
-                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="SelectedBorder">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBorderThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>-->
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectedEarmark">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
-                                    <!--<VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <PointerDownThemeAnimation TargetName="ContentContainer"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="PointerOverPressed">
-                                        <Storyboard>
-                                            <PointerDownThemeAnimation TargetName="ContentContainer"/>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PointerOverBorder"/>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectionBackground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="SelectedBorder">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBorderThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectedEarmark">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="{StaticResource ListViewItemDisabledThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="contentPresenter"/>
-                                        </Storyboard>
-                                    </VisualState>-->
                                 </VisualStateGroup>
                                 <VisualStateGroup x:Name="FocusStates">
                                     <VisualState x:Name="Focused">
@@ -479,15 +448,6 @@
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="HorizontalSelectionHint">
-                                        <!--<Storyboard>
-                                            <SwipeHintThemeAnimation ToHorizontalOffset="-23" TargetName="SelectionBackground" ToVerticalOffset="0"/>
-                                            <SwipeHintThemeAnimation ToHorizontalOffset="-23" TargetName="ContentBorder" ToVerticalOffset="0"/>
-                                            <SwipeHintThemeAnimation ToHorizontalOffset="-23" TargetName="SelectedBorder" ToVerticalOffset="0"/>
-                                            <DoubleAnimationUsingKeyFrames Duration="0:0:0.500" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HintGlyph">
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0.5"/>
-                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.500" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>-->
                                     </VisualState>
                                     <VisualState x:Name="NoSelectionHint"/>
                                 </VisualStateGroup>
@@ -678,7 +638,6 @@
         </Style>
     </Page.Resources>
 
-
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid>
             <Grid.RowDefinitions>
@@ -719,7 +678,7 @@
                         <ItemsControl ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}" Margin="0, 0, 150, 0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl Name="TrackItemsControl" ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding TrackVisibility}">
+                                    <ItemsControl Name="TrackItemsControl" ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding UI.TrackVisibility}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <ItemsStackPanel Orientation="Vertical"/>
@@ -735,7 +694,7 @@
                                                     </ItemsControl.ItemsPanel>
                                                     <ItemsControl.ItemTemplate>
                                                         <DataTemplate>
-                                                            <ui:MyRectangleButton x:Name="ToogleButton" Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" ButtonBackgroundColor="{Binding DataContext.TrackColor, ElementName=TrackItemsControl}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" RectangleVisibility="{Binding IsChecked}"/>
+                                                            <ui:MyRectangleButton x:Name="ToogleButton" Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" ButtonBackgroundColor="{Binding DataContext.UI.TrackColor, ElementName=TrackItemsControl}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" RectangleVisibility="{Binding IsChecked}"/>
                                                         </DataTemplate>
                                                     </ItemsControl.ItemTemplate>
                                                 </ItemsControl>
@@ -863,7 +822,7 @@
                                                             <DataTemplate>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Line X1="0" Y1="0" X2="0" Y2="1" Stretch="Fill"  Stroke="#BDBEC0"/>
-                                                                        <Rectangle Fill="{Binding DataContext.TrackColor, ElementName=ColumnMapItemsControl}" Opacity="{Binding IsRectangleVisible}" Height="35" Width="35"/>
+                                                                        <Rectangle Fill="{Binding DataContext.UI.TrackColor, ElementName=ColumnMapItemsControl}" Opacity="{Binding IsRectangleVisible}" Height="35" Width="35"/>
                                                                     <Line X1="0" Y1="0" X2="0" Y2="1" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 0, -1, 0"/>
                                                                 </StackPanel>
                                                             </DataTemplate>

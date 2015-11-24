@@ -12,7 +12,6 @@ using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 using Orphee.RestApiManagement.Senders.Interfaces;
-using Q42.WinRT.Data;
 
 namespace Orphee.ViewModels
 {
@@ -99,7 +98,7 @@ namespace Orphee.ViewModels
                 this.IsLiked = RestApiManagerBase.Instance.UserData.User.Likes.Any(l => l.ToString() == this.Creation.Id);
             if (!App.InternetAvailabilityWatcher.IsInternetUp)
                 DisplayMessage("Connexion unavailable");
-            var commentList = await DataCache.GetAsync("CreationPage-" + this.Creation.Id, async () => await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this.Creation.Id), DateTime.Now.AddHours(1));
+            var commentList = await this._getter.GetInfo<List<Comment>>(RestApiManagerBase.Instance.RestApiPath["comment"] + "/creation/" + this.Creation.Id);
             if (!VerifyReturnedValue(commentList, ""))
                 return;
             AddRequestedCommentsToCommentList(commentList);

@@ -43,8 +43,8 @@ namespace Orphee.CreationShared
         /// </summary>
         public ToggleButtonNote()
         {
-            //this.Width = (int) (Window.Current.Bounds.Width / 11);
-            //this.Height = (int) (Window.Current.Bounds.Height / 18.5);
+            this.Width = (int) (Window.Current.Bounds.Width / 11);
+            this.Height = (int) (Window.Current.Bounds.Height / 18.5);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

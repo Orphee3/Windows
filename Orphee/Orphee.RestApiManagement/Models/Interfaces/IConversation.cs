@@ -33,5 +33,7 @@ namespace Orphee.RestApiManagement.Models.Interfaces
         List<Message> Messages { get; set; }  
         /// <summary>Conversation picture source </summary>
         string ConversationPictureSource { get; set; }
+        bool HasReceivedNewMessage { get; set; }
+        bool IsNew { get; set; }
     }
 }

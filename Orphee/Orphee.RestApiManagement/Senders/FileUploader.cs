@@ -73,7 +73,7 @@ namespace Orphee.RestApiManagement.Senders
                         if (!response.IsSuccessStatusCode)
                             return false;
                         dynamic newCreation = JsonConvert.DeserializeObject<dynamic>(responseData);
-                        RestApiManagerBase.Instance.UserData.User.Creations.Add(newCreation);
+                        //RestApiManagerBase.Instance.UserData.User.CreationList.Add(newCreation);
                         this._newCreationId = newCreation["_id"];
                     }
                 }

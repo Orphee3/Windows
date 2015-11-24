@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
-    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True" Name="ThisPage">
 
@@ -136,7 +135,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Ellipse Width="50" Height="50" Grid.Column="{Binding Path=ElipseColumnNumber}" HorizontalAlignment="Center" VerticalAlignment="Top" Tapped="UserPicture_OnTapped">
                                     <Ellipse.Fill>
-                                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding Path=UserPictureSource}"/>
+                                        <ImageBrush ImageSource="{Binding Path=UserPictureSource}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <Border Grid.Column="{Binding Path=MessageColumnNumber}" Background="{Binding Path=BackgroundMessageColor}" CornerRadius="10,10,10,10" Margin="8, 0, 8, 0" HorizontalAlignment="{Binding Path=MessageHorizontalAlignment}">

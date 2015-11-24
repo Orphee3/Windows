@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -62,9 +64,9 @@ namespace Orphee.UI
         private async void OnNotificationReceiverPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "_hasReceivedFriendNotification" || e.PropertyName == "_hasReceivedFriendConfirmationNotification")
-                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Profile.NotificationDotVisibility = Visibility.Visible; }));
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Profile.NotificationDotVisibility = Visibility.Visible; });
             else if (e.PropertyName == "_hasReceivedMessageNotification")
-                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Conversation.NotificationDotVisibility = Visibility.Visible; }));
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.Conversation.NotificationDotVisibility = Visibility.Visible; });
         }
 
         private void InitButtonColorForeground()

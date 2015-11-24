@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
@@ -7,7 +6,6 @@ using Newtonsoft.Json;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
-using Q42.WinRT.Data;
 
 namespace Orphee.ViewModels
 {
@@ -18,6 +16,29 @@ namespace Orphee.ViewModels
     {
         /// <summary>List of the user's creation </summary>
         public ObservableCollection<Creation> CreationList { get; private set; }
+
+        private int _creationNumber;
+
+        public int CreationNumber
+        {
+            get { return this._creationNumber; }
+            set
+            {
+                if (this._creationNumber != value)
+                    SetProperty(ref this._creationNumber, value);
+            }
+        }
+        private int _likeNumber;
+
+        public int LikeNumber
+        {
+            get { return this._likeNumber; }
+            set
+            {
+                if (this._likeNumber != value)
+                    SetProperty(ref this._likeNumber, value);
+            }
+        }
         /// <summary>Redirects to the previous page </summary>
         public DelegateCommand BackCommand { get; private set; }
         public UserBase Creator { get; private set; }
@@ -42,9 +63,11 @@ namespace Orphee.ViewModels
             if (!App.InternetAvailabilityWatcher.IsInternetUp)
                 DisplayMessage("Connexion unavailable");
             this.CreationList.Clear();
-            var creations = await DataCache.GetAsync("ChannelInfoPage-" + this.Creator.Id, async () => await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + this.Creator.Id + "/creation"), null, true);
+            var creations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + this.Creator.Id + "/creation");
             if (VerifyReturnedValue(creations, ""))
                 AddRequestedCreationsInCreationList(creations);
+            this.CreationNumber = this.CreationList.Count;
+            this.LikeNumber = this.Creator.Likes?.Count ?? 0;
         }
 
         private void AddRequestedCreationsInCreationList(List<Creation> creations)

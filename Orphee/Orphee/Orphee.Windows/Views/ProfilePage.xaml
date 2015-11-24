@@ -58,11 +58,11 @@
                 <Ellipse  Height="250" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{Binding DataContext.ChangePictureCommand, ElementName=Page}"/>
+                            <core:InvokeCommandAction Command="{Binding ChangePictureCommand}"/>
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                     <Ellipse.Fill>
-                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding LoggedInUser.Picture}"/>
+                        <ImageBrush ImageSource="{Binding LoggedInUser.Picture}"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>
@@ -84,7 +84,7 @@
                 </StackPanel>
                 <Line Grid.Column="1" X1="0" Y1="5" X2="0" Y2="15" Stroke="{Binding LoggedInUser.PictureDominantColor}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
-                    <Image Source="/Assets/friend-icon.png" Height="15" Width="15"/>
+                    <Image Source="/Assets/friend-icon-grey.png" Height="15" Width="15"/>
                     <TextBlock Text="1500" Foreground="{Binding LoggedInUser.PictureDominantColor}" FontSize="15"/>
                 </StackPanel>
             </Grid>

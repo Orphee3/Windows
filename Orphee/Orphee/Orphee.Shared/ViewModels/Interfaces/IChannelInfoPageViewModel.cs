@@ -13,6 +13,8 @@ namespace Orphee.ViewModels.Interfaces
         ObservableCollection<Creation> CreationList { get; }
         /// <summary>Redirects to the previous page </summary>
         DelegateCommand BackCommand { get; }
+        int CreationNumber { get; set; }
+        int LikeNumber { get; set; }
         /// <summary>Name of the user </summary>
         UserBase Creator { get; }
     }

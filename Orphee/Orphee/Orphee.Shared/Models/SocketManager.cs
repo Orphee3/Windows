@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
@@ -34,7 +35,7 @@ namespace Orphee.Models
                     Hostname = "163.5.84.242",
                 });
                 this.SocketEmitter = new SocketEmitter(this._socket);
-                this._socketListener = new SocketListener(this._socket);
+                this._socketListener = new SocketListener(this._socket, new ConversationParser());
                 this._socketListener.InitSocketListeners();
                 this._socket.On(Socket.EVENT_CONNECT, () =>
                 {
@@ -48,16 +49,17 @@ namespace Orphee.Models
         {
             if (e.PropertyName != "IsConnected")
                 return;
-            if (!RestApiManagerBase.Instance.IsConnected)
-                await Application.Current.Resources.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, CloseSocket);
+            if (RestApiManagerBase.Instance.IsConnected && App.InternetAvailabilityWatcher.IsInternetUp)
+                await App.Current.Resources.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+
+                if (this._socket == null)
+                    InitSocket();
+                else
+                    this._socket.Connect();
+            });
             else
-                await Application.Current.Resources.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    if (this._socket == null)
-                        InitSocket();
-                    else
-                        this._socket.Connect();
-                });
+                await App.Current.Resources.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, CloseSocket);
         }
 
         public void CloseSocket()

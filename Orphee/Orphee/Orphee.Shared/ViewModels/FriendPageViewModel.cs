@@ -81,17 +81,17 @@ namespace Orphee.ViewModels
 
         private async void ValidateConversationCommandExec()
         {
-            if (CheckForExistingConversation())
-                return;
             var friendList = this.FriendList.Where(f => f.IsChecked).ToList();
-            var conversation = new Conversation { UserList = friendList };
+            if (friendList == null || friendList.Count == 0 || CheckForExistingConversation())
+                return;
+            var conversation = new Conversation { UserList = friendList, IsNew = true, Name = GenerateConversationName(friendList)};
+            conversation.IsPrivate = friendList.Count <= 1;
             if (friendList.Count > 1)
             {
-                var result = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.CreateGroupChat(friendList.Select(u => u.Id).ToList());
                 RestApiManagerBase.Instance.UserData.User.ConversationList.Add(conversation);
-                // Add non sent message icon
+                var result = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.CreateGroupChat(friendList.Select(u => u.Id).ToList());
             }
-            App.MyNavigationService.Navigate("Chat", conversation);
+            App.MyNavigationService.Navigate("Chat", JsonConvert.SerializeObject(conversation));
         }
 
         private async void RemoveFriendship(UserBase user)
@@ -115,6 +115,18 @@ namespace Orphee.ViewModels
                 return true;
             }
             return false;
+        }
+
+        private string GenerateConversationName(List<UserBase> friendList)
+        {
+            var conversationName = "";
+            foreach (var user in friendList)
+            {
+                conversationName += user.Name;
+                if (user != friendList.Last())
+                    conversationName += ", ";
+            }
+            return conversationName;
         }
     }
 }

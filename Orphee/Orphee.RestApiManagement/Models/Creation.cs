@@ -80,7 +80,7 @@ namespace Orphee.RestApiManagement.Models
         }
         /// <summary>List of the creators of the creation</summary>
         [DataMember]
-        public JArray CreatorList { get; set; }
+        public List<UserBase> CreatorList { get; set; }
         public string Picture { get; set; }
 
         /// <summary>

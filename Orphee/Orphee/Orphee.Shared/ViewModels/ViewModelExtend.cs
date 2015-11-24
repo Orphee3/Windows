@@ -56,8 +56,8 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._connexionUnavailableTextBlockVisibility, value);
             }
         }
-        private readonly CoreDispatcher _dispatcher;
         protected IOnUserLoginNewsGetter _onUserLoginNewsGetter;
+        private readonly CoreDispatcher _dispatcher;
 
         public ViewModelExtend()
         {
@@ -71,10 +71,10 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedFrom(Dictionary<string, object> viewModelState, bool suspending)
         {
-            App.InternetAvailabilityWatcher.PropertyChanged -= InternetAvailabilityWatcherOnPropertyChanged;
+             App.InternetAvailabilityWatcher.PropertyChanged -= InternetAvailabilityWatcherOnPropertyChanged;
         }
 
-        private async void InternetAvailabilityWatcherOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        protected async void InternetAvailabilityWatcherOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "IsInternetUp")
             {
@@ -116,8 +116,11 @@ namespace Orphee.ViewModels
         private bool CheckForNullValue<T>(T value)
         {
             if (value != null)
-                if (((IList)value).Count > 0)
+            {
+                var list = value as IList;
+                if (list == null || list.Count > 0)
                     return true;
+            }
             this.EmptyMessageVisibility = Visibility.Visible;
             return false;
         }

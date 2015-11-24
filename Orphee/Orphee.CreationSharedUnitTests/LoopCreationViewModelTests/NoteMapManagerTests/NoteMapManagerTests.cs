@@ -84,9 +84,9 @@ namespace Orphee.CreationSharedUnitTests.LoopCreationViewModelTests.NoteMapManag
         }
 
         [Test]
-        public void TheNoteMapShouldHave20Columns()
+        public void TheNoteMapShouldHaveAHundredColumns()
         {
-            Assert.AreEqual(20, this.NoteMap[0].Count);
+            Assert.AreEqual(100, this.NoteMap[0].Count);
         }
     }
     [TestFixture]
@@ -101,9 +101,9 @@ namespace Orphee.CreationSharedUnitTests.LoopCreationViewModelTests.NoteMapManag
         }
 
         [Test]
-        public void TheResultShouldBeEqualToTwoHundred()
+        public void TheResultShouldBeEqualToOneThousandFifty()
         {
-            Assert.AreEqual(200, this.NoteMap[0].Count);
+            Assert.AreEqual(1050, this.NoteMap[0].Count);
         }
     }
 
@@ -123,9 +123,9 @@ namespace Orphee.CreationSharedUnitTests.LoopCreationViewModelTests.NoteMapManag
         }
 
         [Test]
-        public void TheNoteMapShouldHaveNineColumns()
+        public void TheNoteMapShouldHaveFortyNineColumns()
         {
-            Assert.AreEqual(9, this.NoteMap[0].Count);
+            Assert.AreEqual(49, this.NoteMap[0].Count);
         }
     }
     [TestFixture]
@@ -134,7 +134,7 @@ namespace Orphee.CreationSharedUnitTests.LoopCreationViewModelTests.NoteMapManag
         [SetUp]
         public void Init()
         {
-            for (var counter = 0; counter < 11; counter++)
+            for (var counter = 0; counter < 50; counter++)
                 this.NoteMapManager.RemoveAColumnFromThisNoteMap(this.OrpheeFile.OrpheeTrackList[0].NoteMap);
             this.NoteMap = this.OrpheeFile.OrpheeTrackList[0].NoteMap;
         }

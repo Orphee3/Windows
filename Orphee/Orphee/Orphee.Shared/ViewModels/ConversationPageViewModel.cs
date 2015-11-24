@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
@@ -65,6 +67,29 @@ namespace Orphee.ViewModels
             }
             this.CreateNewConversationCommand = new DelegateCommand(() => App.MyNavigationService.Navigate("Friend", ""));
             this.LoginButton = new DelegateCommand(() => App.MyNavigationService.Navigate("Login", null));
+            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.UserData.User.ConversationList != null)
+                RestApiManagerBase.Instance.UserData.User.ConversationList.CollectionChanged += ConversationListOnCollectionChanged;
+        }
+
+        private void ConversationListOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+        {
+            try
+            {
+                this.ConversationList.Add(RestApiManagerBase.Instance.UserData.User.ConversationList.Last());
+                if (this.ConversationList.Count == 1)
+                    this.EmptyMessageVisibility = Visibility.Collapsed;
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+        }
+
+        public override void OnNavigatedFrom(Dictionary<string, object> viewModelState, bool suspending)
+        {
+            App.InternetAvailabilityWatcher.PropertyChanged -= InternetAvailabilityWatcherOnPropertyChanged;
+            if (RestApiManagerBase.Instance.IsConnected && RestApiManagerBase.Instance.UserData.User.ConversationList != null)
+                RestApiManagerBase.Instance.UserData.User.ConversationList.CollectionChanged -= ConversationListOnCollectionChanged;
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
@@ -95,24 +120,10 @@ namespace Orphee.ViewModels
         public void CreateNewConversation(Conversation conversation)
         {
             if (string.IsNullOrEmpty(conversation.Name))
-                SetConversationName(conversation);
+                this._conversationParser.ParseConversationList(new ObservableCollection<Conversation> { conversation });
             if (conversation.UserList.Count == 0 || conversation.UserList == null)
                 conversation.ConversationPictureSource = conversation.UserList[0].Picture;           
             SetProgressRingVisibility(false);
-        }
-
-        private void SetConversationName(Conversation conversation)
-        {
-            if (conversation.UserList.Count == 0 || conversation.UserList == null)
-                return;
-            foreach (var user in conversation.UserList)
-            {
-                conversation.Name += user.Name;
-                if (user != conversation.UserList.Last())
-                    conversation.Name += " ,";
-            }
-            if (conversation.Name.Length >= 30)
-                conversation.Name = conversation.Name.Substring(0, 30) + "...";
         }
 
         public void InitConversation()
@@ -130,7 +141,7 @@ namespace Orphee.ViewModels
 
         private async void GetNewConversation(Message message)
         {
-            var conversationList = await this._getter.GetInfo<List<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
+            var conversationList = await this._getter.GetInfo<ObservableCollection<Conversation>>(RestApiManagerBase.Instance.RestApiPath["users"] + "/" + RestApiManagerBase.Instance.UserData.User.Id + "/rooms");
             if (!VerifyReturnedValue(conversationList, ""))
                 conversationList = RestApiManagerBase.Instance.UserData.User.ConversationList;
             this._conversationParser.ParseConversationList(conversationList);
@@ -143,7 +154,6 @@ namespace Orphee.ViewModels
         {
             message.SetProperties();
             conversation.Messages.Add(message);
-            conversation.LastMessageDateString = DateTime.Now.ToString("HH:mm");
         }
 
         private void ResetVisibility(bool isConnected)

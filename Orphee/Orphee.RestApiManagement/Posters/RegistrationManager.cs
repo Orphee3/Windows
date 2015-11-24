@@ -22,12 +22,12 @@ namespace Orphee.RestApiManagement.Posters
         /// <param name="name">Name of the user</param>
         /// <param name="password">Password of the accout</param>
         /// <returns>Return true if the account was created. Return false otherwise</returns>
-        public async Task<bool> RegisterUser(string userName, string name, string password)
+        public async Task<bool> RegisterUser(string mailAdress, string name, string password)
         {
             var values = new Dictionary<string, string>
             {
                 { "name", name },
-                { "username", userName },
+                { "username", mailAdress },
                 { "password", password}
             };
 
@@ -41,6 +41,7 @@ namespace Orphee.RestApiManagement.Posters
                         return false;
                     RestApiManagerBase.Instance.UserData = JsonConvert.DeserializeObject<UserData>(result);
                     RestApiManagerBase.Instance.IsConnected = true;
+                    RestApiManagerBase.Instance.UserData.User.GetUserPictureDominantColor();
                 }
                 return true;
             }

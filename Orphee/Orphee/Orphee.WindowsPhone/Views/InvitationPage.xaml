@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
-    xmlns:controls="using:Q42.WinRT.Controls"
     mvvm:ViewModelLocator.AutoWireViewModel="True" Name="Page">
 
     <Page.Resources>
@@ -136,7 +135,7 @@
 
                             <Ellipse Width="50" Height="50" Grid.Column="0" HorizontalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush controls:ImageExtensions.CacheUri="{Binding Path=Picture}"/>
+                                    <ImageBrush ImageSource="{Binding Path=Picture}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <TextBlock Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>

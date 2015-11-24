@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Orphee.UI"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
-    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -129,7 +128,7 @@
 
                 <Ellipse Width="200" Height="200" Grid.Column="0">
                     <Ellipse.Fill>
-                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding Creator.Picture}"/>
+                        <ImageBrush ImageSource="{Binding Creator.Picture}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Line Grid.Column="1" X1="0" Y1="0" X2="0" Y2="10" Stretch="Fill" Stroke="#BDBEC0" Margin="10, 50, 10, 50" HorizontalAlignment="Left"/>
@@ -168,7 +167,7 @@
                             <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal">
                                     <Grid HorizontalAlignment="Left">
-                                        <Image controls:ImageExtensions.CacheUri="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
+                                        <Image Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                                     </Grid>
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="50, 0, 0, 0" VerticalAlignment="Center">
                                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">

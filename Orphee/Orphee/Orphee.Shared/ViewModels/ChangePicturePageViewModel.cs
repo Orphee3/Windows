@@ -4,8 +4,6 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using Orphee.RestApiManagement.Getters.Interfaces;
-using Orphee.RestApiManagement.Senders.Interfaces;
 using Orphee.ViewModels.Interfaces;
 
 namespace Orphee.ViewModels

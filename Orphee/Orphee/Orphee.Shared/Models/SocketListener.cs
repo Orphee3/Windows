@@ -1,7 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Models;
+using Orphee.RestApiManagement.Models.Interfaces;
 using Quobject.SocketIoClientDotNet.Client;
 
 namespace Orphee.Models
@@ -9,10 +15,12 @@ namespace Orphee.Models
     public class SocketListener
     {
         private readonly Socket _socket;
+        private readonly IConversationParser _conversationParser;
 
-        public SocketListener(Socket socket)
+        public SocketListener(Socket socket, IConversationParser conversationParser)
         {
             this._socket = socket;
+            this._conversationParser = conversationParser;
         }
 
         public void InitSocketListeners()
@@ -78,34 +86,42 @@ namespace Orphee.Models
 
         }
 
-        private void ErrorNotificationReceiver(object data)
+        private  void ErrorNotificationReceiver(object data)
         {
 
         }
 
-        private void FriendNotificationReceiver(object data)
+        private async void FriendNotificationReceiver(object data)
         {
             var userJson = JObject.FromObject(data);
             var userAskingForFriendShip = JsonConvert.DeserializeObject<UserBase>(userJson["userSource"].ToString());
-            RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification = true;
-            RestApiManagerBase.Instance.UserData.User.PendingFriendList.Add(userAskingForFriendShip);
+
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification = true;
+                RestApiManagerBase.Instance.UserData.User.PendingFriendList.Add(userAskingForFriendShip);
+            });
         }
 
-        private void NewFriendNotificationReceiver(object data)
+        private async void NewFriendNotificationReceiver(object data)
         {
             var userJson = JObject.FromObject(data);
             var userThatConfirmedFriendship = JsonConvert.DeserializeObject<UserBase>(userJson["userSource"].ToString());
-            RestApiManagerBase.Instance.UserData.User.HasReceivedFriendConfirmationNotification = true;
-            RestApiManagerBase.Instance.UserData.User.FriendList.Add(userThatConfirmedFriendship);
+
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                RestApiManagerBase.Instance.UserData.User.HasReceivedFriendConfirmationNotification = true;
+                RestApiManagerBase.Instance.UserData.User.FriendList.Add(userThatConfirmedFriendship);
+            });
         }
 
         private void CommentNotificationReceiver(object data)
         {
             var userJson = JObject.FromObject(data);
             var media = JsonConvert.DeserializeObject<Creation>(userJson["media"].ToString());
-            var comment = new Comment { CreationId = media.Id, };
-            RestApiManagerBase.Instance.UserData.User.PendingCommentList.Add(comment);
-            RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification = true;
+            var comment = new Comment {CreationId = media.Id,};
+                RestApiManagerBase.Instance.UserData.User.PendingCommentList.Add(comment);
+                RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification = true;
         }
 
         private void LikeNotificationReceiver(object data)
@@ -118,15 +134,38 @@ namespace Orphee.Models
 
         }
 
-        private void MessageNotificationReceiver(object data)
+        private async void MessageNotificationReceiver(object data)
         {
             var dataString = JObject.FromObject(data);
+            var test = dataString.ToString();
             var message = JsonConvert.DeserializeObject<Message>(dataString["message"].ToString());
-            message.TargetRoom = dataString["target"].ToString();
             message.Type = dataString["type"].ToString();
+            message.TargetRoom = message.Type != "group message" ? dataString["target"]["_id"].ToString() : dataString["target"].ToString();
             message.User = JsonConvert.DeserializeObject<UserBase>(dataString["source"].ToString());
-            RestApiManagerBase.Instance.UserData.User.PendingMessageList.Add(message);
-            RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = true;
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                message.SetProperties();
+                var belongingConversation = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == message.TargetRoom);
+                if (belongingConversation == null)
+                    CreateNewConversation(message);
+                else
+                    UpdateBelongingConversation(RestApiManagerBase.Instance.UserData.User.ConversationList.IndexOf(belongingConversation), message);
+                RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = true;
+            });
+        }
+
+        private void CreateNewConversation(Message message)
+        {
+            var newConversation = new Conversation() { ConversationPictureSource = message.UserPictureSource, Id = message.TargetRoom, IsPrivate = message.Type == "private message", UserList = new List<UserBase> { message.User } };
+            newConversation.Messages.Add(message);
+            this._conversationParser.ParseConversationList(new ObservableCollection<Conversation> { newConversation });
+        }
+
+        private void UpdateBelongingConversation(int messageIndex, Message message)
+        {
+            RestApiManagerBase.Instance.UserData.User.ConversationList[messageIndex].LastMessageDateString = message.Hour;
+            RestApiManagerBase.Instance.UserData.User.ConversationList[messageIndex].LastMessagePreview = message;
+            RestApiManagerBase.Instance.UserData.User.ConversationList[messageIndex].LastMessagePreview.ReceivedMessage = this._conversationParser.GetSubstringIfTooLong(message.ReceivedMessage);
         }
 
         private void ChatGroupCreatedNotificationReceiver(object data)

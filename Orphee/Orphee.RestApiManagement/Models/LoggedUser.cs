@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 
 namespace Orphee.RestApiManagement.Models
@@ -22,8 +23,9 @@ namespace Orphee.RestApiManagement.Models
             this.PendingFriendList = new List<UserBase>();
             this.PendingCommentList = new List<Comment>();
             this.FriendList = new List<UserBase>();
-            this.ConversationList = new List<Conversation>();
+            this.ConversationList = new ObservableCollection<Conversation>();
             this.NotificationList = new List<News>();
+            this.CreationList = new List<Creation>();
         }
     }
 }

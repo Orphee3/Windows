@@ -8,7 +8,6 @@
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:controls="using:Q42.WinRT.Controls"
     mc:Ignorable="d"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
@@ -62,7 +61,7 @@
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                     <Ellipse.Fill>
-                        <ImageBrush controls:ImageExtensions.CacheUri="{Binding LoggedInUser.Picture}"/>
+                        <ImageBrush ImageSource="{Binding LoggedInUser.Picture}"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>

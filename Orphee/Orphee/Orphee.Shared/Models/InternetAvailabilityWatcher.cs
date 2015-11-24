@@ -34,15 +34,12 @@ namespace Orphee.Models
         {
             if (!IsInternet())
             {
-                RestApiManagerBase.Instance.IsConnected = false;
                 this.SocketManager.CloseSocket();
                 this.IsInternetUp = false;
             }
             else
             {
                 this.IsInternetUp = true;
-                if (RestApiManagerBase.Instance.UserData != null)
-                    RestApiManagerBase.Instance.IsConnected = true;
                 if (!this.SocketManager.IsSocketConnected)
                     this.SocketManager.InitSocket();
                 else

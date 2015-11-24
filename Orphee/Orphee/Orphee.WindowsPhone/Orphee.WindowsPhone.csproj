@@ -218,14 +218,6 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Q42.WinRT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Q42.WinRT.1.5.0.42\lib\portable-win81+wpa81\Q42.WinRT.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Q42.WinRT.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Q42.WinRT.Portable.1.2.3.42\lib\portable-net45+win+wpa81+wp80\Q42.WinRT.Portable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="SocketIoClientDotNet, Version=0.9.12.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SocketIoClientDotNet.0.9.12\lib\portable-win81+wpa81\SocketIoClientDotNet.dll</HintPath>
       <Private>True</Private>
@@ -378,6 +370,7 @@
     <Content Include="Assets\creation-icon.png" />
     <Content Include="Assets\defaultUser.png" />
     <Content Include="Assets\fb-login-btn.png" />
+    <Content Include="Assets\friend-icon-grey.png" />
     <Content Include="Assets\friend-icon-white.png" />
     <Content Include="Assets\friend-icon.png" />
     <Content Include="Assets\g-login-btn.png" />
