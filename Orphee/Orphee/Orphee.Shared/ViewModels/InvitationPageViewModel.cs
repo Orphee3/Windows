@@ -60,6 +60,7 @@ namespace Orphee.ViewModels
             if (!VerifyReturnedValue(returnValue, ""))
                 return;
             RestApiManagerBase.Instance.UserData.User.PendingFriendList.Remove(user);
+            RestApiManagerBase.Instance.UserData.User.FriendList.Add(user);
         }
 
         private void CancelCommandExec(UserBase user)

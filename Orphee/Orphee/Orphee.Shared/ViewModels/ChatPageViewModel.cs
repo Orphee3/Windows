@@ -78,12 +78,21 @@ namespace Orphee.ViewModels
         {
             this._actualConversation = JsonConvert.DeserializeObject<Conversation>(navigationParameter as string);
             this.ConversationName = this._actualConversation.Name;
+            if (this._actualConversation.HasReceivedNewMessage)
+                ResetHasReceivedNewMessage();
             if (this._actualConversation.IsNew)
                 return;
             this.Conversation.Clear();
             this._actualConversation.Messages.Clear();
             GetConversationMessages();
             InitConversation(this._actualConversation.Messages);
+        }
+
+        private void ResetHasReceivedNewMessage()
+        {
+            var conversationIndex = RestApiManagerBase.Instance.UserData.User.ConversationList.IndexOf(RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(c => c.Id == this._actualConversation.Id));
+            if (conversationIndex != -1)
+                RestApiManagerBase.Instance.UserData.User.ConversationList[conversationIndex].HasReceivedNewMessage = false;
         }
 
         private async void GetConversationMessages()
@@ -113,26 +122,40 @@ namespace Orphee.ViewModels
         {
             if (string.IsNullOrEmpty(this.Message))
                 return;
+            var newMessage = CreateNewMessage();
+            this.Conversation.Add(newMessage);
+            if (this._actualConversation.IsNew)
+                SetCurrentConversationIsNewToFalse();
+            SetConversationLastMessagePreview(newMessage);
+            SendMessage();
+            this.Message = string.Empty;
+        }
+
+        private void SetConversationLastMessagePreview(Message newMessage)
+        {
+            var conversation = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id);
+            conversation.LastMessagePreview = newMessage;
+        }
+
+        private Message CreateNewMessage()
+        {
             var actualUser = RestApiManagerBase.Instance.UserData.User;
             var newMessage = new Message
             {
-                User = new UserBase() {Id = actualUser.Id, Name = actualUser.Name, Picture = actualUser.Picture},
+                User = new UserBase() { Id = actualUser.Id, Name = actualUser.Name, Picture = actualUser.Picture },
                 Date = DateTime.Now,
                 ReceivedMessage = this.Message
             };
             newMessage.SetProperties();
-            this.Conversation.Add(newMessage);
-           // var conversation = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id);
-          //  conversation.LastMessagePreview = newMessage;
-            if (this._actualConversation.IsNew)
-            {
-                this._actualConversation.IsNew = false;
-               // RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id).IsNew = false;
-                if (this._actualConversation.UserList.Count == 1)
-                    RestApiManagerBase.Instance.UserData.User.ConversationList.Add(this._actualConversation);
-            }
-            SendMessage();
-            this.Message = string.Empty;
+            return newMessage;
+        }
+
+        private void SetCurrentConversationIsNewToFalse()
+        {
+            if (this._actualConversation.UserList.Count == 1)
+                RestApiManagerBase.Instance.UserData.User.ConversationList.Add(this._actualConversation);
+            this._actualConversation.IsNew = false;
+            RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id).IsNew = false;
         }
 
         private async void SendMessage()

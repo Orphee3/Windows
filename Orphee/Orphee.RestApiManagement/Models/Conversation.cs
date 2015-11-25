@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
 using Orphee.RestApiManagement.Annotations;
 using Orphee.RestApiManagement.Models.Interfaces;
@@ -78,12 +79,28 @@ namespace Orphee.RestApiManagement.Models
                 if (this._hasReceivedNewMessage != value)
                 {
                     this._hasReceivedNewMessage = value;
+                    this.NotificationDotVisibility = this._hasReceivedNewMessage ? Visibility.Visible : Visibility.Collapsed;
                     OnPropertyChanged(nameof(HasReceivedNewMessage));
                 }
             }
             
         }
 
+        private Visibility _notificationDotVisibility = Visibility.Collapsed;
+        [DataMember]
+        public Visibility NotificationDotVisibility
+        {
+            get { return this._notificationDotVisibility; }
+            set
+            {
+                if (this._notificationDotVisibility != value)
+                {
+                    this._notificationDotVisibility = value;
+                    OnPropertyChanged(nameof(NotificationDotVisibility));
+                }
+            }
+
+        }
         /// <summary>
         /// Constructor
         /// </summary>

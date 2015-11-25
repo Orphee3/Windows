@@ -54,7 +54,7 @@ namespace Orphee.UI
                 button.NotificationDotVisibility = Visibility.Collapsed;
                 RestApiManagerBase.Instance.UserData.User.HasReceivedFriendNotification = false;
             }
-            else if (button.Name == "Messages" && button.NotificationDotVisibility == Visibility.Visible)
+            else if (button.Name == "Conversation" && button.NotificationDotVisibility == Visibility.Visible)
             {
                 button.NotificationDotVisibility = Visibility.Collapsed;
                 RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;

@@ -158,14 +158,16 @@ namespace Orphee.Models
         {
             var newConversation = new Conversation() { ConversationPictureSource = message.UserPictureSource, Id = message.TargetRoom, IsPrivate = message.Type == "private message", UserList = new List<UserBase> { message.User } };
             newConversation.Messages.Add(message);
+            newConversation.HasReceivedNewMessage = true;
             this._conversationParser.ParseConversationList(new ObservableCollection<Conversation> { newConversation });
         }
 
-        private void UpdateBelongingConversation(int messageIndex, Message message)
+        private void UpdateBelongingConversation(int conversationIndex, Message message)
         {
-            RestApiManagerBase.Instance.UserData.User.ConversationList[messageIndex].LastMessageDateString = message.Hour;
-            RestApiManagerBase.Instance.UserData.User.ConversationList[messageIndex].LastMessagePreview = message;
-            RestApiManagerBase.Instance.UserData.User.ConversationList[messageIndex].LastMessagePreview.ReceivedMessage = this._conversationParser.GetSubstringIfTooLong(message.ReceivedMessage);
+            RestApiManagerBase.Instance.UserData.User.ConversationList[conversationIndex].LastMessageDateString = message.Hour;
+            RestApiManagerBase.Instance.UserData.User.ConversationList[conversationIndex].LastMessagePreview = message;
+            RestApiManagerBase.Instance.UserData.User.ConversationList[conversationIndex].LastMessagePreview.ReceivedMessage = this._conversationParser.GetSubstringIfTooLong(message.ReceivedMessage);
+            RestApiManagerBase.Instance.UserData.User.ConversationList[conversationIndex].HasReceivedNewMessage = true;
         }
 
         private void ChatGroupCreatedNotificationReceiver(object data)

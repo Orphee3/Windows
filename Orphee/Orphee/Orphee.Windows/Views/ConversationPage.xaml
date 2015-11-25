@@ -142,6 +142,7 @@
                             <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
                             <TextBlock Text="{Binding Path=LastMessagePreview.ReceivedMessage, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Foreground="#BDBEC0" FontSize="15" TextWrapping="WrapWholeWords"/>
                         </StackPanel>
+                        <Ellipse Fill="Red" Height="10" Width="10" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding NotificationDotVisibility}"/>
                         <TextBlock Grid.Column="2" Text="{Binding Path=LastMessagePreview.Date, Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#BDBEC0" FontSize="10"/>
                     </Grid>
                 </DataTemplate>
