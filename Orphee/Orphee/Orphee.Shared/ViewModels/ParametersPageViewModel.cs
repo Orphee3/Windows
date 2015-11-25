@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Prism.Commands;
+﻿using System.Collections.Generic;
+using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.Prism.Commands;
 using Orphee.RestApiManagement.Models;
 using Orphee.UI;
 using Orphee.ViewModels.Interfaces;
@@ -25,6 +27,11 @@ namespace Orphee.ViewModels
             var deleteAccountMessageDialog = new MyDeleteAccountMessageDialog();
 
             await deleteAccountMessageDialog.ShowAsync();
+        }
+
+        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
         }
 
         private void LogoutCommandExec()

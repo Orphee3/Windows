@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.RestApiManagement.Models;

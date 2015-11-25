@@ -93,6 +93,7 @@ namespace Orphee.ViewModels
 
         public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             this.CommentList.Clear();
             this.Creation = JsonConvert.DeserializeObject<Creation>(navigationParameter as string);
             if (RestApiManagerBase.Instance.IsConnected)

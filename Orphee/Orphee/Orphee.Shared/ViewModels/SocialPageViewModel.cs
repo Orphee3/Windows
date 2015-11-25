@@ -45,7 +45,8 @@ namespace Orphee.ViewModels
         /// <param name="navigationMode"></param>
         /// <param name="viewModelState"></param>
         public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
-        { 
+        {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             if (!App.InternetAvailabilityWatcher.IsInternetUp)
             {
                 SetProgressRingVisibility(false);

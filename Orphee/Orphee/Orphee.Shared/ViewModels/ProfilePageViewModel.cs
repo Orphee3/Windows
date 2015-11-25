@@ -71,6 +71,7 @@ namespace Orphee.ViewModels
         /// <param name="viewModelState"></param>
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             App.MyNavigationService.CurrentPageName = "Profile";
             if (RestApiManagerBase.Instance.IsConnected)
                 this.LoggedInUser = RestApiManagerBase.Instance.UserData.User;

@@ -47,6 +47,7 @@ namespace Orphee.ViewModels
         /// <param name="viewModelState"></param>
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             if (!VerifyReturnedValue(RestApiManagerBase.Instance.UserData.User.PendingFriendList, ""))
                 return;
             foreach (var pendingInvitation in RestApiManagerBase.Instance.UserData.User.PendingFriendList)

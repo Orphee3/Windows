@@ -21,7 +21,6 @@ namespace Orphee.ViewModels
     {
         public DelegateCommand<Creation> CreationInfoCommand { get; private set; }
         public DelegateCommand<Creation> ChannelInfoCommand { get; private set; }
-        public DelegateCommand Test { get; private set; }
         /// <summary>List of popular creations</summary>
         public ObservableCollection<Creation> PopularCreations { get; set; }
         private readonly IGetter _getter;
@@ -34,7 +33,6 @@ namespace Orphee.ViewModels
         public HomePageViewModel(IGetter getter)
         {
             this._getter = getter;
-            this.Test = new DelegateCommand(RequestPopularCreations);
             this.CreationInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("CreationInfo", JsonConvert.SerializeObject(creation)));
             this.ChannelInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("ChannelInfo", JsonConvert.SerializeObject(creation.CreatorList[0])));
             this.PopularCreations = new ObservableCollection<Creation>();
@@ -44,6 +42,7 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             if (App.InternetAvailabilityWatcher.IsInternetUp)
                 RequestPopularCreations();
         }

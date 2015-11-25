@@ -59,6 +59,7 @@ namespace Orphee.ViewModels
 
         public override async void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             this.Creator = JsonConvert.DeserializeObject<UserBase>(navigationParameter as string);
             if (!App.InternetAvailabilityWatcher.IsInternetUp)
                 DisplayMessage("Connexion unavailable");

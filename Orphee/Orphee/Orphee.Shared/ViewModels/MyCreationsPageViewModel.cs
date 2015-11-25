@@ -4,6 +4,7 @@ using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels.Interfaces;
 using Orphee.RestApiManagement.Getters.Interfaces;
 using System.Collections.Generic;
+using Windows.UI.Xaml.Navigation;
 using Orphee.Models.Interfaces;
 
 namespace Orphee.ViewModels
@@ -36,6 +37,11 @@ namespace Orphee.ViewModels
             InitCreationList();
         }
 
+        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
+        }
+
         private async void InitCreationList()
         {
             if (App.InternetAvailabilityWatcher.IsInternetUp)
@@ -51,6 +57,7 @@ namespace Orphee.ViewModels
         {
             
         }
+
         private void AddRequestedCreationInCreationList(List<Creation> creations)
         {
             foreach (var creation in creations)

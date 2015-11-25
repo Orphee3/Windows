@@ -76,6 +76,7 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             this._actualConversation = JsonConvert.DeserializeObject<Conversation>(navigationParameter as string);
             this.ConversationName = this._actualConversation.Name;
             if (this._actualConversation.HasReceivedNewMessage)

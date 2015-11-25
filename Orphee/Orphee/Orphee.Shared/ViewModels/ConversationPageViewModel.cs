@@ -94,6 +94,7 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             App.MyNavigationService.CurrentPageName = "Conversation";
             if (RestApiManagerBase.Instance.IsConnected)
                 InitConversationList();

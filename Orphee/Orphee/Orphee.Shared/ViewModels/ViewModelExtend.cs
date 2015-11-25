@@ -63,7 +63,6 @@ namespace Orphee.ViewModels
         {
             this.EmptyMessage = "Empty";
             this.EmptyMessageVisibility = Visibility.Collapsed;
-            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
                 this._dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
             this.ConnexionUnavailableTextBlockVisibility = App.InternetAvailabilityWatcher.IsInternetUp ? Visibility.Collapsed : Visibility.Visible;

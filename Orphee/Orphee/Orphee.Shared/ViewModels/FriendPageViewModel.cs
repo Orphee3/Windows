@@ -71,6 +71,7 @@ namespace Orphee.ViewModels
         /// <param name="viewModelState"></param>
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             this.CheckBoxVisibility = navigationParameter != null ? Visibility.Visible : Visibility.Collapsed;
             this.InvitationStackPanelVisibility = navigationParameter != null ? Visibility.Collapsed : Visibility.Visible;
             if (!VerifyReturnedValue(RestApiManagerBase.Instance.UserData.User.FriendList, ""))

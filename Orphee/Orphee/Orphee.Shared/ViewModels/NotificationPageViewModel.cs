@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Models.Interfaces;
@@ -21,6 +22,11 @@ namespace Orphee.ViewModels
             this.NewsList = new ObservableCollection<News>();
             SetProgressRingVisibility(true);
             InitNewsList();
+        }
+
+        public override void OnNavigatedFrom(Dictionary<string, object> viewModelState, bool suspending)
+        {
+            App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
         }
 
         private void InitNewsList()
