@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
@@ -20,7 +22,6 @@ namespace Orphee.ViewModels
         public DelegateCommand<Creation> CreationInfoCommand { get; private set; }
         public DelegateCommand<Creation> ChannelInfoCommand { get; private set; }
         public DelegateCommand Test { get; private set; }
-        private bool _isPageCreated = false;
         /// <summary>List of popular creations</summary>
         public ObservableCollection<Creation> PopularCreations { get; set; }
         private readonly IGetter _getter;
@@ -32,7 +33,6 @@ namespace Orphee.ViewModels
         /// <param name="getter">Manages the sending of the "Get" requests</param>
         public HomePageViewModel(IGetter getter)
         {
-            this._isPageCreated = true;
             this._getter = getter;
             this.Test = new DelegateCommand(RequestPopularCreations);
             this.CreationInfoCommand = new DelegateCommand<Creation>((creation) => App.MyNavigationService.Navigate("CreationInfo", JsonConvert.SerializeObject(creation)));
@@ -40,22 +40,18 @@ namespace Orphee.ViewModels
             this.PopularCreations = new ObservableCollection<Creation>();
             if (!App.InternetAvailabilityWatcher.IsInternetUp)
                 SetProgressRingVisibility(false);
-            else
-                RequestPopularCreations();
         }
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
-            if (this.PopularCreations.Count == 0 && this._isPageCreated == false && App.InternetAvailabilityWatcher.IsInternetUp)
+            if (App.InternetAvailabilityWatcher.IsInternetUp)
                 RequestPopularCreations();
-            else
-                this._isPageCreated = false;
         }
 
         private async void RequestPopularCreations()
         {
             SetProgressRingVisibility(true);
-            var popularCreations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"] + "?offset=" + this.PopularCreations.Count + "&size=" + 5);
+            var popularCreations = await this._getter.GetInfo<List<Creation>>(RestApiManagerBase.Instance.RestApiPath["popular"]);
             if (VerifyReturnedValue(popularCreations, ""))
                 AddRequestedPopularCreationsInCreationList(popularCreations);
         }
@@ -63,7 +59,26 @@ namespace Orphee.ViewModels
         private void AddRequestedPopularCreationsInCreationList(List<Creation> popularCreations)
         {
             foreach (var creation in popularCreations)
-                this.PopularCreations.Add(creation);
+            {
+                var existingCreation = this.PopularCreations.FirstOrDefault(c => c.Id == creation.Id);
+                if (existingCreation == null || UpdatedCreation(existingCreation, creation))
+                    this.PopularCreations.Add(creation);
+            }
+            if (this.PopularCreations.Count > 0)
+                this.EmptyMessageVisibility = Visibility.Collapsed;
+        }
+
+        private bool UpdatedCreation(Creation oldCreation, Creation newCreation)
+        {
+            foreach (var item in oldCreation.GetType().GetRuntimeProperties())
+            {
+                if (item.Name == "NumberOfLike" && !Object.Equals(item.GetValue(oldCreation, null), newCreation.GetType().GetRuntimeProperty(item.Name).GetValue(newCreation, null)))
+                {
+                    this.PopularCreations.Remove(oldCreation);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

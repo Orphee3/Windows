@@ -122,12 +122,12 @@ namespace Orphee.ViewModels
             };
             newMessage.SetProperties();
             this.Conversation.Add(newMessage);
-            var conversation = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id);
-            conversation.LastMessagePreview = newMessage;
+           // var conversation = RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id);
+          //  conversation.LastMessagePreview = newMessage;
             if (this._actualConversation.IsNew)
             {
                 this._actualConversation.IsNew = false;
-                RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id).IsNew = false;
+               // RestApiManagerBase.Instance.UserData.User.ConversationList.FirstOrDefault(conv => conv.Id == this._actualConversation.Id).IsNew = false;
                 if (this._actualConversation.UserList.Count == 1)
                     RestApiManagerBase.Instance.UserData.User.ConversationList.Add(this._actualConversation);
             }

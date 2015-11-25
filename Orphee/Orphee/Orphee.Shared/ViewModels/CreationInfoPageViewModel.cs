@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -150,9 +149,13 @@ namespace Orphee.ViewModels
             }
             var request = this._isLiked == false ? RestApiManagerBase.Instance.RestApiPath["like"] + this.Creation.Id : RestApiManagerBase.Instance.RestApiPath["dislike"] + this.Creation.Id;
             var creator = await this._getter.GetInfo<LoggedUser>(request);
-            if (!VerifyReturnedValue(creator, "Like wasn't sent"))
+            if (!VerifyReturnedValue(creator, this.IsLiked == true ? "Dislike" : "Like" + " wasn't sent"))
                 return null;
-            this._isLiked = !this._isLiked;
+            this.IsLiked = !this.IsLiked;
+            if (this.IsLiked == true)
+                RestApiManagerBase.Instance.UserData.User.Likes.Add(this.Creation.Id);
+            else if (this.IsLiked == false)
+                RestApiManagerBase.Instance.UserData.User.Likes.Remove(this.Creation.Id);
             this.Creation.NumberOfLike += this._isLiked == true ? 1 : -1;
             return this._isLiked;
         }

@@ -8,7 +8,6 @@ namespace Orphee.Views
         public HomePage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
     }
 }
