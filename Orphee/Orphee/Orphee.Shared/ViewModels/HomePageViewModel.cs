@@ -72,7 +72,7 @@ namespace Orphee.ViewModels
         {
             foreach (var item in oldCreation.GetType().GetRuntimeProperties())
             {
-                if (item.Name == "NumberOfLike" && !Object.Equals(item.GetValue(oldCreation, null), newCreation.GetType().GetRuntimeProperty(item.Name).GetValue(newCreation, null)))
+                if ((item.Name == "NumberOfLike" || item.Name == "NumberOfComment") && !Object.Equals(item.GetValue(oldCreation, null), newCreation.GetType().GetRuntimeProperty(item.Name).GetValue(newCreation, null)))
                 {
                     this.PopularCreations.Remove(oldCreation);
                     return true;

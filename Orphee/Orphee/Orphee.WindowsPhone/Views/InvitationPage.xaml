@@ -113,6 +113,7 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ProgressRing IsActive="{Binding IsProgressRingActive}" Visibility="{Binding ProgressRingVisibility}" Foreground="#78C7F9" Height="40" Width="40"/>
         </StackPanel>
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding EmptyMessage}" Visibility="{Binding EmptyMessageVisibility}" Foreground="#BDBEC0" FontSize="25"/>
         <ListView Grid.Row="1" ItemsSource="{Binding InvitationList}" Visibility="{Binding ListViewVisibility}" IsItemClickEnabled="True" SelectionMode="None" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalContentAlignment="Center">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">

@@ -79,6 +79,8 @@ namespace Orphee.ViewModels
             VerifyReturnedValue(result, "An error has occured. The comment wasn't sent");
             if (!result)
                 DisplayMessage("Comment was not sent");
+            else
+                this.CommentList.Add(new Comment() {CreationId = this.Creation.Id, Creator = RestApiManagerBase.Instance.UserData.User, Message = newComment});
         }
 
         private bool CheckIfUserIsLoggedIn()

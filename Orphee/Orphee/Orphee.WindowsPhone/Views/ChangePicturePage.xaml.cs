@@ -32,7 +32,7 @@ namespace Orphee.Views
     ///  SelectedRegion selectedRegion;
 
     // The current image file to be cropped.
-    public sealed partial class ChangePictureEditionPage : Page
+    public sealed partial class ChangePicturePage : Page
     {
         SelectedRegion selectedRegion;
 
@@ -63,9 +63,7 @@ namespace Orphee.Views
         /// The previous points of all the pointers. 
         /// </summary> 
         Dictionary<uint, Point?> pointerPositionHistory = new Dictionary<uint, Point?>();
-
-        private FileUploader _fileUploader;
-        public ChangePictureEditionPage()
+        public ChangePicturePage()
         {
             this.InitializeComponent();
             selectRegion.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
@@ -296,9 +294,9 @@ namespace Orphee.Views
             }
         }
 
-#endregion
+        #endregion
 
-#region Select Region methods 
+        #region Select Region methods 
 
         /// <summary> 
         /// The user manipulates the selectRegion. The manipulation includes 
@@ -343,14 +341,14 @@ namespace Orphee.Views
             this.previewImage.Source = await CropBitmap.GetCroppedBitmapAsync(this.sourceImageFile,new Point(this.selectedRegion.SelectedRect.X / sourceImageWidthScale, this.selectedRegion.SelectedRect.Y / sourceImageHeightScale),previewImageSize,previewImageScale);
         }
 
-#endregion
+        #endregion
 
         public void BackButton_clicked(object sender, RoutedEventArgs e)
         {
             App.MyNavigationService.GoBack();
         }
 
-#region Common methods 
+        #region Common methods 
 
         public async void NotifyUser(string message)
         {
@@ -359,6 +357,6 @@ namespace Orphee.Views
             await messageDialog.ShowAsync();
         }
 
-#endregion
+        #endregion
     }
 }

@@ -29,12 +29,12 @@ namespace Orphee.Views
 
         private async void UserOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-             if (e.PropertyName == "_hasReceivedMessageNotification")
-                await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    ((ConversationPageViewModel)this.DataContext).InitConversation();
-                    RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
-                }));
+             //if (e.PropertyName == "_hasReceivedMessageNotification")
+             //   await Task.Run(() => Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+             //   {
+             //       ((ConversationPageViewModel)this.DataContext).InitConversation();
+             //       RestApiManagerBase.Instance.UserData.User.HasReceivedMessageNotification = false;
+             //   }));
         }
 
         private void Creation_OnTapped(object sender, TappedRoutedEventArgs e)

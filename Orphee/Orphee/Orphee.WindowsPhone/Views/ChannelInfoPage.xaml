@@ -155,6 +155,7 @@
                 </Grid>
             </Grid>
             <Line Grid.Row="0" X1="0" Y1="0" X2="140" Y2="0" Stretch="Fill" Stroke="#BDBEC0" Margin="20, 10, 20, 10" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding EmptyMessage}" Visibility="{Binding EmptyMessageVisibility}" Foreground="#BDBEC0" FontSize="25"/>
             <ListView Grid.Row="1" ItemsSource="{Binding CreationList}" Height="Auto" ShowsScrollingPlaceholders="True" HorizontalAlignment="Stretch" SelectionMode="None">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -167,7 +168,7 @@
                             <StackPanel  Margin="20 0, 0, 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal">
                                     <Grid HorizontalAlignment="Left">
-                                        <Image Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
+                                        <Image Source="{Binding Picture}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
                                     </Grid>
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="50, 0, 0, 0" VerticalAlignment="Center">
                                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">

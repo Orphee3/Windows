@@ -120,8 +120,8 @@ namespace Orphee.Models
             var userJson = JObject.FromObject(data);
             var media = JsonConvert.DeserializeObject<Creation>(userJson["media"].ToString());
             var comment = new Comment {CreationId = media.Id,};
-                RestApiManagerBase.Instance.UserData.User.PendingCommentList.Add(comment);
-                RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification = true;
+            RestApiManagerBase.Instance.UserData.User.PendingCommentList.Add(comment);
+            RestApiManagerBase.Instance.UserData.User.HasReceivedCommentNotification = true;
         }
 
         private void LikeNotificationReceiver(object data)

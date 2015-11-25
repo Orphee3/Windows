@@ -14,14 +14,13 @@
 
     <Grid Background="{ThemeResource FocusVisualWhiteStrokeThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="110"/>
+            <RowDefinition Height="0.10*"/>
             <RowDefinition/>
             <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
 
-        <Grid Background="#78C7F9" Grid.Row="0" >
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Popular" FontSize="25" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
-            <AppBarButton Command="{Binding Test}"/>
+        <Grid Background="#78C7F9" Grid.Row="0">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Popular" FontSize="{Binding Path=FontSizeManager.PageTitleSize, Source={StaticResource UiControlsSizeManager}}" Foreground="{Binding PopularCreationsTitleTextBoxForegroundColor, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="1" VerticalAlignment="Top">
             <Line X1="0" Y1="0" X2="150" Y2="0" Stroke="#BDBEC0" Stretch="Fill"/>
@@ -53,8 +52,8 @@
                                     <core:InvokeCommandAction Command="{Binding DataContext.CreationInfoCommand, ElementName=Page}" CommandParameter="{Binding}"/>
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
-                            <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left" Height="120" Width="120">
-                                <Image Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="120" Width="120"/>
+                            <Grid x:Name="CreationImageGrid" HorizontalAlignment="Left">
+                                <Image Source="/Assets/logo transparent2.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="{Binding Path=PictureSizeManager.PiecePictureSize, Source={StaticResource UiControlsSizeManager}}" Width="{Binding Path=PictureSizeManager.PiecePictureSize, Source={StaticResource UiControlsSizeManager}}"/>
                             </Grid>
                             <StackPanel VerticalAlignment="Center" Margin="50, 0, 0, 0">
                                 <TextBlock Text="{Binding Path=Name}" Foreground="#78C7F9" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>

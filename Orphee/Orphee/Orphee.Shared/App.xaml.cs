@@ -39,6 +39,7 @@ namespace Orphee
         private IUnityContainer _container;
         private bool _isSuspending;
         public static IMyNavigationService MyNavigationService { get; private set; }
+        public IUIControlSizeManager UIControlSizeManager;
         public static InternetAvailabilityWatcher InternetAvailabilityWatcher { get; private set; }
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
@@ -52,6 +53,7 @@ namespace Orphee
         {
             MyNavigationService = new MyNavigationService(NavigationService);
             InternetAvailabilityWatcher = new InternetAvailabilityWatcher();
+            UIControlSizeManager = new UIControlsSizeManager();
         }
    
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
