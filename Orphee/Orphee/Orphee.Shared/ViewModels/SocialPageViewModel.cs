@@ -68,7 +68,7 @@ namespace Orphee.ViewModels
         {
             foreach (var user in requestedUserList)
             {
-                if (!RestApiManagerBase.Instance.IsConnected)
+                if (!RestApiManagerBase.Instance.IsConnected || RestApiManagerBase.Instance.UserData.User.FriendList.Any(f => f.Id == user.Id))
                     user.AddButtonVisibility = Visibility.Collapsed;
                 this.UserList.Add(user);
             }
