@@ -42,6 +42,7 @@ namespace Orphee.ViewModels
 
         public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
         {
+            App.MyNavigationService.CurrentPageName = "Home";
             App.InternetAvailabilityWatcher.PropertyChanged += InternetAvailabilityWatcherOnPropertyChanged;
             if (App.InternetAvailabilityWatcher.IsInternetUp)
                 RequestPopularCreations();

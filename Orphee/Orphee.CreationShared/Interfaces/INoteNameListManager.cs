@@ -13,6 +13,8 @@ namespace Orphee.CreationShared.Interfaces
         /// <summary>Dictionary containing the notes from the octave 1 to 8 </summary>
         Dictionary<string, Note> NoteNameList { get; }
 
+        List<string> NoteName { get; } 
+
         // Methods
 
         /// <summary>

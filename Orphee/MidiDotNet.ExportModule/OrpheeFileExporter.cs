@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using MidiDotNet.ExportModule.Interfaces;
 using Orphee.CreationShared.Interfaces;
+using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Senders.Interfaces;
 
 namespace MidiDotNet.ExportModule
@@ -57,7 +58,7 @@ namespace MidiDotNet.ExportModule
         /// </summary>
         /// <param name="orpheeFile">Instance of the OrpheeFile class containing all the data needed to create the MIDI file</param>
         /// <returns>Retuns a task containing a bool that is true if the file has been saved and false if it hasn't</returns>
-        public async Task<bool?> SaveOrpheeFile(IOrpheeFile orpheeFile)
+        public async Task<string> SaveOrpheeFile(IOrpheeFile orpheeFile)
         {
             foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
             {
@@ -67,15 +68,24 @@ namespace MidiDotNet.ExportModule
             }
             this._storageFile = await this._filePickerManager.GetTheSaveFilePicker(orpheeFile);
             if (this._storageFile == null)
-                return false;
+                return "";
             CachedFileManager.DeferUpdates(this._storageFile);
             WriteEventsInFile(orpheeFile);
-            var result = await this._fileUploader.UploadFile(this._storageFile);
-            if (!result)
-                return null;
+            if (RestApiManagerBase.Instance.IsConnected)
+            {
+                var result = await this._fileUploader.UploadFile(this._storageFile);
+                if (!result)
+                    return "An error has occured during the sending";
+            }
+            else
+            {
+                foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
+                    orpheeTrack.TrackLength = (uint)((orpheeTrack.TrackPos == 0) ? 22 : 7);
+                return "File saved !";
+            }
             foreach (var orpheeTrack in orpheeFile.OrpheeTrackList)
                 orpheeTrack.TrackLength = (uint) ((orpheeTrack.TrackPos == 0) ? 22 : 7);
-            return true;
+            return "File sent successfully";
         }
 
         private void WriteEventsInFile(IOrpheeFile orpheeFile)

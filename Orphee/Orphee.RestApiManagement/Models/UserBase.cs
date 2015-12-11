@@ -27,7 +27,7 @@ namespace Orphee.RestApiManagement.Models
         /// <summary>User name </summary>
         public string Name { get; set; }
 
-        [DataMember]
+        //[DataMember]
         public List<string> Friends { get; set; }
 
         public string GoogleId { get; set; }
@@ -57,10 +57,10 @@ namespace Orphee.RestApiManagement.Models
         /// <summary>User comment list </summary>
         public JArray Comments { get; set; }
         /// <summary>User like list </summary>
-        [DataMember]
+        //[DataMember]
         public List<string> Likes { get; set; }
         /// <summary>User creation list </summary>
-        [DataMember]
+        //[DataMember]
         public List<string> Creations { get; set; }
         /// <summary>List of pending friend asking </summary>
         public Visibility AddButtonVisibility { get; set; }

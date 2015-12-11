@@ -674,11 +674,43 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="5*"/>
                     </Grid.RowDefinitions>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled" Grid.Row="0" Width="1366" HorizontalAlignment="Stretch" Margin="15, 5, 5, 5">
-                        <ItemsControl ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}" Margin="0, 0, 150, 0">
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="43"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="0" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                            <AppBarButton Command="{Binding GoToLowerOctaveCommand}">
+                                <AppBarButton.Icon>
+                                    <BitmapIcon UriSource="ms-appx:///Assets/downArrow.png" Foreground="#BDBEC0"/>
+                                </AppBarButton.Icon>
+                            </AppBarButton>
+                        </Viewbox>
+
+                        <Viewbox Grid.Column="0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
+                            <AppBarButton Command="{Binding GoToUpperOctaveCommand}">
+                                <AppBarButton.Icon>
+                                    <BitmapIcon UriSource="ms-appx:///Assets/UpArrow.png" Foreground="#BDBEC0"/>
+                                </AppBarButton.Icon>
+                            </AppBarButton>
+                        </Viewbox>
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding NoteMapManager.NoteNameListManager.NoteName}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsStackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <ItemsControl Name="TrackItemsControl" ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding UI.TrackVisibility}">
+                                    <TextBlock Text="{Binding}" FontSize="25" Foreground="#BDBEC0" Margin="0, 11, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl Grid.Column="0" ItemsSource="{Binding OrpheeFile.OrpheeTrackList}" VerticalAlignment="Center">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding NoteMap}" Visibility="{Binding UI.TrackVisibility}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <ItemsStackPanel Orientation="Vertical"/>
@@ -686,35 +718,69 @@
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                                    <ItemsControl.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                            <ItemsStackPanel Orientation="Horizontal"/>
-                                                        </ItemsPanelTemplate>
-                                                    </ItemsControl.ItemsPanel>
-                                                    <ItemsControl.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <ui:MyRectangleButton x:Name="ToogleButton" Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" ButtonBackgroundColor="{Binding DataContext.UI.TrackColor, ElementName=TrackItemsControl}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" RectangleVisibility="{Binding IsChecked}"/>
-                                                        </DataTemplate>
-                                                    </ItemsControl.ItemTemplate>
-                                                </ItemsControl>
+                                                <TextBlock Text="{Binding OctavePosString}" FontSize="25" Foreground="#BDBEC0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding OctaveManagerUI.OctaveVisibility}"/>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                        <Line Grid.Column="0"  X1="0" Y1="0" X2="0" Y2 ="250" Stretch="Fill" HorizontalAlignment="Center" StrokeThickness="2" Fill="#BDBEC0" Margin="0, 25, 0, 25"/>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Column="2" ZoomMode="Disabled" Width="1366" HorizontalAlignment="Stretch" Margin="15, 5, 5, 5">
+                        <ItemsControl ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}" Margin="0, 0, 150, 0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl Name="TrackItemsControl" ItemsSource="{Binding NoteMap, Mode=TwoWay}" Visibility="{Binding UI.TrackVisibility}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <ItemsStackPanel Orientation="Vertical"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <ItemsControl x:Name="OctaveItemControl" ItemsSource="{Binding OctaveMap}" Visibility="{Binding OctaveManagerUI.OctaveVisibility}">
+                                                            <ItemsControl.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <ItemsStackPanel Orientation="Vertical"/>
+                                                                </ItemsPanelTemplate>
+                                                            </ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <ItemsControl ItemsSource="{Binding}"  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                                        <ItemsControl.ItemsPanel>
+                                                                            <ItemsPanelTemplate>
+                                                                                <ItemsStackPanel Orientation="Horizontal"/>
+                                                                            </ItemsPanelTemplate>
+                                                                        </ItemsControl.ItemsPanel>
+                                                                        <ItemsControl.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <ui:MyRectangleButton x:Name="ToogleButton" Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" ButtonBackgroundColor="{Binding DataContext.UI.TrackColor, ElementName=TrackItemsControl}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" RectangleVisibility="{Binding IsChecked}"/>
+                                                                            </DataTemplate>
+                                                                        </ItemsControl.ItemTemplate>
+                                                                    </ItemsControl>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                     </ScrollViewer>
+                    </Grid>
                     <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="1" Y2="0" Stretch="Fill" Stroke="DimGray"/>
                     <Grid Grid.Row="1" Background="#BDBEC0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Viewbox Grid.Column="0"  HorizontalAlignment="Right" Margin="5">
+                        <Viewbox Grid.Column="0"  HorizontalAlignment="Right" Margin="0, 0, 5, 0">
                             <AppBarButton Icon="Stop" Style="{StaticResource MyPlayButton}"/>
                         </Viewbox>
-                        <Viewbox Grid.Column="1" HorizontalAlignment="Left" Margin="5">
+                        <Viewbox Grid.Column="1" HorizontalAlignment="Left" Margin="5, 0, 0, 0">
                             <AppBarButton Icon="Play" Command="{Binding DataContext.PlayCommand, ElementName=Page}" Style="{StaticResource MyPlayButton}"/>
                         </Viewbox>
                         <Viewbox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Margin="0, 0, 25, 0">
@@ -724,7 +790,7 @@
                     <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="DimGray" Stretch="Fill"/>
                     <Grid Grid.Row="2" Background="DimGray">
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
                             <RowDefinition Height="5.5*"/>
                         </Grid.RowDefinitions>
 
@@ -737,18 +803,18 @@
                                 <ColumnDefinition MinWidth="100"/>
                                 <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" HorizontalAlignment="Right" Height="20">
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Right" Height="26" Margin="0, 2, 0, 2">
                                 <AppBarButton Icon="Add" Command="{Binding AddNewTrackCommand}" Style="{StaticResource MyPlayButton}"/>
                             </Viewbox>
-                            <Viewbox  Grid.Column="1" HorizontalAlignment="Left" Height="20">
-                                <AppBarButton Icon="Clear" Style="{StaticResource MyPlayButton}"/>
+                            <Viewbox  Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="0, 2, 0, 2">
+                                <AppBarButton Icon="Clear" Command="{Binding DeleteTrackCommand}" Style="{StaticResource MyPlayButton}"/>
                             </Viewbox>
                             <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" Text="S" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" Text="M" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="4" FontSize="16" FontWeight="Bold" Text="Vol" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="1" Y2="0" Stretch="Fill" Stroke="#BDBEC0"/>
-                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
                             <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -807,7 +873,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                <ScrollViewer  Grid.Column="1" HorizontalScrollBarVisibility="Auto">
+                                <ScrollViewer  Grid.Column="1" HorizontalScrollBarVisibility="Auto" ZoomMode="Disabled">
                                     <ItemsControl  VerticalAlignment="Top" ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>

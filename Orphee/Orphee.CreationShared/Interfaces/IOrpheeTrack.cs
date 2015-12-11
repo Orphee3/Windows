@@ -14,7 +14,7 @@ namespace Orphee.CreationShared.Interfaces
         // Properties
 
         /// <summary>Rectangle map represented on the CreationPage screen </summary>
-        ObservableCollection<ObservableCollection<IToggleButtonNote>> NoteMap { get; }
+        ObservableCollection<OctaveManager> NoteMap { get; }
         /// <summary>List of noteMessage representation of the NoteMap </summary>
         IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; }
         /// <summary>Current instrument </summary>
@@ -35,6 +35,7 @@ namespace Orphee.CreationShared.Interfaces
         bool IsSolo{ get; set; }
         IOrpheeTrackUI UI { get; set; } 
         ObservableCollection<MyRectangle> ColumnMap { get; set; } 
+        int CurrentOctaveIndex { get; set; }
 
         /// <summary>
         /// Sets the current instrument value

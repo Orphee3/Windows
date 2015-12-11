@@ -46,9 +46,11 @@
     <Compile Include="Models\Interfaces\IConversationParser.cs" />
     <Compile Include="Models\Interfaces\INews.cs" />
     <Compile Include="Models\Interfaces\INewsParser.cs" />
+    <Compile Include="Models\Interfaces\IOnUserLoginNewsGetter.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsParser.cs" />
     <Compile Include="Models\LoggedInUserAdditionnalData.cs" />
+    <Compile Include="Models\OnUserLoginNewsGetter.cs" />
     <Compile Include="Models\UserBase.cs" />
     <Compile Include="Posters\AuthLogin.cs" />
     <Compile Include="Posters\ForgotPasswordReseter.cs" />

@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Microsoft.Practices.Unity;
 using Midi;
 using Orphee.CreationShared.Interfaces;
 
@@ -16,9 +15,9 @@ namespace Orphee.CreationShared
     {
         /// <summary>PropertyChanged event handler </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        private ObservableCollection<ObservableCollection<IToggleButtonNote>> _noteMap;
+        private ObservableCollection<OctaveManager> _noteMap;
         /// <summary>Rectangle map represented on the CreationPage screen </summary>
-        public ObservableCollection<ObservableCollection<IToggleButtonNote>> NoteMap
+        public ObservableCollection<OctaveManager> NoteMap
         {
             get { return this._noteMap; }
             set
@@ -104,6 +103,22 @@ namespace Orphee.CreationShared
             }
         }
 
+        private int _currentOctaveIndex;
+
+        public int CurrentOctaveIndex
+        {
+            get { return this._currentOctaveIndex; }
+            set
+            {
+                if (this._currentOctaveIndex != value)
+                {
+                    this._currentOctaveIndex = value;
+                    OnPropertyChanged(nameof(this.CurrentOctaveIndex));
+                    ResetOctavesVisibilityValue();
+                }
+            }
+        }
+
         public ObservableCollection<MyRectangle> ColumnMap { get; set; }
         public IOrpheeTrackUI UI { get; set; }
         private readonly INoteMapGenerator _noteMapGenerator;
@@ -118,7 +133,9 @@ namespace Orphee.CreationShared
         {            
             SetProperties(trackPos, channel);
             this.PlayerParameters = this.TrackPos == 0 ? new PlayerParameters() : null;
-            this.NoteMap = isNewTrack ? this._noteMapGenerator.GenerateNoteMap(3) : null;
+            this.NoteMap?.Clear();
+            this.NoteMap = isNewTrack ? InitializeNoteMap() : null;
+            this.ColumnMap?.Clear();
             this.ColumnMap = isNewTrack ? this._noteMapGenerator.GenerateColumnMap(this.NoteMap) : null;
         }
 
@@ -126,9 +143,19 @@ namespace Orphee.CreationShared
         {
             SetProperties(orpheeTrack.TrackPos, orpheeTrack.Channel);
             this.NoteMap = this._noteMapGenerator.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList);
+            this._currentOctaveIndex = 4;
             this.ColumnMap = this._noteMapGenerator.GenerateColumnMap(this.NoteMap);
             UpdateCurrentInstrument(orpheeTrack.CurrentInstrument);
             this.PlayerParameters = orpheeTrack.PlayerParameters; 
+        }
+
+        private ObservableCollection<OctaveManager> InitializeNoteMap()
+        {
+            var noteMap = new ObservableCollection<OctaveManager>();
+            for (var index = 0; index < 8; index++)
+                noteMap.Add(this._noteMapGenerator.GenerateNoteMap(index));
+            this._currentOctaveIndex = 4;
+            return noteMap;
         }
 
         private void SetProperties(int trackPos, Channel channel)
@@ -150,6 +177,12 @@ namespace Orphee.CreationShared
         public SolidColorBrush GetTrackColor()
         {
             return this.UI.TrackColor;
+        }
+
+        private void ResetOctavesVisibilityValue()
+        {
+            foreach (var octaveMap in this.NoteMap)
+                octaveMap.OctaveManagerUI.OctaveVisibility = octaveMap.OctavePos == this.CurrentOctaveIndex ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void SetTrackColor(SolidColorBrush color)

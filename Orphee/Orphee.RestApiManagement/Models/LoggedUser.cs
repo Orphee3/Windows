@@ -10,7 +10,7 @@ namespace Orphee.RestApiManagement.Models
     [DataContract]
     public class LoggedUser : LoggedInUserAdditionnalData
     {
-        [DataMember]
+        //[DataMember]
         private bool? _wasNewPictureSent;
 
         /// <summary>

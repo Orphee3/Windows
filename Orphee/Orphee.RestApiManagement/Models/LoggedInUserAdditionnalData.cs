@@ -12,23 +12,23 @@ namespace Orphee.RestApiManagement.Models
     [DataContract]
     public class LoggedInUserAdditionnalData : UserBase
     {
-        [DataMember]
+        //[DataMember]
         public List<UserBase> FriendList { get; set; }
-        [DataMember]
+        //[DataMember]
         public List<News> NotificationList { get; set; }
-        [DataMember]
+        //[DataMember]
         public ObservableCollection<Conversation> ConversationList { get; set; }
-        [DataMember]
+        //[DataMember]
         public List<UserBase> PendingFriendList { get; set; }
         /// <summary>List of unviewes comments </summary>
-        [DataMember]
+        //[DataMember]
         public List<Comment> PendingCommentList { get; set; }
-        [DataMember]
+        //[DataMember]
         public List<Creation> CreationList { get; set; }
             /// <summary>List of unviewed messages </summary>
-        [DataMember]
+        //[DataMember]
         public List<Message> PendingMessageList { get; set; }
-        [DataMember]
+        //[DataMember]
         protected bool _hasReceivedCommentNotification;
         /// <summary>True if a comment notification was received. False otherwise </summary>
         public bool HasReceivedCommentNotification
@@ -43,7 +43,7 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
-        [DataMember]
+        //[DataMember]
         protected bool _hasReceivedFriendNotification;
         /// <summary>True if a frien notification was received. False otherwise </summary>
         public bool HasReceivedFriendNotification
@@ -58,7 +58,7 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
-        [DataMember]
+        //[DataMember]
         protected bool _hasReceivedMessageNotification;
         /// <summary>True if a message notification was received. False otherwise </summary>
         public bool HasReceivedMessageNotification
@@ -73,7 +73,7 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
-        [DataMember]
+        //[DataMember]
         protected bool _hasReceivedFriendConfirmationNotification;
         /// <summary>True if a friend validation notification was received. False otherwise </summary>
         public bool HasReceivedFriendConfirmationNotification

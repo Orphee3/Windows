@@ -11,12 +11,28 @@ namespace Orphee.CreationShared
     {
         /// <summary>Dictionary containing the notes from the octave 1 to 8 </summary>
         public Dictionary<string, Note> NoteNameList { get; private set; }
+        public List<string> NoteName { get; private set; } 
 
         /// <summary>
         /// Constructor
         /// </summary>
         public NoteNameListManager()
         {
+            this.NoteName = new List<string>()
+            {
+                "Do",
+                "Do#",
+                "Ré",
+                "Ré#",
+                "Mi",
+                "Fa",
+                "Fa#",
+                "Sol",
+                "Sol#",
+                "La",
+                "La#",
+                "Si"
+            };
             this.NoteNameList = new Dictionary<string, Note>()
             {
                 {"C0", Note.C0},

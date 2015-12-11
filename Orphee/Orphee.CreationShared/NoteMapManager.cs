@@ -24,28 +24,29 @@ namespace Orphee.CreationShared
             this._lineNumberToAdd = 12;
         }
 
-        public ObservableCollection<MyRectangle> GenerateColumnMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
+        public ObservableCollection<MyRectangle> GenerateColumnMap(ObservableCollection<OctaveManager> noteMap)
         {
             var columnMap = new ObservableCollection<MyRectangle>();
-            for (var columnIndex = 0; columnIndex < noteMap[0].Count; columnIndex++)
+
+            for (var columnIndex = 0; columnIndex < noteMap[0].OctaveMap[0].Count; columnIndex++)
             {
-                for (var lineIndex = 0; lineIndex < noteMap.Count; lineIndex++)
+                for (var lineIndex = 0; lineIndex < this._lineNumberToAdd * noteMap.Count; lineIndex++)
                 {
-                    if (noteMap[lineIndex][columnIndex].IsChecked > 0)
+                    if (noteMap[lineIndex / 12].OctaveMap[lineIndex % 12][columnIndex].IsChecked > 0)
                     {
-                        columnMap.Add(new MyRectangle() { IsRectangleVisible = 100});
+                        columnMap.Add(new MyRectangle() {IsRectangleVisible = 100});
                         break;
                     }
-                    else if (lineIndex == noteMap.Count - 1)
+                    else if (lineIndex == (this._lineNumberToAdd * noteMap.Count) - 1)
                         columnMap.Add(new MyRectangle());
                 }
             }
             return columnMap;
         }
 
-        public bool IsColumnEmpty(int columnIndex, ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
+        public bool IsColumnEmpty(int columnIndex, ObservableCollection<OctaveManager> noteMap)
         {
-            return noteMap.All(line => !(line[columnIndex].IsChecked > 0));
+            return noteMap.SelectMany(octave => octave.OctaveMap).All(line => !(line[columnIndex].IsChecked > 0));
         }
 
         /// <summary>
@@ -53,12 +54,11 @@ namespace Orphee.CreationShared
         /// </summary>
         /// <param name="startingOctave">Starting octave of the generated note map</param>
         /// <returns></returns>
-        public ObservableCollection<ObservableCollection<IToggleButtonNote>> GenerateNoteMap(int startingOctave)
+        public OctaveManager GenerateNoteMap(int startingOctave)
         {
-            var noteMap = new ObservableCollection<ObservableCollection<IToggleButtonNote>>();
+            var noteMap = new OctaveManager(new OctaveManagerUI(), startingOctave);
             for (var lineIndex = 0; lineIndex < this._lineNumberToAdd; lineIndex++)
-                noteMap.Add(NoteMapLineGenerator(lineIndex, startingOctave));
-            this._lineNumberToAdd = 36;
+                noteMap.OctaveMap.Add(NoteMapLineGenerator(lineIndex, startingOctave));
             return noteMap;
         }
 
@@ -112,13 +112,17 @@ namespace Orphee.CreationShared
         /// Add columns to the given note map
         /// </summary>
         /// <param name="noteMap">note map in which the columns are to be added</param>
-        public void AddColumnsToThisNoteMap(ObservableCollection<ObservableCollection<IToggleButtonNote>> noteMap)
+        public void AddColumnsToThisNoteMap(ObservableCollection<OctaveManager> noteMap)
         {
-            if (noteMap == null || noteMap[0].Count >= 20000)
+            if (noteMap == null || noteMap[0].OctaveMap[0].Count >= 20000)
                 return;
-            for (var lineIndex = 0; lineIndex < noteMap.Count; lineIndex++)
-                for (var columnIndex = 0; columnIndex < this._columnNumberToAdd; columnIndex++)
-                    noteMap[lineIndex].Add(new ToggleButtonNote() { LineIndex = lineIndex, ColumnIndex = columnIndex, Note = noteMap[lineIndex][0].Note });
+            foreach (var octave in noteMap)
+            {
+                for (var lineIndex = 0; lineIndex < octave.OctaveMap.Count; lineIndex++)
+                    for (var columnIndex = 0; columnIndex < this._columnNumberToAdd; columnIndex++)
+                        octave.OctaveMap[lineIndex].Add(new ToggleButtonNote() { LineIndex = lineIndex, ColumnIndex = columnIndex, Note = octave.OctaveMap[lineIndex][0].Note });
+            }
+           
         }
 
         /// <summary>
@@ -145,13 +149,13 @@ namespace Orphee.CreationShared
             return (uint)bytesToAdd;
         }
 
-        private IList<IToggleButtonNote> ExtractToggleButtonNotesFromNoteMapColumn(int columnIndex, IList<ObservableCollection<IToggleButtonNote>> noteMap)
+        private IList<IToggleButtonNote> ExtractToggleButtonNotesFromNoteMapColumn(int columnIndex, IList<OctaveManager> noteMap)
         {
             var toggleButtonNoteList = new List<IToggleButtonNote>();
 
-            for (var lineIndex = 0; lineIndex < noteMap.Count; lineIndex++)
-                if (noteMap[lineIndex][columnIndex].IsChecked > 0)
-                    toggleButtonNoteList.Add(noteMap[lineIndex][columnIndex]);
+            for (var lineIndex = 0; lineIndex < this._lineNumberToAdd * 7; lineIndex++)
+                if (noteMap[lineIndex / 12].OctaveMap[lineIndex % 12][columnIndex].IsChecked > 0)
+                    toggleButtonNoteList.Add(noteMap[lineIndex / 12].OctaveMap[lineIndex % 12][columnIndex]);
             return toggleButtonNoteList.Count == 0 ? null : toggleButtonNoteList;
         }
 
@@ -176,12 +180,12 @@ namespace Orphee.CreationShared
         /// <param name="channel">Channel related to the note map</param>
         /// <param name="trackLength">Length of the OrpheeTrack containing the given note map</param>
         /// <returns>Returns a list of OrpheeNoteMessage</returns>
-        public IList<IOrpheeNoteMessage> ConvertNoteMapToOrpheeNoteMessageList(IList<ObservableCollection<IToggleButtonNote>> noteMap, int channel, ref uint trackLength)
+        public IList<IOrpheeNoteMessage> ConvertNoteMapToOrpheeNoteMessageList(IList<OctaveManager> noteMap, int channel, ref uint trackLength)
         {
             var orpheeNoteMessageList = new List<IOrpheeNoteMessage>();
             var deltaTime = 0;
 
-            for (var columnIndex = 0; columnIndex < noteMap[0].Count; columnIndex++)
+            for (var columnIndex = 0; columnIndex < noteMap[0].OctaveMap[0].Count; columnIndex++)
             {
                 var extractedToggleButtonNotes = ExtractToggleButtonNotesFromNoteMapColumn(columnIndex, noteMap);
                 if (extractedToggleButtonNotes != null)
@@ -197,21 +201,23 @@ namespace Orphee.CreationShared
         /// </summary>
         /// <param name="orpheeNoteMessageLists">List of OrpheeNoteMessage contained in the calling OrpheeTrack</param>
         /// <returns>Return a note map</returns>
-        public ObservableCollection<ObservableCollection<IToggleButtonNote>> ConvertOrpheeMessageListToNoteMap(IList<IOrpheeNoteMessage> orpheeNoteMessageLists)
+        public ObservableCollection<OctaveManager> ConvertOrpheeMessageListToNoteMap(IList<IOrpheeNoteMessage> orpheeNoteMessageLists)
         {
             if (orpheeNoteMessageLists.Sum(message => message.DeltaTime / 48) > this._columnNumberToAdd)
                 this._columnNumberToAdd = orpheeNoteMessageLists.Sum(message => message.DeltaTime / 48);
-            var noteMap = GenerateNoteMap(3);
+            var noteMap = new ObservableCollection<OctaveManager>();
+            for (var index = 0; index < 8; index++)
+                noteMap.Add(GenerateNoteMap(index));
             var columnIndex = 0;
 
             foreach (var noteMessage in orpheeNoteMessageLists)
             {
-                var lineIndex = NoteNameListManager.GetNoteLineIndex(noteMessage.Note, 3);
+                var lineIndex = NoteNameListManager.GetNoteLineIndex(noteMessage.Note, 0);
                 columnIndex += GetColumnIndexFromDeltaTime(noteMessage.DeltaTime);
                 if ((noteMessage.MessageCode & 0x90) == 0x90)
                 {
-                    noteMap[lineIndex][columnIndex].IsChecked = 100;
-                    noteMap[lineIndex][columnIndex].Note = noteMessage.Note;
+                    noteMap[lineIndex / 12].OctaveMap[lineIndex % 12][columnIndex].IsChecked = 100;
+                    noteMap[lineIndex / 12].OctaveMap[lineIndex % 12][columnIndex].Note = noteMessage.Note;
                 }
             }
             return noteMap;

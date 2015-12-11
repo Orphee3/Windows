@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChannelInfoPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChatPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreationInfoPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreationPageMenuMessageDialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ForgotPasswordPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FriendPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Interfaces\IForgotPasswordPageViewModel.cs" />

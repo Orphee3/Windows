@@ -52,6 +52,8 @@
     <Compile Include="Interfaces\INoteMapGenerator.cs" />
     <Compile Include="Interfaces\INoteMapManager.cs" />
     <Compile Include="Interfaces\INoteNameListManager.cs" />
+    <Compile Include="Interfaces\IOctaveManager.cs" />
+    <Compile Include="Interfaces\IOctaveManagerUI.cs" />
     <Compile Include="Interfaces\IOrpheeFile.cs" />
     <Compile Include="Interfaces\IOrpheeFileParameters.cs" />
     <Compile Include="Interfaces\IOrpheeNoteMessage.cs" />
@@ -65,6 +67,8 @@
     <Compile Include="MyRectangle.cs" />
     <Compile Include="NoteMapManager.cs" />
     <Compile Include="NoteNameListManager.cs" />
+    <Compile Include="OctaveManager.cs" />
+    <Compile Include="OctaveManagerUI.cs" />
     <Compile Include="OrpheeFile.cs" />
     <Compile Include="OrpheeFileParameters.cs" />
     <Compile Include="OrpheeNoteMessage.cs" />

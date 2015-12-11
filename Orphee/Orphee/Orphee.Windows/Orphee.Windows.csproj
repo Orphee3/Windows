@@ -109,6 +109,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\CreationPageMenuMessageDialog.xaml.cs">
+      <DependentUpon>CreationPageMenuMessageDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\MyDeleteAccountMessageDialog.xaml.cs">
       <DependentUpon>MyDeleteAccountMessageDialog.xaml</DependentUpon>
     </Compile>
@@ -191,6 +194,7 @@
     <Content Include="Assets\commentary-icon-white.png" />
     <Content Include="Assets\creation-background.png" />
     <Content Include="Assets\creation-icon.png" />
+    <Content Include="Assets\downArrow.png" />
     <Content Include="Assets\friend-icon-grey.png" />
     <Content Include="Assets\friend-icon-white.png" />
     <Content Include="Assets\friend-icon.png" />
@@ -276,6 +280,7 @@
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-140.png" />
     <Content Include="Assets\StoreLogo.scale-180.png" />
+    <Content Include="Assets\UpArrow.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-140.png" />
     <Content Include="Assets\Wide310x150Logo.scale-180.png" />
@@ -345,6 +350,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\CreationPageMenuMessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\MyBottomAppBar.xaml">
       <SubType>Designer</SubType>
