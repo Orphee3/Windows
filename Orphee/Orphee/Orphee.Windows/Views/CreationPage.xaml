@@ -868,7 +868,7 @@
                                                 <Viewbox Grid.Column="2" Height="15"  VerticalAlignment="Top" Margin="0, 3, 0, 0">
                                                     <RadioButton IsChecked="{Binding IsMuted, Mode=TwoWay}"/>
                                                 </Viewbox>
-                                                <Slider Width="100" Grid.Column="3" VerticalAlignment="Top" Style="{StaticResource SliderStyle1}" HorizontalAlignment="Center"/>
+                                                <Slider Width="100" Grid.Column="3" VerticalAlignment="Top" Value="100" Style="{StaticResource SliderStyle1}" HorizontalAlignment="Center"/>
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
