@@ -42,6 +42,11 @@ namespace Orphee.Models
             this._socket.On("private message", MessageNotificationReceiver);
             this._socket.On("group message", MessageNotificationReceiver);
             this._socket.On("create chat group", ChatGroupCreatedNotificationReceiver);
+            this._socket.On("piece info", PieceInfoNotificationReceiver);
+            this._socket.On("tempo", TempoNotificationReceiver);
+            this._socket.On("note", NoteNotificationReceiver);
+            this._socket.On("add columns", AddColumnsNotificationReceiver);
+            this._socket.On("piece quit", PieceQuitNotificationReceiver);
         }
 
         #region Listeners
@@ -137,7 +142,6 @@ namespace Orphee.Models
         private async void MessageNotificationReceiver(object data)
         {
             var dataString = JObject.FromObject(data);
-            var test = dataString.ToString();
             var message = JsonConvert.DeserializeObject<Message>(dataString["message"].ToString());
             message.Type = dataString["type"].ToString();
             message.TargetRoom = message.Type != "group message" ? dataString["target"]["_id"].ToString() : dataString["target"].ToString();
@@ -175,6 +179,32 @@ namespace Orphee.Models
             var convertedData = JObject.FromObject(data);
             RestApiManagerBase.Instance.UserData.User.ConversationList.Last().Id = convertedData["room"]["_id"].ToString();
         }
+
+        private void PieceInfoNotificationReceiver(object data)
+        {
+
+        }
+
+        private void TempoNotificationReceiver(object data)
+        {
+
+        }
+
+        private void NoteNotificationReceiver(object data)
+        {
+
+        }
+
+        private void AddColumnsNotificationReceiver(object data)
+        {
+
+        }
+
+        private void PieceQuitNotificationReceiver(object data)
+        {
+
+        }
+
         #endregion
     }
 }

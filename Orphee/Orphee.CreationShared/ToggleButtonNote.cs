@@ -23,6 +23,9 @@ namespace Orphee.CreationShared
         public int ColumnIndex { get; set; }
         /// <summary>Value representing the note related to the toggleButtonNote </summary>
         public Note Note { get; set; }
+
+        public Channel Channel { get; set; }
+        public int Octave { get; set; }
         private double _isChecked;
         /// <summary>Value bound to the toggleButtonNote's isCheck trigger</summary>
         public double IsChecked

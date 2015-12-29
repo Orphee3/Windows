@@ -62,11 +62,13 @@
     <Compile Include="Interfaces\IPlayerParameters.cs" />
     <Compile Include="Interfaces\ISoundPlayer.cs" />
     <Compile Include="Interfaces\IToggleButtonNote.cs" />
+    <Compile Include="Interfaces\INoteToSend.cs" />
     <Compile Include="MidiLibRepository.cs" />
     <Compile Include="MyInstrument.cs" />
     <Compile Include="MyRectangle.cs" />
     <Compile Include="NoteMapManager.cs" />
     <Compile Include="NoteNameListManager.cs" />
+    <Compile Include="NoteToSend.cs" />
     <Compile Include="OctaveManager.cs" />
     <Compile Include="OctaveManagerUI.cs" />
     <Compile Include="OrpheeFile.cs" />

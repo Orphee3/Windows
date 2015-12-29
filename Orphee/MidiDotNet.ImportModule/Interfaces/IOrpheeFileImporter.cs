@@ -26,7 +26,7 @@ namespace MidiDotNet.ImportModule.Interfaces
         /// </summary>
         /// <param name="fileType">Value representing the actual MIDI file type</param>
         /// <returns>Returns the imported MIDI file or null if a problem occured</returns>
-        Task<IOrpheeFile> ImportFile(string fileType);
+        Task<IOrpheeFile> ImportFile();
 
         Task<IOrpheeFile> ImportFileFromNet(string filePath, string fileName);
     }

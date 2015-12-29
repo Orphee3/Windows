@@ -644,7 +644,6 @@
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ProgressRing Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Height="45" Width="45"/>
             <Grid Grid.Row="0" Background="#78C7F9">
                 <TextBlock Text="{Binding OrpheeFile.FileName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
                 <Grid>
@@ -784,7 +783,7 @@
                             <AppBarButton Icon="Play" Command="{Binding DataContext.PlayCommand, ElementName=Page}" Style="{StaticResource MyPlayButton}"/>
                         </Viewbox>
                         <Viewbox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Margin="0, 0, 25, 0">
-                            <ComboBox  HorizontalContentAlignment="Center" Height="Auto"  Foreground="Black" Width="Auto" ItemsSource="{Binding TempoValues}" SelectedIndex="{Binding CurrentTempoIndex, Mode=TwoWay}"/>
+                            <ComboBox IsEnabled="{Binding IsTempoModificationEnabled}" HorizontalContentAlignment="Center" Height="Auto"  Foreground="Black" Width="Auto" ItemsSource="{Binding TempoValues}" SelectedIndex="{Binding CurrentTempoIndex, Mode=TwoWay}"/>
                         </Viewbox>
                     </Grid>
                     <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" Y1="0" X2="150" Y2="0" Stroke="DimGray" Stretch="Fill"/>
@@ -804,10 +803,10 @@
                                 <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
                             <Viewbox Grid.Column="0" HorizontalAlignment="Right" Height="26" Margin="0, 2, 0, 2">
-                                <AppBarButton Icon="Add" Command="{Binding AddNewTrackCommand}" Style="{StaticResource MyPlayButton}"/>
+                                <AppBarButton Icon="Add" IsEnabled="True" Command="{Binding AddNewTrackCommand}" Style="{StaticResource MyPlayButton}"/>
                             </Viewbox>
                             <Viewbox  Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="0, 2, 0, 2">
-                                <AppBarButton Icon="Clear" Command="{Binding DeleteTrackCommand}" Style="{StaticResource MyPlayButton}"/>
+                                <AppBarButton Icon="Clear" IsEnabled="True" Command="{Binding DeleteTrackCommand}" Style="{StaticResource MyPlayButton}"/>
                             </Viewbox>
                             <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" Text="S" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" Text="M" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>

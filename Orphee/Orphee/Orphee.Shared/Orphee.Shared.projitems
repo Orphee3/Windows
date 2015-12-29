@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\FontSizeManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IFontSizeManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IOnUserLoginNewsGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IOrpheeFileManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IPictureSizeManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IUIControlSizeManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OAuth2SDK\Cimbalino\ApplicationDataService.cs" />
@@ -36,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Interfaces\IMyNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\InternetAvailabilityWatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MyNavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OrpheeFileManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PictureSizeManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SocketEmitter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SocketListener.cs" />

@@ -81,6 +81,7 @@ namespace Orphee.UnityModule
             container.RegisterType<INoteMapManager, NoteMapManager>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrpheeTrackUI, OrpheeTrackUI>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFilePickerManager, FilePickerManager>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IOrpheeFileManager, OrpheeFileManager>(new ContainerControlledLifetimeManager());
         }
     }
 }

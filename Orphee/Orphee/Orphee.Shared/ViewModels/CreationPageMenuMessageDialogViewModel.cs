@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement.Models;
 
 namespace Orphee.ViewModels
@@ -20,7 +21,16 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._isOpen, value);
             }
         }
-
+        private bool _isComboBoxEnabled;
+        public bool IsComboBoxEnabled
+        {
+            get { return this._isComboBoxEnabled; }
+            set
+            {
+                if (this._isComboBoxEnabled != value)
+                    SetProperty(ref this._isComboBoxEnabled, value);
+            }
+        }
         public ObservableCollection<Creation> GroupList { get; private set; } 
         public DelegateCommand RadioButtonCommand { get; private set; }
         public DelegateCommand ValidationCommand { get; private set; }
@@ -32,11 +42,25 @@ namespace Orphee.ViewModels
             set
             {
                 if (this._selectedIndex != value)
+                {
                     SetProperty(ref this._selectedIndex, value);
+                    this.IsComboBoxEnabled = this._selectedIndex != this.GroupList.Count - 1;
+                }
             }
         }
         public bool IsSoloRadioButtonChecked { get; private set; }
         public bool IsCollaborateRadioButtonChecked { get; private set; }
+        public IInstrumentManager InstrumentManager { get; private set; }
+        private int _trackInstrumentIndex;
+        public int TrackInstrumentIndex
+        {
+            get { return this._trackInstrumentIndex; }
+            set
+            {
+                if (this._trackInstrumentIndex != value)
+                    SetProperty(ref this._trackInstrumentIndex, value);
+            }
+        }
         private Visibility _groupListvisibility;
 
         public Visibility GroupListVisibility
@@ -49,7 +73,7 @@ namespace Orphee.ViewModels
             }
         }
 
-        public CreationPageMenuMessageDialogViewModel()
+        public CreationPageMenuMessageDialogViewModel(IInstrumentManager instrumentManager)
         {
             this.GroupList = new ObservableCollection<Creation>()
             {
@@ -57,6 +81,9 @@ namespace Orphee.ViewModels
                 new Creation() {Name = "Force Your Way"},
                 new Creation() {Name = "Create a new group" }
             };
+            this.TrackInstrumentIndex = 0;
+            this.IsComboBoxEnabled = true;
+            this.InstrumentManager = instrumentManager;
             this.GroupListVisibility = Visibility.Collapsed;
             this.IsCollaborateRadioButtonChecked = false;
             this.IsSoloRadioButtonChecked = true;

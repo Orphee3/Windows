@@ -53,9 +53,9 @@ namespace MidiDotNet.ImportModule
         /// </summary>
         /// <param name="fileType">Value representing the actual MIDI file type</param>
         /// <returns>Returns the imported MIDI file or null if a problem occured</returns>
-        public async Task<IOrpheeFile> ImportFile(string fileType)
+        public async Task<IOrpheeFile> ImportFile()
         {
-            var result = await GetTheOpenFilePicker(fileType);
+            var result = await GetTheOpenFilePicker();
             return result ? this.OrpheeFile : null;
         }
 
@@ -81,14 +81,14 @@ namespace MidiDotNet.ImportModule
             return result2 ? this.OrpheeFile : null;
         }
 
-        private async Task<bool> GetTheOpenFilePicker(string fileType)
+        private async Task<bool> GetTheOpenFilePicker()
         {
             var openPicker = new FileOpenPicker()
             {
                 ViewMode = PickerViewMode.List,
                 SuggestedStartLocation = PickerLocationId.MusicLibrary,
             };
-            openPicker.FileTypeFilter.Add(fileType);
+            openPicker.FileTypeFilter.Add(".mid");
             this.StorageFile = await openPicker.PickSingleFileAsync();
             if (this.StorageFile != null)
                 return ReadFileMessages();
