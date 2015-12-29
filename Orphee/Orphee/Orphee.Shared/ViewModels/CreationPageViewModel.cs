@@ -107,6 +107,7 @@ namespace Orphee.ViewModels
         public DelegateCommand DeleteTrackCommand { get; private set; }
         public DelegateCommand AddNewTrackCommand { get; private set; }
         public DelegateCommand LeaveCreationCommand { get; private set; }
+        private int _invitedUserTrackPos;
         public INoteMapManager NoteMapManager { get; private set; }
         private IOrpheeTrack _selectedTrack;
         private bool? _creationMode;
@@ -179,6 +180,8 @@ namespace Orphee.ViewModels
             this.IsTrackDeletionOrAdditionEnabled = false;
             this.IsTrackAdditionButtonVisible = Visibility.Collapsed;
             this.IsTrackDeletionButtonVisible = Visibility.Collapsed;
+            AddNewTrackCommandExec();
+            this._invitedUserTrackPos = this.OrpheeFile.OrpheeTrackList.Last().TrackPos;
         }
 
         private void LeaveCreationCommandExec()
@@ -353,6 +356,8 @@ namespace Orphee.ViewModels
 
         private async void HoldTrackCommandExec(OrpheeTrack selectedTrack)
         {
+            if (this._creationMode == false && selectedTrack.TrackPos != this._invitedUserTrackPos)
+                return;
             var messageDialog = new MyMessageDialog();
 
             messageDialog.SetSource(selectedTrack);
