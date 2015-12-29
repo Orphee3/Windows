@@ -34,7 +34,7 @@ namespace Orphee.CreationShared
         /// <summary>List of noteMessage representation of the NoteMap </summary>
         public IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; }
         /// <summary>Current instrument </summary> 
-        public Instrument CurrentInstrument { get; set; }
+        public Instrument CurrentInstrument { get; set; } = Instrument.AcousticGrandPiano;
         /// <summary>Channel assigned to the track </summary>
         public Channel Channel { get; set; }
         /// <summary>Graphical position of the track </summary>

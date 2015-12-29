@@ -42,14 +42,47 @@ namespace Orphee.Models
             this._socket.On("private message", MessageNotificationReceiver);
             this._socket.On("group message", MessageNotificationReceiver);
             this._socket.On("create chat group", ChatGroupCreatedNotificationReceiver);
-            this._socket.On("piece info", PieceInfoNotificationReceiver);
-            this._socket.On("tempo", TempoNotificationReceiver);
-            this._socket.On("note", NoteNotificationReceiver);
-            this._socket.On("add columns", AddColumnsNotificationReceiver);
-            this._socket.On("piece quit", PieceQuitNotificationReceiver);
+            this._socket.On("join game room", JoinGameRoomNotificationReceiver);
+            this._socket.On("create game room", CreateGameRoomNotificationReceiver);
+            this._socket.On("get game rooms", GetGameRoomsNotificationReceiver);
+            this._socket.On("data game", DataGameNotificationReceiver);
+            this._socket.On("get all data game", GetAllDataGameNotificationReceiver);
+            this._socket.On("host send data", HostSendDataNotificationReceiver);
+            this._socket.On("big bang", BigBangNotificationReceiver);
         }
 
         #region Listeners
+
+        private void JoinGameRoomNotificationReceiver(object data)
+        {
+            var dataToString = data.ToString();
+        }
+
+        private void GetGameRoomsNotificationReceiver(object data)
+        {
+            var dataToString = data.ToString();
+        }
+        private void CreateGameRoomNotificationReceiver(object data)
+        {
+            var dataToString = data.ToString();
+        }
+        private void DataGameNotificationReceiver(object data)
+        {
+            var dataToString = data.ToString();
+        }
+        private void GetAllDataGameNotificationReceiver(object data)
+        {
+            var dataToString = data.ToString();
+        }
+        private void HostSendDataNotificationReceiver(object data)
+        {
+            var dataToString = data.ToString();
+        }
+        private void BigBangNotificationReceiver(object data)
+        {
+            var dataToString = data.ToString();
+        }
+
 
         private void ConnectErrorNotificationReceiver(object data)
         {

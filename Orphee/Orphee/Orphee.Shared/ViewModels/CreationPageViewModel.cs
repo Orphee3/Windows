@@ -23,6 +23,27 @@ namespace Orphee.ViewModels
         private readonly ISoundPlayer _soundPlayer;
         private readonly IOrpheeFileManager _orpheeFileManager;
         private bool _isTempoModificationEnabled = true;
+
+        public Visibility IsTrackAdditionButtonVisible
+        {
+            get { return this._isTrackAdditionButtonVisible; }
+            set
+            {
+                if (this._isTrackAdditionButtonVisible != value)
+                    SetProperty(ref this._isTrackAdditionButtonVisible, value);
+            }
+        }
+        private Visibility _isTrackAdditionButtonVisible = Visibility.Visible;
+        public Visibility IsTrackDeletionButtonVisible
+        {
+            get { return this._isTrackDeletionButtonVisible; }
+            set
+            {
+                if (this._isTrackDeletionButtonVisible != value)
+                    SetProperty(ref this._isTrackDeletionButtonVisible, value);
+            }
+        }
+        private Visibility _isTrackDeletionButtonVisible = Visibility.Visible;
         public bool IsTempoModificationEnabled
         {
             get { return this._isTempoModificationEnabled; }
@@ -85,7 +106,7 @@ namespace Orphee.ViewModels
         public DelegateCommand ClearButtonCommand { get; private set; }
         public DelegateCommand DeleteTrackCommand { get; private set; }
         public DelegateCommand AddNewTrackCommand { get; private set; }
-
+        public DelegateCommand LeaveCreationCommand { get; private set; }
         public INoteMapManager NoteMapManager { get; private set; }
         private IOrpheeTrack _selectedTrack;
         private bool? _creationMode;
@@ -124,6 +145,7 @@ namespace Orphee.ViewModels
             this.AddNewTrackCommand = new DelegateCommand(AddNewTrackCommandExec);
             this.SelectedTrackCommand = new DelegateCommand<SelectionChangedEventArgs>(SelectedTrackCommandExec);
             this.AddColumnsCommand = new DelegateCommand(AddColumnsCommandExec);
+            this.LeaveCreationCommand = new DelegateCommand(LeaveCreationCommandExec);
             //this.RemoveAColumnCommand = new DelegateCommand(() => this._noteMapManager.RemoveAColumnFromThisNoteMap(this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).NoteMap));
             this.SaveButtonCommand = new DelegateCommand(SaveButtonCommandExec);
             this.LoadButtonCommand = new DelegateCommand(LoadButtonCommandExec);
@@ -134,21 +156,35 @@ namespace Orphee.ViewModels
         private async void InitMode()
         {
             var menuMessageDialog = new CreationPageMenuMessageDialog();
-
+            var rooms = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendGameRooms();
             await menuMessageDialog.ShowAsync();
             var result = menuMessageDialog.GetCreationType();
             if (result == null)
+            {
                 this._creationMode = null;
-            else
-                this._creationMode = result.Name == "Create a new group";
+                return;
+            }
+            this._creationMode = result.Name == "Create a new group";
             if (this._creationMode == false)
                 DisableFunctionalities();
+            else
+            {
+                var result2 = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendCreateRoom();
+            }
         }
 
         private void DisableFunctionalities()
         {
             this.IsTempoModificationEnabled = false;
             this.IsTrackDeletionOrAdditionEnabled = false;
+            this.IsTrackAdditionButtonVisible = Visibility.Collapsed;
+            this.IsTrackDeletionButtonVisible = Visibility.Collapsed;
+        }
+
+        private void LeaveCreationCommandExec()
+        {
+            ClearButtonCommandExec();
+            App.MyNavigationService.GoBack();
         }
 
         public async void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote)
@@ -169,7 +205,17 @@ namespace Orphee.ViewModels
 
         private void ClearButtonCommandExec()
         {
-
+            foreach (var track in this.OrpheeFile.OrpheeTrackList)
+            {
+                track.ColumnMap.Clear();
+                track.NoteMap.Clear();
+            }
+            this.OrpheeFile.OrpheeTrackList.Clear();
+            var newTrack = new OrpheeTrack(new OrpheeTrackUI(new ColorManager()), new NoteMapManager());
+            newTrack.Init(0, 0, true);
+            UpdateCurrentInstrument(Instrument.AcousticGrandPiano);
+            this.OrpheeFile.AddNewTrack(newTrack);
+            this._currentChannel = Channel.Channel1;
         }
 
         private void DeleteTrackCommandExec()
@@ -274,7 +320,7 @@ namespace Orphee.ViewModels
             {
                 this.NoteMapManager.AddColumnsToThisNoteMap(track.NoteMap);
                 this.NoteMapManager.AddColumnsToThisColumnMap(track.ColumnMap);
-                while (await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendMoreColumns())
+                while (await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendData<string>("Columns", null))
                     await Task.Delay(1);
             }
         }

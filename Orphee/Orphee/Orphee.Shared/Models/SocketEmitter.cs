@@ -69,11 +69,50 @@ namespace Orphee.Models
             return true;
         }
 
-        public async Task<bool> SendMoreColumns()
+        public async Task<bool> SendAllDataGame()
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("add columns"));
+                var result = await Task.FromResult(this._socket.Emit("get all data game"));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> SendCreateRoom()
+        {
+            try
+            {
+                var result = await Task.FromResult(this._socket.Emit("create game room"));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> SendGameRooms()
+        {
+            try
+            {
+                var result = await Task.FromResult(this._socket.Emit("get game rooms"));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> SendJoinGameRooms()
+        {
+            try
+            {
+                var result = await Task.FromResult(this._socket.Emit("join game room"));
             }
             catch (Exception)
             {
@@ -86,7 +125,7 @@ namespace Orphee.Models
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("piece info", JObject.FromObject(new {pieceInfo = actualPieceInfo})));
+                var result = await Task.FromResult(this._socket.Emit("host send data", JObject.FromObject(new {pieceInfo = actualPieceInfo})));
             }
             catch (Exception)
             {
@@ -95,11 +134,11 @@ namespace Orphee.Models
             return true;
         }
 
-        public async Task<bool> SendTempoModification(int newTempo)
+        public async Task<bool> SendData<T>(string dataType, T dataToSend)
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("tempo", JObject.FromObject(new { tempo = newTempo })));
+                var result = await Task.FromResult(this._socket.Emit("data game", JObject.FromObject(new { type = dataType, data = dataToSend })));
             }
             catch (Exception)
             {
@@ -112,7 +151,7 @@ namespace Orphee.Models
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("piece quit"));
+                var result = await Task.FromResult(this._socket.Emit("big bang"));
             }
             catch (Exception)
             {

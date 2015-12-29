@@ -655,7 +655,8 @@
                         <AppBarButton Icon="Back" Command="{Binding BackButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
                         <AppBarButton Icon="Save" Command="{Binding SaveButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
                         <AppBarButton Icon="Folder" Command="{Binding LoadButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
-                        <AppBarButton Icon="Clear" Command="{Binding ClearButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
+                        <AppBarButton Icon="Document" Command="{Binding ClearButtonCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
+                        <AppBarButton Icon="Clear" Command="{Binding LeaveCreationCommand}" VerticalAlignment="Center" Style="{StaticResource MyPlayButton}"/>
                     </StackPanel>
                     <Grid Grid.Column="1" HorizontalAlignment="Right">
                         <AppBarButton Icon="Add" Command="{Binding AddColumnsCommand}" VerticalAlignment="Center" Style="{StaticResource MyBackButton}"/>
@@ -803,10 +804,10 @@
                                 <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
                             <Viewbox Grid.Column="0" HorizontalAlignment="Right" Height="26" Margin="0, 2, 0, 2">
-                                <AppBarButton Icon="Add" IsEnabled="True" Command="{Binding AddNewTrackCommand}" Style="{StaticResource MyPlayButton}"/>
+                                <AppBarButton Icon="Add" IsEnabled="True" Command="{Binding AddNewTrackCommand}" Style="{StaticResource MyPlayButton}" Visibility="{Binding IsTrackAdditionButtonVisible}"/>
                             </Viewbox>
                             <Viewbox  Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="0, 2, 0, 2">
-                                <AppBarButton Icon="Clear" IsEnabled="True" Command="{Binding DeleteTrackCommand}" Style="{StaticResource MyPlayButton}"/>
+                                <AppBarButton Icon="Clear" IsEnabled="True" Command="{Binding DeleteTrackCommand}" Style="{StaticResource MyPlayButton}" Visibility="{Binding IsTrackDeletionButtonVisible}"/>
                             </Viewbox>
                             <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" Text="S" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" Text="M" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>

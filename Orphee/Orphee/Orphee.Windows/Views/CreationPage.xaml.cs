@@ -8,7 +8,7 @@ namespace Orphee.Views
         public CreationPage()
         {
             this.InitializeComponent();
-            NavigationCacheMode = NavigationCacheMode.Disabled;
+            NavigationCacheMode = NavigationCacheMode.Enabled;
         }
     }
 }
