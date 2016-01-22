@@ -13,6 +13,7 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using Midi;
 using Orphee.Models.Interfaces;
 using Orphee.RestApiManagement.Models;
@@ -136,8 +137,6 @@ namespace Orphee.ViewModels
         {
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
                 this._dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
-            if (RestApiManagerBase.Instance.IsConnected && App.InternetAvailabilityWatcher.IsInternetUp)
-                InitMode();
             this.NoteMapManager = noteMapManager;
             this.OrpheeFile = orpheeFile.OrpheeTrackList.Count > 1 ? new OrpheeFile(new OrpheeTrack(new OrpheeTrackUI(new ColorManager()), new NoteMapManager())) : orpheeFile;
             this._currentChannel = Channel.Channel1;
@@ -155,6 +154,12 @@ namespace Orphee.ViewModels
             for (var repeat = 0; repeat < 360; repeat++)
                 this.TempoValues.Add((uint)(40 + repeat));
             this.CurrentTempoIndex = 80;
+        }
+
+        public override void OnNavigatedTo(object navigationParameter, NavigationMode navigationMode, Dictionary<string, object> viewModelState)
+        {
+            if (RestApiManagerBase.Instance.IsConnected && App.InternetAvailabilityWatcher.IsInternetUp)
+                InitMode();
         }
 
         private void InitDelegateCommands()
