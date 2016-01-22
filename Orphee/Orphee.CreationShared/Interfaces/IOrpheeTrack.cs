@@ -12,7 +12,7 @@ namespace Orphee.CreationShared.Interfaces
     public interface IOrpheeTrack
     {
         // Properties
-
+        string OwnerId { get; set; }
         /// <summary>Rectangle map represented on the CreationPage screen </summary>
         ObservableCollection<OctaveManager> NoteMap { get; }
         /// <summary>List of noteMessage representation of the NoteMap </summary>

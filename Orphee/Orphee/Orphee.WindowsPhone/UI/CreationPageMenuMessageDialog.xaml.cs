@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using Orphee.CreationShared;
 using Orphee.RestApiManagement.Models;
 using Orphee.ViewModels;
 
@@ -10,7 +11,7 @@ namespace Orphee.UI
         public CreationPageMenuMessageDialog()
         {
             this.InitializeComponent();
-            this.DataContext = new CreationPageMenuMessageDialogViewModel();
+            this.DataContext = new CreationPageMenuMessageDialogViewModel(new InstrumentManager());
         }
 
         public async Task<bool> ShowAsync()

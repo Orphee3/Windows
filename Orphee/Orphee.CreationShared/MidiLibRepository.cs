@@ -37,7 +37,7 @@ namespace Orphee.CreationShared
             this._clock = new Clock(this.PlayerParameters.Tempo);
             try
             {
-                this._outputDevice = OutputDevice.InstalledDevices[0];
+                //this._outputDevice = OutputDevice.InstalledDevices[0];
             }
             catch (Exception)
             {
@@ -47,7 +47,7 @@ namespace Orphee.CreationShared
 
             try
             {
-                this._outputDevice.Open();
+                //this._outputDevice.Open();
             }
             catch (Exception)
             {
@@ -64,11 +64,11 @@ namespace Orphee.CreationShared
         /// <param name="channel">Value representing the channel in which the note will be played</param>
         public void PlayNote(Note note, Channel channel)
         {
-            var noteOn = new NoteOnMessage(this._outputDevice, channel, note, this._velocity, this._clock.BeatTime);
-            var noteOff = new NoteOffMessage(this._outputDevice, channel, note, this._velocity, this._clock.BeatTime + 1);
+            //var noteOn = new NoteOnMessage(this._outputDevice, channel, note, this._velocity, this._clock.BeatTime);
+            //var noteOff = new NoteOffMessage(this._outputDevice, channel, note, this._velocity, this._clock.BeatTime + 1);
 
-            this._clock.Schedule(noteOn);
-            this._clock.Schedule(noteOff);
+            //this._clock.Schedule(noteOn);
+            //this._clock.Schedule(noteOff);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Orphee.CreationShared
         /// <param name="channel">Channel for which the instrument is going to be changed</param>
         public void UpdatePlayingInstrument(Channel channel, Instrument newPlayingInstrument)
         {
-            this._outputDevice.SendProgramChange(channel, newPlayingInstrument);
+            //this._outputDevice.SendProgramChange(channel, newPlayingInstrument);
         }
 
         /// <summary>
@@ -87,13 +87,13 @@ namespace Orphee.CreationShared
         /// <param name="tempo">New tempo value</param>
         public void UpdateTempo(uint tempo, Instrument instrument, Channel channel)
         {
-            this.PlayerParameters.Tempo = tempo;
-            this._outputDevice.Close();
-            this._clock = new Clock(tempo);
-            this._outputDevice = OutputDevice.InstalledDevices[0];
-            this._outputDevice.Open();
-            this._clock.Start();
-            UpdatePlayingInstrument(channel, instrument);
+            //this.PlayerParameters.Tempo = tempo;
+            //this._outputDevice.Close();
+            //this._clock = new Clock(tempo);
+            //this._outputDevice = OutputDevice.InstalledDevices[0];
+            //this._outputDevice.Open();
+            //this._clock.Start();
+            //UpdatePlayingInstrument(channel, instrument);
         }
 
         /// <summary>
@@ -108,9 +108,9 @@ namespace Orphee.CreationShared
 
         private void ReinitClock()
         {
-            this._clock.Stop();
-            this._clock = new Clock(this.PlayerParameters.Tempo);
-            this._clock.Start();
+            //this._clock.Stop();
+            //this._clock = new Clock(this.PlayerParameters.Tempo);
+            //this._clock.Start();
         }
 
         /// <summary>

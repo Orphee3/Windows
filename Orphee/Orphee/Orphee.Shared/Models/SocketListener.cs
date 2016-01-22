@@ -46,9 +46,9 @@ namespace Orphee.Models
             this._socket.On("create game room", CreateGameRoomNotificationReceiver);
             this._socket.On("get game rooms", GetGameRoomsNotificationReceiver);
             this._socket.On("data game", DataGameNotificationReceiver);
-            this._socket.On("get all data game", GetAllDataGameNotificationReceiver);
-            this._socket.On("host send data", HostSendDataNotificationReceiver);
+            //this._socket.On("host send data", HostSendDataNotificationReceiver);
             this._socket.On("big bang", BigBangNotificationReceiver);
+            this._socket.On("someone need all data", GetAllDataGameNotificationReceiver);
         }
 
         #region Listeners
@@ -56,11 +56,23 @@ namespace Orphee.Models
         private void JoinGameRoomNotificationReceiver(object data)
         {
             var dataToString = data.ToString();
+            dynamic dataReceived = JObject.Parse(dataToString);
+            RestApiManagerBase.Instance.UserData.User.NewComer = dataReceived.newPeople;
+            RestApiManagerBase.Instance.UserData.User.HasReceivedNewComerNotification = true;
         }
 
         private void GetGameRoomsNotificationReceiver(object data)
         {
-            var dataToString = data.ToString();
+            try
+            {
+                var dataReceived = JObject.FromObject(data);
+                RestApiManagerBase.Instance.UserData.User.RoomList = JsonConvert.DeserializeObject<List<Room>>(dataReceived["rooms"].ToString());
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            RestApiManagerBase.Instance.UserData.User.HasReceivedRoomListNotification = true;
         }
         private void CreateGameRoomNotificationReceiver(object data)
         {
@@ -80,7 +92,7 @@ namespace Orphee.Models
         }
         private void BigBangNotificationReceiver(object data)
         {
-            var dataToString = data.ToString();
+            RestApiManagerBase.Instance.UserData.User.HasReceivedBigBangNotification = true;
         }
 
 

@@ -24,7 +24,7 @@ namespace Orphee.Models
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit(isPrivate ? "private message" : "group message", JObject.FromObject(new {to = target, message = messageToSend})));
+                var result = await Task.FromResult(this._socket.Emit(isPrivate ? "private message" : "group message", JObject.FromObject(new { to = target, message = messageToSend })));
             }
             catch (Exception)
             {
@@ -60,7 +60,7 @@ namespace Orphee.Models
             };
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("note", JObject.FromObject(new {note = noteToSend, isOn = isNoteOn})));
+                var result = await Task.FromResult(this._socket.Emit("note", JObject.FromObject(new { note = noteToSend, isOn = isNoteOn })));
             }
             catch (Exception)
             {
@@ -108,11 +108,11 @@ namespace Orphee.Models
             return true;
         }
 
-        public async Task<bool> SendJoinGameRooms()
+        public async Task<bool> SendJoinGameRooms(string roomId, Instrument selectedInstrument)
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("join game room"));
+                var result = await Task.FromResult(this._socket.Emit("join game room", JObject.FromObject(new { id = roomId, instrument = selectedInstrument })));
             }
             catch (Exception)
             {
@@ -125,7 +125,7 @@ namespace Orphee.Models
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("host send data", JObject.FromObject(new {pieceInfo = actualPieceInfo})));
+                var result = await Task.FromResult(this._socket.Emit("host send data", JObject.FromObject(new { pieceInfo = actualPieceInfo })));
             }
             catch (Exception)
             {
@@ -152,6 +152,19 @@ namespace Orphee.Models
             try
             {
                 var result = await Task.FromResult(this._socket.Emit("big bang"));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> NewComerLeavesPiece()
+        {
+            try
+            {
+                var result = 0;
             }
             catch (Exception)
             {

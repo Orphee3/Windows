@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -31,6 +32,7 @@ namespace Orphee.CreationShared
         }
 
         public bool HasBeenSent { get; set; }
+        public List<string> People { get; set; } 
         private string _fileName;
 
         /// <summary>Name of the current file </summary>
@@ -53,6 +55,7 @@ namespace Orphee.CreationShared
         public OrpheeFile(IOrpheeTrack orpheeTrack)
         {
             orpheeTrack.Init(0, 0, true);
+            this.People = new List<string>();
             this.OrpheeTrackList = new ObservableCollection<IOrpheeTrack>() {orpheeTrack};
             this.OrpheeFileParameters = new OrpheeFileParameters();
             this.FileName = "New Piece";
@@ -68,6 +71,11 @@ namespace Orphee.CreationShared
             if (howMany != 0)
                 orpheeTrack.TrackName += howMany;
             this.OrpheeTrackList.Add(orpheeTrack);
+        }
+
+        public void AddNewPeople(string peopleId)
+        {
+            this.People.Add(peopleId);
         }
 
         /// <summary>

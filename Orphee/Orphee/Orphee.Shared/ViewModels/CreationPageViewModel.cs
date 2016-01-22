@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Orphee.CreationShared;
@@ -8,6 +9,7 @@ using Orphee.ViewModels.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Graphics.Display;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -79,6 +81,18 @@ namespace Orphee.ViewModels
             }
         }
         private int _currentTrackPos;
+
+        public bool IsHorizontalScrollingEnabled
+        {
+            get { return this._isHorizontalScrollingEnabled; }
+            set
+            {
+                if (this._isHorizontalScrollingEnabled != value)
+                    SetProperty(ref this._isHorizontalScrollingEnabled, value);
+            }
+        }
+
+        private bool _isHorizontalScrollingEnabled = true;
         public int CurrentTrackPos
         {
             get { return this._currentTrackPos; }
@@ -88,6 +102,9 @@ namespace Orphee.ViewModels
                     SetProperty(ref this._currentTrackPos, value);
             }
         }
+
+        private IToggleButtonNote _holdedRectangleButton;
+        private bool _rectangleButtonHoldedStage;
         public IOrpheeFile OrpheeFile { get; private set; }
         public DelegateCommand GoToUpperOctaveCommand { get; private set; }
         public DelegateCommand GoToLowerOctaveCommand { get; private set; }
@@ -100,10 +117,12 @@ namespace Orphee.ViewModels
         public DelegateCommand ItemSelectedCommand { get; private set; }
         public DelegateCommand LoadButtonCommand { get; private set; }
         public DelegateCommand PlayCommand { get; private set; }
+        public DelegateCommand<IToggleButtonNote> ToggleButtonHolded { get; private set; }
         public DelegateCommand<SelectionChangedEventArgs> SelectedTrackCommand { get; private set; }
         public DelegateCommand AddOneHigherOctaveCommand { get; private set; }
         public DelegateCommand AddOneLowerOctaveCommand { get; private set; }
         public DelegateCommand ClearButtonCommand { get; private set; }
+        public DelegateCommand<IToggleButtonNote> CursorEnteredToggleButtonCommand { get; private set; }
         public DelegateCommand DeleteTrackCommand { get; private set; }
         public DelegateCommand AddNewTrackCommand { get; private set; }
         public DelegateCommand LeaveCreationCommand { get; private set; }
@@ -111,9 +130,14 @@ namespace Orphee.ViewModels
         public INoteMapManager NoteMapManager { get; private set; }
         private IOrpheeTrack _selectedTrack;
         private bool? _creationMode;
+        private readonly CoreDispatcher _dispatcher;
 
         public CreationPageViewModel(ISoundPlayer soundPlayer, IOrpheeFileManager orpheeFileManager, INoteMapManager noteMapManager, IOrpheeFile orpheeFile)
-         {
+        {
+            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+                this._dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
+            if (RestApiManagerBase.Instance.IsConnected && App.InternetAvailabilityWatcher.IsInternetUp)
+                InitMode();
             this.NoteMapManager = noteMapManager;
             this.OrpheeFile = orpheeFile.OrpheeTrackList.Count > 1 ? new OrpheeFile(new OrpheeTrack(new OrpheeTrackUI(new ColorManager()), new NoteMapManager())) : orpheeFile;
             this._currentChannel = Channel.Channel1;
@@ -123,8 +147,6 @@ namespace Orphee.ViewModels
             this._orpheeFileManager = orpheeFileManager;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             InitDelegateCommands();
-            if (RestApiManagerBase.Instance.IsConnected && App.InternetAvailabilityWatcher.IsInternetUp) 
-                InitMode();
          }
 
         private void InitTempo()
@@ -152,12 +174,14 @@ namespace Orphee.ViewModels
             this.LoadButtonCommand = new DelegateCommand(LoadButtonCommandExec);
             this.BackButtonCommand = new DelegateCommand(() => { App.MyNavigationService.GoBack(); });
             this.PlayCommand = new DelegateCommand(PlayCommandExec);
+            this.ToggleButtonHolded = new DelegateCommand<IToggleButtonNote>(ToggleButtonHoldedExec);
+            this.CursorEnteredToggleButtonCommand = new DelegateCommand<IToggleButtonNote>(CursorEnteredToggleButtonCommandExec);
         }
 
         private async void InitMode()
         {
             var menuMessageDialog = new CreationPageMenuMessageDialog();
-            var rooms = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendGameRooms();
+            var result1 = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendGameRooms();
             await menuMessageDialog.ShowAsync();
             var result = menuMessageDialog.GetCreationType();
             if (result == null)
@@ -165,13 +189,65 @@ namespace Orphee.ViewModels
                 this._creationMode = null;
                 return;
             }
-            this._creationMode = result.Name == "Create a new group";
+            RestApiManagerBase.Instance.UserData.User.PropertyChanged += UserOnPropertyChanged;
+            this._creationMode = result.Name == "+";
             if (this._creationMode == false)
+            {
                 DisableFunctionalities();
+                var result2 = App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendJoinGameRooms(result.Name, this.OrpheeFile.OrpheeTrackList.Last().CurrentInstrument);
+            }
             else
             {
                 var result2 = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendCreateRoom();
             }
+        }
+
+        private void UserOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == "_hasReceivedNewComerNotification" && RestApiManagerBase.Instance.UserData.User.HasReceivedNewComerNotification)
+                AddNewComerToOrpheeFilesPeopleList();
+            if (propertyChangedEventArgs.PropertyName == "_hasReceivedBigBangNotification" && RestApiManagerBase.Instance.UserData.User.HasReceivedBigBangNotification)
+                ApplyBigBangEvent();
+            if (propertyChangedEventArgs.PropertyName == "_hasReceivedKickNotification" && RestApiManagerBase.Instance.UserData.User.HasReceivedKickNotification)
+                ApplyTheKick();
+            if (propertyChangedEventArgs.PropertyName == "_hasReceivedLeavingNotification" && RestApiManagerBase.Instance.UserData.User.HasReceivedLeavingNotification)
+                RemoveUsersTrackFromTrackList();
+        }
+
+        private async void RemoveUsersTrackFromTrackList()
+        {
+            if (RestApiManagerBase.Instance.UserData.User.LeavingUser == "")
+                return;
+            await this._dispatcher.RunAsync(CoreDispatcherPriority.Normal, RemoveUsersTrack);
+        }
+
+        private void RemoveUsersTrack()
+        {
+            this.OrpheeFile.OrpheeTrackList.Remove(this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.OwnerId == RestApiManagerBase.Instance.UserData.User.LeavingUser));
+            RestApiManagerBase.Instance.UserData.User.HasReceivedLeavingNotification = false;
+            RestApiManagerBase.Instance.UserData.User.LeavingUser = "";
+        }
+
+        private async void ApplyTheKick()
+        {
+            await this._dispatcher.RunAsync(CoreDispatcherPriority.Normal, ClearAndQuitPage);
+            RestApiManagerBase.Instance.UserData.User.HasReceivedKickNotification = false;
+        }
+
+        private async void ApplyBigBangEvent()
+        {
+            if (this._creationMode != false)
+                return;
+            await this._dispatcher.RunAsync(CoreDispatcherPriority.Normal, ClearAndQuitPage);
+            RestApiManagerBase.Instance.UserData.User.HasReceivedBigBangNotification = false;
+        }
+
+        private async void AddNewComerToOrpheeFilesPeopleList()
+        {
+            if (RestApiManagerBase.Instance.UserData.User.NewComer == "")
+                return;
+            this.OrpheeFile.AddNewPeople(RestApiManagerBase.Instance.UserData.User.NewComer);
+            await this._dispatcher.RunAsync(CoreDispatcherPriority.Normal, AddNewComerTrack);
         }
 
         private void DisableFunctionalities()
@@ -180,14 +256,17 @@ namespace Orphee.ViewModels
             this.IsTrackDeletionOrAdditionEnabled = false;
             this.IsTrackAdditionButtonVisible = Visibility.Collapsed;
             this.IsTrackDeletionButtonVisible = Visibility.Collapsed;
-            AddNewTrackCommandExec();
             this._invitedUserTrackPos = this.OrpheeFile.OrpheeTrackList.Last().TrackPos;
         }
 
-        private void LeaveCreationCommandExec()
+        private async void LeaveCreationCommandExec()
         {
-            ClearButtonCommandExec();
-            App.MyNavigationService.GoBack();
+            ClearAndQuitPage();
+            if (this._creationMode != null)
+            {
+                var result = this._creationMode == true ? await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendPieceQuit() : await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.NewComerLeavesPiece();
+                return;
+            }
         }
 
         public async void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote)
@@ -306,6 +385,18 @@ namespace Orphee.ViewModels
             this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).SetTrackVisibility(Visibility.Visible);
         }
 
+        private void AddNewComerTrack()
+        {
+            if (this.OrpheeFile.OrpheeTrackList.Count >= 16)
+                return;
+            var newTrack = new OrpheeTrack(new OrpheeTrackUI(new ColorManager()), new NoteMapManager()) {OwnerId = RestApiManagerBase.Instance.UserData.User.NewComer };
+            newTrack.Init(this.OrpheeFile.OrpheeTrackList.Count, (Channel)this.OrpheeFile.OrpheeTrackList.Count, true);
+            this.OrpheeFile.AddNewTrack(newTrack);
+            this.OrpheeFile.OrpheeFileParameters.NumberOfTracks++;
+            RestApiManagerBase.Instance.UserData.User.NewComer = "";
+            RestApiManagerBase.Instance.UserData.User.HasReceivedNewComerNotification = false;
+        }
+
         private void AddNewTrackCommandExec()
         {
             if (this.OrpheeFile.OrpheeTrackList.Count < 16)
@@ -363,6 +454,34 @@ namespace Orphee.ViewModels
             messageDialog.SetSource(selectedTrack);
             await messageDialog.ShowAsync();
             UpdateCurrentInstrument(selectedTrack.CurrentInstrument);
+        }
+
+        private void ToggleButtonHoldedExec(IToggleButtonNote holdedRectangleButton)
+        {
+            if (!this._rectangleButtonHoldedStage)
+            {
+                this._holdedRectangleButton = holdedRectangleButton;
+                this._isHorizontalScrollingEnabled = false;
+                this._rectangleButtonHoldedStage = true;
+                return;
+            }
+            this._rectangleButtonHoldedStage = false;
+            this._isHorizontalScrollingEnabled = true;
+            return;
+        }
+
+        private void CursorEnteredToggleButtonCommandExec(IToggleButtonNote enteredToggleButton)
+        {
+            if (this._rectangleButtonHoldedStage)
+                //this.OrpheeFile.OrpheeTrackList[(int)this._currentChannel].ColumnMap[enteredToggleButton.ColumnIndex].IsRectangleVisible = 0;
+                return;
+
+        }
+
+        private void ClearAndQuitPage()
+        {
+            ClearButtonCommandExec();
+            App.MyNavigationService.GoBack();
         }
 
         private async void DisplayMessage(string message)

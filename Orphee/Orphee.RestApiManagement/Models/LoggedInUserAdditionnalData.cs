@@ -88,5 +88,78 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
+        protected bool _hasReceivedRoomListNotification;
+        /// <summary>True if a friend validation notification was received. False otherwise </summary>
+        public bool HasReceivedNewComerNotification
+        {
+            get { return this._hasReceivedNewComerNotification; }
+            set
+            {
+                if (this._hasReceivedNewComerNotification != value)
+                {
+                    this._hasReceivedNewComerNotification = value;
+                    OnPropertyChanged(nameof(this._hasReceivedNewComerNotification));
+                }
+            }
+        }
+        protected bool _hasReceivedNewComerNotification;
+
+        public bool HasReceivedBigBangNotification
+        {
+            get { return this._hasReceivedBigBangNotification; }
+            set
+            {
+                if (this._hasReceivedBigBangNotification != value)
+                {
+                    this._hasReceivedBigBangNotification = value;
+                    OnPropertyChanged(nameof(this._hasReceivedBigBangNotification));
+                }
+            }
+        }
+        protected bool _hasReceivedBigBangNotification;
+
+        public bool HasReceivedKickNotification
+        {
+            get { return this._hasReceivedKickNotification; }
+            set
+            {
+                if (this._hasReceivedKickNotification != value)
+                {
+                    this._hasReceivedKickNotification = value;
+                    OnPropertyChanged(nameof(this._hasReceivedKickNotification));
+                }
+            }
+        }
+        protected bool _hasReceivedKickNotification;
+
+        public bool HasReceivedLeavingNotification
+        {
+            get { return this._hasReceivedLeavingNotification; }
+            set
+            {
+                if (this._hasReceivedLeavingNotification != value)
+                {
+                    this._hasReceivedLeavingNotification = value;
+                    OnPropertyChanged(nameof(this._hasReceivedLeavingNotification));
+                }
+            }
+        }
+        protected bool _hasReceivedLeavingNotification;
+        public bool HasReceivedRoomListNotification
+        {
+            get { return this._hasReceivedRoomListNotification; }
+            set
+            {
+                if (this._hasReceivedRoomListNotification != value)
+                {
+                    this._hasReceivedRoomListNotification = value;
+                    OnPropertyChanged(nameof(this._hasReceivedRoomListNotification));
+                }
+            }
+        }
+        public string NewComer { get; set; }
+        public string LeavingUser { get; set; }
+
+        public List<Room> RoomList { get; set; }
     }
 }

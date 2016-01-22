@@ -26,6 +26,7 @@ namespace Orphee.RestApiManagement.Models
             this.ConversationList = new ObservableCollection<Conversation>();
             this.NotificationList = new List<News>();
             this.CreationList = new List<Creation>();
+            this.RoomList = new List<Room>();
         }
     }
 }

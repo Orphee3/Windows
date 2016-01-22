@@ -64,6 +64,7 @@ namespace Orphee.Models
                 RestApiManagerBase.Instance.SaveUser();
         }
 
+
         /// <summary>
         /// Sets the foreground color of the BottomAppBar buttons
         /// </summary>

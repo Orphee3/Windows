@@ -75,12 +75,8 @@ namespace Orphee.ViewModels
 
         public CreationPageMenuMessageDialogViewModel(IInstrumentManager instrumentManager)
         {
-            this.GroupList = new ObservableCollection<Creation>()
-            {
-                new Creation() {Name = "The Extreme Intro"},
-                new Creation() {Name = "Force Your Way"},
-                new Creation() {Name = "Create a new group" }
-            };
+            GetRooms();      
+            this.GroupList = new ObservableCollection<Creation>();
             this.TrackInstrumentIndex = 0;
             this.IsComboBoxEnabled = true;
             this.InstrumentManager = instrumentManager;
@@ -89,6 +85,16 @@ namespace Orphee.ViewModels
             this.IsSoloRadioButtonChecked = true;
             this.RadioButtonCommand = new DelegateCommand(RadioButtonCommandExec);
             this.ValidationCommand = new DelegateCommand(Close);
+        }
+
+        private async void GetRooms()
+        {
+            while (!RestApiManagerBase.Instance.UserData.User.HasReceivedRoomListNotification)
+                await Task.Delay(100);
+            foreach (var room in RestApiManagerBase.Instance.UserData.User.RoomList)
+                this.GroupList.Add(new Creation() {Name = room.Id});
+            this.GroupList.Add(new Creation() {Name = "+"});
+            RestApiManagerBase.Instance.UserData.User.HasReceivedRoomListNotification = false;
         }
 
         public Task<bool> ShowAsync()

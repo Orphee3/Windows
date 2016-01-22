@@ -59,7 +59,7 @@ namespace Orphee.ViewModels
         protected IOnUserLoginNewsGetter _onUserLoginNewsGetter;
         private readonly CoreDispatcher _dispatcher;
 
-        public ViewModelExtend()
+        protected ViewModelExtend()
         {
             this.EmptyMessage = "Empty";
             this.EmptyMessageVisibility = Visibility.Collapsed;

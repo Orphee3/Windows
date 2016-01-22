@@ -45,7 +45,7 @@ namespace Orphee.RestApiManagement.Getters
             {
                 returnInfo = await RequestServerForInfo<T>(request);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return returnInfo;
             }

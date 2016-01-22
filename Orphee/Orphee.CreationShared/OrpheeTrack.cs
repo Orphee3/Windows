@@ -13,6 +13,7 @@ namespace Orphee.CreationShared
     /// </summary>
     public class OrpheeTrack : IOrpheeTrack, INotifyPropertyChanged
     {
+        public string OwnerId { get; set; }
         /// <summary>PropertyChanged event handler </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<OctaveManager> _noteMap;

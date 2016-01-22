@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Orphee.CreationShared.Interfaces
 {
@@ -15,6 +16,7 @@ namespace Orphee.CreationShared.Interfaces
         ObservableCollection<IOrpheeTrack> OrpheeTrackList { get; set; }
         /// <summary>Name of the current file </summary>
         string FileName { get; set; }
+        List<string> People { get; set; } 
         bool HasBeenSent { get; set; }
 
         // Methods
@@ -24,5 +26,7 @@ namespace Orphee.CreationShared.Interfaces
         /// </summary>
         /// <param name="orpheeTrack">OrpheeTrack to add</param>
         void AddNewTrack(IOrpheeTrack orpheeTrack);
+
+        void AddNewPeople(string peopleId);
     }
 }

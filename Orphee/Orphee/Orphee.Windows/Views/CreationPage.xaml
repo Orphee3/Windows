@@ -1,4 +1,4 @@
-﻿<Page x:Name="Page"
+﻿ <Page x:Name="Page"
     x:Class="Orphee.Views.CreationPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -726,7 +726,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                         <Line Grid.Column="0"  X1="0" Y1="0" X2="0" Y2 ="250" Stretch="Fill" HorizontalAlignment="Center" StrokeThickness="2" Fill="#BDBEC0" Margin="0, 25, 0, 25"/>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Column="2" ZoomMode="Disabled" Width="1366" HorizontalAlignment="Stretch" Margin="15, 5, 5, 5">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" IsScrollInertiaEnabled="{Binding IsHorizontalScrollingEnabled, Mode=TwoWay}" Grid.Column="2" ZoomMode="Disabled" Width="1366" HorizontalAlignment="Stretch" Margin="15, 5, 5, 5">
                         <ItemsControl ItemsSource="{Binding OrpheeFile.OrpheeTrackList, Mode=TwoWay}" Margin="0, 0, 150, 0">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -755,7 +755,16 @@
                                                                         </ItemsControl.ItemsPanel>
                                                                         <ItemsControl.ItemTemplate>
                                                                             <DataTemplate>
-                                                                                <ui:MyRectangleButton x:Name="ToogleButton" Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" ButtonBackgroundColor="{Binding DataContext.UI.TrackColor, ElementName=TrackItemsControl}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" RectangleVisibility="{Binding IsChecked}"/>
+                                                                                <ui:MyRectangleButton x:Name="ToogleButton" Command="{Binding DataContext.ToggleButtonNoteCommand, ElementName=Page}" CommandParameter="{Binding}" ButtonBackgroundColor="{Binding DataContext.UI.TrackColor, ElementName=TrackItemsControl}" Height="{Binding Path=Height}" Width="{Binding Path=Width}" RectangleVisibility="{Binding IsChecked}">
+                                                                                    <interactivity:Interaction.Behaviors>
+                                                                                        <core:EventTriggerBehavior EventName="Holding">
+                                                                                            <core:InvokeCommandAction Command="{Binding DataContext.ToggleButtonHolded, ElementName=Page}" CommandParameter="{Binding}"/>
+                                                                                        </core:EventTriggerBehavior>
+                                                                                        <core:EventTriggerBehavior EventName="PointerEntered">
+                                                                                            <core:InvokeCommandAction Command="{Binding DataContext.CursorEnteredToggleButtonCommand, ElementName=Page}" CommandParameter="{Binding}"/>
+                                                                                        </core:EventTriggerBehavior>
+                                                                                    </interactivity:Interaction.Behaviors>
+                                                                                </ui:MyRectangleButton>
                                                                             </DataTemplate>
                                                                         </ItemsControl.ItemTemplate>
                                                                     </ItemsControl>
@@ -888,7 +897,7 @@
                                                             <DataTemplate>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Line X1="0" Y1="0" X2="0" Y2="1" Stretch="Fill"  Stroke="#BDBEC0"/>
-                                                                        <Rectangle Fill="{Binding DataContext.UI.TrackColor, ElementName=ColumnMapItemsControl}" Opacity="{Binding IsRectangleVisible}" Height="35" Width="35"/>
+                                                                        <Rectangle Fill="{Binding DataContext.UI.TrackColor, ElementName=ColumnMapItemsControl}"  Opacity="{Binding IsRectangleVisible}" Height="35" Width="35"/>
                                                                     <Line X1="0" Y1="0" X2="0" Y2="1" Stretch="Fill" Stroke="#BDBEC0" Margin="0, 0, -1, 0"/>
                                                                 </StackPanel>
                                                             </DataTemplate>
