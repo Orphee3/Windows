@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Midi;
@@ -11,8 +12,10 @@ namespace Orphee.CreationShared
     /// <summary>
     /// Representation of a MIDI track
     /// </summary>
+    [DataContract]
     public class OrpheeTrack : IOrpheeTrack, INotifyPropertyChanged
     {
+        [DataMember]
         public string OwnerId { get; set; }
         /// <summary>PropertyChanged event handler </summary>
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,10 +36,13 @@ namespace Orphee.CreationShared
         /// <summary>Player parameters </summary>
         public IPlayerParameters PlayerParameters { get; set; }
         /// <summary>List of noteMessage representation of the NoteMap </summary>
+        [DataMember]
         public IList<IOrpheeNoteMessage> OrpheeNoteMessageList { get; set; }
         /// <summary>Current instrument </summary> 
+        [DataMember]
         public Instrument CurrentInstrument { get; set; } = Instrument.AcousticGrandPiano;
         /// <summary>Channel assigned to the track </summary>
+        [DataMember]
         public Channel Channel { get; set; }
         /// <summary>Graphical position of the track </summary>
         public int TrackPos { get; set; }
@@ -44,6 +50,7 @@ namespace Orphee.CreationShared
         public uint TrackLength { get; set; }
         private string _trackName;
         /// <summary>Name of the track </summary>
+        [DataMember]
         public string TrackName
         {
             get { return this._trackName; }
@@ -119,7 +126,7 @@ namespace Orphee.CreationShared
                 }
             }
         }
-
+        [DataMember]
         public ObservableCollection<MyRectangle> ColumnMap { get; set; }
         public IOrpheeTrackUI UI { get; set; }
         private readonly INoteMapGenerator _noteMapGenerator;
@@ -143,7 +150,7 @@ namespace Orphee.CreationShared
         public void Init(IOrpheeTrack orpheeTrack)
         {
             SetProperties(orpheeTrack.TrackPos, orpheeTrack.Channel);
-            this.NoteMap = this._noteMapGenerator.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList);
+            this.NoteMap = this._noteMapGenerator.ConvertOrpheeMessageListToNoteMap(orpheeTrack.OrpheeNoteMessageList, this.Channel);
             this._currentOctaveIndex = 4;
             this.ColumnMap = this._noteMapGenerator.GenerateColumnMap(this.NoteMap);
             UpdateCurrentInstrument(orpheeTrack.CurrentInstrument);
@@ -154,7 +161,7 @@ namespace Orphee.CreationShared
         {
             var noteMap = new ObservableCollection<OctaveManager>();
             for (var index = 0; index < 8; index++)
-                noteMap.Add(this._noteMapGenerator.GenerateNoteMap(index));
+                noteMap.Add(this._noteMapGenerator.GenerateNoteMap(index, this.Channel));
             this._currentOctaveIndex = 4;
             return noteMap;
         }

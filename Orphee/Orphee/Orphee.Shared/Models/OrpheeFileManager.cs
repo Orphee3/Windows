@@ -9,12 +9,12 @@ namespace Orphee.Models
 {
     public class OrpheeFileManager : IOrpheeFileManager
     {
-        private readonly IOrpheeFileExporter _orpheeFileExporter;
+        public IOrpheeFileExporter OrpheeFileExporter { get; private set; }
         private readonly IOrpheeFileImporter _orpheeFileImporter;
 
         public OrpheeFileManager(IOrpheeFileExporter orpheeFileExporter, IOrpheeFileImporter orpheeFileImporter)
         {
-            this._orpheeFileExporter = orpheeFileExporter;
+            this.OrpheeFileExporter = orpheeFileExporter;
             this._orpheeFileImporter = orpheeFileImporter;
         }
 
@@ -25,7 +25,7 @@ namespace Orphee.Models
 
         public async Task<string> ExportOrpheeFile(IOrpheeFile fileToSave)
         {
-            return await this._orpheeFileExporter.SaveOrpheeFile(fileToSave);
+            return await this.OrpheeFileExporter.SaveOrpheeFile(fileToSave);
         }
 
         public void InitOrpheeFileWithImportedOrpheeFile(IOrpheeFile importedOrpheeFile, IOrpheeFile fileToInitialize)

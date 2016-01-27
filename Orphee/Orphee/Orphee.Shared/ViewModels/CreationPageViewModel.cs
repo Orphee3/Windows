@@ -15,6 +15,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Midi;
+using Newtonsoft.Json;
 using Orphee.Models.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.UI;
@@ -128,6 +129,7 @@ namespace Orphee.ViewModels
         public DelegateCommand AddNewTrackCommand { get; private set; }
         public DelegateCommand LeaveCreationCommand { get; private set; }
         private int _invitedUserTrackPos;
+        private string _actualRoomId;
         public INoteMapManager NoteMapManager { get; private set; }
         private IOrpheeTrack _selectedTrack;
         private bool? _creationMode;
@@ -195,11 +197,13 @@ namespace Orphee.ViewModels
                 return;
             }
             RestApiManagerBase.Instance.UserData.User.PropertyChanged += UserOnPropertyChanged;
+            this.OrpheeFile.Id = result.Name;
             this._creationMode = result.Name == "+";
             if (this._creationMode == false)
             {
                 DisableFunctionalities();
-                var result2 = App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendJoinGameRooms(result.Name, this.OrpheeFile.OrpheeTrackList.Last().CurrentInstrument);
+                this._actualRoomId = result.Name;
+                var result2 = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendJoinGameRooms(result.Name, this.OrpheeFile.OrpheeTrackList.Last().CurrentInstrument);
             }
             else
             {
@@ -217,6 +221,29 @@ namespace Orphee.ViewModels
                 ApplyTheKick();
             if (propertyChangedEventArgs.PropertyName == "_hasReceivedLeavingNotification" && RestApiManagerBase.Instance.UserData.User.HasReceivedLeavingNotification)
                 RemoveUsersTrackFromTrackList();
+            if (propertyChangedEventArgs.PropertyName == "_hasReceivedNewRoomNotification" && RestApiManagerBase.Instance.UserData.User.HasReceivedNewRoomNotification)
+                GetNewRoomId();
+            if (propertyChangedEventArgs.PropertyName == "_hasReceivedCreationInfoNotification" && RestApiManagerBase.Instance.UserData.User.HasReceivedCreationInfoNotification)
+                ApplyChanges();
+        }
+
+        private async void ApplyChanges()
+        {
+            if (RestApiManagerBase.Instance.UserData.User.InfoType == "Note")
+            {
+               await this._dispatcher.RunAsync(CoreDispatcherPriority.Normal, SetGivenToggleButton);
+            }
+            RestApiManagerBase.Instance.UserData.User.InfoType = "";
+            RestApiManagerBase.Instance.UserData.User.HasReceivedCreationInfoNotification = false;
+        }
+
+        private void GetNewRoomId()
+        {
+            if (this._creationMode != true)
+                return;
+            this._actualRoomId = RestApiManagerBase.Instance.UserData.User.ActualRoomId;
+            RestApiManagerBase.Instance.UserData.User.ActualRoomId = "";
+            RestApiManagerBase.Instance.UserData.User.HasReceivedNewRoomNotification = false;
         }
 
         private async void RemoveUsersTrackFromTrackList()
@@ -251,7 +278,6 @@ namespace Orphee.ViewModels
         {
             if (RestApiManagerBase.Instance.UserData.User.NewComer == "")
                 return;
-            this.OrpheeFile.AddNewPeople(RestApiManagerBase.Instance.UserData.User.NewComer);
             await this._dispatcher.RunAsync(CoreDispatcherPriority.Normal, AddNewComerTrack);
         }
 
@@ -274,6 +300,16 @@ namespace Orphee.ViewModels
             }
         }
 
+        private void SetGivenToggleButton()
+        {
+            var toggleButtonNote = JsonConvert.DeserializeObject<ToggleButtonNote>(RestApiManagerBase.Instance.UserData.User.ReceivedInfo);
+            this.OrpheeFile.OrpheeTrackList[(int)toggleButtonNote.Channel].NoteMap[toggleButtonNote.Octave].OctaveMap[toggleButtonNote.LineIndex][toggleButtonNote.ColumnIndex].IsChecked = toggleButtonNote.IsChecked;
+            if (toggleButtonNote.IsChecked > 0)
+                this.OrpheeFile.OrpheeTrackList[(int)toggleButtonNote.Channel].ColumnMap[toggleButtonNote.ColumnIndex].IsRectangleVisible = 100;
+            else if (this.NoteMapManager.IsColumnEmpty(toggleButtonNote.ColumnIndex, this.OrpheeFile.OrpheeTrackList[(int)toggleButtonNote.Channel].NoteMap))
+                this.OrpheeFile.OrpheeTrackList[(int)toggleButtonNote.Channel].ColumnMap[toggleButtonNote.ColumnIndex].IsRectangleVisible = 0;
+        }
+
         public async void ToggleButtonNoteExec(IToggleButtonNote toggleButtonNote)
         {
             toggleButtonNote.IsChecked = toggleButtonNote.IsChecked > 0 ? 0 : 100;
@@ -286,7 +322,7 @@ namespace Orphee.ViewModels
             else if (this.NoteMapManager.IsColumnEmpty(toggleButtonNote.ColumnIndex, this.OrpheeFile.OrpheeTrackList[(int) this._currentChannel].NoteMap))
                 this.OrpheeFile.OrpheeTrackList[(int) this._currentChannel].ColumnMap[toggleButtonNote.ColumnIndex].IsRectangleVisible = 0;
             if (this._creationMode != null && App.InternetAvailabilityWatcher.IsInternetUp && RestApiManagerBase.Instance.IsConnected)
-                while (!await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendNote(toggleButtonNote, toggleButtonNote.IsChecked > 0, this._currentChannel, this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).CurrentOctaveIndex))
+                while (!await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendData<IToggleButtonNote>(this._actualRoomId, "Note", toggleButtonNote))
                     await Task.Delay(1);
         }
 
@@ -390,16 +426,21 @@ namespace Orphee.ViewModels
             this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel).SetTrackVisibility(Visibility.Visible);
         }
 
-        private void AddNewComerTrack()
+        private async void AddNewComerTrack()
         {
             if (this.OrpheeFile.OrpheeTrackList.Count >= 16)
                 return;
-            var newTrack = new OrpheeTrack(new OrpheeTrackUI(new ColorManager()), new NoteMapManager()) {OwnerId = RestApiManagerBase.Instance.UserData.User.NewComer };
-            newTrack.Init(this.OrpheeFile.OrpheeTrackList.Count, (Channel)this.OrpheeFile.OrpheeTrackList.Count, true);
+            var newTrack = new OrpheeTrack(new OrpheeTrackUI(new ColorManager()), new NoteMapManager()) {OwnerId = RestApiManagerBase.Instance.UserData.User.NewComer};
+            newTrack.Init(this.OrpheeFile.OrpheeTrackList.Count, (Channel) this.OrpheeFile.OrpheeTrackList.Count, true);
             this.OrpheeFile.AddNewTrack(newTrack);
             this.OrpheeFile.OrpheeFileParameters.NumberOfTracks++;
             RestApiManagerBase.Instance.UserData.User.NewComer = "";
             RestApiManagerBase.Instance.UserData.User.HasReceivedNewComerNotification = false;
+            //if (this._creationMode == true)
+            //{
+            //    this._orpheeFileManager.OrpheeFileExporter.ConvertTracksNoteMapToOrpheeNoteMessageList(this.OrpheeFile);
+            //    var result = await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendCurrentPieceInfo(this.OrpheeFile.OrpheeTrackList.Last().OwnerId, this.OrpheeFile);
+            //}
         }
 
         private void AddNewTrackCommandExec()
@@ -419,7 +460,7 @@ namespace Orphee.ViewModels
             {
                 this.NoteMapManager.AddColumnsToThisNoteMap(track.NoteMap);
                 this.NoteMapManager.AddColumnsToThisColumnMap(track.ColumnMap);
-                while (await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendData<string>("Columns", null))
+                while (await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendData<string>(this._actualRoomId, "Columns", null))
                     await Task.Delay(1);
             }
         }

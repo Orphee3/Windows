@@ -41,11 +41,17 @@ namespace Orphee.CreationShared
             }
         }
 
+        public ToggleButtonNote()
+        {
+            
+        }
         /// <summary>
         /// Constructor
         /// </summary>
-        public ToggleButtonNote()
+        public ToggleButtonNote(bool option)
         {
+            if (!option)
+                return;
             this.Width = (int)(Window.Current.Bounds.Width / 11);
             this.Height = (int)(Window.Current.Bounds.Height / 18.5);
         }

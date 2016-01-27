@@ -157,6 +157,51 @@ namespace Orphee.RestApiManagement.Models
                 }
             }
         }
+
+        protected bool _receivedOrpheeFileFromHostNotifacation;
+        public bool ReceivedOrpheeFileFromHostNotifacation
+        {
+            get { return this._receivedOrpheeFileFromHostNotifacation; }
+            set
+            {
+                if (this._receivedOrpheeFileFromHostNotifacation != value)
+                {
+                    this._receivedOrpheeFileFromHostNotifacation = value;
+                    OnPropertyChanged(nameof(this._receivedOrpheeFileFromHostNotifacation));
+                }
+            }
+        }
+
+        protected bool _hasReceivedNewRoomNotification;
+        public bool HasReceivedNewRoomNotification
+        {
+            get { return this._hasReceivedNewRoomNotification; }
+            set
+            {
+                if (this._hasReceivedNewRoomNotification != value)
+                {
+                    this._hasReceivedNewRoomNotification = value;
+                    OnPropertyChanged(nameof(this._hasReceivedNewRoomNotification));
+                }
+            }
+        }
+        protected bool _hasReceivedCreationInfoNotification;
+        public bool HasReceivedCreationInfoNotification
+        {
+            get { return this._hasReceivedCreationInfoNotification; }
+            set
+            {
+                if (this._hasReceivedCreationInfoNotification != value)
+                {
+                    this._hasReceivedCreationInfoNotification = value;
+                    OnPropertyChanged(nameof(this._hasReceivedCreationInfoNotification));
+                }
+            }
+        }
+        public string InfoType { get; set; }
+        public string ReceivedInfo { get; set; }
+        public string ActualRoomId { get; set; }
+        public object ActualSharedOrpheeFile { get; set; }
         public string NewComer { get; set; }
         public string LeavingUser { get; set; }
 

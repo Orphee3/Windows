@@ -6,6 +6,8 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Orphee.CreationShared;
+using Orphee.CreationShared.Interfaces;
 using Orphee.RestApiManagement.Models;
 using Orphee.RestApiManagement.Models.Interfaces;
 using Quobject.SocketIoClientDotNet.Client;
@@ -48,7 +50,8 @@ namespace Orphee.Models
             this._socket.On("data game", DataGameNotificationReceiver);
             //this._socket.On("host send data", HostSendDataNotificationReceiver);
             this._socket.On("big bang", BigBangNotificationReceiver);
-            this._socket.On("someone need all data", GetAllDataGameNotificationReceiver);
+            this._socket.On("host send data", HostSendDataNotificationReceiver);
+            this._socket.On("get all data game", GetAllDataGameNotificationReceiver);
         }
 
         #region Listeners
@@ -59,6 +62,7 @@ namespace Orphee.Models
             dynamic dataReceived = JObject.Parse(dataToString);
             RestApiManagerBase.Instance.UserData.User.NewComer = dataReceived.newPeople;
             RestApiManagerBase.Instance.UserData.User.HasReceivedNewComerNotification = true;
+ 
         }
 
         private void GetGameRoomsNotificationReceiver(object data)
@@ -77,14 +81,25 @@ namespace Orphee.Models
         private void CreateGameRoomNotificationReceiver(object data)
         {
             var dataToString = data.ToString();
+            var dataReceived = JObject.FromObject(data);
+            RestApiManagerBase.Instance.UserData.User.ActualRoomId = dataReceived["id"].ToString(); 
+            RestApiManagerBase.Instance.UserData.User.HasReceivedNewRoomNotification = true;
         }
         private void DataGameNotificationReceiver(object data)
         {
             var dataToString = data.ToString();
+            var dataReceived = JObject.FromObject(data);
+            RestApiManagerBase.Instance.UserData.User.ReceivedInfo = dataReceived["data"]["data"].ToString();
+            RestApiManagerBase.Instance.UserData.User.InfoType = dataReceived["data"]["type"].ToString();
+            RestApiManagerBase.Instance.UserData.User.HasReceivedCreationInfoNotification = true;
         }
         private void GetAllDataGameNotificationReceiver(object data)
         {
             var dataToString = data.ToString();
+            var dataReceived = JObject.FromObject(data);
+            /*  RestApiManagerBase.Instance.UserData.User.ActualSharedOrpheeFile = */
+            //var test = JsonConvert.DeserializeObject<OrpheeFile>(dataReceived["file"].ToString());
+            //RestApiManagerBase.Instance.UserData.User.ReceivedOrpheeFileFromHostNotifacation = true;
         }
         private void HostSendDataNotificationReceiver(object data)
         {
@@ -223,31 +238,6 @@ namespace Orphee.Models
         {
             var convertedData = JObject.FromObject(data);
             RestApiManagerBase.Instance.UserData.User.ConversationList.Last().Id = convertedData["room"]["_id"].ToString();
-        }
-
-        private void PieceInfoNotificationReceiver(object data)
-        {
-
-        }
-
-        private void TempoNotificationReceiver(object data)
-        {
-
-        }
-
-        private void NoteNotificationReceiver(object data)
-        {
-
-        }
-
-        private void AddColumnsNotificationReceiver(object data)
-        {
-
-        }
-
-        private void PieceQuitNotificationReceiver(object data)
-        {
-
         }
 
         #endregion

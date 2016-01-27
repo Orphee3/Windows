@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Midi;
@@ -69,11 +70,11 @@ namespace Orphee.Models
             return true;
         }
 
-        public async Task<bool> SendAllDataGame()
+        public async Task<bool> SendAllDataGame(string roomId, IOrpheeFile OrpheFile)
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("get all data game"));
+               
             }
             catch (Exception)
             {
@@ -121,11 +122,11 @@ namespace Orphee.Models
             return true;
         }
 
-        public async Task<bool> SendCurrentPieceInfo(Dictionary<List<INoteToSend>, UserBase> actualPieceInfo)
+        public async Task<bool> SendCurrentPieceInfo(string targetUser, IOrpheeFile orpheeFile)
         {
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("host send data", JObject.FromObject(new { pieceInfo = actualPieceInfo })));
+                var result = await Task.FromResult(this._socket.Emit("host send data", JObject.FromObject(new { user = targetUser, file = orpheeFile })));
             }
             catch (Exception)
             {
@@ -134,11 +135,12 @@ namespace Orphee.Models
             return true;
         }
 
-        public async Task<bool> SendData<T>(string dataType, T dataToSend)
+        public async Task<bool> SendData<T>(string roomId, string dataType, T dataToSend)
         {
+            var dataToSendContainer = JObject.FromObject(new {type = dataType, data = dataToSend});
             try
             {
-                var result = await Task.FromResult(this._socket.Emit("data game", JObject.FromObject(new { type = dataType, data = dataToSend })));
+                var result = await Task.FromResult(this._socket.Emit("data game", JObject.FromObject(new { id = roomId, data = dataToSendContainer })));
             }
             catch (Exception)
             {

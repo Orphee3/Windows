@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using MidiDotNet.ExportModule.Interfaces;
 using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.Models.Interfaces
@@ -8,5 +9,6 @@ namespace Orphee.Models.Interfaces
         Task<string> ExportOrpheeFile(IOrpheeFile fileToSave);
         Task<IOrpheeFile> ImportOrpheeFile();
         void InitOrpheeFileWithImportedOrpheeFile(IOrpheeFile importedFile, IOrpheeFile fileToInitialize);
+        IOrpheeFileExporter OrpheeFileExporter { get; }
     }
 }

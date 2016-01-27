@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorManager.cs" />
+    <Compile Include="ConcreteConverter.cs" />
     <Compile Include="CropBitmap.cs" />
     <Compile Include="FilePickerManager.cs" />
     <Compile Include="InstrumentManager.cs" />
@@ -99,6 +100,10 @@
       <HintPath>..\packages\Moq.3.1.416.3\lib\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -106,7 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orphee.RestApiManagement\Orphee.RestApiManagement.csproj">
-      <Project>{2623F847-A3A6-4884-9FE3-E31742F3C745}</Project>
+      <Project>{2623f847-a3a6-4884-9fe3-e31742f3c745}</Project>
       <Name>Orphee.RestApiManagement</Name>
     </ProjectReference>
   </ItemGroup>

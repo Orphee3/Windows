@@ -37,7 +37,7 @@ namespace Orphee.CreationShared
             this._clock = new Clock(this.PlayerParameters.Tempo);
             try
             {
-                //this._outputDevice = OutputDevice.InstalledDevices[0];
+                this._outputDevice = OutputDevice.InstalledDevices[0];
             }
             catch (Exception)
             {
@@ -108,9 +108,7 @@ namespace Orphee.CreationShared
 
         private void ReinitClock()
         {
-            //this._clock.Stop();
-            //this._clock = new Clock(this.PlayerParameters.Tempo);
-            //this._clock.Start();
+ 
         }
 
         /// <summary>

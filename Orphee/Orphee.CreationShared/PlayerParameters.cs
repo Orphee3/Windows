@@ -1,4 +1,5 @@
-﻿using Orphee.CreationShared.Interfaces;
+﻿using System.Runtime.Serialization;
+using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
 {
@@ -7,6 +8,7 @@ namespace Orphee.CreationShared
     /// containing the data needed to set the MIDI lib parameters
     /// in order to play the MIDI messages accordingly
     /// </summary>
+    [DataContract]
     public class PlayerParameters : IPlayerParameters
     {
         /// <summary>Value representing the TimeSignatureMessage nominator </summary>
@@ -18,6 +20,7 @@ namespace Orphee.CreationShared
         /// <summary>Value representing the TimeSignatureMessage number of 32th note per beat </summary>
         public uint TimeSignatureNumberOf32ThNotePerBeat { get; set; }
         /// <summary>Value representing the tempo </summary>
+        [DataMember]
         public uint Tempo { get; set; }
     }
 }

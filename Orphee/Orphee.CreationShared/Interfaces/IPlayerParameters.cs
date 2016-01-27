@@ -1,4 +1,6 @@
-﻿namespace Orphee.CreationShared.Interfaces
+﻿using Newtonsoft.Json;
+
+namespace Orphee.CreationShared.Interfaces
 {
     /// <summary>
     /// PlayerParameters interface
@@ -16,6 +18,7 @@
         /// <summary>Value representing the TimeSignatureMessage number of 32th note per beat </summary>
         uint TimeSignatureNumberOf32ThNotePerBeat { get; set; }
         /// <summary>Value representing the tempo </summary>
+        [JsonProperty(PropertyName = "Tempo")]
         uint Tempo { get; set; }
 
         // Methods

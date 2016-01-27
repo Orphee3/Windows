@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Midi;
 using Orphee.CreationShared.Interfaces;
 
 namespace Orphee.CreationShared
@@ -54,21 +55,21 @@ namespace Orphee.CreationShared
         /// </summary>
         /// <param name="startingOctave">Starting octave of the generated note map</param>
         /// <returns></returns>
-        public OctaveManager GenerateNoteMap(int startingOctave)
+        public OctaveManager GenerateNoteMap(int startingOctave, Channel channel)
         {
             var noteMap = new OctaveManager(new OctaveManagerUI(), startingOctave);
             for (var lineIndex = 0; lineIndex < this._lineNumberToAdd; lineIndex++)
-                noteMap.OctaveMap.Add(NoteMapLineGenerator(lineIndex, startingOctave));
+                noteMap.OctaveMap.Add(NoteMapLineGenerator(lineIndex, startingOctave, channel));
             return noteMap;
         }
 
-        private ObservableCollection<IToggleButtonNote> NoteMapLineGenerator(int lineIndex, int octaveNumber)
+        private ObservableCollection<IToggleButtonNote> NoteMapLineGenerator(int lineIndex, int octaveNumber, Channel channel)
         {
             var newLine = new ObservableCollection<IToggleButtonNote>();
             var note = this.NoteNameListManager.NoteNameList[this.NoteNameListManager.NoteNameList.Keys.ElementAt(lineIndex + (12 * octaveNumber))];
 
             for (var columnIndex = 0; columnIndex < this._columnNumberToAdd; columnIndex++)
-                newLine.Add(new ToggleButtonNote() { LineIndex = lineIndex, ColumnIndex = columnIndex, Note = note });
+                newLine.Add(new ToggleButtonNote(true) { LineIndex = lineIndex, ColumnIndex = columnIndex, Note = note, Octave = octaveNumber, Channel = channel});
             return newLine;
         }
 
@@ -83,7 +84,7 @@ namespace Orphee.CreationShared
                 return;
             this._columnNumberToAdd = noteMap[0].Count;
             for (var lineIndex = 0; lineIndex < 12; lineIndex++)
-                noteMap.Add(NoteMapLineGenerator(lineIndex, octaveNumber));
+                noteMap.Add(NoteMapLineGenerator(lineIndex, octaveNumber, noteMap[0][0].Channel));
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Orphee.CreationShared
                 return;
             this._columnNumberToAdd = noteMap[0].Count;
             for (var lineIndex = 0; lineIndex < 12; lineIndex++)
-                noteMap.Insert(lineIndex, NoteMapLineGenerator(lineIndex, octaveNumber));
+                noteMap.Insert(lineIndex, NoteMapLineGenerator(lineIndex, octaveNumber, noteMap[0][0].Channel));
         }
 
         public void AddColumnsToThisColumnMap(ObservableCollection<MyRectangle> columnMap)
@@ -120,7 +121,7 @@ namespace Orphee.CreationShared
             {
                 for (var lineIndex = 0; lineIndex < octave.OctaveMap.Count; lineIndex++)
                     for (var columnIndex = 0; columnIndex < this._columnNumberToAdd; columnIndex++)
-                        octave.OctaveMap[lineIndex].Add(new ToggleButtonNote() { LineIndex = lineIndex, ColumnIndex = columnIndex, Note = octave.OctaveMap[lineIndex][0].Note });
+                        octave.OctaveMap[lineIndex].Add(new ToggleButtonNote(true) { LineIndex = lineIndex, ColumnIndex = columnIndex, Note = octave.OctaveMap[lineIndex][0].Note });
             }
            
         }
@@ -201,13 +202,13 @@ namespace Orphee.CreationShared
         /// </summary>
         /// <param name="orpheeNoteMessageLists">List of OrpheeNoteMessage contained in the calling OrpheeTrack</param>
         /// <returns>Return a note map</returns>
-        public ObservableCollection<OctaveManager> ConvertOrpheeMessageListToNoteMap(IList<IOrpheeNoteMessage> orpheeNoteMessageLists)
+        public ObservableCollection<OctaveManager> ConvertOrpheeMessageListToNoteMap(IList<IOrpheeNoteMessage> orpheeNoteMessageLists, Channel channel)
         {
             if (orpheeNoteMessageLists.Sum(message => message.DeltaTime / 48) > this._columnNumberToAdd)
                 this._columnNumberToAdd = orpheeNoteMessageLists.Sum(message => message.DeltaTime / 48);
             var noteMap = new ObservableCollection<OctaveManager>();
             for (var index = 0; index < 8; index++)
-                noteMap.Add(GenerateNoteMap(index));
+                noteMap.Add(GenerateNoteMap(index, channel));
             var columnIndex = 0;
 
             foreach (var noteMessage in orpheeNoteMessageLists)
