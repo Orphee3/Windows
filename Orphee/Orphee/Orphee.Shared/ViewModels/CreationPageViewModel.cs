@@ -233,8 +233,17 @@ namespace Orphee.ViewModels
             {
                await this._dispatcher.RunAsync(CoreDispatcherPriority.Normal, SetGivenToggleButton);
             }
+            else if (RestApiManagerBase.Instance.UserData.User.InfoType == "Tempo")
+            {
+                await this._dispatcher.RunAsync(CoreDispatcherPriority.Normal, ChangeCurrentTempo);
+            }
             RestApiManagerBase.Instance.UserData.User.InfoType = "";
             RestApiManagerBase.Instance.UserData.User.HasReceivedCreationInfoNotification = false;
+        }
+
+        private void ChangeCurrentTempo()
+        {
+            this.CurrentTempoIndex = JsonConvert.DeserializeObject<int>(RestApiManagerBase.Instance.UserData.User.ReceivedInfo);
         }
 
         private void GetNewRoomId()
@@ -356,12 +365,16 @@ namespace Orphee.ViewModels
             this._soundPlayer.UpdateCurrentInstrument(newCurrentInstrument, this._currentChannel);
         }
 
-        private void UpdateTempoValue()
+        private async void UpdateTempoValue()
         {
             var newTempo = this.TempoValues[this.CurrentTempoIndex];
             this.OrpheeFile.OrpheeTrackList[0].PlayerParameters.Tempo = newTempo;
             var actualTrack = this.OrpheeFile.OrpheeTrackList.FirstOrDefault(t => t.Channel == this._currentChannel);
             this._soundPlayer.UpdateTempo(newTempo, actualTrack.CurrentInstrument, actualTrack.Channel);
+            if (this._creationMode == true)
+            {
+                await App.InternetAvailabilityWatcher.SocketManager.SocketEmitter.SendData<int>(this._actualRoomId, "Tempo", this._currentTempoIndex);
+            }
         }
 
         private async void SaveButtonCommandExec()
